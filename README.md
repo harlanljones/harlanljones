@@ -34,7 +34,7 @@
 | **Power Superlative** | [J.D. Martinez](https://www.baseball-reference.com/players/m/martijd02.shtml) | 2011–2024 | ARI, BOS, DET, HOU, LAD (+1) | 331 Career HR • 1071 RBI |
 | **Mound Superlative** | [Murry Dickson](https://www.baseball-reference.com/players/d/dicksmu01.shtml) | 1939–1959 | NYY, OAK, PHI, PIT, STL | 1,281 Strikeouts • 3.66 ERA |
 
-*Active cohort on this date:* [Corbin Carroll](https://www.baseball-reference.com/players/c/carroco02.shtml) (ARI), [Christian Vázquez](https://www.baseball-reference.com/players/v/vazquch01.shtml) (MIN), [Jesse Chavez](https://www.baseball-reference.com/players/c/chaveje01.shtml) (TOR), [Ryan Pepiot](https://www.baseball-reference.com/players/p/pepiory01.shtml) (TBD)
+*Active cohort on this date:* [Corbin Carroll](https://www.baseball-reference.com/players/c/carroco02.shtml) (ARI), [Christian Vázquez](https://www.baseball-reference.com/players/v/vazquch01.shtml) (MIN), [Jesse Chavez](https://www.baseball-reference.com/players/c/chaveje01.shtml) (TOR), [Ryan Pepiot](https://www.baseball-reference.com/players/p/pepiory01.shtml) (FA)
 
 *Historical index contains 78 total Major League Baseball players born on August 21.*
 <!-- MLB_BIRTHDAY_END -->

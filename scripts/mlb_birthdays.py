@@ -274,7 +274,12 @@ def build_daily_ledger(players: List[Dict[str, Any]], month: int, day: int, curr
     
     # Active Player roster note if present
     if active_players:
-        active_names = [f"{format_player_link(ap)} ({ap['franchises'][-1] if ap['franchises'] else 'MLB'})" for ap in active_players[:4]]
+        def format_active_organization(p: Dict[str, Any]) -> str:
+            """Return an active player's MLB organization, or FA when unsigned."""
+            organization = p["franchises"][-1] if p["franchises"] else ""
+            return "FA" if not organization or organization.upper() == "TBD" else organization
+
+        active_names = [f"{format_player_link(ap)} ({format_active_organization(ap)})" for ap in active_players[:4]]
         lines.append(f"*Active cohort on this date:* {', '.join(active_names)}")
         lines.append("")
 
