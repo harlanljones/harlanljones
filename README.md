@@ -28,13 +28,13 @@
 
 | Category | Player | Active Span | Franchise(s) | Key Sabermetrics |
 | :--- | :--- | :--- | :--- | :--- |
-| **Career Value Ace** | [Carl Yastrzemski](https://www.baseball-reference.com/players/y/yastrca01.shtml) | 1961–1983 | BOS | 96.4 bWAR • .842 OPS • 452 HR • 3,419 H • 168 SB |
-| **Immaculate Grid Gem** | [Randy Wolf](https://www.baseball-reference.com/players/w/wolfra02.shtml) | 1999–2015 | 8 Clubs | 8 Clubs (BAL, DET, FLA, HOU, LAD, MIL...) • 22.8 bWAR • 16 Yrs — a true Immaculate Grid cheat code |
-| **Antique Ace** | [Martin Mullen](https://www.baseball-reference.com/players/m/mulle01.shtml) | 1872 | CFC | Born 1852 • 1 Seasons • -0.1 bWAR |
-| **Long Ball Laureate** | [Carl Yastrzemski](https://www.baseball-reference.com/players/y/yastrca01.shtml) | 1961–1983 | BOS | 452 Career HR • 1844 RBI |
-| **Strikeout Savant** | [Randy Wolf](https://www.baseball-reference.com/players/w/wolfra02.shtml) | 1999–2015 | BAL, DET, FLA, HOU, LAD (+3) | 1,814 Strikeouts • 4.24 ERA |
+| **Peak Valuation** | [Carl Yastrzemski](https://www.baseball-reference.com/players/y/yastrca01.shtml) | 1961–1983 | BOS | 96.4 bWAR • .842 OPS • 452 HR • 3,419 H • 168 SB |
+| **Franchise Polymath** | [Randy Wolf](https://www.baseball-reference.com/players/w/wolfra02.shtml) | 1999–2015 | 8 Clubs | 8 Clubs (BAL, DET, FLA, HOU, LAD, MIL...) • 22.8 bWAR • 16 Yrs |
+| **Vintage Origin** | [Martin Mullen](https://www.baseball-reference.com/players/m/mulle01.shtml) | 1872 | CFC | Born 1852 • 1 Seasons • -0.1 bWAR |
+| **Power Superlative** | [Carl Yastrzemski](https://www.baseball-reference.com/players/y/yastrca01.shtml) | 1961–1983 | BOS | 452 Career HR • 1844 RBI |
+| **Mound Superlative** | [Randy Wolf](https://www.baseball-reference.com/players/w/wolfra02.shtml) | 1999–2015 | BAL, DET, FLA, HOU, LAD (+3) | 1,814 Strikeouts • 4.24 ERA |
 
-*Active cohort on MLB active rosters today (2):* [Gabriel Hughes](https://www.baseball-reference.com/players/h/hughega01.shtml) (COL), [Chayce McDermott](https://www.baseball-reference.com/players/m/mcderch01.shtml) (NYM)
+*Active cohort on this date:* [Chris Stratton](https://www.baseball-reference.com/players/s/stratch01.shtml) (TEX), [Gabriel Hughes](https://www.baseball-reference.com/players/h/hughega01.shtml) (COL), [Chayce McDermott](https://www.baseball-reference.com/players/m/mcderch01.shtml) (NYM)
 
 *Historical index contains 65 total Major League Baseball players born on August 22.*
 <!-- MLB_BIRTHDAY_END -->
