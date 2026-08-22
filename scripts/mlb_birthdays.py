@@ -175,13 +175,13 @@ def build_daily_ledger(players: List[Dict[str, Any]], month: int, day: int, curr
     if not players:
         return f"### Daily Dugout Dispatch: {date_str}\n\n*No MLB player birth records indexed for this date.*\n"
 
-    # 1. Peak Career Valuation (WAR Leader)
+    # 1. Career Value Ace (WAR leader)
     war_leader = max(players, key=lambda p: p["war"])
 
-    # 2. The Franchise Polymath (Most distinct franchises)
+    # 2. Immaculate Grid Gem (most distinct franchises)
     polymath = max(players, key=lambda p: len(p["franchises"]))
 
-    # 3. Vintage Origin / Deadball Outlier (Earliest born player)
+    # 3. Antique Ace (earliest-born player)
     valid_birth_years = [p for p in players if p["birth_year"] > 1800]
     vintage = min(valid_birth_years, key=lambda p: p["birth_year"]) if valid_birth_years else players[-1]
 
@@ -190,8 +190,8 @@ def build_daily_ledger(players: List[Dict[str, Any]], month: int, day: int, curr
     sb_leader = max(players, key=lambda p: p["sb"])
     so_leader = max(players, key=lambda p: p["so_p"])
 
-    # 5. Active cohort (played in recent seasons, e.g. current_year or previous year)
-    active_players = [p for p in players if p["year_max"] >= (current_year - 1)]
+    # 5. Active cohort (on MLB active rosters this season)
+    active_players = [p for p in players if p["year_max"] >= current_year]
     active_players.sort(key=lambda p: p["war"], reverse=True)
 
     # Format metrics helper
@@ -233,7 +233,7 @@ def build_daily_ledger(players: List[Dict[str, Any]], month: int, day: int, curr
     def format_polymath_metrics(p: Dict[str, Any]) -> str:
         team_count = len(p["franchises"])
         teams_str = ", ".join(p["franchises"][:6]) + ("..." if len(p["franchises"]) > 6 else "")
-        return f"{team_count} Clubs ({teams_str}) • {p['war']:.1f} bWAR • {p['experience']} Yrs"
+        return f"{team_count} Clubs ({teams_str}) • {p['war']:.1f} bWAR • {p['experience']} Yrs — a true Immaculate Grid cheat code"
 
     def format_vintage_metrics(p: Dict[str, Any]) -> str:
         age_notes = f"Born {p['birth_year']}"
@@ -257,16 +257,16 @@ def build_daily_ledger(players: List[Dict[str, Any]], month: int, day: int, curr
         "",
         "| Category | Player | Active Span | Franchise(s) | Key Sabermetrics |",
         "| :--- | :--- | :--- | :--- | :--- |",
-        f"| **Peak Valuation** | {format_player_link(war_leader)} | {format_span(war_leader)} | {format_franchises(war_leader)} | {format_war_metrics(war_leader)} |",
-        f"| **Franchise Polymath** | {format_player_link(polymath)} | {format_span(polymath)} | {len(polymath['franchises'])} Clubs | {format_polymath_metrics(polymath)} |",
-        f"| **Vintage Origin** | {format_player_link(vintage)} | {format_span(vintage)} | {format_franchises(vintage)} | {format_vintage_metrics(vintage)} |",
+        f"| **Career Value Ace** | {format_player_link(war_leader)} | {format_span(war_leader)} | {format_franchises(war_leader)} | {format_war_metrics(war_leader)} |",
+        f"| **Immaculate Grid Gem** | {format_player_link(polymath)} | {format_span(polymath)} | {len(polymath['franchises'])} Clubs | {format_polymath_metrics(polymath)} |",
+        f"| **Antique Ace** | {format_player_link(vintage)} | {format_span(vintage)} | {format_franchises(vintage)} | {format_vintage_metrics(vintage)} |",
     ]
 
     # Add superlatives if valid
     if hr_leader["hr"] > 15:
-        lines.append(f"| **Power Superlative** | {format_player_link(hr_leader)} | {format_span(hr_leader)} | {format_franchises(hr_leader)} | {hr_leader['hr']} Career HR • {hr_leader['rbi']} RBI |")
+        lines.append(f"| **Long Ball Laureate** | {format_player_link(hr_leader)} | {format_span(hr_leader)} | {format_franchises(hr_leader)} | {hr_leader['hr']} Career HR • {hr_leader['rbi']} RBI |")
     if so_leader["so_p"] > 100:
-        lines.append(f"| **Mound Superlative** | {format_player_link(so_leader)} | {format_span(so_leader)} | {format_franchises(so_leader)} | {so_leader['so_p']:,} Strikeouts • {so_leader['era']} ERA |")
+        lines.append(f"| **Strikeout Savant** | {format_player_link(so_leader)} | {format_span(so_leader)} | {format_franchises(so_leader)} | {so_leader['so_p']:,} Strikeouts • {so_leader['era']} ERA |")
     elif sb_leader["sb"] > 50:
         lines.append(f"| **Speed Superlative** | {format_player_link(sb_leader)} | {format_span(sb_leader)} | {format_franchises(sb_leader)} | {sb_leader['sb']} Stolen Bases • {sb_leader['hits']:,} H |")
 
@@ -279,8 +279,8 @@ def build_daily_ledger(players: List[Dict[str, Any]], month: int, day: int, curr
             organization = p["franchises"][-1] if p["franchises"] else ""
             return "FA" if not organization or organization.upper() == "TBD" else organization
 
-        active_names = [f"{format_player_link(ap)} ({format_active_organization(ap)})" for ap in active_players[:4]]
-        lines.append(f"*Active cohort on this date:* {', '.join(active_names)}")
+        active_names = [f"{format_player_link(ap)} ({format_active_organization(ap)})" for ap in active_players]
+        lines.append(f"*Active cohort on MLB active rosters today ({len(active_players)}):* {', '.join(active_names)}")
         lines.append("")
 
     lines.append(f"*Historical index contains {len(players)} total Major League Baseball players born on {date_str}.*")
