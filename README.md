@@ -43,13 +43,6 @@
 
 ### 🚀 Featured Projects
 
-* **[clify](https://github.com/harlanljones/clify)** — Metric-Driven Agent-Driven Development (ADD) framework implementing a Turborepo monorepo with two complementary products: `cliamp-clify` (Go TUI music player with Spotify superpowers) and `clify` (Python CLI with ADD-orchestrated agent framework). Features deterministic SLAs on every execution (latency ≤ 2.5s, cost ≤ $0.02, confidence ≥ 0.90), semantic scope guardrails, and runtime telemetry monitoring with three-stage TDD lifecycle verification.
-  ![Go](https://img.shields.io/badge/Go-1.26%2B-00ADD8?style=flat-square&logo=go&logoColor=white)
-  ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)
-  ![Spotify API](https://img.shields.io/badge/Spotify_API-1DB954?style=flat-square&logo=spotify&logoColor=white)
-  ![Turborepo](https://img.shields.io/badge/Turborepo-Monorepo-000000?style=flat-square)
-  ![TDD](https://img.shields.io/badge/TDD-Test--Driven_Development-blueviolet?style=flat-square)
-
 * **[herdr-outpost](https://github.com/harlanljones/herdr-outpost)** — Lightweight, secure remote dashboard and relay gateway for [Herdr](https://herdr.dev) AI coding agent workspaces, featuring mTLS encryption, VAPID authentication, and Cloudflare Workers integration.
   ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
   ![Cloudflare Workers](https://img.shields.io/badge/Cloudflare_Workers-F38020?style=flat-square&logo=cloudflare&logoColor=white)
@@ -78,6 +71,13 @@
   ![Performance](https://img.shields.io/badge/Performance-p99_%3C_250ns-blueviolet?style=flat-square)
   ![Architecture](https://img.shields.io/badge/Architecture-Lock--Free_SPSC-success?style=flat-square)
   ![Markets](https://img.shields.io/badge/Feeds-Kalshi_%26_Polymarket-009688?style=flat-square)
+
+* **[clify](https://github.com/harlanljones/clify)** — Metric-Driven Agent-Driven Development (ADD) framework implementing a Turborepo monorepo with two complementary products: `cliamp-clify` (Go TUI music player with Spotify superpowers) and `clify` (Python CLI with ADD-orchestrated agent framework). Features deterministic SLAs on every execution (latency ≤ 2.5s, cost ≤ $0.02, confidence ≥ 0.90), semantic scope guardrails, and runtime telemetry monitoring with three-stage TDD lifecycle verification.
+  ![Go](https://img.shields.io/badge/Go-1.26%2B-00ADD8?style=flat-square&logo=go&logoColor=white)
+  ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)
+  ![Spotify API](https://img.shields.io/badge/Spotify_API-1DB954?style=flat-square&logo=spotify&logoColor=white)
+  ![Turborepo](https://img.shields.io/badge/Turborepo-Monorepo-000000?style=flat-square)
+  ![TDD](https://img.shields.io/badge/TDD-Test--Driven_Development-blueviolet?style=flat-square)
 
 * **[gan-enhanced-pneumonia-classifier](https://github.com/harlanljones/gan-enhanced-pneumonia-classifier)** — Enhancing pneumonia detection accuracy with GAN-generated synthetic chest X-rays.  
   ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
