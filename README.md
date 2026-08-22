@@ -28,13 +28,13 @@
 
 | Category | Player | Active Span | Franchise(s) | Key Sabermetrics |
 | :--- | :--- | :--- | :--- | :--- |
-| **Peak Valuation** | [Murry Dickson](https://www.baseball-reference.com/players/d/dicksmu01.shtml) | 1939–1959 | NYY, OAK, PHI, PIT, STL | 46.2 bWAR • 3.66 ERA • 172-181 W-L • 1,281 SO • 23 SV |
+| **Peak Valuation** | [Murry Dickson](https://www.baseball-reference.com/players/d/dicksmu01.shtml) | 1939–1959 | NYY, OAK, PHI, PIT, STL | 46.2 bWAR • 3.66 ERA • 172-181 W-L • 1,281 SO |
 | **Franchise Polymath** | [Jesse Chavez](https://www.baseball-reference.com/players/c/chaveje01.shtml) | 2008–Pres | 9 Clubs | 9 Clubs (ANA, ATL, CHC, KCR, LAD, OAK...) • 6.4 bWAR • 18 Yrs |
 | **Vintage Origin** | [Charlie Gould](https://www.baseball-reference.com/players/g/gouldch01.shtml) | 1871–1877 | BLC, BNA, CNR, NHV | Born 1847 • 6 Seasons • 1.6 bWAR • 248 H |
 | **Power Superlative** | [J.D. Martinez](https://www.baseball-reference.com/players/m/martijd02.shtml) | 2011–2024 | ARI, BOS, DET, HOU, LAD (+1) | 331 Career HR • 1071 RBI |
 | **Mound Superlative** | [Murry Dickson](https://www.baseball-reference.com/players/d/dicksmu01.shtml) | 1939–1959 | NYY, OAK, PHI, PIT, STL | 1,281 Strikeouts • 3.66 ERA |
 
-*Active cohort on this date:* [Corbin Carroll](https://www.baseball-reference.com/players/c/carroco02.shtml) (ARI), [Christian Vázquez](https://www.baseball-reference.com/players/v/vazquch01.shtml) (MIN), [Jesse Chavez](https://www.baseball-reference.com/players/c/chaveje01.shtml) (TOR), [Ryan Pepiot](https://www.baseball-reference.com/players/p/pepiory01.shtml) (FA)
+*Active cohort on this date:* [Corbin Carroll](https://www.baseball-reference.com/players/c/carroco02.shtml) (ARI), [Christian Vázquez](https://www.baseball-reference.com/players/v/vazquch01.shtml) (Retired), and 75 others.
 
 *Historical index contains 78 total Major League Baseball players born on August 21.*
 <!-- MLB_BIRTHDAY_END -->
@@ -43,21 +43,28 @@
 
 ### 🚀 Featured Projects
 
-* **[herdr-outpost](https://github.com/harlanljones/herdr-outpost)** — Lightweight, secure remote dashboard and relay gateway for [Herdr](https://herdr.dev) AI coding agent workspaces, featuring global edge hosting on Cloudflare Workers, secure daemon relay over Cloudflare Tunnel, and real-time push alerting.  
+* **[clify](https://github.com/harlanljones/clify)** — Metric-Driven Agent-Driven Development (ADD) framework implementing a Turborepo monorepo with two complementary products: `cliamp-clify` (Go TUI music player with Spotify superpowers) and `clify` (Python CLI with ADD-orchestrated agent framework). Features deterministic SLAs on every execution (latency ≤ 2.5s, cost ≤ $0.02, confidence ≥ 0.90), semantic scope guardrails, and runtime telemetry monitoring with three-stage TDD lifecycle verification.
+  ![Go](https://img.shields.io/badge/Go-1.26%2B-00ADD8?style=flat-square&logo=go&logoColor=white)
+  ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)
+  ![Spotify API](https://img.shields.io/badge/Spotify_API-1DB954?style=flat-square&logo=spotify&logoColor=white)
+  ![Turborepo](https://img.shields.io/badge/Turborepo-Monorepo-000000?style=flat-square)
+  ![TDD](https://img.shields.io/badge/TDD-Test--Driven_Development-blueviolet?style=flat-square)
+
+* **[herdr-outpost](https://github.com/harlanljones/herdr-outpost)** — Lightweight, secure remote dashboard and relay gateway for [Herdr](https://herdr.dev) AI coding agent workspaces, featuring mTLS encryption, VAPID authentication, and Cloudflare Workers integration.
   ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
   ![Cloudflare Workers](https://img.shields.io/badge/Cloudflare_Workers-F38020?style=flat-square&logo=cloudflare&logoColor=white)
   ![Cloudflare Tunnel](https://img.shields.io/badge/Cloudflare_Tunnel-F38020?style=flat-square&logo=cloudflare&logoColor=white)
   ![WebSocket](https://img.shields.io/badge/WebSocket-010101?style=flat-square)
   ![Security](https://img.shields.io/badge/Security-mTLS_%26_VAPID-blueviolet?style=flat-square)
 
-* **[scheme-db](https://github.com/harlanljones/scheme-db)** — Interactive NFL scheme engineering workstation that animates 80 plays across 20 offensive & defensive systems with Catmull-Rom spline interpolation, 0.0s–1.2s disguise mesh analysis, and coaching lineage trees.  
+* **[scheme-db](https://github.com/harlanljones/scheme-db)** — Interactive NFL scheme engineering workstation that animates 80 plays across 20 offensive & defensive systems with Catmull-Rom spline interpolation.
   [![Live Demo](https://img.shields.io/badge/Live_Demo-schemedb.harlanljones.com-F38020?style=flat-square&logo=cloudflare&logoColor=white)](https://schemedb.harlanljones.com/)
   ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
   ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
   ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
   ![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white)
 
-* **[urban-signal](https://github.com/harlanljones/urban-signal)** — Real-time spatial intelligence & commercial catalyst forecasting engine ingesting municipal permit, license, and 311 telemetry via Apache Kafka onto Uber H3 hexagonal grids to predict hyper-local appreciation 6–18 months ahead of market comps with ST-GNN & LightGBM ensembles.  
+* **[urban-signal](https://github.com/harlanljones/urban-signal)** — Real-time spatial intelligence & commercial catalyst forecasting engine ingesting municipal permit, license, and 311 telemetry.
   ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
   ![Apache Kafka](https://img.shields.io/badge/Apache_Kafka-231F20?style=flat-square&logo=apache-kafka&logoColor=white)
   ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
@@ -65,7 +72,7 @@
   ![Uber H3](https://img.shields.io/badge/Uber_H3-000000?style=flat-square)
   ![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white)
   
-* **[arbkit](https://github.com/harlanljones/arbkit)** — Cross-venue sports & prediction market arbitrage detector and execution simulator in pure Rust, featuring a zero-allocation hot loop (p99 = 100–250 ns), lock-free SPSC ring buffers, fee- & depth-aware pessimistic sizing across Kalshi & Polymarket order books, and a benchmark proof-ledger dashboard.  
+* **[arbkit](https://github.com/harlanljones/arbkit)** — Cross-venue sports & prediction market arbitrage detector and execution simulator in pure Rust, featuring a zero-allocation hot loop (p99 < 250ns).
   [![Live Dashboard](https://img.shields.io/badge/Live_Dashboard-arbkit.harlanljones.com-F38020?style=flat-square&logo=cloudflare&logoColor=white)](https://arbkit.harlanljones.com/)
   ![Rust](https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white)
   ![Performance](https://img.shields.io/badge/Performance-p99_%3C_250ns-blueviolet?style=flat-square)
