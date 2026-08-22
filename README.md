@@ -148,10 +148,8 @@
   <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/profile-summary-card-output/github_dark/2-most-commit-language.svg" alt="Most Commit Language" width="49%" />
 </p>
 <p align="center">
-  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/profile-summary-card-output/github_dark/3-stats.svg" alt="GitHub Stats" width="49%" />
-  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/profile-summary-card-output/github_dark/4-productive-time.svg" alt="Productive Time" width="49%" />
+  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/profile-summary-card-output/github_dark/4-productive-time.svg" alt="Contribution Activity" width="100%" />
 </p>
 <p align="center">
-  <img src="https://streak-stats.demolab.com?user=harlanljones&theme=dark&hide_border=true" alt="GitHub Streak" width="48%" />
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=harlanljones&theme=github-dark&hide_border=true" alt="Activity Graph" width="48%" />
+  <img src="https://streak-stats.demolab.com?user=harlanljones&theme=dark&hide_border=true" alt="GitHub Streak" width="100%" />
 </p>
