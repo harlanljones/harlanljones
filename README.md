@@ -72,6 +72,14 @@
   ![Architecture](https://img.shields.io/badge/Architecture-Lock--Free_SPSC-success?style=flat-square)
   ![Markets](https://img.shields.io/badge/Feeds-Kalshi_%26_Polymarket-009688?style=flat-square)
 
+* **[omarchy-agents](https://github.com/harlanljones/omarchy-agents)** — Dashboards and bar widgets for tracking AI coding-agent usage on [Omarchy](https://omarchy.org), with a local-first Bun + Hono + React + SQLite web console (provider standings, trends, redacted transcript search, citation-bound local analyst) plus QML bar widgets ranking token usage across every agent on the machine. Remotely reachable through a Cloudflare Tunnel with Access-gated authentication.
+  ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+  ![Bun](https://img.shields.io/badge/Bun-000000?style=flat-square&logo=bun&logoColor=white)
+  ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
+  ![QML](https://img.shields.io/badge/QML-41CD52?style=flat-square&logo=qt&logoColor=white)
+  ![SQLite](https://img.shields.io/badge/SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white)
+  [![Live Dashboard](https://img.shields.io/badge/Live_Dashboard-agents.harlanljones.com-F38020?style=flat-square&logo=cloudflare&logoColor=white)](https://agents.harlanljones.com)
+
 * **[clify](https://github.com/harlanljones/clify)** — Metric-Driven Agent-Driven Development (ADD) framework implementing a Turborepo monorepo with two complementary products: `cliamp-clify` (Go TUI music player with Spotify superpowers) and `clify` (Python CLI with ADD-orchestrated agent framework). Features deterministic SLAs on every execution (latency ≤ 2.5s, cost ≤ $0.02, confidence ≥ 0.90), semantic scope guardrails, and runtime telemetry monitoring with three-stage TDD lifecycle verification.
   ![Go](https://img.shields.io/badge/Go-1.26%2B-00ADD8?style=flat-square&logo=go&logoColor=white)
   ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)
@@ -79,10 +87,12 @@
   ![Turborepo](https://img.shields.io/badge/Turborepo-Monorepo-000000?style=flat-square)
   ![TDD](https://img.shields.io/badge/TDD-Test--Driven_Development-blueviolet?style=flat-square)
 
-* **[gan-enhanced-pneumonia-classifier](https://github.com/harlanljones/gan-enhanced-pneumonia-classifier)** — Enhancing pneumonia detection accuracy with GAN-generated synthetic chest X-rays.  
-  ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
-  ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
-  ![Computer Vision](https://img.shields.io/badge/Domain-Computer_Vision_&_GANs-blueviolet?style=flat-square)
+* **[seismic-ml](https://github.com/harlanljones/seismic-ml)** — Spatiotemporal ML pipeline for short-term earthquake forecasting, predicting M ≥ 4.5 events within a 7-day window from 30-day seismic precursor features. Trains a Keras MLP on the USGS catalog (83k+ events) with strict walk-forward splits and leakage-asserting tests, tuned for an RTX 4070 Ti via mixed precision and XLA.
+  ![Python](https://img.shields.io/badge/Python-3.12%2B-3776AB?style=flat-square&logo=python&logoColor=white)
+  ![TensorFlow](https://img.shields.io/badge/TensorFlow/Keras-FF6F00?style=flat-square&logo=tensorflow&logoColor=white)
+  ![CUDA](https://img.shields.io/badge/CUDA-GPU_12.x-76B900?style=flat-square&logo=nvidia&logoColor=white)
+  ![USGS](https://img.shields.io/badge/Data-USGS_Catalog-008542?style=flat-square)
+  ![Time Series](https://img.shields.io/badge/Spatiotemporal-Walk--Forward_Validation-blueviolet?style=flat-square)
 
 ---
 
