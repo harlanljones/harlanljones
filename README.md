@@ -50,15 +50,6 @@
   ![WebSocket](https://img.shields.io/badge/WebSocket-010101?style=flat-square)
   ![Security](https://img.shields.io/badge/Security-mTLS_%26_VAPID-blueviolet?style=flat-square)
 
-* **[baseball-dashboard](https://github.com/harlanljones/baseball-dashboard)** — Live MLB scoreboard and game-day research dashboard with sabermetric matchup stats, ballpark weather, bullpen workload, and optional player props.
-  [![Live Demo](https://img.shields.io/badge/Live_Demo-mlb.harlanljones.com-F38020?style=flat-square&logo=cloudflare&logoColor=white)](https://mlb.harlanljones.com/)
-  ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
-  ![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=next.js&logoColor=white)
-  ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
-  ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
-  ![Cloudflare Workers](https://img.shields.io/badge/Cloudflare_Workers-F38020?style=flat-square&logo=cloudflare&logoColor=white)
-  ![Bun](https://img.shields.io/badge/Bun-000000?style=flat-square&logo=bun&logoColor=white)
-
 * **[scheme-db](https://github.com/harlanljones/scheme-db)** — Interactive NFL scheme engineering workstation that animates 80 plays across 20 offensive & defensive systems with Catmull-Rom spline interpolation.
   [![Live Demo](https://img.shields.io/badge/Live_Demo-schemedb.harlanljones.com-F38020?style=flat-square&logo=cloudflare&logoColor=white)](https://schemedb.harlanljones.com/)
   ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
@@ -102,6 +93,15 @@
   ![CUDA](https://img.shields.io/badge/CUDA-GPU_12.x-76B900?style=flat-square&logo=nvidia&logoColor=white)
   ![USGS](https://img.shields.io/badge/Data-USGS_Catalog-008542?style=flat-square)
   ![Time Series](https://img.shields.io/badge/Spatiotemporal-Walk--Forward_Validation-blueviolet?style=flat-square)
+
+* **[baseball-dashboard](https://github.com/harlanljones/baseball-dashboard)** — Live MLB scoreboard and game-day research dashboard with sabermetric matchup stats, ballpark weather, bullpen workload, and optional player props.
+  [![Live Demo](https://img.shields.io/badge/Live_Demo-mlb.harlanljones.com-F38020?style=flat-square&logo=cloudflare&logoColor=white)](https://mlb.harlanljones.com/)
+  ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+  ![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=next.js&logoColor=white)
+  ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
+  ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
+  ![Cloudflare Workers](https://img.shields.io/badge/Cloudflare_Workers-F38020?style=flat-square&logo=cloudflare&logoColor=white)
+  ![Bun](https://img.shields.io/badge/Bun-000000?style=flat-square&logo=bun&logoColor=white)
 
 ---
 
