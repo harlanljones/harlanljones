@@ -141,15 +141,15 @@
 ### 📊 Supplementary GitHub Activity
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/profile-summary-card-output/github_dark/0-profile-details.svg" alt="Profile Details" width="49%" />
+  <img src="https://streak-stats.demolab.com?user=harlanljones&theme=dark&hide_border=true" alt="GitHub Streak" width="100%" />
+</p>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/profile-summary-card-output/github_dark/0-profile-details.svg" alt="Profile Details" width="100%" />
 </p>
 <p align="center">
   <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/profile-summary-card-output/github_dark/1-repos-per-language.svg" alt="Repos per Language" width="49%" />
   <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/profile-summary-card-output/github_dark/2-most-commit-language.svg" alt="Most Commit Language" width="49%" />
 </p>
 <p align="center">
-  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/profile-summary-card-output/github_dark/4-productive-time.svg" alt="Contribution Activity" width="100%" />
-</p>
-<p align="center">
-  <img src="https://streak-stats.demolab.com?user=harlanljones&theme=dark&hide_border=true" alt="GitHub Streak" width="100%" />
+  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/profile-summary-card-output/github_dark/4-productive-time.svg" alt="Contribution Activity" width="49%" />
 </p>
