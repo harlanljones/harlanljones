@@ -65,7 +65,8 @@
   ![Uber H3](https://img.shields.io/badge/Uber_H3-000000?style=flat-square)
   ![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white)
   
-* **[arbitrage-rs](https://github.com/harlanljones/arbitrage-rs)** — Ultra-low latency sports & prediction market arbitrage detector and execution simulator in pure Rust, featuring lock-free SPSC ring buffers, a zero-allocation hot loop (< 250 ns p99 latency), real-time Kalshi & Polymarket order book ingestion, and fee- & depth-aware paper trading.  
+* **[arbkit](https://github.com/harlanljones/arbkit)** — Cross-venue sports & prediction market arbitrage detector and execution simulator in pure Rust, featuring a zero-allocation hot loop (p99 = 100–250 ns), lock-free SPSC ring buffers, fee- & depth-aware pessimistic sizing across Kalshi & Polymarket order books, and a benchmark proof-ledger dashboard.  
+  [![Live Dashboard](https://img.shields.io/badge/Live_Dashboard-arbkit.harlanljones.com-F38020?style=flat-square&logo=cloudflare&logoColor=white)](https://arbkit.harlanljones.com/)
   ![Rust](https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white)
   ![Performance](https://img.shields.io/badge/Performance-p99_%3C_250ns-blueviolet?style=flat-square)
   ![Architecture](https://img.shields.io/badge/Architecture-Lock--Free_SPSC-success?style=flat-square)
