@@ -24,19 +24,19 @@
 ---
 
 <!-- MLB_BIRTHDAY_START -->
-### Daily Dugout Dispatch: August 21
+### Daily Dugout Dispatch: August 22
 
 | Category | Player | Active Span | Franchise(s) | Key Sabermetrics |
 | :--- | :--- | :--- | :--- | :--- |
-| **Peak Valuation** | [Murry Dickson](https://www.baseball-reference.com/players/d/dicksmu01.shtml) | 1939–1959 | NYY, OAK, PHI, PIT, STL | 46.2 bWAR • 3.66 ERA • 172-181 W-L • 1,281 SO |
-| **Franchise Polymath** | [Jesse Chavez](https://www.baseball-reference.com/players/c/chaveje01.shtml) | 2008–Pres | 9 Clubs | 9 Clubs (ANA, ATL, CHC, KCR, LAD, OAK...) • 6.4 bWAR • 18 Yrs |
-| **Vintage Origin** | [Charlie Gould](https://www.baseball-reference.com/players/g/gouldch01.shtml) | 1871–1877 | BLC, BNA, CNR, NHV | Born 1847 • 6 Seasons • 1.6 bWAR • 248 H |
-| **Power Superlative** | [J.D. Martinez](https://www.baseball-reference.com/players/m/martijd02.shtml) | 2011–2024 | ARI, BOS, DET, HOU, LAD (+1) | 331 Career HR • 1071 RBI |
-| **Mound Superlative** | [Murry Dickson](https://www.baseball-reference.com/players/d/dicksmu01.shtml) | 1939–1959 | NYY, OAK, PHI, PIT, STL | 1,281 Strikeouts • 3.66 ERA |
+| **Career Value Ace** | [Carl Yastrzemski](https://www.baseball-reference.com/players/y/yastrca01.shtml) | 1961–1983 | BOS | 96.4 bWAR • .842 OPS • 452 HR • 3,419 H • 168 SB |
+| **Immaculate Grid Gem** | [Randy Wolf](https://www.baseball-reference.com/players/w/wolfra02.shtml) | 1999–2015 | 8 Clubs | 8 Clubs (BAL, DET, FLA, HOU, LAD, MIL...) • 22.8 bWAR • 16 Yrs — a true Immaculate Grid cheat code |
+| **Antique Ace** | [Martin Mullen](https://www.baseball-reference.com/players/m/mulle01.shtml) | 1872 | CFC | Born 1852 • 1 Seasons • -0.1 bWAR |
+| **Long Ball Laureate** | [Carl Yastrzemski](https://www.baseball-reference.com/players/y/yastrca01.shtml) | 1961–1983 | BOS | 452 Career HR • 1844 RBI |
+| **Strikeout Savant** | [Randy Wolf](https://www.baseball-reference.com/players/w/wolfra02.shtml) | 1999–2015 | BAL, DET, FLA, HOU, LAD (+3) | 1,814 Strikeouts • 4.24 ERA |
 
-*Active cohort on this date:* [Corbin Carroll](https://www.baseball-reference.com/players/c/carroco02.shtml) (ARI), [Christian Vázquez](https://www.baseball-reference.com/players/v/vazquch01.shtml) (Retired), and 75 others.
+*Active cohort on MLB active rosters today (2):* [Gabriel Hughes](https://www.baseball-reference.com/players/h/hughega01.shtml) (COL), [Chayce McDermott](https://www.baseball-reference.com/players/m/mcderch01.shtml) (NYM)
 
-*Historical index contains 78 total Major League Baseball players born on August 21.*
+*Historical index contains 65 total Major League Baseball players born on August 22.*
 <!-- MLB_BIRTHDAY_END -->
 
 ---
@@ -140,6 +140,17 @@
 
 ### 📊 Supplementary GitHub Activity
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/profile-summary-card-output/github_dark/0-profile-details.svg" alt="Profile Details" width="49%" />
+</p>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/profile-summary-card-output/github_dark/1-repos-per-language.svg" alt="Repos per Language" width="49%" />
+  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/profile-summary-card-output/github_dark/2-most-commit-language.svg" alt="Most Commit Language" width="49%" />
+</p>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/profile-summary-card-output/github_dark/3-stats.svg" alt="GitHub Stats" width="49%" />
+  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/profile-summary-card-output/github_dark/4-productive-time.svg" alt="Productive Time" width="49%" />
+</p>
 <p align="center">
   <img src="https://streak-stats.demolab.com?user=harlanljones&theme=dark&hide_border=true" alt="GitHub Streak" width="48%" />
   <img src="https://github-readme-activity-graph.vercel.app/graph?username=harlanljones&theme=github-dark&hide_border=true" alt="Activity Graph" width="48%" />

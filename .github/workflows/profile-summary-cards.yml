@@ -16,10 +16,30 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # Generated SVGs are committed to a dedicated branch so they never land
+      # on main. The README references them via raw.githubusercontent.com URLs
+      # on this branch.
+      - name: Create output branch if missing
+        run: |
+          if ! git ls-remote --exit-code --heads origin profile-cards > /dev/null; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git checkout --orphan profile-cards
+            git rm -rf --cached . > /dev/null
+            git commit --allow-empty -m "Initialize profile-cards output branch"
+            git push origin profile-cards
+          fi
+
+      - name: Checkout output branch
+        uses: actions/checkout@v4
+        with:
+          ref: profile-cards
+
       - name: Generate GitHub Profile Summary Cards
         uses: vn7n24fzkq/github-profile-summary-cards@release
         env:
           GITHUB_TOKEN: ${{ secrets.SUMMARY_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
         with:
           USERNAME: ${{ github.repository_owner }}
-          BRANCH_NAME: main
+          THEME: github_dark
+          UTC_OFFSET: -8
