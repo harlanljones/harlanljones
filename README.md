@@ -41,6 +41,16 @@
 
 ---
 
+<!-- WEEKLY_HIGHLIGHTS_START -->
+### ⚡ What I Did This Week (Aug 17 – Aug 24, 2026)
+
+* **[urban-signal](https://github.com/harlanljones/urban-signal):** Update column names and order handling along with add dashboard redirect.
+* **[omarchy-agents](https://github.com/harlanljones/omarchy-agents):** Add token correlations and visualizations along with add JetBrainsMonoNerdFont-Regular.woff2 and update font references.
+* **[arbkit](https://github.com/harlanljones/arbkit):** Add comprehensive tests for worker ingest and routing along with add Kalshi execution adapter and integration tests.
+<!-- WEEKLY_HIGHLIGHTS_END -->
+
+---
+
 ### 🚀 Featured Projects
 
 * **[urban-signal](https://github.com/harlanljones/urban-signal)** — Real-time spatio-temporal forecasting engine using Apache Kafka, Uber H3 grids, and ST-GNN/LightGBM ensembles to predict hyper-local property appreciation and commercial catalysts ahead of market comps.
