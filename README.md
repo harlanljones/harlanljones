@@ -43,6 +43,15 @@
 
 ### 🚀 Featured Projects
 
+* **[urban-signal](https://github.com/harlanljones/urban-signal)** — Real-time spatio-temporal forecasting engine using Apache Kafka, Uber H3 grids, and ST-GNN/LightGBM ensembles to predict hyper-local property appreciation and commercial catalysts ahead of market comps.
+  [![Live Demo](https://img.shields.io/badge/Live_Demo-urban--signal.harlanljones.com-F38020?style=flat-square&logo=cloudflare&logoColor=white)](https://urban-signal.harlanljones.com)
+  ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+  ![Apache Kafka](https://img.shields.io/badge/Apache_Kafka-231F20?style=flat-square&logo=apache-kafka&logoColor=white)
+  ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
+  ![PostGIS](https://img.shields.io/badge/PostGIS-336791?style=flat-square&logo=postgresql&logoColor=white)
+  ![Uber H3](https://img.shields.io/badge/Uber_H3-000000?style=flat-square)
+  ![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white)
+
 * **[herdr-outpost](https://github.com/harlanljones/herdr-outpost)** — Lightweight, secure remote dashboard and relay gateway for [Herdr](https://herdr.dev) AI coding agent workspaces, featuring mTLS encryption, VAPID authentication, and Cloudflare Workers integration.
   ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
   ![Cloudflare Workers](https://img.shields.io/badge/Cloudflare_Workers-F38020?style=flat-square&logo=cloudflare&logoColor=white)
@@ -50,35 +59,20 @@
   ![WebSocket](https://img.shields.io/badge/WebSocket-010101?style=flat-square)
   ![Security](https://img.shields.io/badge/Security-mTLS_%26_VAPID-blueviolet?style=flat-square)
 
-* **[scheme-db](https://github.com/harlanljones/scheme-db)** — Interactive NFL scheme engineering workstation that animates 80 plays across 20 offensive & defensive systems with Catmull-Rom spline interpolation.
+* **[scheme-db](https://github.com/harlanljones/scheme-db)** — Interactive NFL scheme engineering workstation that animates 80 plays across 20 offensive & defensive systems with Catmull-Rom spline interpolation, 0.0s–1.2s disguise mesh analysis, and coaching lineage trees.
   [![Live Demo](https://img.shields.io/badge/Live_Demo-schemedb.harlanljones.com-F38020?style=flat-square&logo=cloudflare&logoColor=white)](https://schemedb.harlanljones.com/)
   ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
   ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
   ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
   ![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white)
-
-* **[urban-signal](https://github.com/harlanljones/urban-signal)** — Real-time spatial intelligence & commercial catalyst forecasting engine ingesting municipal permit, license, and 311 telemetry.
-  ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
-  ![Apache Kafka](https://img.shields.io/badge/Apache_Kafka-231F20?style=flat-square&logo=apache-kafka&logoColor=white)
-  ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
-  ![PostGIS](https://img.shields.io/badge/PostGIS-336791?style=flat-square&logo=postgresql&logoColor=white)
-  ![Uber H3](https://img.shields.io/badge/Uber_H3-000000?style=flat-square)
-  ![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white)
   
-* **[arbkit](https://github.com/harlanljones/arbkit)** — Cross-venue sports & prediction market arbitrage detector and execution simulator in pure Rust, featuring a zero-allocation hot loop (p99 < 250ns).
-  [![Live Dashboard](https://img.shields.io/badge/Live_Dashboard-arbkit.harlanljones.com-F38020?style=flat-square&logo=cloudflare&logoColor=white)](https://arbkit.harlanljones.com/)
-  ![Rust](https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white)
-  ![Performance](https://img.shields.io/badge/Performance-p99_%3C_250ns-blueviolet?style=flat-square)
-  ![Architecture](https://img.shields.io/badge/Architecture-Lock--Free_SPSC-success?style=flat-square)
-  ![Markets](https://img.shields.io/badge/Feeds-Kalshi_%26_Polymarket-009688?style=flat-square)
-
-* **[omarchy-agents](https://github.com/harlanljones/omarchy-agents)** — Dashboards and bar widgets for tracking AI coding-agent usage on [Omarchy](https://omarchy.org), with a local-first Bun + Hono + React + SQLite web console (provider standings, trends, redacted transcript search, citation-bound local analyst) plus QML bar widgets ranking token usage across every agent on the machine. Remotely reachable through a Cloudflare Tunnel with Access-gated authentication.
+* **[omarchy-agents](https://github.com/harlanljones/omarchy-agents)** — Dashboards and bar widgets for tracking AI coding-agent usage on [Omarchy](https://omarchy.org), with a local-first Bun + Hono + React + SQLite web console plus QML bar widgets ranking token usage across local agents.
+  [![Live Dashboard](https://img.shields.io/badge/Live_Dashboard-agents.harlanljones.com-F38020?style=flat-square&logo=cloudflare&logoColor=white)](https://agents.harlanljones.com)
   ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
   ![Bun](https://img.shields.io/badge/Bun-000000?style=flat-square&logo=bun&logoColor=white)
   ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
   ![QML](https://img.shields.io/badge/QML-41CD52?style=flat-square&logo=qt&logoColor=white)
   ![SQLite](https://img.shields.io/badge/SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white)
-  [![Live Dashboard](https://img.shields.io/badge/Live_Dashboard-agents.harlanljones.com-F38020?style=flat-square&logo=cloudflare&logoColor=white)](https://agents.harlanljones.com)
 
 * **[clify](https://github.com/harlanljones/clify)** — Metric-Driven Agent-Driven Development (ADD) framework implementing a Turborepo monorepo with two complementary products: `cliamp-clify` (Go TUI music player with Spotify superpowers) and `clify` (Python CLI with ADD-orchestrated agent framework). Features deterministic SLAs on every execution (latency ≤ 2.5s, cost ≤ $0.02, confidence ≥ 0.90), semantic scope guardrails, and runtime telemetry monitoring with three-stage TDD lifecycle verification.
   ![Go](https://img.shields.io/badge/Go-1.26%2B-00ADD8?style=flat-square&logo=go&logoColor=white)
@@ -87,12 +81,20 @@
   ![Turborepo](https://img.shields.io/badge/Turborepo-Monorepo-000000?style=flat-square)
   ![TDD](https://img.shields.io/badge/TDD-Test--Driven_Development-blueviolet?style=flat-square)
 
-* **[seismic-ml](https://github.com/harlanljones/seismic-ml)** — Spatiotemporal ML pipeline for short-term earthquake forecasting, predicting M ≥ 4.5 events within a 7-day window from 30-day seismic precursor features. Trains a Keras MLP on the USGS catalog (83k+ events) with strict walk-forward splits and leakage-asserting tests, tuned for an RTX 4070 Ti via mixed precision and XLA.
+* **[arbkit](https://github.com/harlanljones/arbkit)** — Cross-venue sports & prediction market arbitrage detector and execution simulator in pure Rust, featuring a zero-allocation lock-free SPSC hot loop (p99 < 250ns) ingesting Kalshi & Polymarket feeds in real-time.
+  [![Live Dashboard](https://img.shields.io/badge/Live_Dashboard-arbkit.harlanljones.com-F38020?style=flat-square&logo=cloudflare&logoColor=white)](https://arbkit.harlanljones.com/)
+  ![Rust](https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white)
+  ![Performance](https://img.shields.io/badge/Performance-p99_%3C_250ns-blueviolet?style=flat-square)
+  ![Architecture](https://img.shields.io/badge/Architecture-Lock--Free_SPSC-success?style=flat-square)
+  ![Markets](https://img.shields.io/badge/Feeds-Kalshi_%26_Polymarket-009688?style=flat-square)
+
+* **[bayes-horizon](https://github.com/harlanljones/bayes-horizon)** — S&P 500 long-term ML projection engine using Bayesian hierarchical modeling, walk-forward cross-validation, and point-in-time macroeconomic data (FRB, BLS, CBO, Shiller).
+  [![Live Demo](https://img.shields.io/badge/Live_Demo-sp500.harlanljones.com-F38020?style=flat-square&logo=cloudflare&logoColor=white)](https://sp500.harlanljones.com/)
   ![Python](https://img.shields.io/badge/Python-3.12%2B-3776AB?style=flat-square&logo=python&logoColor=white)
-  ![TensorFlow](https://img.shields.io/badge/TensorFlow/Keras-FF6F00?style=flat-square&logo=tensorflow&logoColor=white)
-  ![CUDA](https://img.shields.io/badge/CUDA-GPU_12.x-76B900?style=flat-square&logo=nvidia&logoColor=white)
-  ![USGS](https://img.shields.io/badge/Data-USGS_Catalog-008542?style=flat-square)
-  ![Time Series](https://img.shields.io/badge/Spatiotemporal-Walk--Forward_Validation-blueviolet?style=flat-square)
+  ![PyMC](https://img.shields.io/badge/PyMC-Bayesian_Inference-FF6F00?style=flat-square)
+  ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
+  ![Cloudflare Workers](https://img.shields.io/badge/Cloudflare_Workers-F38020?style=flat-square&logo=cloudflare&logoColor=white)
+  ![Validation](https://img.shields.io/badge/Validation-Walk--Forward_CV-blueviolet?style=flat-square)
 
 * **[baseball-dashboard](https://github.com/harlanljones/baseball-dashboard)** — Live MLB scoreboard and game-day research dashboard with sabermetric matchup stats, ballpark weather, bullpen workload, and optional player props.
   [![Live Demo](https://img.shields.io/badge/Live_Demo-mlb.harlanljones.com-F38020?style=flat-square&logo=cloudflare&logoColor=white)](https://mlb.harlanljones.com/)
@@ -102,6 +104,19 @@
   ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
   ![Cloudflare Workers](https://img.shields.io/badge/Cloudflare_Workers-F38020?style=flat-square&logo=cloudflare&logoColor=white)
   ![Bun](https://img.shields.io/badge/Bun-000000?style=flat-square&logo=bun&logoColor=white)
+
+* **[seismic-ml](https://github.com/harlanljones/seismic-ml)** — Spatiotemporal ML pipeline for short-term earthquake forecasting, predicting M ≥ 4.5 events within a 7-day window from 30-day seismic precursor features. Trains a Keras MLP on the USGS catalog (83k+ events) with strict walk-forward splits and leakage-asserting tests, tuned for an RTX 4070 Ti via mixed precision and XLA.
+  ![Python](https://img.shields.io/badge/Python-3.12%2B-3776AB?style=flat-square&logo=python&logoColor=white)
+  ![TensorFlow](https://img.shields.io/badge/TensorFlow/Keras-FF6F00?style=flat-square&logo=tensorflow&logoColor=white)
+  ![CUDA](https://img.shields.io/badge/CUDA-GPU_12.x-76B900?style=flat-square&logo=nvidia&logoColor=white)
+  ![USGS](https://img.shields.io/badge/Data-USGS_Catalog-008542?style=flat-square)
+  ![Time Series](https://img.shields.io/badge/Spatiotemporal-Walk--Forward_Validation-blueviolet?style=flat-square)
+
+* **[march-madness](https://github.com/harlanljones/march-madness)** — PyTorch deep learning tournament prediction and Monte Carlo bracket simulation engine (BracketNet) trained on 23 matchup differential features and Kaggle historical data.
+  ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+  ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
+  ![Monte Carlo](https://img.shields.io/badge/Simulation-Monte_Carlo-blueviolet?style=flat-square)
+  ![Kaggle](https://img.shields.io/badge/Dataset-Kaggle_NCAA-20BEFF?style=flat-square&logo=kaggle&logoColor=white)
 
 ---
 
