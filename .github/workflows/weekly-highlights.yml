@@ -1,13 +1,13 @@
 name: Weekly Git Highlights
 on:
   schedule:
-    - cron: "0 0 * * 1" # Runs weekly every Monday at 00:00 UTC (Sunday 5:00 PM PST)
+    # Runs weekly on Friday at 5:00 PM Pacific Time (00:00 UTC Saturday during PDT / 01:00 UTC during PST)
+    - cron: "0 0 * * 6"
   workflow_dispatch:
     inputs:
       lookback_days:
-        description: "Lookback window in days (default: 7)"
+        description: "Lookback window in days (optional, defaults to work-week)"
         required: false
-        default: "7"
         type: string
       dry_run:
         description: "Perform dry run without committing"
@@ -21,7 +21,7 @@ concurrency:
 
 jobs:
   update-highlights:
-    name: Update Weekly Git Highlights
+    name: Update Work Week Highlights
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -46,30 +46,29 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Sync with remote and generate weekly summary
+      - name: Sync with remote and generate work-week summary
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TZ: "America/Los_Angeles"
         run: |
           git fetch origin main
           git checkout main
           git reset --hard origin/main
 
-          LOOKBACK="${{ github.event.inputs.lookback_days }}"
-          if [ -z "$LOOKBACK" ]; then
-            LOOKBACK="7"
+          EXTRA_ARGS=""
+          if [ -n "${{ github.event.inputs.lookback_days }}" ]; then
+            EXTRA_ARGS="$EXTRA_ARGS --lookback-days ${{ github.event.inputs.lookback_days }}"
           fi
 
-          DRY_RUN_FLAG=""
           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
-            DRY_RUN_FLAG="--dry-run"
+            EXTRA_ARGS="$EXTRA_ARGS --dry-run"
           fi
 
           python3 scripts/weekly_summary.py \
             --username "harlanljones" \
-            --lookback-days "$LOOKBACK" \
             --readme "README.md" \
-            $DRY_RUN_FLAG
+            $EXTRA_ARGS
 
       - name: Commit and push changes
         if: ${{ github.event.inputs.dry_run != 'true' }}
@@ -79,7 +78,7 @@ jobs:
             echo "No changes to commit"
             exit 0
           fi
-          git commit -m "chore(highlights): update weekly git activity highlights [skip ci]"
+          git commit -m "chore(highlights): update work week git activity highlights [skip ci]"
           for attempt in 1 2 3 4 5; do
             git fetch origin main
             if git rebase origin/main; then

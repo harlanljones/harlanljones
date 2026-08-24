@@ -307,7 +307,7 @@ def update_readme(target_file: str, new_content: str) -> bool:
         updated = pattern.sub(replacement_block, existing)
     else:
         # If tags are not present, append after professional overview
-        anchor = "### 💼 Professional Overview"
+        anchor = "### Professional Overview"
         if anchor in existing:
             updated = existing.replace(anchor, f"{replacement_block}\n\n---\n\n{anchor}")
         else:

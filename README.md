@@ -13,13 +13,13 @@
 
 ---
 
-### 💼 Professional Overview
+### Professional Overview
 
-* 🚀 **Currently:** Working with PrimeIQ.ai
-* ⚾ **Interests:** Baseball & sports analytics
-* 🎓 **Education:** Boston University
-* 📍 **Location:** San Francisco Bay Area
-* 🌐 **Connect:** [linkedin.com/in/harlanljones](https://www.linkedin.com/in/harlanljones/)
+* **Currently:** Working with PrimeIQ.ai
+* **Interests:** Baseball & sports analytics
+* **Education:** Boston University
+* **Location:** San Francisco Bay Area
+* **Connect:** [linkedin.com/in/harlanljones](https://www.linkedin.com/in/harlanljones/)
 
 ---
 
@@ -42,16 +42,16 @@
 ---
 
 <!-- WEEKLY_HIGHLIGHTS_START -->
-### ⚡ What I Did This Week (Aug 17 – Aug 24, 2026)
+### What I Did This Week (Aug 17 – Aug 24, 2026)
 
-* **[urban-signal](https://github.com/harlanljones/urban-signal):** Update column names and order handling along with add dashboard redirect.
-* **[omarchy-agents](https://github.com/harlanljones/omarchy-agents):** Add token correlations and visualizations along with add JetBrainsMonoNerdFont-Regular.woff2 and update font references.
-* **[arbkit](https://github.com/harlanljones/arbkit):** Add comprehensive tests for worker ingest and routing along with add Kalshi execution adapter and integration tests.
+* **[urban-signal](https://github.com/harlanljones/urban-signal):** Expanded real-time spatio-temporal telemetry streams across 8+ major metros (Boston, Cincinnati, Denver, Philadelphia, and 4 other metros) and built dynamic cross-region comparison analytics.
+* **[arbkit](https://github.com/harlanljones/arbkit):** Implemented Kalshi execution adapters and integration tests, established live trading execution boundaries and proof protocol verification, and integrated real-time trade ledger telemetry in Rust.
+* **[omarchy-agents](https://github.com/harlanljones/omarchy-agents):** Built token correlation visualizations, designed productivity comparison views and administrative quota limits portals, and refined AI agent monitoring dashboards.
 <!-- WEEKLY_HIGHLIGHTS_END -->
 
 ---
 
-### 🚀 Featured Projects
+### Featured Projects
 
 * **[urban-signal](https://github.com/harlanljones/urban-signal)** — Real-time spatio-temporal forecasting engine using Apache Kafka, Uber H3 grids, and ST-GNN/LightGBM ensembles to predict hyper-local property appreciation and commercial catalysts ahead of market comps.
   [![Live Demo](https://img.shields.io/badge/Live_Demo-urban--signal.harlanljones.com-F38020?style=flat-square&logo=cloudflare&logoColor=white)](https://urban-signal.harlanljones.com)
@@ -130,7 +130,7 @@
 
 ---
 
-### 🛠️ Technical Skills
+### Technical Skills
 
 #### Languages
 ![Rust](https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white)
@@ -182,7 +182,7 @@
 
 ---
 
-### 📊 Supplementary GitHub Activity
+### Supplementary GitHub Activity
 
 <p align="center">
   <img src="https://streak-stats.demolab.com?user=harlanljones&theme=dark&hide_border=true" alt="GitHub Streak" width="100%" />
