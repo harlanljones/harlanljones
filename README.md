@@ -28,7 +28,7 @@
 
 | Category | Player | Active Span | Franchise(s) | Key Sabermetrics |
 | :--- | :--- | :--- | :--- | :--- |
-| **Career Value Ace** | [Cal Ripken Jr.](https://www.baseball-reference.com/players/r/ripkeca01.shtml) | 1981–2001 | BAL | 95.9 bWAR • .788 OPS • 431 HR • 3,184 H • 36 SB |
+| **WAR Warrior** | [Cal Ripken Jr.](https://www.baseball-reference.com/players/r/ripkeca01.shtml) | 1981–2001 | BAL | 95.9 bWAR • .788 OPS • 431 HR • 3,184 H • 36 SB |
 | **Immaculate Grid Gem** | [Kevin Correia](https://www.baseball-reference.com/players/c/correke01.shtml) | 2003–2015 | 6 Clubs | 6 Clubs (LAD, MIN, PHI, PIT, SDP, SFG) • 3.6 bWAR • 13 Yrs — a true Immaculate Grid cheat code |
 | **Antique Ace** | [George Noftsker](https://www.baseball-reference.com/players/n/noftsge01.shtml) | 1884 | ALT | Born 1859 • 1 Seasons • -0.5 bWAR • 1 H |
 | **Long Ball Laureate** | [Cal Ripken Jr.](https://www.baseball-reference.com/players/r/ripkeca01.shtml) | 1981–2001 | BAL | 431 Career HR • 1695 RBI |

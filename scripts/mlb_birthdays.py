@@ -175,7 +175,7 @@ def build_daily_ledger(players: List[Dict[str, Any]], month: int, day: int, curr
     if not players:
         return f"### Daily Dugout Dispatch: {date_str}\n\n*No MLB player birth records indexed for this date.*\n"
 
-    # 1. Career Value Ace (WAR leader)
+    # 1. WAR Warrior (career WAR leader)
     war_leader = max(players, key=lambda p: p["war"])
 
     # 2. Immaculate Grid Gem (most distinct franchises)
@@ -257,7 +257,7 @@ def build_daily_ledger(players: List[Dict[str, Any]], month: int, day: int, curr
         "",
         "| Category | Player | Active Span | Franchise(s) | Key Sabermetrics |",
         "| :--- | :--- | :--- | :--- | :--- |",
-        f"| **Career Value Ace** | {format_player_link(war_leader)} | {format_span(war_leader)} | {format_franchises(war_leader)} | {format_war_metrics(war_leader)} |",
+        f"| **WAR Warrior** | {format_player_link(war_leader)} | {format_span(war_leader)} | {format_franchises(war_leader)} | {format_war_metrics(war_leader)} |",
         f"| **Immaculate Grid Gem** | {format_player_link(polymath)} | {format_span(polymath)} | {len(polymath['franchises'])} Clubs | {format_polymath_metrics(polymath)} |",
         f"| **Antique Ace** | {format_player_link(vintage)} | {format_span(vintage)} | {format_franchises(vintage)} | {format_vintage_metrics(vintage)} |",
     ]
