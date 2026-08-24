@@ -24,19 +24,19 @@
 ---
 
 <!-- MLB_BIRTHDAY_START -->
-### Daily Dugout Dispatch: August 23
+### Daily Dugout Dispatch: August 24
 
 | Category | Player | Active Span | Franchise(s) | Key Sabermetrics |
 | :--- | :--- | :--- | :--- | :--- |
-| **Career Value Ace** | [George Davis](https://www.baseball-reference.com/players/d/davisge01.shtml) | 1890–1909 | CHW, CLV, SFG | 84.4 bWAR • .767 OPS • 73 HR • 2,665 H • 619 SB |
-| **Immaculate Grid Gem** | [Billy McKinney](https://www.baseball-reference.com/players/m/mckinbi01.shtml) | 2018–Pres | 8 Clubs | 8 Clubs (LAD, MIL, NYM, NYY, OAK, PIT...) • -0.2 bWAR • 8 Yrs — a true Immaculate Grid cheat code |
-| **Antique Ace** | [John O'Rourke](https://www.baseball-reference.com/players/o/o) | 1879–1883 | ATL, NYP | Born 1849 • 3 Seasons • 6.6 bWAR • 279 H |
-| **Long Ball Laureate** | [Julio Franco](https://www.baseball-reference.com/players/f/francju01.shtml) | 1982–2007 | ATL, CHW, CLE, MIL, NYM (+3) | 173 Career HR • 1194 RBI |
-| **Strikeout Savant** | [Mike Boddicker](https://www.baseball-reference.com/players/b/boddimi01.shtml) | 1980–1993 | BAL, BOS, KCR, MIL | 1,330 Strikeouts • 3.80 ERA |
+| **Career Value Ace** | [Cal Ripken Jr.](https://www.baseball-reference.com/players/r/ripkeca01.shtml) | 1981–2001 | BAL | 95.9 bWAR • .788 OPS • 431 HR • 3,184 H • 36 SB |
+| **Immaculate Grid Gem** | [Kevin Correia](https://www.baseball-reference.com/players/c/correke01.shtml) | 2003–2015 | 6 Clubs | 6 Clubs (LAD, MIN, PHI, PIT, SDP, SFG) • 3.6 bWAR • 13 Yrs — a true Immaculate Grid cheat code |
+| **Antique Ace** | [George Noftsker](https://www.baseball-reference.com/players/n/noftsge01.shtml) | 1884 | ALT | Born 1859 • 1 Seasons • -0.5 bWAR • 1 H |
+| **Long Ball Laureate** | [Cal Ripken Jr.](https://www.baseball-reference.com/players/r/ripkeca01.shtml) | 1981–2001 | BAL | 431 Career HR • 1695 RBI |
+| **Strikeout Savant** | [Kevin Correia](https://www.baseball-reference.com/players/c/correke01.shtml) | 2003–2015 | LAD, MIN, PHI, PIT, SDP (+1) | 906 Strikeouts • 4.62 ERA |
 
-*Active cohort on MLB active rosters today (6):* [Mike Yastrzemski](https://www.baseball-reference.com/players/y/yastrmi01.shtml) (SFG), [Tyler Glasnow](https://www.baseball-reference.com/players/g/glasnty01.shtml) (FA), [Miles Mikolas](https://www.baseball-reference.com/players/m/mikolmi01.shtml) (WSN), [Lane Thomas](https://www.baseball-reference.com/players/t/thomala02.shtml) (WSN), [Bryce Miller](https://www.baseball-reference.com/players/m/millebr04.shtml) (SEA), [Yovanny Cruz](https://www.baseball-reference.com/players/c/cruzyo01.shtml) (WSN)
+*Active cohort on MLB active rosters today (3):* [Enrique Hernández](https://www.baseball-reference.com/players/h/hernaen02.shtml) (LAD), [Mason Miller](https://www.baseball-reference.com/players/m/millema03.shtml) (SDP), [Alex Freeland](https://www.baseball-reference.com/players/f/freelal01.shtml) (LAD)
 
-*Historical index contains 73 total Major League Baseball players born on August 23.*
+*Historical index contains 70 total Major League Baseball players born on August 24.*
 <!-- MLB_BIRTHDAY_END -->
 
 ---
