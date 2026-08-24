@@ -1,0 +1,89 @@
+name: Projects Sync
+on:
+  schedule:
+    # Runs weekly on Saturday at 5:30 PM Pacific Time (00:30 UTC during PDT / 01:30 UTC during PST),
+    # right after the Weekly Git Highlights run.
+    - cron: "30 0 * * 6"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Perform dry run without committing"
+        required: false
+        default: false
+        type: boolean
+
+concurrency:
+  group: projects-sync-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  update-projects:
+    name: Sync Featured Projects
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure git
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Sync with remote and append new public repositories
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          git fetch origin main
+          git checkout main
+          git reset --hard origin/main
+
+          EXTRA_ARGS=""
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            EXTRA_ARGS="$EXTRA_ARGS --dry-run"
+          fi
+
+          python3 scripts/update_projects.py \
+            --username "harlanljones" \
+            --readme "README.md" \
+            $EXTRA_ARGS
+
+      - name: Commit and push changes
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          git add README.md
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "chore(projects): sync newly published public repositories [skip ci]"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git rebase origin/main; then
+              if git push origin HEAD:main; then
+                echo "Push succeeded on attempt ${attempt}"
+                exit 0
+              fi
+            else
+              echo "Rebase failed on attempt ${attempt}"
+              git rebase --abort || true
+            fi
+            echo "Attempt ${attempt} failed; retrying..."
+            sleep $((attempt * 2))
+          done
+          echo "Failed to push after 5 attempts"
+          exit 1

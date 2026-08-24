@@ -127,6 +127,7 @@
   ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
   ![Monte Carlo](https://img.shields.io/badge/Simulation-Monte_Carlo-blueviolet?style=flat-square)
   ![Kaggle](https://img.shields.io/badge/Dataset-Kaggle_NCAA-20BEFF?style=flat-square&logo=kaggle&logoColor=white)
+<!-- PROJECTS_END -->
 
 ---
 
