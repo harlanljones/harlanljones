@@ -42,11 +42,11 @@
 ---
 
 <!-- WEEKLY_HIGHLIGHTS_START -->
-### What I Did This Week (Aug 17 – Aug 24, 2026)
+### What I Did This Week (Aug 20 – Aug 24, 2026)
 
-* **[urban-signal](https://github.com/harlanljones/urban-signal):** Expanded real-time spatio-temporal telemetry streams across 8+ major metros (Boston, Cincinnati, Denver, Philadelphia, and 4 other metros) and built dynamic cross-region comparison analytics.
+* **[dotfiles](https://github.com/harlanljones/dotfiles):** Automated developer workspace tooling, added Linear agent tracking, and hardened systemd periodic usage scrapers.
+* **[urban-signal](https://github.com/harlanljones/urban-signal):** Expanded real-time spatio-temporal telemetry streams across 1+ major metros (Pierce County) and built dynamic cross-region comparison analytics.
 * **[arbkit](https://github.com/harlanljones/arbkit):** Implemented Kalshi execution adapters and integration tests, established live trading execution boundaries and proof protocol verification, and integrated real-time trade ledger telemetry in Rust.
-* **[omarchy-agents](https://github.com/harlanljones/omarchy-agents):** Built token correlation visualizations, designed productivity comparison views and administrative quota limits portals, and refined AI agent monitoring dashboards.
 <!-- WEEKLY_HIGHLIGHTS_END -->
 
 ---
