@@ -5,9 +5,15 @@
 *San Francisco Bay Area • Boston University*
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/harlanljones/)
-[![Live App](https://img.shields.io/badge/scheme--db-Live_App-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://schemedb.harlanljones.com/)
 [![GitHub](https://img.shields.io/badge/GitHub-harlanljones-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/harlanljones)
 [![Profile Summary](https://img.shields.io/badge/Profile_Summary-GitHub_Visualizer-555555?style=for-the-badge&logo=github&logoColor=white)](https://profile-summary-for-github.com/user/harlanljones)
+
+[![Live App](https://img.shields.io/badge/scheme--db-Live_App-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://schemedb.harlanljones.com/)
+[![Live Demo](https://img.shields.io/badge/urban--signal-Live_Demo-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://urban-signal.harlanljones.com)
+[![Live Dashboard](https://img.shields.io/badge/omarchy--agents-Live_Dashboard-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://agents.harlanljones.com)
+[![Live Dashboard](https://img.shields.io/badge/arbkit-Live_Dashboard-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://arbkit.harlanljones.com/)
+[![Live Demo](https://img.shields.io/badge/bayes--horizon-Live_Demo-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://sp500.harlanljones.com/)
+[![Live Demo](https://img.shields.io/badge/baseball--dashboard-Live_Demo-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)](https://mlb.harlanljones.com/)
 
 </div>
 
