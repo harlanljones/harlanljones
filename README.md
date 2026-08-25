@@ -144,6 +144,10 @@
 
 * **[gan-enhanced-pneumonia-classifier](https://github.com/harlanljones/gan-enhanced-pneumonia-classifier)** — Enhancing Pneumonia Detection with GAN-Generated Synthetic Chest X-rays. Recent work includes new Grad-CAM visualizations for real and synthetic images, enhancing analysis results with additional insights, built with Python.
   ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+* **[ferrite-db](https://github.com/harlanljones/ferrite-db)** — An embedded Rust library for low-latency approximate nearest-neighbor search over dense vector embeddings. Synchronous, blocking API with library-owned parallelism; designed for direct in-process integration without n... Recent work includes wASM bindings for Ferrite DB's in-memory vector engine and reproducible synthetic corpus generator for Ferrite DB benchmark, built with Rust and TypeScript.
+  [![Live Demo](https://img.shields.io/badge/Live_Demo-ferritedb.harlanljones.com-F38020?style=flat-square&logo=cloudflare&logoColor=white)](https://ferritedb.harlanljones.com/)
+  ![Rust](https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white)
+  ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
 <!-- PROJECTS_END -->
 
 ---
