@@ -30,19 +30,19 @@
 ---
 
 <!-- MLB_BIRTHDAY_START -->
-### Daily Dugout Dispatch: August 24
+### Daily Dugout Dispatch: August 25
 
 | Category | Player | Active Span | Franchise(s) | Key Sabermetrics |
 | :--- | :--- | :--- | :--- | :--- |
-| **WAR Warrior** | [Cal Ripken Jr.](https://www.baseball-reference.com/players/r/ripkeca01.shtml) | 1981–2001 | BAL | 95.9 bWAR • .788 OPS • 431 HR • 3,184 H • 36 SB |
-| **Immaculate Grid Gem** | [Kevin Correia](https://www.baseball-reference.com/players/c/correke01.shtml) | 2003–2015 | 6 Clubs | 6 Clubs (LAD, MIN, PHI, PIT, SDP, SFG) • 3.6 bWAR • 13 Yrs — a true Immaculate Grid cheat code |
-| **Antique Ace** | [George Noftsker](https://www.baseball-reference.com/players/n/noftsge01.shtml) | 1884 | ALT | Born 1859 • 1 Seasons • -0.5 bWAR • 1 H |
-| **Long Ball Laureate** | [Cal Ripken Jr.](https://www.baseball-reference.com/players/r/ripkeca01.shtml) | 1981–2001 | BAL | 431 Career HR • 1695 RBI |
-| **Strikeout Savant** | [Kevin Correia](https://www.baseball-reference.com/players/c/correke01.shtml) | 2003–2015 | LAD, MIN, PHI, PIT, SDP (+1) | 906 Strikeouts • 4.62 ERA |
+| **WAR Warrior** | [Albert Belle](https://www.baseball-reference.com/players/b/belleal01.shtml) | 1989–2000 | BAL, CHW, CLE | 40.1 bWAR • .933 OPS • 381 HR • 1,726 H • 88 SB |
+| **Immaculate Grid Gem** | [Gary Matthews](https://www.baseball-reference.com/players/m/matthga02.shtml) | 1999–2010 | 7 Clubs | 7 Clubs (ANA, BAL, CHC, NYM, PIT, SDP...) • 14.2 bWAR • 12 Yrs — a true Immaculate Grid cheat code |
+| **Antique Ace** | [Frank Jones](https://www.baseball-reference.com/players/j/jonesfr01.shtml) | 1884 | DTN | Born 1858 • 1 Seasons • -0.1 bWAR • 1 H |
+| **Long Ball Laureate** | [Albert Belle](https://www.baseball-reference.com/players/b/belleal01.shtml) | 1989–2000 | BAL, CHW, CLE | 381 Career HR • 1239 RBI |
+| **Strikeout Savant** | [Rollie Fingers](https://www.baseball-reference.com/players/f/fingero01.shtml) | 1968–1985 | MIL, OAK, SDP | 1,299 Strikeouts • 2.90 ERA |
 
-*Active cohort on MLB active rosters today (3):* [Enrique Hernández](https://www.baseball-reference.com/players/h/hernaen02.shtml) (LAD), [Mason Miller](https://www.baseball-reference.com/players/m/millema03.shtml) (SDP), [Alex Freeland](https://www.baseball-reference.com/players/f/freelal01.shtml) (LAD)
+*Active cohort on MLB active rosters today (4):* [Max Muncy](https://www.baseball-reference.com/players/m/muncyma01.shtml) (OAK), [Ethan Pecko](https://www.baseball-reference.com/players/p/peckoet01.shtml) (HOU), [Edwin Arroyo](https://www.baseball-reference.com/players/a/arroyed01.shtml) (CIN), [Max Muncy](https://www.baseball-reference.com/players/m/muncyma02.shtml) (OAK)
 
-*Historical index contains 70 total Major League Baseball players born on August 24.*
+*Historical index contains 76 total Major League Baseball players born on August 25.*
 <!-- MLB_BIRTHDAY_END -->
 
 ---
