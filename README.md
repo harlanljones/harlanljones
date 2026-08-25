@@ -154,6 +154,8 @@
   [![Live Demo](https://img.shields.io/badge/Live_Demo-ferritedb.harlanljones.com-F38020?style=flat-square&logo=cloudflare&logoColor=white)](https://ferritedb.harlanljones.com/)
   ![Rust](https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white)
   ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+* **[chacha20-avx2](https://github.com/harlanljones/chacha20-avx2)** — Active development focused on constant-time tail/scalar fallback path and ratify D1 — Poly1305 accumulator radix = 2^64 (HJ-319), built with C.
+  ![C](https://img.shields.io/badge/C-A8B9CC?style=flat-square&logo=c&logoColor=black)
 <!-- PROJECTS_END -->
 
 ---
