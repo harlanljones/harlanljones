@@ -127,6 +127,23 @@
   ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
   ![Monte Carlo](https://img.shields.io/badge/Simulation-Monte_Carlo-blueviolet?style=flat-square)
   ![Kaggle](https://img.shields.io/badge/Dataset-Kaggle_NCAA-20BEFF?style=flat-square&logo=kaggle&logoColor=white)
+* **[aegis](https://github.com/harlanljones/aegis)** — AEGIS‑Thermal: agent-based co‑optimization of battery (BESS) & thermal (TES) storage. Recent work includes g1.5 end-to-end integration demo (negotiation→mandate→dispatch→sensed actuation→receipt) + archived record and w1.4: telemetry baseline demo on live sim (5 families, snapshot TSV) + fault-injection schedule doc (G1.4), built with Rust.
+  ![Rust](https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white)
+
+* **[dotfiles-showcase](https://github.com/harlanljones/dotfiles-showcase)** — Local-first web app to visualize and explore chezmoi dotfiles with live config previews and mini-demos. Recent work includes detailed fallback content strategy and sanitization rules and comprehensive ANSI and theme handling, built with TypeScript and CSS3.
+  ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+  ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
+  ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
+
+* **[linear-bucket](https://github.com/harlanljones/linear-bucket)** — Sync and group Linear issues into configurable “buckets” for reporting and workflow automation. Built with Python.
+  ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+
+* **[dotfiles](https://github.com/harlanljones/dotfiles)** — The dotfiles I use. Recent work includes settings and keymaps for better git integration and separate template execution and apply steps, built with Go Templates and Shell.
+  ![Go Templates](https://img.shields.io/badge/Go_Templates-00ADD8?style=flat-square&logo=go&logoColor=white)
+  ![Shell](https://img.shields.io/badge/Shell-89E051?style=flat-square&logo=gnubash&logoColor=black)
+
+* **[gan-enhanced-pneumonia-classifier](https://github.com/harlanljones/gan-enhanced-pneumonia-classifier)** — Enhancing Pneumonia Detection with GAN-Generated Synthetic Chest X-rays. Recent work includes new Grad-CAM visualizations for real and synthetic images, enhancing analysis results with additional insights, built with Python.
+  ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
 <!-- PROJECTS_END -->
 
 ---
