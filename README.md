@@ -156,6 +156,14 @@
   ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
 * **[chacha20-avx2](https://github.com/harlanljones/chacha20-avx2)** — Active development focused on constant-time tail/scalar fallback path and ratify D1 — Poly1305 accumulator radix = 2^64 (HJ-319), built with C.
   ![C](https://img.shields.io/badge/C-A8B9CC?style=flat-square&logo=c&logoColor=black)
+* **[film-lab](https://github.com/harlanljones/film-lab)** — Active development focused on deploy verification and analytics and cI/CD for production and PR previews, built with TypeScript and JavaScript.
+  [![Live Demo](https://img.shields.io/badge/Live_Demo-film--lab.harlanljones.com-F38020?style=flat-square&logo=cloudflare&logoColor=white)](https://film-lab.harlanljones.com/)
+  ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+  ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+
+* **[web-backends](https://github.com/harlanljones/web-backends)** — Active development focused on benchmark infrastructure and Go + Gin reference implementation, built with Shell and Go.
+  ![Shell](https://img.shields.io/badge/Shell-89E051?style=flat-square&logo=gnubash&logoColor=black)
+  ![Go](https://img.shields.io/badge/Go-00ADD8?style=flat-square&logo=go&logoColor=white)
 <!-- PROJECTS_END -->
 
 ---
