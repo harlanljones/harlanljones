@@ -48,11 +48,11 @@
 ---
 
 <!-- WEEKLY_HIGHLIGHTS_START -->
-### What I Did This Week (Aug 20 – Aug 24, 2026)
+### What I Did This Week (Aug 20 – Aug 25, 2026)
 
-* **[dotfiles](https://github.com/harlanljones/dotfiles):** Automated developer workspace tooling, added Linear agent tracking, and hardened systemd periodic usage scrapers.
-* **[urban-signal](https://github.com/harlanljones/urban-signal):** Expanded real-time spatio-temporal telemetry streams across 1+ major metros (Pierce County) and built dynamic cross-region comparison analytics.
-* **[arbkit](https://github.com/harlanljones/arbkit):** Implemented Kalshi execution adapters and integration tests, established live trading execution boundaries and proof protocol verification, and integrated real-time trade ledger telemetry in Rust.
+* **[film-lab](https://github.com/harlanljones/film-lab):** Engineered deploy verification and analytics and implemented cI/CD for production and PR previews.
+* **[urban-signal](https://github.com/harlanljones/urban-signal):** Expanded real-time spatio-temporal telemetry streams across 5+ major metros (San Diego, Cincinnati, Minneapolis, Milwaukee, and 1 other metros) and built dynamic cross-region comparison analytics.
+* **[aegis](https://github.com/harlanljones/aegis):** Engineered §6.8 security review memos SR-001 (gitleaks) + SR-002 (signature batch) — ready for approval and implemented w3.4a: safety-validation report template + witnessed drill protocol (SO ratification pending).
 <!-- WEEKLY_HIGHLIGHTS_END -->
 
 ---
