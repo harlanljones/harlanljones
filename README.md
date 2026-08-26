@@ -30,19 +30,19 @@
 ---
 
 <!-- MLB_BIRTHDAY_START -->
-### Daily Dugout Dispatch: August 25
+### Daily Dugout Dispatch: August 26
 
 | Category | Player | Active Span | Franchise(s) | Key Sabermetrics |
 | :--- | :--- | :--- | :--- | :--- |
-| **WAR Warrior** | [Albert Belle](https://www.baseball-reference.com/players/b/belleal01.shtml) | 1989–2000 | BAL, CHW, CLE | 40.1 bWAR • .933 OPS • 381 HR • 1,726 H • 88 SB |
-| **Immaculate Grid Gem** | [Gary Matthews](https://www.baseball-reference.com/players/m/matthga02.shtml) | 1999–2010 | 7 Clubs | 7 Clubs (ANA, BAL, CHC, NYM, PIT, SDP...) • 14.2 bWAR • 12 Yrs — a true Immaculate Grid cheat code |
-| **Antique Ace** | [Frank Jones](https://www.baseball-reference.com/players/j/jonesfr01.shtml) | 1884 | DTN | Born 1858 • 1 Seasons • -0.1 bWAR • 1 H |
-| **Long Ball Laureate** | [Albert Belle](https://www.baseball-reference.com/players/b/belleal01.shtml) | 1989–2000 | BAL, CHW, CLE | 381 Career HR • 1239 RBI |
-| **Strikeout Savant** | [Rollie Fingers](https://www.baseball-reference.com/players/f/fingero01.shtml) | 1968–1985 | MIL, OAK, SDP | 1,299 Strikeouts • 2.90 ERA |
+| **WAR Warrior** | [David Price](https://www.baseball-reference.com/players/p/priceda01.shtml) | 2008–2022 | BOS, DET, LAD, TBD, TOR | 40.2 bWAR • 3.32 ERA • 157-82 W-L • 2,076 SO |
+| **Immaculate Grid Gem** | [Jayson Nix](https://www.baseball-reference.com/players/n/nixja01.shtml) | 2008–2014 | 8 Clubs | 8 Clubs (CHW, CLE, COL, KCR, NYY, PHI...) • 1.6 bWAR • 7 Yrs — a true Immaculate Grid cheat code |
+| **Antique Ace** | [George Joyce](https://www.baseball-reference.com/players/j/joyce01.shtml) | 1886 | WNL | Born 1845 • 1 Seasons • 0.0 bWAR |
+| **Long Ball Laureate** | [Maikel Franco](https://www.baseball-reference.com/players/f/francma02.shtml) | 2014–2022 | BAL, KCR, PHI, WSN | 130 Career HR • 467 RBI |
+| **Strikeout Savant** | [David Price](https://www.baseball-reference.com/players/p/priceda01.shtml) | 2008–2022 | BOS, DET, LAD, TBD, TOR | 2,076 Strikeouts • 3.32 ERA |
 
-*Active cohort on MLB active rosters today (4):* [Max Muncy](https://www.baseball-reference.com/players/m/muncyma01.shtml) (OAK), [Ethan Pecko](https://www.baseball-reference.com/players/p/peckoet01.shtml) (HOU), [Edwin Arroyo](https://www.baseball-reference.com/players/a/arroyed01.shtml) (CIN), [Max Muncy](https://www.baseball-reference.com/players/m/muncyma02.shtml) (OAK)
+*Active cohort on MLB active rosters today (3):* [Ranger Suarez](https://www.baseball-reference.com/players/s/suarera01.shtml) (PHI), [Tyler Wells](https://www.baseball-reference.com/players/w/wellsty01.shtml) (FA), [Spencer Torkelson](https://www.baseball-reference.com/players/t/torkesp01.shtml) (DET)
 
-*Historical index contains 76 total Major League Baseball players born on August 25.*
+*Historical index contains 67 total Major League Baseball players born on August 26.*
 <!-- MLB_BIRTHDAY_END -->
 
 ---
