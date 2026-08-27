@@ -48,11 +48,11 @@
 ---
 
 <!-- WEEKLY_HIGHLIGHTS_START -->
-### What I Did This Week (Aug 20 – Aug 25, 2026)
+### What I Did This Week (Aug 19 – Aug 26, 2026)
 
-* **[urban-signal](https://github.com/harlanljones/urban-signal):** Expanded real-time spatio-temporal telemetry streams across 5+ major metros (San Diego, Cincinnati, Minneapolis, Milwaukee, and 1 other metros) and built dynamic cross-region comparison analytics.
-* **[film-lab](https://github.com/harlanljones/film-lab):** Engineered deploy verification and analytics and implemented cI/CD for production and PR previews.
-* **[dotfiles](https://github.com/harlanljones/dotfiles):** Automated developer workspace tooling, added Linear agent tracking, and hardened systemd periodic usage scrapers.
+* **[bayes-horizon](https://github.com/harlanljones/bayes-horizon):** Integrated wire Tailwind build into prerender pipeline and deployed rebuild forecast surface on locked world with macroeconomic data provenance testing.
+* **[urban-signal](https://github.com/harlanljones/urban-signal):** Expanded real-time spatio-temporal telemetry streams across 11+ major metros (Austin, Boise, San Jose, Tampa, and 7 other metros) and built dynamic cross-region comparison analytics.
+* **[film-lab](https://github.com/harlanljones/film-lab):** Engineered lighthouse integration for CI and implemented deploy verification and analytics.
 <!-- WEEKLY_HIGHLIGHTS_END -->
 
 ---
