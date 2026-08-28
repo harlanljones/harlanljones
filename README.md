@@ -30,19 +30,19 @@
 ---
 
 <!-- MLB_BIRTHDAY_START -->
-### Daily Dugout Dispatch: August 27
+### Daily Dugout Dispatch: August 28
 
 | Category | Player | Active Span | Franchise(s) | Key Sabermetrics |
 | :--- | :--- | :--- | :--- | :--- |
-| **WAR Warrior** | [Jim Thome](https://www.baseball-reference.com/players/t/thomeji01.shtml) | 1991–2012 | BAL, CHW, CLE, LAD, MIN (+1) | 72.9 bWAR • .956 OPS • 612 HR • 2,328 H |
-| **Immaculate Grid Gem** | [Mike Maddux](https://www.baseball-reference.com/players/m/maddumi01.shtml) | 1986–2000 | 9 Clubs | 9 Clubs (BOS, HOU, LAD, NYM, PHI, PIT...) • 5.6 bWAR • 15 Yrs — a true Immaculate Grid cheat code |
-| **Antique Ace** | [John McKelvey](https://www.baseball-reference.com/players/m/mckeljo01.shtml) | 1875 | NHV | Born 1847 • 1 Seasons • 0.0 bWAR • 43 H |
-| **Long Ball Laureate** | [Jim Thome](https://www.baseball-reference.com/players/t/thomeji01.shtml) | 1991–2012 | BAL, CHW, CLE, LAD, MIN (+1) | 612 Career HR • 1699 RBI |
-| **Strikeout Savant** | [Ernie Broglio](https://www.baseball-reference.com/players/b/brogler01.shtml) | 1959–1966 | CHC, STL | 849 Strikeouts • 3.74 ERA |
+| **WAR Warrior** | [Ron Guidry](https://www.baseball-reference.com/players/g/guidrro01.shtml) | 1975–1988 | NYY | 47.8 bWAR • 3.29 ERA • 170-91 W-L • 1,778 SO |
+| **Immaculate Grid Gem** | [Jay Witasick](https://www.baseball-reference.com/players/w/witasja01.shtml) | 1996–2007 | 7 Clubs | 7 Clubs (COL, KCR, NYY, OAK, SDP, SFG...) • 2.6 bWAR • 12 Yrs — a true Immaculate Grid cheat code |
+| **Antique Ace** | [Bob Reach](https://www.baseball-reference.com/players/r/reachbo01.shtml) | 1872–1873 | OLY, WBL | Born 1843 • 2 Seasons • -0.1 bWAR • 3 H |
+| **Long Ball Laureate** | [Carlos Quentin](https://www.baseball-reference.com/players/q/quentca01.shtml) | 2006–2014 | ARI, CHW, SDP | 154 Career HR • 491 RBI |
+| **Strikeout Savant** | [Ron Guidry](https://www.baseball-reference.com/players/g/guidrro01.shtml) | 1975–1988 | NYY | 1,778 Strikeouts • 3.29 ERA |
 
-*Active cohort on MLB active rosters today (2):* [Patrick Wisdom](https://www.baseball-reference.com/players/w/wisdopa01.shtml) (TEX), [Cameron Weston](https://www.baseball-reference.com/players/w/westoca01.shtml) (BAL)
+*Active cohort on MLB active rosters today (2):* [Travis Bazzana](https://www.baseball-reference.com/players/b/bazzatr01.shtml) (CLE), [Gregory Santos](https://www.baseball-reference.com/players/s/santogr01.shtml) (SFG)
 
-*Historical index contains 73 total Major League Baseball players born on August 27.*
+*Historical index contains 59 total Major League Baseball players born on August 28.*
 <!-- MLB_BIRTHDAY_END -->
 
 ---
