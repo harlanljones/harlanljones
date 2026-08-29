@@ -50,9 +50,9 @@
 <!-- WEEKLY_HIGHLIGHTS_START -->
 ### What I Did This Week (Aug 21 – Aug 28, 2026)
 
-* **[urban-signal](https://github.com/harlanljones/urban-signal):** Expanded real-time spatio-temporal telemetry streams across 29+ major metros (Zillow, Wilmington, Asheville, Lexington, and 25 other metros) and built dynamic cross-region comparison analytics.
+* **[urban-signal](https://github.com/harlanljones/urban-signal):** Expanded real-time spatio-temporal telemetry streams across 25+ major metros (Zillow, Wilmington, Asheville, Lexington, and 21 other metros) and built dynamic cross-region comparison analytics.
+* **[dotfiles-showcase](https://github.com/harlanljones/dotfiles-showcase):** Engineered workers-only telemetry endpoint for aggregate analytics and implemented fallback integrity check and post-deploy smoke.
 * **[omarchy-agents](https://github.com/harlanljones/omarchy-agents):** Built token usage analytics, designed productivity comparison views and administrative quota limits portals, and refined AI agent monitoring dashboards.
-* **[dotfiles](https://github.com/harlanljones/dotfiles):** Automated developer workspace tooling, added Linear agent tracking, and hardened systemd periodic usage scrapers.
 <!-- WEEKLY_HIGHLIGHTS_END -->
 
 ---
