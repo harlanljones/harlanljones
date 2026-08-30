@@ -30,19 +30,19 @@
 ---
 
 <!-- MLB_BIRTHDAY_START -->
-### Daily Dugout Dispatch: August 29
+### Daily Dugout Dispatch: August 30
 
 | Category | Player | Active Span | Franchise(s) | Key Sabermetrics |
 | :--- | :--- | :--- | :--- | :--- |
-| **WAR Warrior** | [Roy Oswalt](https://www.baseball-reference.com/players/o/oswalro01.shtml) | 2001–2013 | COL, HOU, PHI, TEX | 50.0 bWAR • 3.36 ERA • 163-102 W-L • 1,852 SO |
-| **Immaculate Grid Gem** | [Henry Blanco](https://www.baseball-reference.com/players/b/blanche01.shtml) | 1997–2013 | 11 Clubs | 11 Clubs (ARI, ATL, CHC, COL, LAD, MIL...) • -0.1 bWAR • 16 Yrs — a true Immaculate Grid cheat code |
-| **Antique Ace** | [Frank Cox](https://www.baseball-reference.com/players/c/coxfr01.shtml) | 1884 | DTN | Born 1857 • 1 Seasons • -1.0 bWAR • 13 H |
-| **Long Ball Laureate** | [Doug DeCinces](https://www.baseball-reference.com/players/d/decindo01.shtml) | 1973–1987 | ANA, BAL, STL | 237 Career HR • 879 RBI |
-| **Strikeout Savant** | [Roy Oswalt](https://www.baseball-reference.com/players/o/oswalro01.shtml) | 2001–2013 | COL, HOU, PHI, TEX | 1,852 Strikeouts • 3.36 ERA |
+| **WAR Warrior** | [Ted Williams](https://www.baseball-reference.com/players/w/willite01.shtml) | 1939–1960 | BOS | 121.7 bWAR • 1.116 OPS • 521 HR • 2,654 H |
+| **Immaculate Grid Gem** | [Marlon Byrd](https://www.baseball-reference.com/players/b/byrdma01.shtml) | 2002–2016 | 10 Clubs | 10 Clubs (BOS, CHC, CIN, CLE, NYM, PHI...) • 26.0 bWAR • 15 Yrs — a true Immaculate Grid cheat code |
+| **Antique Ace** | [Cal McVey](https://www.baseball-reference.com/players/m/mcveyca01.shtml) | 1871–1879 | BLC, BNA, CHC, CNR | Born 1849 • 9 Seasons • 19.2 bWAR • 869 H |
+| **Long Ball Laureate** | [Ted Williams](https://www.baseball-reference.com/players/w/willite01.shtml) | 1939–1960 | BOS | 521 Career HR • 1839 RBI |
+| **Strikeout Savant** | [Adam Wainwright](https://www.baseball-reference.com/players/w/wainwad01.shtml) | 2005–2023 | STL | 2,202 Strikeouts • 3.53 ERA |
 
-*Active cohort on MLB active rosters today (7):* [Hunter Brown](https://www.baseball-reference.com/players/b/brownhu01.shtml) (HOU), [Brent Suter](https://www.baseball-reference.com/players/s/suterbr01.shtml) (MIL), [Evan Carter](https://www.baseball-reference.com/players/c/carteev01.shtml) (TEX), [Justin Sterner](https://www.baseball-reference.com/players/s/sternju01.shtml) (FA), [Seth Martinez](https://www.baseball-reference.com/players/m/martise01.shtml) (HOU), [Sung-Mun Song](https://www.baseball-reference.com/players/s/songsu01.shtml) (SDP), [Drew Romo](https://www.baseball-reference.com/players/r/romodr01.shtml) (COL)
+*Active cohort on MLB active rosters today (4):* [José Caballero](https://www.baseball-reference.com/players/c/cabaljo01.shtml) (FA), [Hunter Dobbins](https://www.baseball-reference.com/players/d/dobbihu01.shtml) (STL), [Luke Little](https://www.baseball-reference.com/players/l/littllu01.shtml) (CHC), [Andrew Sears](https://www.baseball-reference.com/players/s/searsan01.shtml) (DET)
 
-*Historical index contains 76 total Major League Baseball players born on August 29.*
+*Historical index contains 79 total Major League Baseball players born on August 30.*
 <!-- MLB_BIRTHDAY_END -->
 
 ---
