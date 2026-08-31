@@ -30,19 +30,19 @@
 ---
 
 <!-- MLB_BIRTHDAY_START -->
-### Daily Dugout Dispatch: August 30
+### Daily Dugout Dispatch: August 31
 
 | Category | Player | Active Span | Franchise(s) | Key Sabermetrics |
 | :--- | :--- | :--- | :--- | :--- |
-| **WAR Warrior** | [Ted Williams](https://www.baseball-reference.com/players/w/willite01.shtml) | 1939–1960 | BOS | 121.7 bWAR • 1.116 OPS • 521 HR • 2,654 H |
-| **Immaculate Grid Gem** | [Marlon Byrd](https://www.baseball-reference.com/players/b/byrdma01.shtml) | 2002–2016 | 10 Clubs | 10 Clubs (BOS, CHC, CIN, CLE, NYM, PHI...) • 26.0 bWAR • 15 Yrs — a true Immaculate Grid cheat code |
-| **Antique Ace** | [Cal McVey](https://www.baseball-reference.com/players/m/mcveyca01.shtml) | 1871–1879 | BLC, BNA, CHC, CNR | Born 1849 • 9 Seasons • 19.2 bWAR • 869 H |
-| **Long Ball Laureate** | [Ted Williams](https://www.baseball-reference.com/players/w/willite01.shtml) | 1939–1960 | BOS | 521 Career HR • 1839 RBI |
-| **Strikeout Savant** | [Adam Wainwright](https://www.baseball-reference.com/players/w/wainwad01.shtml) | 2005–2023 | STL | 2,202 Strikeouts • 3.53 ERA |
+| **WAR Warrior** | [Frank Robinson](https://www.baseball-reference.com/players/r/robinfr02.shtml) | 1956–1976 | ANA, BAL, CIN, CLE, LAD | 107.2 bWAR • .926 OPS • 586 HR • 2,943 H • 204 SB |
+| **Immaculate Grid Gem** | [Duke Farrell](https://www.baseball-reference.com/players/f/farredu01.shtml) | 1888–1905 | 8 Clubs | 8 Clubs (BOS, BRS, CHC, CHP, LAD, PIT...) • 30.9 bWAR • 18 Yrs — a true Immaculate Grid cheat code |
+| **Antique Ace** | [Val Robinson](https://www.baseball-reference.com/players/r/robinva01.shtml) | 1872 | OLY | Born 1848 • 1 Seasons • -0.2 bWAR • 6 H |
+| **Long Ball Laureate** | [Frank Robinson](https://www.baseball-reference.com/players/r/robinfr02.shtml) | 1956–1976 | ANA, BAL, CIN, CLE, LAD | 586 Career HR • 1812 RBI |
+| **Strikeout Savant** | [Eddie Plank](https://www.baseball-reference.com/players/p/planked01.shtml) | 1901–1917 | BAL, OAK, SLI | 2,246 Strikeouts • 2.35 ERA |
 
-*Active cohort on MLB active rosters today (4):* [José Caballero](https://www.baseball-reference.com/players/c/cabaljo01.shtml) (FA), [Hunter Dobbins](https://www.baseball-reference.com/players/d/dobbihu01.shtml) (STL), [Luke Little](https://www.baseball-reference.com/players/l/littllu01.shtml) (CHC), [Andrew Sears](https://www.baseball-reference.com/players/s/searsan01.shtml) (DET)
+*Active cohort on MLB active rosters today (1):* [Ronel Blanco](https://www.baseball-reference.com/players/b/blancro01.shtml) (HOU)
 
-*Historical index contains 79 total Major League Baseball players born on August 30.*
+*Historical index contains 80 total Major League Baseball players born on August 31.*
 <!-- MLB_BIRTHDAY_END -->
 
 ---
