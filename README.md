@@ -30,19 +30,19 @@
 ---
 
 <!-- MLB_BIRTHDAY_START -->
-### Daily Dugout Dispatch: August 31
+### Daily Dugout Dispatch: September 1
 
 | Category | Player | Active Span | Franchise(s) | Key Sabermetrics |
 | :--- | :--- | :--- | :--- | :--- |
-| **WAR Warrior** | [Frank Robinson](https://www.baseball-reference.com/players/r/robinfr02.shtml) | 1956–1976 | ANA, BAL, CIN, CLE, LAD | 107.2 bWAR • .926 OPS • 586 HR • 2,943 H • 204 SB |
-| **Immaculate Grid Gem** | [Duke Farrell](https://www.baseball-reference.com/players/f/farredu01.shtml) | 1888–1905 | 8 Clubs | 8 Clubs (BOS, BRS, CHC, CHP, LAD, PIT...) • 30.9 bWAR • 18 Yrs — a true Immaculate Grid cheat code |
-| **Antique Ace** | [Val Robinson](https://www.baseball-reference.com/players/r/robinva01.shtml) | 1872 | OLY | Born 1848 • 1 Seasons • -0.2 bWAR • 6 H |
-| **Long Ball Laureate** | [Frank Robinson](https://www.baseball-reference.com/players/r/robinfr02.shtml) | 1956–1976 | ANA, BAL, CIN, CLE, LAD | 586 Career HR • 1812 RBI |
-| **Strikeout Savant** | [Eddie Plank](https://www.baseball-reference.com/players/p/planked01.shtml) | 1901–1917 | BAL, OAK, SLI | 2,246 Strikeouts • 2.35 ERA |
+| **WAR Warrior** | [Jim O'Rourke](https://www.baseball-reference.com/players/o/o) | 1872–1904 | ATL, BNA, BUF, MAN, NYI (+3) | 52.3 bWAR • .775 OPS • 62 HR • 2,639 H • 229 SB |
+| **Immaculate Grid Gem** | [Jim O'Rourke](https://www.baseball-reference.com/players/o/o) | 1872–1904 | 8 Clubs | 8 Clubs (ATL, BNA, BUF, MAN, NYI, PRO...) • 52.3 bWAR • 23 Yrs — a true Immaculate Grid cheat code |
+| **Antique Ace** | [Jim O'Rourke](https://www.baseball-reference.com/players/o/o) | 1872–1904 | ATL, BNA, BUF, MAN, NYI (+3) | Born 1850 • 23 Seasons • 52.3 bWAR • 2,639 H |
+| **Long Ball Laureate** | [Rico Carty](https://www.baseball-reference.com/players/c/cartyri01.shtml) | 1963–1979 | ATL, CHC, CLE, OAK, TEX (+1) | 204 Career HR • 890 RBI |
+| **Strikeout Savant** | [Shota Imanaga](https://www.baseball-reference.com/players/i/imanash01.shtml) | 2024–Pres | CHC | 439 Strikeouts • 3.52 ERA |
 
-*Active cohort on MLB active rosters today (1):* [Ronel Blanco](https://www.baseball-reference.com/players/b/blancro01.shtml) (HOU)
+*Active cohort on MLB active rosters today (5):* [Shota Imanaga](https://www.baseball-reference.com/players/i/imanash01.shtml) (CHC), [Eduard Bazardo](https://www.baseball-reference.com/players/b/bazared01.shtml) (SEA), [Andrew Morris](https://www.baseball-reference.com/players/m/morrian01.shtml) (MIN), [Antwone Kelly](https://www.baseball-reference.com/players/k/kellyan01.shtml) (PIT), [Jordan Wicks](https://www.baseball-reference.com/players/w/wicksjo01.shtml) (CHC)
 
-*Historical index contains 80 total Major League Baseball players born on August 31.*
+*Historical index contains 66 total Major League Baseball players born on September 1.*
 <!-- MLB_BIRTHDAY_END -->
 
 ---
