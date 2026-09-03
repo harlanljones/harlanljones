@@ -30,19 +30,19 @@
 ---
 
 <!-- MLB_BIRTHDAY_START -->
-### Daily Dugout Dispatch: September 2
+### Daily Dugout Dispatch: September 3
 
 | Category | Player | Active Span | Franchise(s) | Key Sabermetrics |
 | :--- | :--- | :--- | :--- | :--- |
-| **WAR Warrior** | [Al Spalding](https://www.baseball-reference.com/players/s/spaldal01.shtml) | 1871–1878 | BNA, CHC | 60.2 bWAR • .702 OPS • 2 HR • 613 H |
-| **Immaculate Grid Gem** | [Christian Bethancourt](https://www.baseball-reference.com/players/b/bethach01.shtml) | 2013–2024 | 6 Clubs | 6 Clubs (ATL, CHC, FLA, OAK, SDP, TBD) • 1.1 bWAR • 8 Yrs — a true Immaculate Grid cheat code |
-| **Antique Ace** | [George Bechtel](https://www.baseball-reference.com/players/b/bechtge01.shtml) | 1871–1876 | CEN, LGR, NNA, NYU, PNA (+1) | Born 1848 • 6 Seasons • 1.8 bWAR • 288 H |
-| **Long Ball Laureate** | [Willy Adames](https://www.baseball-reference.com/players/a/adamewi01.shtml) | 2018–Pres | MIL, SFG, TBD | 201 Career HR • 610 RBI |
-| **Strikeout Savant** | [Jason Hammel](https://www.baseball-reference.com/players/h/hammeja01.shtml) | 2006–2018 | BAL, CHC, COL, KCR, OAK (+1) | 1,428 Strikeouts • 4.62 ERA |
+| **WAR Warrior** | [Luis Gonzalez](https://www.baseball-reference.com/players/g/gonzalu01.shtml) | 1990–2008 | ARI, CHC, DET, FLA, HOU (+1) | 51.7 bWAR • .845 OPS • 354 HR • 2,591 H • 128 SB |
+| **Immaculate Grid Gem** | [Carl Edwards Jr.](https://www.baseball-reference.com/players/e/edwarca01.shtml) | 2015–Pres | 9 Clubs | 9 Clubs (ANA, ATL, CHC, NYM, SDP, SEA...) • 4.5 bWAR • 12 Yrs — a true Immaculate Grid cheat code |
+| **Antique Ace** | [Harry Decker](https://www.baseball-reference.com/players/d/deckeha01.shtml) | 1884–1890 | DTN, IHO, KCU, PHI, PIT (+1) | Born 1864 • 4 Seasons • -0.9 bWAR • 138 H |
+| **Long Ball Laureate** | [Luis Gonzalez](https://www.baseball-reference.com/players/g/gonzalu01.shtml) | 1990–2008 | ARI, CHC, DET, FLA, HOU (+1) | 354 Career HR • 1439 RBI |
+| **Strikeout Savant** | [Eric Plunk](https://www.baseball-reference.com/players/p/plunker01.shtml) | 1986–1999 | CLE, MIL, NYY, OAK | 1,081 Strikeouts • 3.82 ERA |
 
-*Active cohort on MLB active rosters today (6):* [Willy Adames](https://www.baseball-reference.com/players/a/adamewi01.shtml) (FA), [A.J. Minter](https://www.baseball-reference.com/players/m/minteaj01.shtml) (NYM), [Kerry Carpenter](https://www.baseball-reference.com/players/c/carpeke01.shtml) (DET), [Ryan Feltner](https://www.baseball-reference.com/players/f/feltnry01.shtml) (COL), [Oliver Dunn](https://www.baseball-reference.com/players/d/dunnol01.shtml) (FA), [Jase Bowen](https://www.baseball-reference.com/players/b/bowenja01.shtml) (SDP)
+*Active cohort on MLB active rosters today (4):* [David Peterson](https://www.baseball-reference.com/players/p/peterda01.shtml) (NYM), [Carl Edwards Jr.](https://www.baseball-reference.com/players/e/edwarca01.shtml) (WSN), [Javier Sanoja](https://www.baseball-reference.com/players/s/sanojja01.shtml) (FLA), [Tanner Murray](https://www.baseball-reference.com/players/m/murrata01.shtml) (CHW)
 
-*Historical index contains 66 total Major League Baseball players born on September 2.*
+*Historical index contains 62 total Major League Baseball players born on September 3.*
 <!-- MLB_BIRTHDAY_END -->
 
 ---
