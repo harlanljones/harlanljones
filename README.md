@@ -30,19 +30,19 @@
 ---
 
 <!-- MLB_BIRTHDAY_START -->
-### Daily Dugout Dispatch: September 3
+### Daily Dugout Dispatch: September 4
 
 | Category | Player | Active Span | Franchise(s) | Key Sabermetrics |
 | :--- | :--- | :--- | :--- | :--- |
-| **WAR Warrior** | [Luis Gonzalez](https://www.baseball-reference.com/players/g/gonzalu01.shtml) | 1990–2008 | ARI, CHC, DET, FLA, HOU (+1) | 51.7 bWAR • .845 OPS • 354 HR • 2,591 H • 128 SB |
-| **Immaculate Grid Gem** | [Carl Edwards Jr.](https://www.baseball-reference.com/players/e/edwarca01.shtml) | 2015–Pres | 9 Clubs | 9 Clubs (ANA, ATL, CHC, NYM, SDP, SEA...) • 4.5 bWAR • 12 Yrs — a true Immaculate Grid cheat code |
-| **Antique Ace** | [Harry Decker](https://www.baseball-reference.com/players/d/deckeha01.shtml) | 1884–1890 | DTN, IHO, KCU, PHI, PIT (+1) | Born 1864 • 4 Seasons • -0.9 bWAR • 138 H |
-| **Long Ball Laureate** | [Luis Gonzalez](https://www.baseball-reference.com/players/g/gonzalu01.shtml) | 1990–2008 | ARI, CHC, DET, FLA, HOU (+1) | 354 Career HR • 1439 RBI |
-| **Strikeout Savant** | [Eric Plunk](https://www.baseball-reference.com/players/p/plunker01.shtml) | 1986–1999 | CLE, MIL, NYY, OAK | 1,081 Strikeouts • 3.82 ERA |
+| **WAR Warrior** | [Mike Piazza](https://www.baseball-reference.com/players/p/piazzmi01.shtml) | 1992–2007 | FLA, LAD, NYM, OAK, SDP | 59.6 bWAR • .922 OPS • 427 HR • 2,127 H |
+| **Immaculate Grid Gem** | [Doyle Alexander](https://www.baseball-reference.com/players/a/alexado01.shtml) | 1971–1989 | 8 Clubs | 8 Clubs (ATL, BAL, DET, LAD, NYY, SFG...) • 35.0 bWAR • 19 Yrs — a true Immaculate Grid cheat code |
+| **Antique Ace** | [Amos Booth](https://www.baseball-reference.com/players/b/bootham01.shtml) | 1876–1882 | BLO, CNR, CNS, LOU | Born 1848 • 4 Seasons • -1.7 bWAR • 15 G (9 GS) |
+| **Long Ball Laureate** | [Mike Piazza](https://www.baseball-reference.com/players/p/piazzmi01.shtml) | 1992–2007 | FLA, LAD, NYM, OAK, SDP | 427 Career HR • 1335 RBI |
+| **Strikeout Savant** | [Doyle Alexander](https://www.baseball-reference.com/players/a/alexado01.shtml) | 1971–1989 | ATL, BAL, DET, LAD, NYY (+3) | 1,528 Strikeouts • 3.76 ERA |
 
-*Active cohort on MLB active rosters today (4):* [David Peterson](https://www.baseball-reference.com/players/p/peterda01.shtml) (NYM), [Carl Edwards Jr.](https://www.baseball-reference.com/players/e/edwarca01.shtml) (WSN), [Javier Sanoja](https://www.baseball-reference.com/players/s/sanojja01.shtml) (FLA), [Tanner Murray](https://www.baseball-reference.com/players/m/murrata01.shtml) (CHW)
+*Active cohort on MLB active rosters today (3):* [Andrés Giménez](https://www.baseball-reference.com/players/g/gimenan01.shtml) (TOR), [Garrett Mitchell](https://www.baseball-reference.com/players/m/mitchga01.shtml) (MIL), [Kyle Finnegan](https://www.baseball-reference.com/players/f/finneky01.shtml) (WSN)
 
-*Historical index contains 62 total Major League Baseball players born on September 3.*
+*Historical index contains 63 total Major League Baseball players born on September 4.*
 <!-- MLB_BIRTHDAY_END -->
 
 ---
