@@ -30,19 +30,19 @@
 ---
 
 <!-- MLB_BIRTHDAY_START -->
-### Daily Dugout Dispatch: September 4
+### Daily Dugout Dispatch: September 5
 
 | Category | Player | Active Span | Franchise(s) | Key Sabermetrics |
 | :--- | :--- | :--- | :--- | :--- |
-| **WAR Warrior** | [Mike Piazza](https://www.baseball-reference.com/players/p/piazzmi01.shtml) | 1992–2007 | FLA, LAD, NYM, OAK, SDP | 59.6 bWAR • .922 OPS • 427 HR • 2,127 H |
-| **Immaculate Grid Gem** | [Doyle Alexander](https://www.baseball-reference.com/players/a/alexado01.shtml) | 1971–1989 | 8 Clubs | 8 Clubs (ATL, BAL, DET, LAD, NYY, SFG...) • 35.0 bWAR • 19 Yrs — a true Immaculate Grid cheat code |
-| **Antique Ace** | [Amos Booth](https://www.baseball-reference.com/players/b/bootham01.shtml) | 1876–1882 | BLO, CNR, CNS, LOU | Born 1848 • 4 Seasons • -1.7 bWAR • 15 G (9 GS) |
-| **Long Ball Laureate** | [Mike Piazza](https://www.baseball-reference.com/players/p/piazzmi01.shtml) | 1992–2007 | FLA, LAD, NYM, OAK, SDP | 427 Career HR • 1335 RBI |
-| **Strikeout Savant** | [Doyle Alexander](https://www.baseball-reference.com/players/a/alexado01.shtml) | 1971–1989 | ATL, BAL, DET, LAD, NYY (+3) | 1,528 Strikeouts • 3.76 ERA |
+| **WAR Warrior** | [Nap Lajoie](https://www.baseball-reference.com/players/l/lajoina01.shtml) | 1896–1916 | CLE, OAK, PHI | 108.7 bWAR • .846 OPS • 82 HR • 3,243 H • 380 SB |
+| **Immaculate Grid Gem** | [Rod Barajas](https://www.baseball-reference.com/players/b/barajro01.shtml) | 1999–2012 | 7 Clubs | 7 Clubs (ARI, LAD, NYM, PHI, PIT, TEX...) • 4.6 bWAR • 14 Yrs — a true Immaculate Grid cheat code |
+| **Antique Ace** | [Jimmy Knowles](https://www.baseball-reference.com/players/k/knowlji01.shtml) | 1884–1892 | LAD, NYP, PIT, ROC, SFG (+1) | Born 1856 • 5 Seasons • 4.0 bWAR • 334 H |
+| **Long Ball Laureate** | [Chris Young](https://www.baseball-reference.com/players/y/youngch04.shtml) | 2006–2018 | ANA, ARI, BOS, NYM, NYY (+1) | 191 Career HR • 590 RBI |
+| **Strikeout Savant** | [Al Orth](https://www.baseball-reference.com/players/o/orthal01.shtml) | 1895–1909 | MIN, NYY, PHI | 948 Strikeouts • 3.37 ERA |
 
-*Active cohort on MLB active rosters today (3):* [Andrés Giménez](https://www.baseball-reference.com/players/g/gimenan01.shtml) (TOR), [Garrett Mitchell](https://www.baseball-reference.com/players/m/mitchga01.shtml) (MIL), [Kyle Finnegan](https://www.baseball-reference.com/players/f/finneky01.shtml) (WSN)
+*Active cohort on MLB active rosters today (5):* [Steven Kwan](https://www.baseball-reference.com/players/k/kwanst01.shtml) (CLE), [Jarren Duran](https://www.baseball-reference.com/players/d/duranja01.shtml) (BOS), [Blake Dunn](https://www.baseball-reference.com/players/d/dunnbl01.shtml) (CIN), [Logan Allen](https://www.baseball-reference.com/players/a/allenlo02.shtml) (CLE), [Rece Hinds](https://www.baseball-reference.com/players/h/hindsre01.shtml) (FLA)
 
-*Historical index contains 63 total Major League Baseball players born on September 4.*
+*Historical index contains 75 total Major League Baseball players born on September 5.*
 <!-- MLB_BIRTHDAY_END -->
 
 ---
