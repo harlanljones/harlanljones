@@ -30,19 +30,19 @@
 ---
 
 <!-- MLB_BIRTHDAY_START -->
-### Daily Dugout Dispatch: September 5
+### Daily Dugout Dispatch: September 6
 
 | Category | Player | Active Span | Franchise(s) | Key Sabermetrics |
 | :--- | :--- | :--- | :--- | :--- |
-| **WAR Warrior** | [Nap Lajoie](https://www.baseball-reference.com/players/l/lajoina01.shtml) | 1896–1916 | CLE, OAK, PHI | 108.7 bWAR • .846 OPS • 82 HR • 3,243 H • 380 SB |
-| **Immaculate Grid Gem** | [Rod Barajas](https://www.baseball-reference.com/players/b/barajro01.shtml) | 1999–2012 | 7 Clubs | 7 Clubs (ARI, LAD, NYM, PHI, PIT, TEX...) • 4.6 bWAR • 14 Yrs — a true Immaculate Grid cheat code |
-| **Antique Ace** | [Jimmy Knowles](https://www.baseball-reference.com/players/k/knowlji01.shtml) | 1884–1892 | LAD, NYP, PIT, ROC, SFG (+1) | Born 1856 • 5 Seasons • 4.0 bWAR • 334 H |
-| **Long Ball Laureate** | [Chris Young](https://www.baseball-reference.com/players/y/youngch04.shtml) | 2006–2018 | ANA, ARI, BOS, NYM, NYY (+1) | 191 Career HR • 590 RBI |
-| **Strikeout Savant** | [Al Orth](https://www.baseball-reference.com/players/o/orthal01.shtml) | 1895–1909 | MIN, NYY, PHI | 948 Strikeouts • 3.37 ERA |
+| **WAR Warrior** | [Red Faber](https://www.baseball-reference.com/players/f/faberre01.shtml) | 1914–1933 | CHW | 63.8 bWAR • 3.15 ERA • 254-213 W-L • 1,471 SO • 27 SV |
+| **Immaculate Grid Gem** | [Tom Young](https://www.baseball-reference.com/players/y/youngto01.shtml) | 1926–1941 | 8 Clubs | 8 Clubs (DW, HG, KCM, NE, NYC, PC...) • 7.2 bWAR • 10 Yrs — a true Immaculate Grid cheat code |
+| **Antique Ace** | [Jumbo Latham](https://www.baseball-reference.com/players/l/lathaju01.shtml) | 1875–1884 | BNA, LGR, LOU, NHV, PHA | Born 1852 • 5 Seasons • 1.6 bWAR • 353 H |
+| **Long Ball Laureate** | [Derrek Lee](https://www.baseball-reference.com/players/l/leede02.shtml) | 1997–2011 | ATL, BAL, CHC, FLA, PIT (+1) | 331 Career HR • 1078 RBI |
+| **Strikeout Savant** | [Red Faber](https://www.baseball-reference.com/players/f/faberre01.shtml) | 1914–1933 | CHW | 1,471 Strikeouts • 3.15 ERA |
 
-*Active cohort on MLB active rosters today (5):* [Steven Kwan](https://www.baseball-reference.com/players/k/kwanst01.shtml) (CLE), [Jarren Duran](https://www.baseball-reference.com/players/d/duranja01.shtml) (BOS), [Blake Dunn](https://www.baseball-reference.com/players/d/dunnbl01.shtml) (CIN), [Logan Allen](https://www.baseball-reference.com/players/a/allenlo02.shtml) (CLE), [Rece Hinds](https://www.baseball-reference.com/players/h/hindsre01.shtml) (FLA)
+*Active cohort on MLB active rosters today (5):* [Dustin May](https://www.baseball-reference.com/players/m/maydu01.shtml) (STL), [Brant Hurter](https://www.baseball-reference.com/players/h/hurtebr01.shtml) (DET), [Romy Gonzalez](https://www.baseball-reference.com/players/g/gonzaro01.shtml) (CHW), [Jordan Hicks](https://www.baseball-reference.com/players/h/hicksjo03.shtml) (TOR), [Michael Kelly](https://www.baseball-reference.com/players/k/kellymi03.shtml) (PHI)
 
-*Historical index contains 75 total Major League Baseball players born on September 5.*
+*Historical index contains 70 total Major League Baseball players born on September 6.*
 <!-- MLB_BIRTHDAY_END -->
 
 ---
