@@ -30,19 +30,19 @@
 ---
 
 <!-- MLB_BIRTHDAY_START -->
-### Daily Dugout Dispatch: September 6
+### Daily Dugout Dispatch: September 7
 
 | Category | Player | Active Span | Franchise(s) | Key Sabermetrics |
 | :--- | :--- | :--- | :--- | :--- |
-| **WAR Warrior** | [Red Faber](https://www.baseball-reference.com/players/f/faberre01.shtml) | 1914–1933 | CHW | 63.8 bWAR • 3.15 ERA • 254-213 W-L • 1,471 SO • 27 SV |
-| **Immaculate Grid Gem** | [Tom Young](https://www.baseball-reference.com/players/y/youngto01.shtml) | 1926–1941 | 8 Clubs | 8 Clubs (DW, HG, KCM, NE, NYC, PC...) • 7.2 bWAR • 10 Yrs — a true Immaculate Grid cheat code |
-| **Antique Ace** | [Jumbo Latham](https://www.baseball-reference.com/players/l/lathaju01.shtml) | 1875–1884 | BNA, LGR, LOU, NHV, PHA | Born 1852 • 5 Seasons • 1.6 bWAR • 353 H |
-| **Long Ball Laureate** | [Derrek Lee](https://www.baseball-reference.com/players/l/leede02.shtml) | 1997–2011 | ATL, BAL, CHC, FLA, PIT (+1) | 331 Career HR • 1078 RBI |
-| **Strikeout Savant** | [Red Faber](https://www.baseball-reference.com/players/f/faberre01.shtml) | 1914–1933 | CHW | 1,471 Strikeouts • 3.15 ERA |
+| **WAR Warrior** | [Curt Davis](https://www.baseball-reference.com/players/d/daviscu01.shtml) | 1934–1946 | CHC, LAD, PHI, STL | 39.2 bWAR • 3.42 ERA • 158-131 W-L • 684 SO • 33 SV |
+| **Immaculate Grid Gem** | [Darren Bragg](https://www.baseball-reference.com/players/b/braggda01.shtml) | 1994–2004 | 9 Clubs | 9 Clubs (ATL, BOS, CIN, COL, NYM, NYY...) • 9.0 bWAR • 11 Yrs — a true Immaculate Grid cheat code |
+| **Antique Ace** | [Tommy Johns](https://www.baseball-reference.com/players/j/johnsto01.shtml) | 1873 | MAR | Born 1851 • 1 Seasons • -0.1 bWAR |
+| **Long Ball Laureate** | [Joe Rudi](https://www.baseball-reference.com/players/r/rudijo01.shtml) | 1967–1982 | ANA, BOS, OAK | 179 Career HR • 810 RBI |
+| **Strikeout Savant** | [Sandy Alcantara](https://www.baseball-reference.com/players/a/alcansa01.shtml) | 2017–Pres | FLA, STL | 1,073 Strikeouts • 3.63 ERA |
 
-*Active cohort on MLB active rosters today (5):* [Dustin May](https://www.baseball-reference.com/players/m/maydu01.shtml) (STL), [Brant Hurter](https://www.baseball-reference.com/players/h/hurtebr01.shtml) (DET), [Romy Gonzalez](https://www.baseball-reference.com/players/g/gonzaro01.shtml) (CHW), [Jordan Hicks](https://www.baseball-reference.com/players/h/hicksjo03.shtml) (TOR), [Michael Kelly](https://www.baseball-reference.com/players/k/kellymi03.shtml) (PHI)
+*Active cohort on MLB active rosters today (2):* [Sandy Alcantara](https://www.baseball-reference.com/players/a/alcansa01.shtml) (STL), [Heliot Ramos](https://www.baseball-reference.com/players/r/ramoshe02.shtml) (SFG)
 
-*Historical index contains 70 total Major League Baseball players born on September 6.*
+*Historical index contains 67 total Major League Baseball players born on September 7.*
 <!-- MLB_BIRTHDAY_END -->
 
 ---
