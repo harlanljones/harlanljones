@@ -8,11 +8,58 @@ Zero third-party dependencies (standard library only).
 
 import argparse
 import datetime
+import json
 import os
 import re
 import sys
+import urllib.parse
 import urllib.request
 from typing import Dict, List, Optional, Any
+
+
+def fetch_json(url: str, timeout: int = 15) -> Dict[str, Any]:
+    headers = {"User-Agent": "Mozilla/5.0", "Accept": "application/json"}
+    req = urllib.request.Request(url, headers=headers)
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        return json.loads(resp.read().decode("utf-8", errors="replace"))
+
+
+_statsapi_cache: Dict[str, str] = {}
+
+
+def resolve_current_org(name: str, birth_year: int) -> str:
+    """Resolve a player's current MLB organization via the MLB Stats API.
+
+    Returns the team abbreviation, an empty string when the player cannot be
+    matched (caller should fall back), or "FA" for an active unsigned player.
+    """
+    cache_key = f"{name}|{birth_year}"
+    if cache_key in _statsapi_cache:
+        return _statsapi_cache[cache_key]
+
+    org = ""
+    try:
+        search_url = "https://statsapi.mlb.com/api/v1/people/search?names=" + urllib.parse.quote(name)
+        people = fetch_json(search_url).get("people", [])
+        # Disambiguate same-name players by birth year.
+        matches = [p for p in people if p.get("isPlayer") and p.get("active")
+                   and str(p.get("birthDate", ""))[:4] == str(birth_year)]
+        if len(matches) == 1:
+            pid = matches[0]["id"]
+            detail = fetch_json(f"https://statsapi.mlb.com/api/v1/people/{pid}?hydrate=currentTeam")
+            person = detail.get("people", [{}])[0]
+            team = person.get("currentTeam") or {}
+            team_id = team.get("id")
+            if team_id:
+                teams = fetch_json(f"https://statsapi.mlb.com/api/v1/teams/{team_id}").get("teams", [{}])
+                org = teams[0].get("abbreviation") or team.get("name", "")
+            elif team:
+                org = team.get("name", "")
+    except Exception as e:
+        print(f"Notice: could not resolve current org for {name}: {e}", file=sys.stderr)
+
+    _statsapi_cache[cache_key] = org
+    return org
 
 
 def fetch_birthday_html(month: int, day: int) -> str:
@@ -276,7 +323,13 @@ def build_daily_ledger(players: List[Dict[str, Any]], month: int, day: int, curr
     if active_players:
         def format_active_organization(p: Dict[str, Any]) -> str:
             """Return an active player's MLB organization, or FA when unsigned."""
-            organization = p["franchises"][-1] if p["franchises"] else ""
+            # The BRef "franchises" column is alphabetical, not chronological,
+            # so franchises[-1] is not the current team. Resolve the real
+            # current organization via the MLB Stats API instead.
+            organization = resolve_current_org(p["name"], p["birth_year"])
+            if not organization:
+                # Fallback when the API lookup fails.
+                organization = p["franchises"][-1] if p["franchises"] else ""
             return "FA" if not organization or organization.upper() == "TBD" else organization
 
         active_names = [f"{format_player_link(ap)} ({format_active_organization(ap)})" for ap in active_players]
