@@ -40,7 +40,7 @@
 | **Long Ball Laureate** | [Buck Leonard](https://www.baseball-reference.com/players/l/leonabu99.shtml) | 1935–1948 | HG | 97 Career HR • 572 RBI |
 | **Strikeout Savant** | [Gerrit Cole](https://www.baseball-reference.com/players/c/colege01.shtml) | 2013–Pres | HOU, NYY, PIT | 2,364 Strikeouts • 3.19 ERA |
 
-*Active cohort on MLB active rosters today (5):* [Gerrit Cole](https://www.baseball-reference.com/players/c/colege01.shtml) (PIT), [Lars Nootbaar](https://www.baseball-reference.com/players/n/nootbla01.shtml) (STL), [Leody Taveras](https://www.baseball-reference.com/players/t/taverle01.shtml) (TEX), [Víctor Mesa Jr.](https://www.baseball-reference.com/players/m/mesavi01.shtml) (FA), [Blas Castano](https://www.baseball-reference.com/players/c/castabl01.shtml) (SEA)
+*Active cohort on MLB active rosters today (5):* [Gerrit Cole](https://www.baseball-reference.com/players/c/colege01.shtml) (NYY), [Lars Nootbaar](https://www.baseball-reference.com/players/n/nootbla01.shtml) (AZ), [Leody Taveras](https://www.baseball-reference.com/players/t/taverle01.shtml) (BAL), [Víctor Mesa Jr.](https://www.baseball-reference.com/players/m/mesavi01.shtml) (TB), [Blas Castano](https://www.baseball-reference.com/players/c/castabl01.shtml) (COL)
 
 *Historical index contains 60 total Major League Baseball players born on September 8.*
 <!-- MLB_BIRTHDAY_END -->
