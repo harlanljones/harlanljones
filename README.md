@@ -30,19 +30,19 @@
 ---
 
 <!-- MLB_BIRTHDAY_START -->
-### Daily Dugout Dispatch: September 7
+### Daily Dugout Dispatch: September 8
 
 | Category | Player | Active Span | Franchise(s) | Key Sabermetrics |
 | :--- | :--- | :--- | :--- | :--- |
-| **WAR Warrior** | [Curt Davis](https://www.baseball-reference.com/players/d/daviscu01.shtml) | 1934–1946 | CHC, LAD, PHI, STL | 39.2 bWAR • 3.42 ERA • 158-131 W-L • 684 SO • 33 SV |
-| **Immaculate Grid Gem** | [Darren Bragg](https://www.baseball-reference.com/players/b/braggda01.shtml) | 1994–2004 | 9 Clubs | 9 Clubs (ATL, BOS, CIN, COL, NYM, NYY...) • 9.0 bWAR • 11 Yrs — a true Immaculate Grid cheat code |
-| **Antique Ace** | [Tommy Johns](https://www.baseball-reference.com/players/j/johnsto01.shtml) | 1873 | MAR | Born 1851 • 1 Seasons • -0.1 bWAR |
-| **Long Ball Laureate** | [Joe Rudi](https://www.baseball-reference.com/players/r/rudijo01.shtml) | 1967–1982 | ANA, BOS, OAK | 179 Career HR • 810 RBI |
-| **Strikeout Savant** | [Sandy Alcantara](https://www.baseball-reference.com/players/a/alcansa01.shtml) | 2017–Pres | FLA, STL | 1,073 Strikeouts • 3.63 ERA |
+| **WAR Warrior** | [Gerrit Cole](https://www.baseball-reference.com/players/c/colege01.shtml) | 2013–Pres | HOU, NYY, PIT | 45.7 bWAR • 3.19 ERA • 161-88 W-L • 2,364 SO |
+| **Immaculate Grid Gem** | [Val Picinich](https://www.baseball-reference.com/players/p/picinva01.shtml) | 1916–1933 | 6 Clubs | 6 Clubs (BOS, CIN, LAD, MIN, OAK, PIT) • 2.4 bWAR • 18 Yrs — a true Immaculate Grid cheat code |
+| **Antique Ace** | [Russ McKelvy](https://www.baseball-reference.com/players/m/mckelru01.shtml) | 1878–1882 | IBL, PIT | Born 1854 • 2 Seasons • -0.5 bWAR • 4 G (1 GS) |
+| **Long Ball Laureate** | [Buck Leonard](https://www.baseball-reference.com/players/l/leonabu99.shtml) | 1935–1948 | HG | 97 Career HR • 572 RBI |
+| **Strikeout Savant** | [Gerrit Cole](https://www.baseball-reference.com/players/c/colege01.shtml) | 2013–Pres | HOU, NYY, PIT | 2,364 Strikeouts • 3.19 ERA |
 
-*Active cohort on MLB active rosters today (2):* [Sandy Alcantara](https://www.baseball-reference.com/players/a/alcansa01.shtml) (STL), [Heliot Ramos](https://www.baseball-reference.com/players/r/ramoshe02.shtml) (SFG)
+*Active cohort on MLB active rosters today (5):* [Gerrit Cole](https://www.baseball-reference.com/players/c/colege01.shtml) (PIT), [Lars Nootbaar](https://www.baseball-reference.com/players/n/nootbla01.shtml) (STL), [Leody Taveras](https://www.baseball-reference.com/players/t/taverle01.shtml) (TEX), [Víctor Mesa Jr.](https://www.baseball-reference.com/players/m/mesavi01.shtml) (FA), [Blas Castano](https://www.baseball-reference.com/players/c/castabl01.shtml) (SEA)
 
-*Historical index contains 67 total Major League Baseball players born on September 7.*
+*Historical index contains 60 total Major League Baseball players born on September 8.*
 <!-- MLB_BIRTHDAY_END -->
 
 ---
