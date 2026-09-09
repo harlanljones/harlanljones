@@ -30,19 +30,19 @@
 ---
 
 <!-- MLB_BIRTHDAY_START -->
-### Daily Dugout Dispatch: September 8
+### Daily Dugout Dispatch: September 9
 
 | Category | Player | Active Span | Franchise(s) | Key Sabermetrics |
 | :--- | :--- | :--- | :--- | :--- |
-| **WAR Warrior** | [Gerrit Cole](https://www.baseball-reference.com/players/c/colege01.shtml) | 2013–Pres | HOU, NYY, PIT | 45.7 bWAR • 3.19 ERA • 161-88 W-L • 2,364 SO |
-| **Immaculate Grid Gem** | [Val Picinich](https://www.baseball-reference.com/players/p/picinva01.shtml) | 1916–1933 | 6 Clubs | 6 Clubs (BOS, CIN, LAD, MIN, OAK, PIT) • 2.4 bWAR • 18 Yrs — a true Immaculate Grid cheat code |
-| **Antique Ace** | [Russ McKelvy](https://www.baseball-reference.com/players/m/mckelru01.shtml) | 1878–1882 | IBL, PIT | Born 1854 • 2 Seasons • -0.5 bWAR • 4 G (1 GS) |
-| **Long Ball Laureate** | [Buck Leonard](https://www.baseball-reference.com/players/l/leonabu99.shtml) | 1935–1948 | HG | 97 Career HR • 572 RBI |
-| **Strikeout Savant** | [Gerrit Cole](https://www.baseball-reference.com/players/c/colege01.shtml) | 2013–Pres | HOU, NYY, PIT | 2,364 Strikeouts • 3.19 ERA |
+| **WAR Warrior** | [Frankie Frisch](https://www.baseball-reference.com/players/f/friscfr01.shtml) | 1919–1937 | SFG, STL | 71.7 bWAR • .801 OPS • 105 HR • 2,880 H • 419 SB |
+| **Immaculate Grid Gem** | [Edwin Jackson](https://www.baseball-reference.com/players/j/jacksed01.shtml) | 2003–2019 | 14 Clubs | 14 Clubs (ARI, ATL, BAL, CHC, CHW, DET...) • 8.9 bWAR • 17 Yrs — a true Immaculate Grid cheat code |
+| **Antique Ace** | [Ernie Burch](https://www.baseball-reference.com/players/b/burcher01.shtml) | 1884–1887 | CBL, LAD | Born 1856 • 3 Seasons • 0.5 bWAR • 200 H |
+| **Long Ball Laureate** | [Todd Zeile](https://www.baseball-reference.com/players/z/zeileto01.shtml) | 1989–2004 | BAL, CHC, COL, FLA, LAD (+6) | 253 Career HR • 1110 RBI |
+| **Strikeout Savant** | [Edwin Jackson](https://www.baseball-reference.com/players/j/jacksed01.shtml) | 2003–2019 | ARI, ATL, BAL, CHC, CHW (+9) | 1,508 Strikeouts • 4.78 ERA |
 
-*Active cohort on MLB active rosters today (5):* [Gerrit Cole](https://www.baseball-reference.com/players/c/colege01.shtml) (NYY), [Lars Nootbaar](https://www.baseball-reference.com/players/n/nootbla01.shtml) (AZ), [Leody Taveras](https://www.baseball-reference.com/players/t/taverle01.shtml) (BAL), [Víctor Mesa Jr.](https://www.baseball-reference.com/players/m/mesavi01.shtml) (TB), [Blas Castano](https://www.baseball-reference.com/players/c/castabl01.shtml) (COL)
+*Active cohort on MLB active rosters today (5):* [Jimmy Herget](https://www.baseball-reference.com/players/h/hergeji01.shtml) (COL), [JoJo Romero](https://www.baseball-reference.com/players/r/romerjo01.shtml) (MIL), [Nick Sogard](https://www.baseball-reference.com/players/s/sogarni01.shtml) (BOS), [Ben Brown](https://www.baseball-reference.com/players/b/brownbe02.shtml) (CHC), [Otto Kemp](https://www.baseball-reference.com/players/k/kempot01.shtml) (LHV)
 
-*Historical index contains 60 total Major League Baseball players born on September 8.*
+*Historical index contains 67 total Major League Baseball players born on September 9.*
 <!-- MLB_BIRTHDAY_END -->
 
 ---
