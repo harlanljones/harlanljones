@@ -30,19 +30,19 @@
 ---
 
 <!-- MLB_BIRTHDAY_START -->
-### Daily Dugout Dispatch: September 9
+### Daily Dugout Dispatch: September 10
 
 | Category | Player | Active Span | Franchise(s) | Key Sabermetrics |
 | :--- | :--- | :--- | :--- | :--- |
-| **WAR Warrior** | [Frankie Frisch](https://www.baseball-reference.com/players/f/friscfr01.shtml) | 1919–1937 | SFG, STL | 71.7 bWAR • .801 OPS • 105 HR • 2,880 H • 419 SB |
-| **Immaculate Grid Gem** | [Edwin Jackson](https://www.baseball-reference.com/players/j/jacksed01.shtml) | 2003–2019 | 14 Clubs | 14 Clubs (ARI, ATL, BAL, CHC, CHW, DET...) • 8.9 bWAR • 17 Yrs — a true Immaculate Grid cheat code |
-| **Antique Ace** | [Ernie Burch](https://www.baseball-reference.com/players/b/burcher01.shtml) | 1884–1887 | CBL, LAD | Born 1856 • 3 Seasons • 0.5 bWAR • 200 H |
-| **Long Ball Laureate** | [Todd Zeile](https://www.baseball-reference.com/players/z/zeileto01.shtml) | 1989–2004 | BAL, CHC, COL, FLA, LAD (+6) | 253 Career HR • 1110 RBI |
-| **Strikeout Savant** | [Edwin Jackson](https://www.baseball-reference.com/players/j/jacksed01.shtml) | 2003–2019 | ARI, ATL, BAL, CHC, CHW (+9) | 1,508 Strikeouts • 4.78 ERA |
+| **WAR Warrior** | [Randy Johnson](https://www.baseball-reference.com/players/j/johnsra05.shtml) | 1988–2009 | ARI, HOU, NYY, SEA, SFG (+1) | 101.1 bWAR • 3.29 ERA • 303-166 W-L • 4,875 SO |
+| **Immaculate Grid Gem** | [Anthony Swarzak](https://www.baseball-reference.com/players/s/swarzan01.shtml) | 2009–2021 | 10 Clubs | 10 Clubs (ARI, ATL, CHW, CLE, KCR, MIL...) • 4.8 bWAR • 11 Yrs — a true Immaculate Grid cheat code |
+| **Antique Ace** | [Louis Pelouze](https://www.baseball-reference.com/players/p/peloulo01.shtml) | 1886 | SLM | Born 1863 • 1 Seasons • -0.1 bWAR |
+| **Long Ball Laureate** | [Paul Goldschmidt](https://www.baseball-reference.com/players/g/goldspa01.shtml) | 2011–Pres | ARI, NYY, STL | 390 Career HR • 1282 RBI |
+| **Strikeout Savant** | [Randy Johnson](https://www.baseball-reference.com/players/j/johnsra05.shtml) | 1988–2009 | ARI, HOU, NYY, SEA, SFG (+1) | 4,875 Strikeouts • 3.29 ERA |
 
-*Active cohort on MLB active rosters today (5):* [Jimmy Herget](https://www.baseball-reference.com/players/h/hergeji01.shtml) (COL), [JoJo Romero](https://www.baseball-reference.com/players/r/romerjo01.shtml) (MIL), [Nick Sogard](https://www.baseball-reference.com/players/s/sogarni01.shtml) (BOS), [Ben Brown](https://www.baseball-reference.com/players/b/brownbe02.shtml) (CHC), [Otto Kemp](https://www.baseball-reference.com/players/k/kempot01.shtml) (LHV)
+*Active cohort on MLB active rosters today (6):* [Paul Goldschmidt](https://www.baseball-reference.com/players/g/goldspa01.shtml) (NYY), [JJ Wetherholt](https://www.baseball-reference.com/players/w/wethejj01.shtml) (STL), [Blake Perkins](https://www.baseball-reference.com/players/p/perkibl01.shtml) (COL), [Landen Roupp](https://www.baseball-reference.com/players/r/rouppla01.shtml) (SF), [Ray Kerr](https://www.baseball-reference.com/players/k/kerrra01.shtml) (ATL), [Agustín Ramírez](https://www.baseball-reference.com/players/r/ramirag01.shtml) (MIA)
 
-*Historical index contains 67 total Major League Baseball players born on September 9.*
+*Historical index contains 68 total Major League Baseball players born on September 10.*
 <!-- MLB_BIRTHDAY_END -->
 
 ---
