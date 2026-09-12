@@ -30,19 +30,19 @@
 ---
 
 <!-- MLB_BIRTHDAY_START -->
-### Daily Dugout Dispatch: September 11
+### Daily Dugout Dispatch: September 12
 
 | Category | Player | Active Span | Franchise(s) | Key Sabermetrics |
 | :--- | :--- | :--- | :--- | :--- |
-| **WAR Warrior** | [Ellis Burks](https://www.baseball-reference.com/players/b/burksel01.shtml) | 1987–2004 | BOS, CHW, CLE, COL, SFG | 49.8 bWAR • .874 OPS • 352 HR • 2,107 H • 181 SB |
-| **Immaculate Grid Gem** | [Shawn Armstrong](https://www.baseball-reference.com/players/a/armstsh01.shtml) | 2015–Pres | 8 Clubs | 8 Clubs (BAL, CHC, CLE, FLA, SEA, STL...) • 4.0 bWAR • 12 Yrs — a true Immaculate Grid cheat code |
-| **Antique Ace** | [Mike Golden](https://www.baseball-reference.com/players/g/goldemi01.shtml) | 1875–1878 | CNA, MLG, WES | Born 1851 • 2 Seasons • -4.5 bWAR • 49 G (45 GS) |
-| **Long Ball Laureate** | [Ellis Burks](https://www.baseball-reference.com/players/b/burksel01.shtml) | 1987–2004 | BOS, CHW, CLE, COL, SFG | 352 Career HR • 1206 RBI |
-| **Strikeout Savant** | [Dave Roberts](https://www.baseball-reference.com/players/r/roberda05.shtml) | 1969–1981 | CHC, DET, HOU, NYM, PIT (+3) | 957 Strikeouts • 3.78 ERA |
+| **WAR Warrior** | [Freddie Freeman](https://www.baseball-reference.com/players/f/freemfr01.shtml) | 2010–Pres | ATL, LAD | 67.3 bWAR • .893 OPS • 383 HR • 2,587 H • 111 SB |
+| **Immaculate Grid Gem** | [José Ureña](https://www.baseball-reference.com/players/u/urenajo01.shtml) | 2015–Pres | 11 Clubs | 11 Clubs (ANA, CHW, COL, DET, FLA, LAD...) • 1.8 bWAR • 11 Yrs — a true Immaculate Grid cheat code |
+| **Antique Ace** | [Frederick Ehlen](https://www.baseball-reference.com/players/e/eland01.shtml) | 1873 | MAR | Born 1851 • 1 Seasons • 0.0 bWAR |
+| **Long Ball Laureate** | [Freddie Freeman](https://www.baseball-reference.com/players/f/freemfr01.shtml) | 2010–Pres | ATL, LAD | 383 Career HR • 1388 RBI |
+| **Strikeout Savant** | [Mickey Lolich](https://www.baseball-reference.com/players/l/lolicmi01.shtml) | 1963–1979 | DET, NYM, SDP | 2,832 Strikeouts • 3.44 ERA |
 
-*Active cohort on MLB active rosters today (4):* [Shawn Armstrong](https://www.baseball-reference.com/players/a/armstsh01.shtml) (CLE), [Evan Phillips](https://www.baseball-reference.com/players/p/phillev01.shtml) (LAD), [Blake Adams](https://www.baseball-reference.com/players/a/adamsbl01.shtml) (ABQ), [Weston Wilson](https://www.baseball-reference.com/players/w/wilsowe01.shtml) (SEA)
+*Active cohort on MLB active rosters today (2):* [Freddie Freeman](https://www.baseball-reference.com/players/f/freemfr01.shtml) (LAD), [Kyle Bradish](https://www.baseball-reference.com/players/b/bradiky01.shtml) (BAL)
 
-*Historical index contains 60 total Major League Baseball players born on September 11.*
+*Historical index contains 69 total Major League Baseball players born on September 12.*
 <!-- MLB_BIRTHDAY_END -->
 
 ---
