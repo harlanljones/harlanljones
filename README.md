@@ -30,19 +30,19 @@
 ---
 
 <!-- MLB_BIRTHDAY_START -->
-### Daily Dugout Dispatch: September 12
+### Daily Dugout Dispatch: September 13
 
 | Category | Player | Active Span | Franchise(s) | Key Sabermetrics |
 | :--- | :--- | :--- | :--- | :--- |
-| **WAR Warrior** | [Freddie Freeman](https://www.baseball-reference.com/players/f/freemfr01.shtml) | 2010–Pres | ATL, LAD | 67.3 bWAR • .893 OPS • 383 HR • 2,587 H • 111 SB |
-| **Immaculate Grid Gem** | [José Ureña](https://www.baseball-reference.com/players/u/urenajo01.shtml) | 2015–Pres | 11 Clubs | 11 Clubs (ANA, CHW, COL, DET, FLA, LAD...) • 1.8 bWAR • 11 Yrs — a true Immaculate Grid cheat code |
-| **Antique Ace** | [Frederick Ehlen](https://www.baseball-reference.com/players/e/eland01.shtml) | 1873 | MAR | Born 1851 • 1 Seasons • 0.0 bWAR |
-| **Long Ball Laureate** | [Freddie Freeman](https://www.baseball-reference.com/players/f/freemfr01.shtml) | 2010–Pres | ATL, LAD | 383 Career HR • 1388 RBI |
-| **Strikeout Savant** | [Mickey Lolich](https://www.baseball-reference.com/players/l/lolicmi01.shtml) | 1963–1979 | DET, NYM, SDP | 2,832 Strikeouts • 3.44 ERA |
+| **WAR Warrior** | [Eddie Rommel](https://www.baseball-reference.com/players/r/rommeed01.shtml) | 1920–1932 | OAK | 49.8 bWAR • 3.54 ERA • 171-119 W-L • 599 SO • 30 SV |
+| **Immaculate Grid Gem** | [Denny Neagle](https://www.baseball-reference.com/players/n/neaglde01.shtml) | 1991–2003 | 6 Clubs | 6 Clubs (ATL, CIN, COL, MIN, NYY, PIT) • 22.4 bWAR • 13 Yrs — a true Immaculate Grid cheat code |
+| **Antique Ace** | [Al Schellhase](https://www.baseball-reference.com/players/s/schelal01.shtml) | 1890–1891 | ATL, LOU | Born 1864 • 2 Seasons • -0.6 bWAR • 6 H |
+| **Long Ball Laureate** | [Bernie Williams](https://www.baseball-reference.com/players/w/willibe02.shtml) | 1991–2006 | NYY | 287 Career HR • 1257 RBI |
+| **Strikeout Savant** | [Rick Wise](https://www.baseball-reference.com/players/w/wiseri01.shtml) | 1964–1982 | BOS, CLE, PHI, SDP, STL | 1,647 Strikeouts • 3.69 ERA |
 
-*Active cohort on MLB active rosters today (2):* [Freddie Freeman](https://www.baseball-reference.com/players/f/freemfr01.shtml) (LAD), [Kyle Bradish](https://www.baseball-reference.com/players/b/bradiky01.shtml) (BAL)
+*Active cohort on MLB active rosters today (4):* [Gerardo Carrillo](https://www.baseball-reference.com/players/c/carrige01.shtml) (RNO), [Jhonathan Díaz](https://www.baseball-reference.com/players/d/diazjh01.shtml) (TAC), [Osleivis Basabe](https://www.baseball-reference.com/players/b/basabos01.shtml) (SF), [Taylor Trammell](https://www.baseball-reference.com/players/t/trammta01.shtml) (HOU)
 
-*Historical index contains 69 total Major League Baseball players born on September 12.*
+*Historical index contains 67 total Major League Baseball players born on September 13.*
 <!-- MLB_BIRTHDAY_END -->
 
 ---
