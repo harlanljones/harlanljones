@@ -30,19 +30,19 @@
 ---
 
 <!-- MLB_BIRTHDAY_START -->
-### Daily Dugout Dispatch: September 13
+### Daily Dugout Dispatch: September 14
 
 | Category | Player | Active Span | Franchise(s) | Key Sabermetrics |
 | :--- | :--- | :--- | :--- | :--- |
-| **WAR Warrior** | [Eddie Rommel](https://www.baseball-reference.com/players/r/rommeed01.shtml) | 1920–1932 | OAK | 49.8 bWAR • 3.54 ERA • 171-119 W-L • 599 SO • 30 SV |
-| **Immaculate Grid Gem** | [Denny Neagle](https://www.baseball-reference.com/players/n/neaglde01.shtml) | 1991–2003 | 6 Clubs | 6 Clubs (ATL, CIN, COL, MIN, NYY, PIT) • 22.4 bWAR • 13 Yrs — a true Immaculate Grid cheat code |
-| **Antique Ace** | [Al Schellhase](https://www.baseball-reference.com/players/s/schelal01.shtml) | 1890–1891 | ATL, LOU | Born 1864 • 2 Seasons • -0.6 bWAR • 6 H |
-| **Long Ball Laureate** | [Bernie Williams](https://www.baseball-reference.com/players/w/willibe02.shtml) | 1991–2006 | NYY | 287 Career HR • 1257 RBI |
-| **Strikeout Savant** | [Rick Wise](https://www.baseball-reference.com/players/w/wiseri01.shtml) | 1964–1982 | BOS, CLE, PHI, SDP, STL | 1,647 Strikeouts • 3.69 ERA |
+| **WAR Warrior** | [Kid Nichols](https://www.baseball-reference.com/players/n/nichoki01.shtml) | 1890–1906 | ATL, PHI, STL | 118.2 bWAR • .577 OPS • 16 HR • 472 H |
+| **Immaculate Grid Gem** | [Derek Law](https://www.baseball-reference.com/players/l/lawde01.shtml) | 2016–Pres | 7 Clubs | 7 Clubs (ARI, CIN, DET, MIN, SFG, TOR...) • 4.5 bWAR • 9 Yrs — a true Immaculate Grid cheat code |
+| **Antique Ace** | [Harry Luff](https://www.baseball-reference.com/players/l/luffhe01.shtml) | 1875–1884 | CIN, DTN, KCU, LOU, NHV (+1) | Born 1852 • 4 Seasons • -2.8 bWAR • 10 G (7 GS) |
+| **Long Ball Laureate** | [Tim Wallach](https://www.baseball-reference.com/players/w/wallati01.shtml) | 1980–1996 | ANA, LAD, WSN | 260 Career HR • 1125 RBI |
+| **Strikeout Savant** | [Kid Nichols](https://www.baseball-reference.com/players/n/nichoki01.shtml) | 1890–1906 | ATL, PHI, STL | 1,881 Strikeouts • 2.96 ERA |
 
-*Active cohort on MLB active rosters today (4):* [Gerardo Carrillo](https://www.baseball-reference.com/players/c/carrige01.shtml) (RNO), [Jhonathan Díaz](https://www.baseball-reference.com/players/d/diazjh01.shtml) (TAC), [Osleivis Basabe](https://www.baseball-reference.com/players/b/basabos01.shtml) (SF), [Taylor Trammell](https://www.baseball-reference.com/players/t/trammta01.shtml) (HOU)
+*Active cohort on MLB active rosters today (3):* [Derek Law](https://www.baseball-reference.com/players/l/lawde01.shtml) (AZ), [Bubba Chandler](https://www.baseball-reference.com/players/c/chandbu01.shtml) (PIT), [John King](https://www.baseball-reference.com/players/k/kingjo01.shtml) (RR)
 
-*Historical index contains 67 total Major League Baseball players born on September 13.*
+*Historical index contains 51 total Major League Baseball players born on September 14.*
 <!-- MLB_BIRTHDAY_END -->
 
 ---
