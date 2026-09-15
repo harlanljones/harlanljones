@@ -30,19 +30,19 @@
 ---
 
 <!-- MLB_BIRTHDAY_START -->
-### Daily Dugout Dispatch: September 14
+### Daily Dugout Dispatch: September 15
 
 | Category | Player | Active Span | Franchise(s) | Key Sabermetrics |
 | :--- | :--- | :--- | :--- | :--- |
-| **WAR Warrior** | [Kid Nichols](https://www.baseball-reference.com/players/n/nichoki01.shtml) | 1890–1906 | ATL, PHI, STL | 118.2 bWAR • .577 OPS • 16 HR • 472 H |
-| **Immaculate Grid Gem** | [Derek Law](https://www.baseball-reference.com/players/l/lawde01.shtml) | 2016–Pres | 7 Clubs | 7 Clubs (ARI, CIN, DET, MIN, SFG, TOR...) • 4.5 bWAR • 9 Yrs — a true Immaculate Grid cheat code |
-| **Antique Ace** | [Harry Luff](https://www.baseball-reference.com/players/l/luffhe01.shtml) | 1875–1884 | CIN, DTN, KCU, LOU, NHV (+1) | Born 1852 • 4 Seasons • -2.8 bWAR • 10 G (7 GS) |
-| **Long Ball Laureate** | [Tim Wallach](https://www.baseball-reference.com/players/w/wallati01.shtml) | 1980–1996 | ANA, LAD, WSN | 260 Career HR • 1125 RBI |
-| **Strikeout Savant** | [Kid Nichols](https://www.baseball-reference.com/players/n/nichoki01.shtml) | 1890–1906 | ATL, PHI, STL | 1,881 Strikeouts • 2.96 ERA |
+| **WAR Warrior** | [Gaylord Perry](https://www.baseball-reference.com/players/p/perryga01.shtml) | 1962–1983 | ATL, CLE, KCR, NYY, SDP (+3) | 90.0 bWAR • 3.11 ERA • 314-265 W-L • 3,534 SO |
+| **Immaculate Grid Gem** | [Gaylord Perry](https://www.baseball-reference.com/players/p/perryga01.shtml) | 1962–1983 | 8 Clubs | 8 Clubs (ATL, CLE, KCR, NYY, SDP, SEA...) • 90.0 bWAR • 22 Yrs — a true Immaculate Grid cheat code |
+| **Antique Ace** | [Jim Snyder](https://www.baseball-reference.com/players/s/snydeji01.shtml) | 1872 | ECK | Born 1847 • 1 Seasons • 0.4 bWAR • 30 H |
+| **Long Ball Laureate** | [Charley Smith](https://www.baseball-reference.com/players/s/smithch04.shtml) | 1960–1969 | CHC, CHW, LAD, NYM, NYY (+2) | 69 Career HR • 281 RBI |
+| **Strikeout Savant** | [Gaylord Perry](https://www.baseball-reference.com/players/p/perryga01.shtml) | 1962–1983 | ATL, CLE, KCR, NYY, SDP (+3) | 3,534 Strikeouts • 3.11 ERA |
 
-*Active cohort on MLB active rosters today (3):* [Derek Law](https://www.baseball-reference.com/players/l/lawde01.shtml) (AZ), [Bubba Chandler](https://www.baseball-reference.com/players/c/chandbu01.shtml) (PIT), [John King](https://www.baseball-reference.com/players/k/kingjo01.shtml) (RR)
+*Active cohort on MLB active rosters today (2):* [CJ Van Eyk](https://www.baseball-reference.com/players/v/vaneycj01.shtml) (BUF), [Justin Slaten](https://www.baseball-reference.com/players/s/slateju01.shtml) (BOS)
 
-*Historical index contains 51 total Major League Baseball players born on September 14.*
+*Historical index contains 74 total Major League Baseball players born on September 15.*
 <!-- MLB_BIRTHDAY_END -->
 
 ---
