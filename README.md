@@ -30,19 +30,19 @@
 ---
 
 <!-- MLB_BIRTHDAY_START -->
-### Daily Dugout Dispatch: September 15
+### Daily Dugout Dispatch: September 16
 
 | Category | Player | Active Span | Franchise(s) | Key Sabermetrics |
 | :--- | :--- | :--- | :--- | :--- |
-| **WAR Warrior** | [Gaylord Perry](https://www.baseball-reference.com/players/p/perryga01.shtml) | 1962–1983 | ATL, CLE, KCR, NYY, SDP (+3) | 90.0 bWAR • 3.11 ERA • 314-265 W-L • 3,534 SO |
-| **Immaculate Grid Gem** | [Gaylord Perry](https://www.baseball-reference.com/players/p/perryga01.shtml) | 1962–1983 | 8 Clubs | 8 Clubs (ATL, CLE, KCR, NYY, SDP, SEA...) • 90.0 bWAR • 22 Yrs — a true Immaculate Grid cheat code |
-| **Antique Ace** | [Jim Snyder](https://www.baseball-reference.com/players/s/snydeji01.shtml) | 1872 | ECK | Born 1847 • 1 Seasons • 0.4 bWAR • 30 H |
-| **Long Ball Laureate** | [Charley Smith](https://www.baseball-reference.com/players/s/smithch04.shtml) | 1960–1969 | CHC, CHW, LAD, NYM, NYY (+2) | 69 Career HR • 281 RBI |
-| **Strikeout Savant** | [Gaylord Perry](https://www.baseball-reference.com/players/p/perryga01.shtml) | 1962–1983 | ATL, CLE, KCR, NYY, SDP (+3) | 3,534 Strikeouts • 3.11 ERA |
+| **WAR Warrior** | [Robin Yount](https://www.baseball-reference.com/players/y/yountro01.shtml) | 1974–1993 | MIL | 77.4 bWAR • .772 OPS • 251 HR • 3,142 H • 271 SB |
+| **Immaculate Grid Gem** | [Mack Eggleston](https://www.baseball-reference.com/players/e/egglema01.shtml) | 1920–1934 | 12 Clubs | 12 Clubs (ABC, BAG, BBS, BEG, COB, DS...) • 5.9 bWAR • 12 Yrs — a true Immaculate Grid cheat code |
+| **Antique Ace** | [Rit Harrison](https://www.baseball-reference.com/players/h/harriri01.shtml) | 1875 | NHV | Born 1849 • 1 Seasons • 0.0 bWAR • 2 H |
+| **Long Ball Laureate** | [Robin Yount](https://www.baseball-reference.com/players/y/yountro01.shtml) | 1974–1993 | MIL | 251 Career HR • 1406 RBI |
+| **Strikeout Savant** | [Orel Hershiser](https://www.baseball-reference.com/players/h/hershor01.shtml) | 1983–2000 | CLE, LAD, NYM, SFG | 2,014 Strikeouts • 3.48 ERA |
 
-*Active cohort on MLB active rosters today (2):* [CJ Van Eyk](https://www.baseball-reference.com/players/v/vaneycj01.shtml) (BUF), [Justin Slaten](https://www.baseball-reference.com/players/s/slateju01.shtml) (BOS)
+*Active cohort on MLB active rosters today (2):* [Jakob Junis](https://www.baseball-reference.com/players/j/junisja01.shtml) (TEX), [Matt Vierling](https://www.baseball-reference.com/players/v/vierlma01.shtml) (DET)
 
-*Historical index contains 74 total Major League Baseball players born on September 15.*
+*Historical index contains 73 total Major League Baseball players born on September 16.*
 <!-- MLB_BIRTHDAY_END -->
 
 ---
