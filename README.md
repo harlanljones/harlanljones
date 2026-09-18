@@ -30,19 +30,19 @@
 ---
 
 <!-- MLB_BIRTHDAY_START -->
-### Daily Dugout Dispatch: September 17
+### Daily Dugout Dispatch: September 18
 
 | Category | Player | Active Span | Franchise(s) | Key Sabermetrics |
 | :--- | :--- | :--- | :--- | :--- |
-| **WAR Warrior** | [José Ramírez](https://www.baseball-reference.com/players/r/ramirjo01.shtml) | 2013–Pres | CLE | 59.8 bWAR • .845 OPS • 296 HR • 1,769 H • 320 SB |
-| **Immaculate Grid Gem** | [Dan Haren](https://www.baseball-reference.com/players/h/harenda01.shtml) | 2003–2015 | 8 Clubs | 8 Clubs (ANA, ARI, CHC, FLA, LAD, OAK...) • 35.0 bWAR • 13 Yrs — a true Immaculate Grid cheat code |
-| **Antique Ace** | [Nate Berkenstock](https://www.baseball-reference.com/players/b/berkena01.shtml) | 1871 | PNA | Born 1832 • 1 Seasons • -0.1 bWAR |
-| **Long Ball Laureate** | [Orlando Cepeda](https://www.baseball-reference.com/players/c/cepedor01.shtml) | 1958–1974 | ATL, BOS, KCR, OAK, SFG (+1) | 379 Career HR • 1365 RBI |
-| **Strikeout Savant** | [Dan Haren](https://www.baseball-reference.com/players/h/harenda01.shtml) | 2003–2015 | ANA, ARI, CHC, FLA, LAD (+3) | 2,013 Strikeouts • 3.75 ERA |
+| **WAR Warrior** | [Ryne Sandberg](https://www.baseball-reference.com/players/s/sandbry01.shtml) | 1981–1997 | CHC, PHI | 68.0 bWAR • .795 OPS • 282 HR • 2,386 H • 344 SB |
+| **Immaculate Grid Gem** | [Ken Brett](https://www.baseball-reference.com/players/b/brettke01.shtml) | 1967–1981 | 10 Clubs | 10 Clubs (ANA, BOS, CHW, KCR, LAD, MIL...) • 16.3 bWAR • 14 Yrs — a true Immaculate Grid cheat code |
+| **Antique Ace** | [Wally Andrews](https://www.baseball-reference.com/players/a/andrewa01.shtml) | 1884–1888 | LOU, PRO | Born 1859 • 3 Seasons • 0.4 bWAR • 28 H |
+| **Long Ball Laureate** | [Ryne Sandberg](https://www.baseball-reference.com/players/s/sandbry01.shtml) | 1981–1997 | CHC, PHI | 282 Career HR • 1061 RBI |
+| **Strikeout Savant** | [Harvey Haddix](https://www.baseball-reference.com/players/h/haddiha01.shtml) | 1952–1965 | BAL, CIN, PHI, PIT, STL | 1,575 Strikeouts • 3.63 ERA |
 
-*Active cohort on MLB active rosters today (8):* [José Ramírez](https://www.baseball-reference.com/players/r/ramirjo01.shtml) (CLE), [Marcus Semien](https://www.baseball-reference.com/players/s/semiema01.shtml) (NYM), [James Wood](https://www.baseball-reference.com/players/w/woodja03.shtml) (WSH), [Dillon Dingler](https://www.baseball-reference.com/players/d/dingldi01.shtml) (DET), [Pedro Pagés](https://www.baseball-reference.com/players/p/pagespe02.shtml) (STL), [Ben Joyce](https://www.baseball-reference.com/players/j/joycebe01.shtml) (LAA), [Kade Strowd](https://www.baseball-reference.com/players/s/strowka01.shtml) (RNO), [Brandon Sproat](https://www.baseball-reference.com/players/s/sproabr01.shtml) (NAS)
+*Active cohort on MLB active rosters today (2):* [Ceddanne Rafaela](https://www.baseball-reference.com/players/r/rafaece01.shtml) (BOS), [Andre Pallante](https://www.baseball-reference.com/players/p/pallaan01.shtml) (STL)
 
-*Historical index contains 86 total Major League Baseball players born on September 17.*
+*Historical index contains 61 total Major League Baseball players born on September 18.*
 <!-- MLB_BIRTHDAY_END -->
 
 ---
