@@ -179,6 +179,8 @@
 
 * **[hermes-repo-devsetup](https://github.com/harlanljones/hermes-repo-devsetup)** — Canonical example: repo-local Hermes dev environment (./dev, .hermes.md, AGENTS.md, agent hooks). Recent work includes canonical comprehensive example of a repo-local Hermes dev environment and shellcheck-clean doctor (SC2015 x3), built with Shell.
   ![Shell](https://img.shields.io/badge/Shell-89E051?style=flat-square&logo=gnubash&logoColor=black)
+* **[typeframe](https://github.com/harlanljones/typeframe)** — Turn terminal sessions into deterministic animated SVGs, web components, and timeline JSON with a fast, framework-agnostic TypeScript CLI. Recent work includes help/version commands and studio playback preview and generate JSON Schema artifact from zod source of truth, built with TypeScript.
+  ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
 <!-- PROJECTS_END -->
 
 ---
