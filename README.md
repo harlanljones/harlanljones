@@ -48,11 +48,11 @@
 ---
 
 <!-- WEEKLY_HIGHLIGHTS_START -->
-### What I Did This Week (Sep 10 – Sep 17, 2026)
+### What I Did This Week (Sep 15 – Sep 17, 2026)
 
 * **[statcast-lakehouse](https://github.com/harlanljones/statcast-lakehouse):** Engineered expose manifest generation in export CLI and implemented ghost-trajectory break visualization.
 * **[dotfiles](https://github.com/harlanljones/dotfiles):** Automated developer workspace tooling, added Linear agent tracking, and hardened systemd periodic usage scrapers.
-* **[omarchy-agents](https://github.com/harlanljones/omarchy-agents):** Built token usage analytics, designed productivity comparison views and administrative quota limits portals, and refined AI agent monitoring dashboards.
+* **[tinylsm](https://github.com/harlanljones/tinylsm):** Engineered leveldb benchmark and implemented honest leveldb cold-read protocol.
 <!-- WEEKLY_HIGHLIGHTS_END -->
 
 ---
