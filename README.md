@@ -164,6 +164,15 @@
 * **[web-backends](https://github.com/harlanljones/web-backends)** — Active development focused on benchmark infrastructure and Go + Gin reference implementation, built with Shell and Go.
   ![Shell](https://img.shields.io/badge/Shell-89E051?style=flat-square&logo=gnubash&logoColor=black)
   ![Go](https://img.shields.io/badge/Go-00ADD8?style=flat-square&logo=go&logoColor=white)
+* **[saberkit](https://github.com/harlanljones/saberkit)** — A Rust statistics engine for baseball sabermetrics (plus/minus stats, percentile rankings) exposed to Python via PyO3 with zero-copy Arrow interchange. Zero required runtime Python dependencies—bring your own data sou... Recent work includes openBiomechanics biomech explorer and saberkit tour notebook, built with Python and Rust.
+  ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+  ![Rust](https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white)
+
+* **[statcast-lakehouse](https://github.com/harlanljones/statcast-lakehouse)** — Active development focused on expose manifest generation in export CLI and ghost-trajectory break visualization, built with Python and TypeScript.
+  ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+  ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+
+* **[wikipedia-worlds](https://github.com/harlanljones/wikipedia-worlds)** — Recently published a polyglot stack project.
 <!-- PROJECTS_END -->
 
 ---
