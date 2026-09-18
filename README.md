@@ -173,6 +173,12 @@
   ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
 
 * **[wikipedia-worlds](https://github.com/harlanljones/wikipedia-worlds)** — Recently published a polyglot stack project.
+* **[tinylsm](https://github.com/harlanljones/tinylsm)** — Active development focused on leveldb benchmark, built with C++ and JavaScript.
+  ![C++](https://img.shields.io/badge/C++-00599C?style=flat-square&logo=cplusplus&logoColor=white)
+  ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+
+* **[hermes-repo-devsetup](https://github.com/harlanljones/hermes-repo-devsetup)** — Canonical example: repo-local Hermes dev environment (./dev, .hermes.md, AGENTS.md, agent hooks). Recent work includes canonical comprehensive example of a repo-local Hermes dev environment and shellcheck-clean doctor (SC2015 x3), built with Shell.
+  ![Shell](https://img.shields.io/badge/Shell-89E051?style=flat-square&logo=gnubash&logoColor=black)
 <!-- PROJECTS_END -->
 
 ---
