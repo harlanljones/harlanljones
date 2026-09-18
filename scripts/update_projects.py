@@ -3,16 +3,21 @@
 Featured Projects Sync Automation.
 
 Checks the user's public GitHub repositories and appends any repository not
-already listed in the README "Featured Projects" section. Existing entries are
-never reordered or rewritten; new entries are appended at the bottom of the
-list, above the <!-- PROJECTS_END --> anchor.
+already tracked in the JSON store (scripts/data/featured_projects.json).
+Existing entries are never reordered, rewritten, or re-synthesized; new
+entries are appended to the store, then the whole Featured Projects section
+is re-rendered as a single SVG card (GitHub's README sanitizer strips
+<style>/style=/class=, so real styling only survives inside a generated
+image). The SVG is written to --svg-out for a workflow to commit to the
+`profile-cards` branch; README.md itself only needs one <img> tag pointing
+at that asset, inserted once above the <!-- PROJECTS_END --> anchor.
 
 Each generated entry carries a brief summary synthesized from recent
-project-level commit activity plus detected technologies (languages + topics),
-rendered with shields.io badges in the existing README style.
+project-level commit activity plus detected technologies (languages + topics).
 """
 
 import argparse
+import hashlib
 import json
 import os
 import re
@@ -22,8 +27,18 @@ import urllib.parse
 import urllib.request
 from typing import Dict, List, Optional, Set, Tuple
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from svg_cards import CARD_WIDTH, FONT_FAMILY, MUTED, PAD_X, TEXT, card_shell, esc, flow_pills, plain_text, truncate, wrap_by_width  # noqa: E402
+
 PROJECTS_ANCHOR = "<!-- PROJECTS_END -->"
 SECTION_HEADING = "### Featured Projects"
+DEFAULT_STORE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "featured_projects.json")
+
+FALLBACK_PALETTE = ["#6e40c9", "#bf3989", "#0969da", "#1a7f37", "#9a6700", "#cf222e"]
+
+
+def _stable_color_index(label: str, n: int) -> int:
+    return int(hashlib.md5(label.encode("utf-8")).hexdigest(), 16) % n
 
 LANG_BADGES = {
     "python": ("Python", "3776AB", "python", "white"),
@@ -219,16 +234,22 @@ def score_and_distill_commit(msg: str) -> Tuple[int, str]:
     return score, distilled
 
 
-def extract_existing_names(content: str) -> Set[str]:
-    """Collect repo names already linked inside the Featured Projects section only."""
-    m = re.search(rf"{re.escape(SECTION_HEADING)}(.*?)(?=\n---\n)", content, re.DOTALL)
-    if not m:
-        print(f"[ERROR] Could not locate '{SECTION_HEADING}' section in README.", file=sys.stderr)
-        sys.exit(1)
+def load_store(store_path: str) -> List[Dict]:
+    if not os.path.exists(store_path):
+        return []
+    with open(store_path, "r", encoding="utf-8") as f:
+        return json.load(f)
 
-    section = m.group(1)
-    names = set(n.lower() for n in re.findall(r"github\.com/[A-Za-z0-9-]+/([A-Za-z0-9_.\-]+)", section))
-    return names
+
+def save_store(store_path: str, entries: List[Dict]) -> None:
+    os.makedirs(os.path.dirname(store_path), exist_ok=True)
+    with open(store_path, "w", encoding="utf-8") as f:
+        json.dump(entries, f, indent=2)
+        f.write("\n")
+
+
+def existing_names(entries: List[Dict]) -> Set[str]:
+    return {e["name"].lower() for e in entries}
 
 
 def fetch_public_repos(username: str, token: Optional[str]) -> List[Dict]:
@@ -246,7 +267,14 @@ def fetch_public_repos(username: str, token: Optional[str]) -> List[Dict]:
     return repos
 
 
-def select_new_repos(repos: List[Dict], username: str, existing: Set[str], max_new: int) -> List[Dict]:
+def repo_has_commits(full_name: str, token: Optional[str]) -> bool:
+    """GitHub's cached `size` field can briefly read 0 right after a repo's
+    first push, so a size==0 repo is only truly empty if it also has no commits."""
+    commits = gh_get(f"https://api.github.com/repos/{full_name}/commits?per_page=1", token)
+    return isinstance(commits, list) and len(commits) > 0
+
+
+def select_new_repos(repos: List[Dict], username: str, existing: Set[str], max_new: int, token: Optional[str] = None) -> List[Dict]:
     new_repos = []
     for r in repos:
         name = r.get("name") or ""
@@ -255,7 +283,9 @@ def select_new_repos(repos: List[Dict], username: str, existing: Set[str], max_n
         if r.get("fork") or r.get("archived") or r.get("disabled"):
             continue
         if (r.get("size") or 0) == 0:
-            continue
+            full_name = r.get("full_name") or f"{username}/{name}"
+            if not repo_has_commits(full_name, token):
+                continue
         if name.lower() in existing:
             continue
         new_repos.append(r)
@@ -439,53 +469,108 @@ def synthesize_heuristics(detail: Dict) -> Tuple[str, List[str]]:
     return summary, badges[:4]
 
 
-def _shields_text(s: str) -> str:
-    return s.replace("-", "--").replace("_", "__").replace(" ", "_")
-
-
-def render_badge(label: str) -> str:
-    spec = LABEL_TO_BADGE.get(label)
-    if not spec:
-        return ""
-    _, color, logo, logo_color = spec
-    text = _shields_text(label)
-    url = f"https://img.shields.io/badge/{text}-{color}?style=flat-square"
-    if logo:
-        url += f"&logo={logo}&logoColor={logo_color}"
-    return f"![{label}]({url})"
-
-
-def render_live_demo_badge(homepage: str) -> str:
-    host = urllib.parse.urlparse(homepage).netloc if "://" in homepage else homepage
-    host = host.rstrip("/")
-    text = f"Live_Demo-{_shields_text(host)}"
-    url = f"https://img.shields.io/badge/{text}-F38020?style=flat-square&logo=cloudflare&logoColor=white"
-    link = homepage if "://" in homepage else f"https://{homepage}"
-    return f"[![Live Demo]({url})]({link})"
-
-
-def build_entry(name: str, summary: str, badges: List[str], homepage: str) -> str:
+def build_entry(name: str, summary: str, badges: List[str], homepage: str) -> Dict:
     name = name.strip()
     if not summary.endswith("."):
         summary += "."
-    lines = [f"* **[{name}](https://github.com/harlanljones/{name})** — {summary}"]
+    return {"name": name, "summary": summary, "badges": badges[:4], "homepage": homepage}
 
-    rendered = []
+
+def _badge_fill(label: str) -> Tuple[str, str]:
+    spec = LABEL_TO_BADGE.get(label)
+    if spec:
+        _, color, _, logo_color = spec
+        # Most entries store a bare hex code (for shields.io URLs); a few use
+        # a CSS color name (e.g. "blueviolet") directly.
+        is_hex = len(color) == 6 and all(c in "0123456789abcdefABCDEF" for c in color)
+        fill = f"#{color}" if is_hex else color
+        text_color = "#ffffff" if logo_color == "white" else "#0d1117"
+    else:
+        # One-off labels (e.g. "PostGIS", "Performance") have no curated color;
+        # derive a stable one so they still render instead of vanishing.
+        fill = FALLBACK_PALETTE[_stable_color_index(label, len(FALLBACK_PALETTE))]
+        text_color = "#ffffff"
+    return fill, text_color
+
+
+def _render_entry_block(x: float, y: float, entry: Dict, col_width: float) -> Tuple[str, float]:
+    """Renders one project's name/summary/badges inside a column starting at
+    (x, y). Returns (svg_fragment, height_used)."""
+    name = entry["name"]
+    summary = entry["summary"]
+    badges = entry.get("badges") or []
+    homepage = entry.get("homepage") or ""
+    frags = []
+    cy = y
+
     if homepage:
-        rendered.append(render_live_demo_badge(homepage))
-    for label in badges[:4]:
-        b = render_badge(label)
-        if b:
-            rendered.append(b)
+        live_w = len("LIVE") * 11 * 0.62 + 18
+        name_max_w = col_width - live_w - 10
+    else:
+        live_w = 0.0
+        name_max_w = col_width
+    name_display = truncate(name, 15, name_max_w, bold=True)
+    frags.append(
+        f'<text x="{x:.1f}" y="{cy + 15:.1f}" font-size="15" font-weight="700" '
+        f'fill="#58a6ff" font-family="{FONT_FAMILY}">{esc(name_display)}</text>'
+    )
+    if homepage:
+        live_x = x + col_width - live_w
+        frags.append(
+            f'<g transform="translate({live_x:.1f},{cy - 1:.1f})">'
+            f'<rect width="{live_w:.1f}" height="18" rx="9" fill="#238636"/>'
+            f'<text x="{live_w / 2:.1f}" y="13" font-size="10.5" font-weight="700" fill="#ffffff" '
+            f'text-anchor="middle" font-family="{FONT_FAMILY}">LIVE</text>'
+            f"</g>"
+        )
+    cy += 24
 
-    for b in rendered:
-        lines.append(f"  {b}")
+    for line in wrap_by_width(plain_text(summary), 12.5, col_width, max_lines=3):
+        frags.append(
+            f'<text x="{x:.1f}" y="{cy + 12:.1f}" font-size="12.5" fill="{TEXT}" '
+            f'font-family="{FONT_FAMILY}">{esc(line)}</text>'
+        )
+        cy += 18
 
-    return "\n".join(lines)
+    cy += 6
+    pill_labels = [( label, *_badge_fill(label)) for label in badges]
+    if pill_labels:
+        pills_svg, pills_h = flow_pills(x, cy, pill_labels, x + col_width, row_height=25)
+        frags.append(pills_svg)
+        cy += pills_h
+    else:
+        cy += 4
+
+    return "\n".join(frags), cy - y
 
 
-def append_entries(readme_path: str, entry_blocks: List[str]) -> bool:
-    """Append-only insert above the PROJECTS_END anchor; never touches existing content."""
+def render_projects_svg(entries: List[Dict], columns: int = 2) -> str:
+    gap = 28
+    col_width = (CARD_WIDTH - PAD_X * 2 - gap * (columns - 1)) / columns
+    frags = []
+    cy = 10.0
+    row_gap = 22
+
+    for row_start in range(0, len(entries), columns):
+        row = entries[row_start:row_start + columns]
+        col_heights = []
+        for col_i, entry in enumerate(row):
+            x = PAD_X + col_i * (col_width + gap)
+            svg, h = _render_entry_block(x, cy, entry, col_width)
+            frags.append(svg)
+            col_heights.append(h)
+        row_h = max(col_heights)
+        cy += row_h + row_gap
+        if row_start + columns < len(entries):
+            frags.append(f'<line x1="{PAD_X}" y1="{cy - row_gap / 2:.1f}" x2="{CARD_WIDTH - PAD_X}" y2="{cy - row_gap / 2:.1f}" stroke="{MUTED}" stroke-opacity="0.25"/>')
+
+    body_height = cy
+    subtitle = f"{len(entries)} public repositories"
+    return card_shell("Featured Projects", subtitle, "\n".join(frags), body_height)
+
+
+def ensure_readme_image(readme_path: str, svg_url: str) -> bool:
+    """Inserts a single <img> tag above PROJECTS_END once; leaves it alone on later runs."""
     if not os.path.exists(readme_path):
         print(f"[ERROR] README not found at {readme_path}", file=sys.stderr)
         return False
@@ -493,10 +578,13 @@ def append_entries(readme_path: str, entry_blocks: List[str]) -> bool:
     with open(readme_path, "r", encoding="utf-8") as f:
         content = f.read()
 
-    block = "\n\n".join(entry_blocks)
+    img_tag = f'<img src="{svg_url}" alt="Featured Projects" width="100%" />'
+    if img_tag in content:
+        print("[INFO] README.md already embeds the Featured Projects image.")
+        return False
 
     if PROJECTS_ANCHOR in content:
-        updated = content.replace(PROJECTS_ANCHOR, f"{block}\n{PROJECTS_ANCHOR}", 1)
+        updated = content.replace(PROJECTS_ANCHOR, f"{img_tag}\n{PROJECTS_ANCHOR}", 1)
     else:
         m = re.search(rf"{re.escape(SECTION_HEADING)}", content)
         if not m:
@@ -506,38 +594,32 @@ def append_entries(readme_path: str, entry_blocks: List[str]) -> bool:
         if insert_at == -1:
             print("[ERROR] Could not find end of Featured Projects section; aborting.", file=sys.stderr)
             return False
-        updated = content[:insert_at] + f"\n{block}\n" + content[insert_at:]
+        updated = content[:insert_at] + f"\n{img_tag}\n" + content[insert_at:]
 
-    if updated != content:
-        with open(readme_path, "w", encoding="utf-8") as f:
-            f.write(updated)
-        print(f"[OK] Appended {len(entry_blocks)} new project entr{'y' if len(entry_blocks) == 1 else 'ies'} to {readme_path}")
-        return True
-
-    print("[INFO] No changes needed in README.md")
-    return False
+    with open(readme_path, "w", encoding="utf-8") as f:
+        f.write(updated)
+    print(f"[OK] Inserted Featured Projects image tag into {readme_path}")
+    return True
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Sync newly published public repos into the Featured Projects README section.")
+    parser = argparse.ArgumentParser(description="Sync newly published public repos into the Featured Projects card.")
     parser.add_argument("--username", default="harlanljones", help="GitHub username")
     parser.add_argument("--readme", default="README.md", help="Path to README.md")
+    parser.add_argument("--store", default=DEFAULT_STORE, help="Path to the JSON entry store")
+    parser.add_argument("--svg-out", default="projects.svg", help="Path to write the rendered SVG card")
+    parser.add_argument("--svg-url", default="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/projects.svg",
+                         help="URL the README <img> tag should point at")
     parser.add_argument("--token", default=os.getenv("GITHUB_TOKEN"), help="GitHub API Token")
     parser.add_argument("--gemini-api-key", default=os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY"), help="Gemini API Key")
     parser.add_argument("--max-new", type=int, default=5, help="Maximum new entries per run")
-    parser.add_argument("--dry-run", action="store_true", help="Print output without writing to README.md")
+    parser.add_argument("--dry-run", action="store_true", help="Print output without writing any files")
 
     args = parser.parse_args()
 
-    if not os.path.exists(args.readme):
-        print(f"[ERROR] README not found at {args.readme}", file=sys.stderr)
-        sys.exit(1)
-
-    with open(args.readme, "r", encoding="utf-8") as f:
-        content = f.read()
-
-    existing = extract_existing_names(content)
-    print(f"[INFO] Found {len(existing)} repositories already listed under '{SECTION_HEADING}'.")
+    entries = load_store(args.store)
+    existing = existing_names(entries)
+    print(f"[INFO] Found {len(existing)} repositories already tracked in {args.store}.")
 
     print(f"[INFO] Fetching public repositories for {args.username}...")
     repos = fetch_public_repos(args.username, args.token)
@@ -546,41 +628,48 @@ def main():
         sys.exit(1)
     print(f"[INFO] Discovered {len(repos)} public repositories.")
 
-    new_repos = select_new_repos(repos, args.username, existing, args.max_new)
-    if not new_repos:
+    new_repos = select_new_repos(repos, args.username, existing, args.max_new, args.token)
+    if new_repos:
+        print(f"[INFO] {len(new_repos)} new repositories to add:")
+        for r in new_repos:
+            print(f"   + {r.get('name')}")
+
+        for repo in new_repos:
+            detail = gather_repo_detail(repo, args.username, args.token)
+            print(f"[INFO] Synthesizing entry for {detail['name']} ({len(detail['subjects'])} signal commits)...")
+
+            synthesized = None
+            if args.gemini_api_key:
+                synthesized = synthesize_with_gemini(detail, args.gemini_api_key)
+                if not synthesized:
+                    print(f"[INFO] Gemini synthesis unavailable for {detail['name']}; using heuristic engine.")
+
+            if synthesized:
+                summary, badges = synthesized
+            else:
+                summary, badges = synthesize_heuristics(detail)
+
+            entries.append(build_entry(detail["name"], summary, badges, detail["homepage"]))
+    else:
         print("[INFO] No new public repositories to add.")
-        sys.exit(0)
-    print(f"[INFO] {len(new_repos)} new repositories to append:")
-    for r in new_repos:
-        print(f"   + {r.get('name')}")
 
-    entry_blocks: List[str] = []
-    for repo in new_repos:
-        detail = gather_repo_detail(repo, args.username, args.token)
-        print(f"[INFO] Synthesizing entry for {detail['name']} ({len(detail['subjects'])} signal commits)...")
-
-        synthesized = None
-        if args.gemini_api_key:
-            synthesized = synthesize_with_gemini(detail, args.gemini_api_key)
-            if not synthesized:
-                print(f"[INFO] Gemini synthesis unavailable for {detail['name']}; using heuristic engine.")
-
-        if synthesized:
-            summary, badges = synthesized
-        else:
-            summary, badges = synthesize_heuristics(detail)
-
-        entry_blocks.append(build_entry(detail["name"], summary, badges, detail["homepage"]))
-
-    markdown_block = "\n\n".join(entry_blocks)
+    svg = render_projects_svg(entries)
 
     if args.dry_run:
-        print("\n--- DRY RUN OUTPUT ---")
-        print(markdown_block)
+        print("\n--- DRY RUN OUTPUT (SVG omitted, entries below) ---")
+        print(json.dumps(entries, indent=2))
         print("----------------------\n")
         sys.exit(0)
 
-    append_entries(args.readme, entry_blocks)
+    if new_repos:
+        save_store(args.store, entries)
+        print(f"[OK] Saved {len(entries)} total entries to {args.store}")
+
+    with open(args.svg_out, "w", encoding="utf-8") as f:
+        f.write(svg)
+    print(f"[OK] Wrote {args.svg_out}")
+
+    ensure_readme_image(args.readme, args.svg_url)
 
 
 if __name__ == "__main__":

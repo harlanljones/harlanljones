@@ -43,7 +43,8 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Sync with remote and append new public repositories
+      - name: Sync store and render Featured Projects card
+        id: sync
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -60,14 +61,15 @@ jobs:
           python3 scripts/update_projects.py \
             --username "harlanljones" \
             --readme "README.md" \
+            --svg-out "${RUNNER_TEMP}/projects.svg" \
             $EXTRA_ARGS
 
-      - name: Commit and push changes
+      - name: Commit store + README changes on main
         if: ${{ github.event.inputs.dry_run != 'true' }}
         run: |
-          git add README.md
+          git add README.md scripts/data/featured_projects.json
           if git diff --staged --quiet; then
-            echo "No changes to commit"
+            echo "No main-branch changes to commit"
             exit 0
           fi
           git commit -m "chore(projects): sync newly published public repositories [skip ci]"
@@ -75,6 +77,35 @@ jobs:
             git fetch origin main
             if git rebase origin/main; then
               if git push origin HEAD:main; then
+                echo "Push succeeded on attempt ${attempt}"
+                exit 0
+              fi
+            else
+              echo "Rebase failed on attempt ${attempt}"
+              git rebase --abort || true
+            fi
+            echo "Attempt ${attempt} failed; retrying..."
+            sleep $((attempt * 2))
+          done
+          echo "Failed to push after 5 attempts"
+          exit 1
+
+      - name: Publish rendered card to profile-cards branch
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          git checkout profile-cards
+          git reset --hard origin/profile-cards
+          cp "${RUNNER_TEMP}/projects.svg" projects.svg
+          git add projects.svg
+          if git diff --staged --quiet; then
+            echo "No card changes to publish"
+            exit 0
+          fi
+          git commit -m "chore(projects): update rendered Featured Projects card"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin profile-cards
+            if git rebase origin/profile-cards; then
+              if git push origin HEAD:profile-cards; then
                 echo "Push succeeded on attempt ${attempt}"
                 exit 0
               fi

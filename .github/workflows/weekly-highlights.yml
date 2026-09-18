@@ -46,7 +46,7 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Sync with remote and generate work-week summary
+      - name: Sync with remote and render work-week summary card
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -68,21 +68,51 @@ jobs:
           python3 scripts/weekly_summary.py \
             --username "harlanljones" \
             --readme "README.md" \
+            --svg-out "${RUNNER_TEMP}/weekly-highlights.svg" \
             $EXTRA_ARGS
 
-      - name: Commit and push changes
+      - name: Commit README changes on main
         if: ${{ github.event.inputs.dry_run != 'true' }}
         run: |
           git add README.md
           if git diff --staged --quiet; then
-            echo "No changes to commit"
+            echo "No main-branch changes to commit"
             exit 0
           fi
-          git commit -m "chore(highlights): update work week git activity highlights [skip ci]"
+          git commit -m "chore(highlights): embed work-week highlights card [skip ci]"
           for attempt in 1 2 3 4 5; do
             git fetch origin main
             if git rebase origin/main; then
               if git push origin HEAD:main; then
+                echo "Push succeeded on attempt ${attempt}"
+                exit 0
+              fi
+            else
+              echo "Rebase failed on attempt ${attempt}"
+              git rebase --abort || true
+            fi
+            echo "Attempt ${attempt} failed; retrying..."
+            sleep $((attempt * 2))
+          done
+          echo "Failed to push after 5 attempts"
+          exit 1
+
+      - name: Publish rendered card to profile-cards branch
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          git checkout profile-cards
+          git reset --hard origin/profile-cards
+          cp "${RUNNER_TEMP}/weekly-highlights.svg" weekly-highlights.svg
+          git add weekly-highlights.svg
+          if git diff --staged --quiet; then
+            echo "No card changes to publish"
+            exit 0
+          fi
+          git commit -m "chore(highlights): update rendered weekly highlights card"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin profile-cards
+            if git rebase origin/profile-cards; then
+              if git push origin HEAD:profile-cards; then
                 echo "Push succeeded on attempt ${attempt}"
                 exit 0
               fi

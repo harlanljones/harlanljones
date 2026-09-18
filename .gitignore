@@ -42,8 +42,11 @@ htmlcov/
 .mypy_cache/
 .ruff_cache/
 
-# Generated profile summary cards (committed to profile-cards branch by CI)
+# Generated cards (committed to profile-cards branch by CI, not main)
 profile-summary-card-output/
+/skills.svg
+/projects.svg
+/weekly-highlights.svg
 
 # Operating System Files
 .DS_Store

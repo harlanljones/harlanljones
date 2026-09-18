@@ -22,6 +22,13 @@ import urllib.request
 from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Optional, Tuple
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from svg_cards import PAD_X, TEXT, card_shell, esc, plain_text, wrap_by_width  # noqa: E402
+
+WEEKLY_START = "<!-- WEEKLY_HIGHLIGHTS_START -->"
+WEEKLY_END = "<!-- WEEKLY_HIGHLIGHTS_END -->"
+BULLET_RE = re.compile(r"^\*\s+\*\*\[([^\]]+)\]\(([^)]+)\):\*\*\s+(.+)$")
+
 
 HIGH_SIGNAL_KEYWORDS = [
     "pipeline", "execution", "adapter", "stream", "forecasting", "backtest",
@@ -456,8 +463,41 @@ def generate_markdown(bullets: List[str], date_range_label: str) -> str:
     return "\n".join(lines)
 
 
-def update_readme(readme_path: str, new_section: str) -> bool:
-    """Inject new section between markers or insert if not present."""
+def render_weekly_svg(bullets: List[str], date_range_label: str) -> str:
+    """GitHub's README sanitizer strips <style>/style=/class=, so real styling
+    only survives inside a generated image; this renders the week's highlights
+    as an SVG card instead of markdown bullets."""
+    max_x = 900 - PAD_X
+    frags = []
+    cy = 10.0
+
+    for i, bullet in enumerate(bullets):
+        m = BULLET_RE.match(bullet.strip())
+        if not m:
+            continue
+        name, _url, desc = m.groups()
+        frags.append(
+            f'<text x="{PAD_X}" y="{cy + 14:.1f}" font-size="14" font-weight="700" '
+            f'fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,\'Segoe UI\',Helvetica,Arial,sans-serif">{esc(name)}</text>'
+        )
+        cy += 22
+        for line in wrap_by_width(plain_text(desc), 13, max_x - PAD_X, max_lines=2):
+            frags.append(
+                f'<text x="{PAD_X}" y="{cy + 12:.1f}" font-size="13" fill="{TEXT}" '
+                f'font-family="-apple-system,BlinkMacSystemFont,\'Segoe UI\',Helvetica,Arial,sans-serif">{esc(line)}</text>'
+            )
+            cy += 19
+        cy += 16
+        if i < len(bullets) - 1:
+            frags.append(f'<line x1="{PAD_X}" y1="{cy - 8:.1f}" x2="{max_x}" y2="{cy - 8:.1f}" stroke="#8b949e" stroke-opacity="0.25"/>')
+
+    body_height = cy
+    return card_shell("What I Did This Week", date_range_label, "\n".join(frags), body_height)
+
+
+def ensure_readme_image(readme_path: str, svg_url: str) -> bool:
+    """Inserts a single static <img> tag between the anchors once; the SVG it
+    points at is what changes each week, not the README markup itself."""
     if not os.path.exists(readme_path):
         print(f"[ERROR] README not found at {readme_path}", file=sys.stderr)
         return False
@@ -465,31 +505,35 @@ def update_readme(readme_path: str, new_section: str) -> bool:
     with open(readme_path, "r", encoding="utf-8") as f:
         content = f.read()
 
-    pattern = r"<!-- WEEKLY_HIGHLIGHTS_START -->.*?<!-- WEEKLY_HIGHLIGHTS_END -->"
+    img_tag = f'<img src="{svg_url}" alt="What I Did This Week" width="100%" />'
+    section = f"{WEEKLY_START}\n{img_tag}\n{WEEKLY_END}"
+
+    pattern = re.escape(WEEKLY_START) + r".*?" + re.escape(WEEKLY_END)
     if re.search(pattern, content, flags=re.DOTALL):
-        updated_content = re.sub(pattern, new_section, content, flags=re.DOTALL)
+        if img_tag in content:
+            print("[INFO] README.md already embeds the Weekly Highlights image.")
+            return False
+        updated_content = re.sub(pattern, section, content, flags=re.DOTALL)
+    elif "<!-- MLB_BIRTHDAY_END -->" in content:
+        updated_content = content.replace(
+            "<!-- MLB_BIRTHDAY_END -->",
+            f"<!-- MLB_BIRTHDAY_END -->\n\n---\n\n{section}"
+        )
+    elif "### Featured Projects" in content:
+        updated_content = content.replace(
+            "### Featured Projects",
+            f"{section}\n\n---\n\n### Featured Projects"
+        )
     else:
-        if "<!-- MLB_BIRTHDAY_END -->" in content:
-            updated_content = content.replace(
-                "<!-- MLB_BIRTHDAY_END -->",
-                f"<!-- MLB_BIRTHDAY_END -->\n\n---\n\n{new_section}"
-            )
-        elif "### Featured Projects" in content:
-            updated_content = content.replace(
-                "### Featured Projects",
-                f"{new_section}\n\n---\n\n### Featured Projects"
-            )
-        else:
-            updated_content = content + f"\n\n---\n\n{new_section}\n"
+        updated_content = content + f"\n\n---\n\n{section}\n"
 
     if updated_content != content:
         with open(readme_path, "w", encoding="utf-8") as f:
             f.write(updated_content)
-        print(f"[OK] Successfully updated {readme_path}")
+        print(f"[OK] Inserted Weekly Highlights image tag into {readme_path}")
         return True
-    else:
-        print("[INFO] No changes needed in README.md")
-        return False
+    print("[INFO] No changes needed in README.md")
+    return False
 
 
 def main():
@@ -499,7 +543,10 @@ def main():
     parser.add_argument("--readme", default="README.md", help="Path to README.md")
     parser.add_argument("--token", default=os.getenv("GITHUB_TOKEN"), help="GitHub API Token")
     parser.add_argument("--gemini-api-key", default=os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY"), help="Gemini API Key")
-    parser.add_argument("--dry-run", action="store_true", help="Print output without writing to README.md")
+    parser.add_argument("--svg-out", default="weekly-highlights.svg", help="Path to write the rendered SVG card")
+    parser.add_argument("--svg-url", default="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/weekly-highlights.svg",
+                         help="URL the README <img> tag should point at")
+    parser.add_argument("--dry-run", action="store_true", help="Print output without writing any files")
 
     args = parser.parse_args()
 
@@ -536,15 +583,20 @@ def main():
             print("[INFO] Using smart semantic heuristic synthesis engine.")
         bullets = synthesize_smart_heuristics(repos, args.username)
 
-    # 4. Generate Markdown
-    markdown_section = generate_markdown(bullets, date_range_label)
+    # 4. Render SVG
+    svg = render_weekly_svg(bullets, date_range_label)
 
     if args.dry_run:
         print("\n--- DRY RUN OUTPUT ---")
-        print(markdown_section)
+        print(generate_markdown(bullets, date_range_label))
         print("----------------------\n")
-    else:
-        update_readme(args.readme, markdown_section)
+        return
+
+    with open(args.svg_out, "w", encoding="utf-8") as f:
+        f.write(svg)
+    print(f"[OK] Wrote {args.svg_out}")
+
+    ensure_readme_image(args.readme, args.svg_url)
 
 
 if __name__ == "__main__":

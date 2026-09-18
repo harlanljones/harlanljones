@@ -1,0 +1,248 @@
+[
+  {
+    "name": "urban-signal",
+    "summary": "Real-time spatio-temporal forecasting engine using Apache Kafka, Uber H3 grids, and ST-GNN/LightGBM ensembles to predict hyper-local property appreciation and commercial catalysts ahead of market comps.",
+    "badges": [
+      "Python",
+      "Apache Kafka",
+      "FastAPI",
+      "PostGIS"
+    ],
+    "homepage": "https://urban-signal.harlanljones.com"
+  },
+  {
+    "name": "herdr-outpost",
+    "summary": "Lightweight, secure remote dashboard and relay gateway for [Herdr](https://herdr.dev) AI coding agent workspaces, featuring mTLS encryption, VAPID authentication, and Cloudflare Workers integration.",
+    "badges": [
+      "Python",
+      "Cloudflare Workers",
+      "Cloudflare Tunnel",
+      "WebSocket"
+    ],
+    "homepage": ""
+  },
+  {
+    "name": "scheme-db",
+    "summary": "Interactive NFL scheme engineering workstation that animates 80 plays across 20 offensive & defensive systems with Catmull-Rom spline interpolation, 0.0s\u20131.2s disguise mesh analysis, and coaching lineage trees.",
+    "badges": [
+      "TypeScript",
+      "React",
+      "Tailwind CSS",
+      "Vite"
+    ],
+    "homepage": "https://schemedb.harlanljones.com/"
+  },
+  {
+    "name": "omarchy-agents",
+    "summary": "Dashboards and bar widgets for tracking AI coding-agent usage on [Omarchy](https://omarchy.org), with a local-first Bun + Hono + React + SQLite web console plus QML bar widgets ranking token usage across local agents.",
+    "badges": [
+      "TypeScript",
+      "Bun",
+      "React",
+      "QML"
+    ],
+    "homepage": "https://agents.harlanljones.com"
+  },
+  {
+    "name": "arbkit",
+    "summary": "Cross-venue sports & prediction market arbitrage detector and execution simulator in pure Rust, featuring a zero-allocation lock-free SPSC hot loop (p99 < 250ns) ingesting Kalshi & Polymarket feeds in real-time.",
+    "badges": [
+      "Rust",
+      "Performance",
+      "Architecture",
+      "Markets"
+    ],
+    "homepage": "https://arbkit.harlanljones.com/"
+  },
+  {
+    "name": "bayes-horizon",
+    "summary": "S&P 500 long-term ML projection engine using Bayesian hierarchical modeling, walk-forward cross-validation, and point-in-time macroeconomic data (FRB, BLS, CBO, Shiller).",
+    "badges": [
+      "Python",
+      "PyMC",
+      "FastAPI",
+      "Cloudflare Workers"
+    ],
+    "homepage": "https://sp500.harlanljones.com/"
+  },
+  {
+    "name": "baseball-dashboard",
+    "summary": "Live MLB scoreboard and game-day research dashboard with sabermetric matchup stats, ballpark weather, bullpen workload, and optional player props.",
+    "badges": [
+      "TypeScript",
+      "Next.js",
+      "React",
+      "Tailwind CSS"
+    ],
+    "homepage": "https://mlb.harlanljones.com/"
+  },
+  {
+    "name": "seismic-ml",
+    "summary": "Spatiotemporal ML pipeline for short-term earthquake forecasting, predicting M \u2265 4.5 events within a 7-day window from 30-day seismic precursor features. Trains a Keras MLP on the USGS catalog (83k+ events) with strict walk-forward splits and leakage-asserting tests, tuned for an RTX 4070 Ti via mixed precision and XLA.",
+    "badges": [
+      "Python",
+      "TensorFlow",
+      "CUDA",
+      "USGS"
+    ],
+    "homepage": ""
+  },
+  {
+    "name": "march-madness",
+    "summary": "PyTorch deep learning tournament prediction and Monte Carlo bracket simulation engine (BracketNet) trained on 23 matchup differential features and Kaggle historical data.",
+    "badges": [
+      "Python",
+      "PyTorch",
+      "Monte Carlo",
+      "Kaggle"
+    ],
+    "homepage": ""
+  },
+  {
+    "name": "dotfiles-showcase",
+    "summary": "Local-first web app to visualize and explore chezmoi dotfiles with live config previews and mini-demos. Recent work includes detailed fallback content strategy and sanitization rules and comprehensive ANSI and theme handling, built with TypeScript and CSS3.",
+    "badges": [
+      "TypeScript",
+      "CSS3",
+      "React"
+    ],
+    "homepage": ""
+  },
+  {
+    "name": "linear-bucket",
+    "summary": "Sync and group Linear issues into configurable \u201cbuckets\u201d for reporting and workflow automation. Built with Python.",
+    "badges": [
+      "Python"
+    ],
+    "homepage": ""
+  },
+  {
+    "name": "dotfiles",
+    "summary": "The dotfiles I use. Recent work includes settings and keymaps for better git integration and separate template execution and apply steps, built with Go Templates and Shell.",
+    "badges": [
+      "Go Templates",
+      "Shell"
+    ],
+    "homepage": ""
+  },
+  {
+    "name": "gan-enhanced-pneumonia-classifier",
+    "summary": "Enhancing Pneumonia Detection with GAN-Generated Synthetic Chest X-rays. Recent work includes new Grad-CAM visualizations for real and synthetic images, enhancing analysis results with additional insights, built with Python.",
+    "badges": [
+      "Python"
+    ],
+    "homepage": ""
+  },
+  {
+    "name": "ferrite-db",
+    "summary": "An embedded Rust library for low-latency approximate nearest-neighbor search over dense vector embeddings. Synchronous, blocking API with library-owned parallelism; designed for direct in-process integration without n... Recent work includes wASM bindings for Ferrite DB's in-memory vector engine and reproducible synthetic corpus generator for Ferrite DB benchmark, built with Rust and TypeScript.",
+    "badges": [
+      "Rust",
+      "TypeScript"
+    ],
+    "homepage": "https://ferritedb.harlanljones.com/"
+  },
+  {
+    "name": "chacha20-avx2",
+    "summary": "Active development focused on constant-time tail/scalar fallback path and ratify D1 \u2014 Poly1305 accumulator radix = 2^64 (HJ-319), built with C.",
+    "badges": [
+      "C"
+    ],
+    "homepage": ""
+  },
+  {
+    "name": "film-lab",
+    "summary": "Active development focused on deploy verification and analytics and cI/CD for production and PR previews, built with TypeScript and JavaScript.",
+    "badges": [
+      "TypeScript",
+      "JavaScript"
+    ],
+    "homepage": "https://film-lab.harlanljones.com/"
+  },
+  {
+    "name": "web-backends",
+    "summary": "Active development focused on benchmark infrastructure and Go + Gin reference implementation, built with Shell and Go.",
+    "badges": [
+      "Shell",
+      "Go"
+    ],
+    "homepage": ""
+  },
+  {
+    "name": "saberkit",
+    "summary": "A Rust statistics engine for baseball sabermetrics (plus/minus stats, percentile rankings) exposed to Python via PyO3 with zero-copy Arrow interchange. Zero required runtime Python dependencies\u2014bring your own data sou... Recent work includes openBiomechanics biomech explorer and saberkit tour notebook, built with Python and Rust.",
+    "badges": [
+      "Python",
+      "Rust"
+    ],
+    "homepage": ""
+  },
+  {
+    "name": "statcast-lakehouse",
+    "summary": "Active development focused on expose manifest generation in export CLI and ghost-trajectory break visualization, built with Python and TypeScript.",
+    "badges": [
+      "Python",
+      "TypeScript"
+    ],
+    "homepage": ""
+  },
+  {
+    "name": "wikipedia-worlds",
+    "summary": "Recently published a polyglot stack project.",
+    "badges": [],
+    "homepage": ""
+  },
+  {
+    "name": "tinylsm",
+    "summary": "Active development focused on leveldb benchmark, built with C++ and JavaScript.",
+    "badges": [
+      "C++",
+      "JavaScript"
+    ],
+    "homepage": ""
+  },
+  {
+    "name": "hermes-repo-devsetup",
+    "summary": "Canonical example: repo-local Hermes dev environment (./dev, .hermes.md, AGENTS.md, agent hooks). Recent work includes canonical comprehensive example of a repo-local Hermes dev environment and shellcheck-clean doctor (SC2015 x3), built with Shell.",
+    "badges": [
+      "Shell"
+    ],
+    "homepage": ""
+  },
+  {
+    "name": "typeframe",
+    "summary": "Turn terminal sessions into deterministic animated SVGs, web components, and timeline JSON with a fast, framework-agnostic TypeScript CLI. Recent work includes help/version commands and studio playback preview and generate JSON Schema artifact from zod source of truth, built with TypeScript.",
+    "badges": [
+      "TypeScript"
+    ],
+    "homepage": ""
+  },
+  {
+    "name": "proof",
+    "summary": "PROOF \u2014 Probabilistic Rest-Of-season Objective Forecasts: a reproducible empirical-Bayes MLB rest-of-season projection system (mini Steamer/ZiPS) with a walk-forward backtest harness, calibrated prediction intervals,... Recent work includes pROOF rest-of-season MLB projection system, built with Python.",
+    "badges": [
+      "Python"
+    ],
+    "homepage": ""
+  },
+  {
+    "name": "draft",
+    "summary": "Reproducible, leakage-safe baseball projection system for amateur-to-professional talent evaluation with uncertainty-aware models, temporal backtests, CLI, and API. Recent work includes initial commit of DRAFT phase-1 projection system with demo fixtures, contracts, and CLI, built with Python.",
+    "badges": [
+      "Python",
+      "FastAPI",
+      "Machine Learning"
+    ],
+    "homepage": ""
+  },
+  {
+    "name": "rosetta",
+    "summary": "Translate NPB, KBO, CPBL, Cuban, and minor-league performance into MLB-equivalent rates with uncertainty bands. Recent work includes mLE translation engine (ingest, cohort, factors, backtest, leaderboard) and live data sources for statsapi, kbo, savant, and chadwick, built with Python and HTML5.",
+    "badges": [
+      "Python",
+      "HTML5",
+      "Machine Learning"
+    ],
+    "homepage": ""
+  }
+]
