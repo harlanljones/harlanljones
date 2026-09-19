@@ -7,6 +7,7 @@ Zero third-party dependencies (standard library only).
 """
 
 import argparse
+import base64
 import datetime
 import json
 import os
@@ -27,7 +28,6 @@ from svg_cards import (  # noqa: E402
     TITLE_COLOR,
     card_shell,
     esc,
-    flow_pills,
     plain_text,
     text_width,
     wrap_by_width,
@@ -39,13 +39,58 @@ DUGOUT_SVG_URL = (
 )
 
 CATEGORY_ACCENTS = {
-    "WAR Warrior": "#58a6ff",
+    "WARrior": "#58a6ff",
     "Immaculate Grid Gem": "#a371f7",
     "Antique Ace": "#f78166",
     "Long Ball Laureate": "#3fb950",
     "Strikeout Savant": "#f778ba",
     "Speed Superlative": "#e3b341",
 }
+
+# Primary brand colors by Stats API team abbreviation. Minor-league
+# affiliates not listed here fall back to their parent MLB org color.
+MLB_TEAM_COLORS = {
+    "ARI": "#A7194B", "ATH": "#003831", "ATL": "#CE1148", "BAL": "#DF4601",
+    "BOS": "#BD3039", "CHC": "#0E3386", "CWS": "#27251F", "CIN": "#C6011F",
+    "CLE": "#00385D", "COL": "#33006F", "DET": "#0C2340", "HOU": "#EB6E1F",
+    "KC": "#004687", "LAA": "#BA0021", "LAD": "#005A9C", "MIA": "#00A3E0",
+    "MIL": "#FFC52F", "MIN": "#002B5C", "NYY": "#003087", "PHI": "#E81828",
+    "PIT": "#FDB827", "SD": "#FFC425", "SEA": "#0C2C56", "SF": "#FD5A1E",
+    "STL": "#C41E3A", "TB": "#092C5C", "TEX": "#003278", "TOR": "#134A8E",
+    "WSH": "#AB0003",
+}
+
+AAA_TEAM_COLORS = {
+    "ABQ": "#CE0E2D", "BUF": "#004684", "CLT": "#232323", "COL": "#0B2C54",
+    "DUR": "#1B3A5D", "ELP": "#AA1E2E", "GWN": "#041E42", "IND": "#A6192E",
+    "IOW": "#0E3386", "JAX": "#007A87", "LHV": "#7A1F2B", "LOU": "#00543D",
+    "LV": "#00263A", "MEM": "#D31145", "NAS": "#B01E24", "NOR": "#E35B00",
+    "OKC": "#003DA5", "OMA": "#004B8D", "RNO": "#B11B2D", "ROC": "#C8102E",
+    "RR": "#BF0D3E", "SAC": "#E85D2A", "SCR": "#0C2340", "SL": "#EAAA00",
+    "STP": "#0057B8", "SUG": "#042244", "SYR": "#FF5910", "TAC": "#00685E",
+    "TOL": "#0A3D62", "WOR": "#BD3039",
+}
+
+
+def contrast_text(hex_color: str) -> str:
+    """Dark or white text, whichever reads on the given fill."""
+    h = hex_color.lstrip("#")
+    try:
+        r, g, b = (int(h[i:i + 2], 16) for i in (0, 2, 4))
+    except (ValueError, TypeError):
+        return "#0d1117"
+    luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
+    return "#0d1117" if luminance > 0.55 else "#ffffff"
+
+
+def team_fill(team: str, mlb_org: str, is_mlb: bool) -> str:
+    """Pill fill matching the player's club: MLB team color on MLB
+    rosters, affiliate color in the minors, parent-org color as fallback."""
+    team = (team or "").upper()
+    mlb_org = (mlb_org or "").upper()
+    if is_mlb:
+        return MLB_TEAM_COLORS.get(team, "#3fb950")
+    return AAA_TEAM_COLORS.get(team) or MLB_TEAM_COLORS.get(mlb_org, "#e3b341")
 
 
 def fetch_json(url: str, timeout: int = 15) -> Dict[str, Any]:
@@ -75,29 +120,98 @@ def fetch_mlb_abbrev(team_id: Any) -> str:
     return abbrev
 
 
+_person_id_cache: Dict[str, Optional[int]] = {}
+
+
+def resolve_person_id(name: str, birth_year: int, include_inactive: bool = False) -> Optional[int]:
+    """MLB Stats API person id for a player, disambiguated by birth year.
+
+    Active players first; optionally fall back to inactive matches (used
+    only for headshot lookup of retired featured players).
+    """
+    cache_key = f"{name}|{birth_year}|{include_inactive}"
+    if cache_key in _person_id_cache:
+        return _person_id_cache[cache_key]
+    pid: Optional[int] = None
+    try:
+        search_url = "https://statsapi.mlb.com/api/v1/people/search?names=" + urllib.parse.quote(name)
+        people = fetch_json(search_url).get("people", [])
+        matches = [p for p in people if p.get("isPlayer")
+                   and str(p.get("birthDate", ""))[:4] == str(birth_year)]
+        active = [p for p in matches if p.get("active")]
+        pool = active or (matches if include_inactive else [])
+        if len(pool) == 1:
+            pid = pool[0]["id"]
+    except Exception as e:
+        print(f"Notice: could not resolve person id for {name}: {e}", file=sys.stderr)
+    _person_id_cache[cache_key] = pid
+    return pid
+
+
+_headshot_cache: Dict[str, str] = {}
+
+
+def fetch_headshot_b64(person_id: Any, width: int = 128) -> str:
+    """Embedded data-URI headshot for an MLBAM person id ("" when none).
+
+    Remote images never load inside SVGs served through <img>, so avatars
+    are embedded at generation time; missing headshots fall back to
+    initials rendered by the caller.
+    """
+    key = str(person_id or "")
+    if not key:
+        return ""
+    if key in _headshot_cache:
+        return _headshot_cache[key]
+    b64 = ""
+    try:
+        url = (
+            "https://img.mlbstatic.com/mlb-images/image/upload/"
+            "d_people:generic:headshot:67:current.png/"
+            f"w_{width},q_auto:best/v1/people/{key}/headshot/67/current"
+        )
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            ctype = resp.headers.get_content_type()
+            raw = resp.read()
+            if resp.status == 200 and ctype in ("image/jpeg", "image/png", "image/webp") \
+                    and 500 < len(raw) < 300000:
+                b64 = f"data:{ctype};base64," + base64.b64encode(raw).decode("ascii")
+    except Exception as e:
+        print(f"Notice: no headshot for person {key}: {e}", file=sys.stderr)
+    _headshot_cache[key] = b64
+    return b64
+
+
+def player_initials(name: str) -> str:
+    parts = [w for w in re.sub(r"[^A-Za-z .'-]", "", name).split() if w]
+    if not parts:
+        return "?"
+    if len(parts) == 1:
+        return parts[0][:2].upper()
+    return (parts[0][0] + parts[-1][0]).upper()
+
+
 def resolve_current_org(name: str, birth_year: int) -> Dict[str, Any]:
     """Resolve a player's current organization via the MLB Stats API.
 
     Returns a dict with:
-      team    - current team abbreviation (e.g. "TOR" or "CLT")
-      mlb_org - parent MLB club abbreviation (same as team when MLB)
-      is_mlb  - True when currentTeam plays in Major League Baseball
-                (sport id 1); False for Triple-A/minors or unknown.
+      team      - current team abbreviation (e.g. "TOR" or "CLT")
+      mlb_org   - parent MLB club abbreviation (same as team when MLB)
+      is_mlb    - True when currentTeam plays in Major League Baseball
+                  (sport id 1); False for Triple-A/minors or unknown.
+      person_id - MLB Stats API person id (None when unmatched).
       ("FA" handling is left to the caller: empty team means unsigned.)
     """
     cache_key = f"{name}|{birth_year}"
     if cache_key in _statsapi_cache:
         return _statsapi_cache[cache_key]  # type: ignore[return-value]
 
-    result: Dict[str, Any] = {"team": "", "mlb_org": "", "is_mlb": False}
+    result: Dict[str, Any] = {"team": "", "mlb_org": "", "is_mlb": False, "person_id": None}
     try:
-        search_url = "https://statsapi.mlb.com/api/v1/people/search?names=" + urllib.parse.quote(name)
-        people = fetch_json(search_url).get("people", [])
-        # Disambiguate same-name players by birth year.
-        matches = [p for p in people if p.get("isPlayer") and p.get("active")
-                   and str(p.get("birthDate", ""))[:4] == str(birth_year)]
-        if len(matches) == 1:
-            pid = matches[0]["id"]
+        pid = resolve_person_id(name, birth_year)
+        result["person_id"] = pid
+        if pid is not None:
             detail = fetch_json(f"https://statsapi.mlb.com/api/v1/people/{pid}?hydrate=currentTeam")
             person = detail.get("people", [{}])[0]
             current = person.get("currentTeam") or {}
@@ -110,11 +224,11 @@ def resolve_current_org(name: str, birth_year: int) -> Dict[str, Any]:
                 abbrev = full.get("abbreviation") or current.get("name", "")
                 sport_id = (full.get("sport") or {}).get("id")
                 if sport_id == 1:
-                    result = {"team": abbrev, "mlb_org": abbrev, "is_mlb": True}
+                    result = {"team": abbrev, "mlb_org": abbrev, "is_mlb": True, "person_id": pid}
                 else:
                     parent_id = full.get("parentOrgId")
                     mlb_abbrev = fetch_mlb_abbrev(parent_id) if parent_id else ""
-                    result = {"team": abbrev, "mlb_org": mlb_abbrev, "is_mlb": False}
+                    result = {"team": abbrev, "mlb_org": mlb_abbrev, "is_mlb": False, "person_id": pid}
     except Exception as e:
         print(f"Notice: could not resolve current org for {name}: {e}", file=sys.stderr)
 
@@ -359,13 +473,25 @@ def format_cohort_tag(p: Dict[str, Any]) -> Tuple[str, bool]:
 def resolve_active_cohort(active_players: List[Dict[str, Any]]) -> Dict[str, List]:
     """Split active players into MLB-roster and minor-league groups.
 
-    Each group holds (player, display_tag) tuples, sorted by career WAR.
+    Each group holds entry dicts {player, tag, is_mlb, team, mlb_org,
+    person_id}, sorted by career WAR.
     """
-    mlb: List[Tuple[Dict[str, Any], str]] = []
-    minors: List[Tuple[Dict[str, Any], str]] = []
+    mlb: List[Dict[str, Any]] = []
+    minors: List[Dict[str, Any]] = []
     for ap in active_players:
+        org = resolve_current_org(ap["name"], ap["birth_year"])
         tag, is_mlb = format_cohort_tag(ap)
-        (mlb if is_mlb else minors).append((ap, tag))
+        entry = {
+            "player": ap,
+            "tag": tag,
+            "is_mlb": is_mlb,
+            "team": (org.get("team") or "").upper(),
+            "mlb_org": (org.get("mlb_org") or "").upper(),
+            "person_id": org.get("person_id"),
+            "initials": player_initials(ap["name"]),
+            "img": fetch_headshot_b64(org.get("person_id")),
+        }
+        (mlb if is_mlb else minors).append(entry)
     return {"mlb": mlb, "minors": minors}
 
 
@@ -376,7 +502,7 @@ def build_daily_ledger(players: List[Dict[str, Any]], month: int, day: int, curr
     if not players:
         return f"### Daily Dugout Dispatch: {date_str}\n\n*No MLB player birth records indexed for this date.*\n"
 
-    # 1. WAR Warrior (career WAR leader)
+    # 1. WARrior (career WAR leader)
     war_leader = max(players, key=lambda p: p["war"])
 
     # 2. Immaculate Grid Gem (most distinct franchises)
@@ -423,7 +549,7 @@ def build_daily_ledger(players: List[Dict[str, Any]], month: int, day: int, curr
         "",
         "| Category | Player | Active Span | Franchise(s) | Key Sabermetrics |",
         "| :--- | :--- | :--- | :--- | :--- |",
-        f"| **WAR Warrior** | {format_player_link(war_leader)} | {format_span(war_leader)} | {format_franchises(war_leader)} | {format_war_metrics(war_leader)} |",
+        f"| **WARrior** | {format_player_link(war_leader)} | {format_span(war_leader)} | {format_franchises(war_leader)} | {format_war_metrics(war_leader)} |",
         f"| **Immaculate Grid Gem** | {format_player_link(polymath)} | {format_span(polymath)} | {len(polymath['franchises'])} Clubs | {format_polymath_metrics(polymath)} |",
         f"| **Antique Ace** | {format_player_link(vintage)} | {format_span(vintage)} | {format_franchises(vintage)} | {format_vintage_metrics(vintage)} |",
     ]
@@ -441,8 +567,8 @@ def build_daily_ledger(players: List[Dict[str, Any]], month: int, day: int, curr
     # Active Player roster note if present (MLB clubs vs minors w/ parent org).
     if active_players:
         cohort = resolve_active_cohort(active_players)
-        mlb_names = [f"{format_player_link(ap)} ({tag})" for ap, tag in cohort["mlb"]]
-        minor_names = [f"{format_player_link(ap)} ({tag})" for ap, tag in cohort["minors"]]
+        mlb_names = [f"{format_player_link(e['player'])} ({e['tag']})" for e in cohort["mlb"]]
+        minor_names = [f"{format_player_link(e['player'])} ({e['tag']})" for e in cohort["minors"]]
         if mlb_names:
             lines.append(f"*On MLB rosters today ({len(mlb_names)}):* {', '.join(mlb_names)}")
         if minor_names:
@@ -476,16 +602,19 @@ def build_dispatch_model(players: List[Dict[str, Any]], month: int, day: int, cu
     so_leader = max(players, key=lambda p: p["so_p"])
 
     def row(category: str, p: Dict[str, Any], metrics: str, franchises: Optional[str] = None) -> Dict[str, str]:
+        name = display_name(p)
         return {
             "category": category,
-            "name": display_name(p),
+            "name": name,
             "span": span_label(p, current_year),
             "franchises": franchises if franchises is not None else franchise_label(p),
             "metrics": metrics,
+            "initials": player_initials(name),
+            "img": fetch_headshot_b64(resolve_person_id(p["name"], p["birth_year"], include_inactive=True)),
         }
 
     featured = [
-        row("WAR Warrior", war_leader, war_metrics_text(war_leader)),
+        row("WARrior", war_leader, war_metrics_text(war_leader)),
         row("Immaculate Grid Gem", polymath, polymath_metrics_text(polymath),
             f"{len(polymath['franchises'])} Clubs"),
         row("Antique Ace", vintage, vintage_metrics_text(vintage)),
@@ -514,6 +643,48 @@ def build_dispatch_model(players: List[Dict[str, Any]], month: int, day: int, cu
     }
 
 
+def _avatar_svg(uid: str, cx: float, cy: float, r: float, img: str, initials: str, fallback_fill: str) -> str:
+    """Circular avatar: embedded headshot when available, else initials."""
+    if img:
+        return (
+            f'<defs><clipPath id="{uid}"><circle cx="{cx:.1f}" cy="{cy:.1f}" r="{r:.1f}"/></clipPath></defs>'
+            f'<image href="{img}" x="{cx - r:.1f}" y="{cy - r:.1f}" '
+            f'width="{2 * r:.1f}" height="{2 * r:.1f}" clip-path="url(#{uid})" preserveAspectRatio="xMidYMid slice"/>'
+            f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{r:.1f}" fill="none" stroke="{BORDER}" stroke-width="1.5"/>'
+        )
+    return (
+        f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{r:.1f}" fill="{fallback_fill}"/>'
+        f'<text x="{cx:.1f}" y="{cy + 4.5:.1f}" font-size="11" font-weight="700" '
+        f'fill="{contrast_text(fallback_fill)}" text-anchor="middle" font-family="{FONT_FAMILY}">{esc(initials)}</text>'
+    )
+
+
+def _avatar_pills(x: float, y: float, entries: List[Dict[str, str]], max_x: float) -> Tuple[str, float]:
+    """Flowing pills with circular avatars. Each entry holds
+    {label, fill, img, initials}. Returns (svg_fragment, height)."""
+    frags: List[str] = []
+    cx, cy = x, y
+    gap, row_h, pill_h, av_d = 8, 34, 28, 22
+    for n, e in enumerate(entries):
+        label, fill = e["label"], e["fill"]
+        w = av_d + 7 + text_width(label, 11.5, bold=True) + 15
+        if cx + w > max_x and cx > x:
+            cx = x
+            cy += row_h
+        frags.append(
+            f'<rect x="{cx:.1f}" y="{cy:.1f}" width="{w:.1f}" height="{pill_h}" '
+            f'rx="{pill_h / 2:.1f}" fill="{fill}"/>'
+        )
+        frags.append(_avatar_svg(f"dgav-{n}", cx + 4 + av_d / 2, cy + pill_h / 2,
+                                 av_d / 2, e.get("img", ""), e.get("initials", "?"), BORDER))
+        frags.append(
+            f'<text x="{cx + 4 + av_d + 6:.1f}" y="{cy + pill_h / 2 + 4:.1f}" font-size="11.5" '
+            f'font-weight="700" fill="{contrast_text(fill)}" font-family="{FONT_FAMILY}">{esc(label)}</text>'
+        )
+        cx += w + gap
+    return "\n".join(frags), (cy - y) + pill_h + 6
+
+
 def render_dugout_svg(model: Dict[str, Any]) -> str:
     """Single house-style SVG card for the Daily Dugout Dispatch.
 
@@ -521,7 +692,6 @@ def render_dugout_svg(model: Dict[str, Any]) -> str:
     activity graphics; embedded in README via an <img> on profile-cards.
     """
     max_x = CARD_WIDTH - PAD_X
-    content_w = max_x - PAD_X
     frags: List[str] = []
     cy = 10.0
 
@@ -535,26 +705,30 @@ def render_dugout_svg(model: Dict[str, Any]) -> str:
     for i, feat in enumerate(model["featured"]):
         accent = CATEGORY_ACCENTS.get(feat["category"], "#58a6ff")
         cat = feat["category"]
+        row_top = cy
+        frags.append(_avatar_svg(f"dgfeat-{i}", PAD_X + 20, cy + 20, 20,
+                                 feat.get("img", ""), feat.get("initials", "?"), accent))
+        tx = PAD_X + 52
         cat_w = text_width(cat, 13, bold=True)
         frags.append(
-            f'<text x="{PAD_X}" y="{cy + 14:.1f}" font-size="13" font-weight="700" '
+            f'<text x="{tx:.1f}" y="{cy + 14:.1f}" font-size="13" font-weight="700" '
             f'fill="{accent}" font-family="{FONT_FAMILY}">{esc(cat)}</text>'
-            f'<text x="{PAD_X + cat_w + 8:.1f}" y="{cy + 14:.1f}" font-size="14" font-weight="700" '
+            f'<text x="{tx + cat_w + 8:.1f}" y="{cy + 14:.1f}" font-size="14" font-weight="700" '
             f'fill="{TITLE_COLOR}" font-family="{FONT_FAMILY}">{esc(feat["name"])}</text>'
         )
         cy += 22
         frags.append(
-            f'<text x="{PAD_X}" y="{cy + 12:.1f}" font-size="11.5" fill="{MUTED}" '
+            f'<text x="{tx:.1f}" y="{cy + 12:.1f}" font-size="11.5" fill="{MUTED}" '
             f'font-family="{FONT_FAMILY}">{esc(feat["span"])} · {esc(feat["franchises"])}</text>'
         )
         cy += 19
-        for line in wrap_by_width(plain_text(feat["metrics"]), 12.5, content_w, max_lines=2):
+        for line in wrap_by_width(plain_text(feat["metrics"]), 12.5, max_x - tx, max_lines=2):
             frags.append(
-                f'<text x="{PAD_X}" y="{cy + 12:.1f}" font-size="12.5" fill="{TEXT}" '
+                f'<text x="{tx:.1f}" y="{cy + 12:.1f}" font-size="12.5" fill="{TEXT}" '
                 f'font-family="{FONT_FAMILY}">{esc(line)}</text>'
             )
             cy += 18
-        cy += 8
+        cy = max(cy + 8, row_top + 48)
         if i < len(model["featured"]) - 1:
             frags.append(
                 f'<line x1="{PAD_X}" y1="{cy:.1f}" x2="{max_x}" y2="{cy:.1f}" '
@@ -575,11 +749,16 @@ def render_dugout_svg(model: Dict[str, Any]) -> str:
                 f'fill="{TITLE_COLOR}" font-family="{FONT_FAMILY}">On MLB rosters today ({len(model["mlb"])})</text>'
             )
             cy += 22
-            pills, pills_h = flow_pills(
-                PAD_X, cy,
-                [(f"{display_name(ap)} · {tag}", "#3fb950", "#0d1117") for ap, tag in model["mlb"]],
-                max_x,
-            )
+            entries = [
+                {
+                    "label": f"{display_name(e['player'])} · {e['tag']}",
+                    "fill": team_fill(e["team"], e["mlb_org"], True),
+                    "img": e.get("img", ""),
+                    "initials": e.get("initials", "?"),
+                }
+                for e in model["mlb"]
+            ]
+            pills, pills_h = _avatar_pills(PAD_X, cy, entries, max_x)
             frags.append(pills)
             cy += pills_h + 10
         if model["minors"]:
@@ -588,11 +767,16 @@ def render_dugout_svg(model: Dict[str, Any]) -> str:
                 f'fill="{TITLE_COLOR}" font-family="{FONT_FAMILY}">Also active in the minors ({len(model["minors"])})</text>'
             )
             cy += 22
-            pills, pills_h = flow_pills(
-                PAD_X, cy,
-                [(f"{display_name(ap)} · {tag}", "#e3b341", "#0d1117") for ap, tag in model["minors"]],
-                max_x,
-            )
+            entries = [
+                {
+                    "label": f"{display_name(e['player'])} · {e['tag']}",
+                    "fill": team_fill(e["team"], e["mlb_org"], False),
+                    "img": e.get("img", ""),
+                    "initials": e.get("initials", "?"),
+                }
+                for e in model["minors"]
+            ]
+            pills, pills_h = _avatar_pills(PAD_X, cy, entries, max_x)
             frags.append(pills)
             cy += pills_h + 4
 

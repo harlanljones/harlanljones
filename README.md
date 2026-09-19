@@ -1,8 +1,6 @@
-<div align="center">
+<img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/header.svg" alt="Harlan Jones" width="100%" />
 
-# Harlan Jones
-**Building PrimeIQ.ai • Baseball Enthusiast • Software Developer**  
-*San Francisco Bay Area • Boston University*
+<div align="center">
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/harlanljones/)
 [![GitHub](https://img.shields.io/badge/GitHub-harlanljones-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/harlanljones)
@@ -17,32 +15,20 @@
 
 </div>
 
----
-
 <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/overview.svg" alt="Professional Overview" width="100%" />
-
----
 
 <!-- MLB_BIRTHDAY_START -->
 <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/dugout-dispatch.svg" alt="Daily Dugout Dispatch" width="100%" />
 <!-- MLB_BIRTHDAY_END -->
 
----
-
 <!-- WEEKLY_HIGHLIGHTS_START -->
 <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/weekly-highlights.svg" alt="What I Did This Week" width="100%" />
 <!-- WEEKLY_HIGHLIGHTS_END -->
 
----
-
 <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/skills.svg" alt="Technical Skills" width="100%" />
-
----
 
 <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/projects.svg" alt="Featured Projects" width="100%" />
 <!-- PROJECTS_END -->
-
----
 
 <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/activity.svg" alt="GitHub Activity" width="100%" />
 
