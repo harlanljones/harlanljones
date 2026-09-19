@@ -30,6 +30,7 @@ from svg_cards import (  # noqa: E402
     TEXT,
     esc,
     text_width,
+    write_theme_pair,
 )
 
 NAME = "Harlan Jones"
@@ -148,9 +149,8 @@ def main():
     parser.add_argument("--out", default="header.svg")
     args = parser.parse_args()
     svg = render()
-    with open(args.out, "w", encoding="utf-8") as f:
-        f.write(svg)
-    print(f"[OK] Wrote {args.out}")
+    for path in write_theme_pair(args.out, svg):
+        print(f"[OK] Wrote {path}")
 
 
 if __name__ == "__main__":

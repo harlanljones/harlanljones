@@ -49,6 +49,7 @@ from svg_cards import (  # noqa: E402
     card_shell,
     esc,
     truncate,
+    write_theme_pair,
 )
 
 PACIFIC = ZoneInfo("America/Los_Angeles")
@@ -444,8 +445,8 @@ def render_activity_card(stats: Dict, updated: datetime) -> str:
         (f"{commits:,}", "Commits", ACCENTS[0]),
         (f"{prs:,}", "Pull Requests", ACCENTS[1]),
         (f"{repos:,}", "Repos Contributed", ACCENTS[3]),
-        (str(current_streak), "Current Streak (days)", ACCENTS[4]),
-        (str(longest_streak), "Longest Streak (days)", ACCENTS[5]),
+        (str(current_streak), "Hitting Streak (days)", ACCENTS[4]),
+        (str(longest_streak), "Career Best (days)", ACCENTS[5]),
     ]
 
     frags = [_stat_tiles(PAD_X, 10.0, tiles, CARD_WIDTH - PAD_X * 2)]
@@ -687,10 +688,8 @@ def main() -> None:
     rhythm = render_rhythm_card(langs, hours, int(stats.get("totalCommitContributions") or 0), trend_dates, trend_series)
 
     for name, svg in (("activity.svg", activity), ("commit-rhythm.svg", rhythm)):
-        path = os.path.join(args.out_dir, name)
-        with open(path, "w", encoding="utf-8") as f:
-            f.write(svg)
-        print(f"[OK] Wrote {path}")
+        for path in write_theme_pair(os.path.join(args.out_dir, name), svg):
+            print(f"[OK] Wrote {path}")
 
 
 if __name__ == "__main__":

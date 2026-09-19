@@ -13,22 +13,22 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from svg_cards import ACCENT_PURPLE, CARD_WIDTH, PAD_X, card_shell, esc, flow_pills  # noqa: E402
+from svg_cards import ON_ACCENT, ACCENT_PURPLE, CARD_WIDTH, PAD_X, card_shell, esc, flow_pills, write_theme_pair  # noqa: E402
 
 CATEGORIES = [
-    ("Languages", "#58a6ff", "#0d1117", [
+    ("Languages", "#58a6ff", ON_ACCENT, [
         "Rust", "Python", "TypeScript", "JavaScript", "C++", "Java", "SQL", "HTML5", "CSS3",
     ]),
-    ("Machine Learning & AI", "#f78166", "#0d1117", [
+    ("Machine Learning & AI", "#f78166", ON_ACCENT, [
         "PyTorch", "TensorFlow", "Scikit-Learn", "Pandas", "NumPy", "LLMs / Deep Learning",
     ]),
-    ("Data Engineering & Cloud", "#3fb950", "#0d1117", [
+    ("Data Engineering & Cloud", "#3fb950", ON_ACCENT, [
         "Apache Kafka", "Elasticsearch", "Databricks", "BigQuery", "PostgreSQL", "AWS", "GCP", "Cloudflare Workers",
     ]),
     ("Frameworks & Frontend", "#a371f7", "#f6f8fa", [
         "FastAPI", "Flask", "Express.js", "React", "Next.js", "Tailwind CSS", "Astro", "Vite",
     ]),
-    ("DevOps & Developer Tools", "#e3b341", "#0d1117", [
+    ("DevOps & Developer Tools", "#e3b341", ON_ACCENT, [
         "Docker", "Kubernetes", "CI/CD", "Linux", "Git", "Vim", "Linear",
     ]),
 ]
@@ -62,9 +62,8 @@ def main():
     parser.add_argument("--out", default="skills.svg")
     args = parser.parse_args()
     svg = render()
-    with open(args.out, "w", encoding="utf-8") as f:
-        f.write(svg)
-    print(f"[OK] Wrote {args.out}")
+    for path in write_theme_pair(args.out, svg):
+        print(f"[OK] Wrote {path}")
 
 
 if __name__ == "__main__":

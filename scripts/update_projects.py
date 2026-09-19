@@ -28,7 +28,7 @@ import urllib.request
 from typing import Dict, List, Optional, Set, Tuple
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from svg_cards import ACCENT_ORANGE, CARD_WIDTH, FONT_FAMILY, MUTED, PAD_X, TEXT, card_shell, esc, flow_pills, plain_text, truncate, wrap_by_width  # noqa: E402
+from svg_cards import ACCENT_ORANGE, CARD_WIDTH, FONT_FAMILY, MUTED, ON_ACCENT, PAD_X, TEXT, card_shell, esc, flow_pills, plain_text, truncate, wrap_by_width, write_theme_pair  # noqa: E402
 
 PROJECTS_ANCHOR = "<!-- PROJECTS_END -->"
 DEFAULT_STORE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "featured_projects.json")
@@ -483,7 +483,7 @@ def _badge_fill(label: str) -> Tuple[str, str]:
         # a CSS color name (e.g. "blueviolet") directly.
         is_hex = len(color) == 6 and all(c in "0123456789abcdefABCDEF" for c in color)
         fill = f"#{color}" if is_hex else color
-        text_color = "#ffffff" if logo_color == "white" else "#0d1117"
+        text_color = "#ffffff" if logo_color == "white" else ON_ACCENT
     else:
         # One-off labels (e.g. "PostGIS", "Performance") have no curated color;
         # derive a stable one so they still render instead of vanishing.
@@ -578,7 +578,7 @@ def ensure_readme_image(readme_path: str, svg_url: str) -> bool:
         content = f.read()
 
     img_tag = f'<img src="{svg_url}" alt="Featured Projects" width="100%" />'
-    if img_tag in content:
+    if svg_url in content:
         print("[INFO] README.md already embeds the Featured Projects image.")
         return False
 
@@ -659,6 +659,8 @@ def main():
 
     with open(args.svg_out, "w", encoding="utf-8") as f:
         f.write(svg)
+    for path in write_theme_pair(args.svg_out, svg):
+        print(f"[OK] Wrote {path}")
     print(f"[OK] Wrote {args.svg_out}")
 
     ensure_readme_image(args.readme, args.svg_url)

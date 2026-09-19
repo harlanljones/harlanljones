@@ -31,6 +31,7 @@ from svg_cards import (  # noqa: E402
     card_shell,
     esc,
     wrap_by_width,
+    write_theme_pair,
 )
 
 # (label, value) cells laid out two per row; the final row may hold one cell.
@@ -87,9 +88,8 @@ def main():
     parser.add_argument("--out", default="overview.svg")
     args = parser.parse_args()
     svg = render()
-    with open(args.out, "w", encoding="utf-8") as f:
-        f.write(svg)
-    print(f"[OK] Wrote {args.out}")
+    for path in write_theme_pair(args.out, svg):
+        print(f"[OK] Wrote {path}")
 
 
 if __name__ == "__main__":

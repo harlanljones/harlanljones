@@ -23,7 +23,7 @@ from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Optional, Tuple
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from svg_cards import PAD_X, TEXT, card_shell, esc, plain_text, wrap_by_width  # noqa: E402
+from svg_cards import PAD_X, TEXT, card_shell, esc, plain_text, wrap_by_width, write_theme_pair  # noqa: E402
 
 WEEKLY_START = "<!-- WEEKLY_HIGHLIGHTS_START -->"
 WEEKLY_END = "<!-- WEEKLY_HIGHLIGHTS_END -->"
@@ -510,7 +510,7 @@ def ensure_readme_image(readme_path: str, svg_url: str) -> bool:
 
     pattern = re.escape(WEEKLY_START) + r".*?" + re.escape(WEEKLY_END)
     if re.search(pattern, content, flags=re.DOTALL):
-        if img_tag in content:
+        if svg_url in content:
             print("[INFO] README.md already embeds the Weekly Highlights image.")
             return False
         updated_content = re.sub(pattern, section, content, flags=re.DOTALL)
@@ -595,6 +595,8 @@ def main():
 
     with open(args.svg_out, "w", encoding="utf-8") as f:
         f.write(svg)
+    for path in write_theme_pair(args.svg_out, svg):
+        print(f"[OK] Wrote {path}")
     print(f"[OK] Wrote {args.svg_out}")
 
     ensure_readme_image(args.readme, args.svg_url)

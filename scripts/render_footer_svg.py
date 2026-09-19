@@ -22,6 +22,7 @@ from svg_cards import (  # noqa: E402
     FONT_FAMILY,
     MUTED,
     esc,
+    write_theme_pair,
 )
 
 W, H = CARD_WIDTH, 46
@@ -29,7 +30,7 @@ LEFT = "HARLAN JONES · SAN FRANCISCO BAY AREA"
 RIGHT = "cards regenerate daily · GitHub Actions"
 
 
-def render() -> str:
+def render(right_text: str = RIGHT) -> str:
     edge = (
         '<linearGradient id="footEdge" x1="0" y1="0" x2="1" y2="0.9">'
         '<stop offset="0" stop-color="#58a6ff" stop-opacity="0.5"/>'
@@ -42,7 +43,7 @@ def render() -> str:
 <rect x="0.5" y="0.5" width="{W - 1}" height="{H - 1}" rx="12" fill="#0d1117" stroke="url(#footEdge)"/>
 <circle cx="24" cy="{H / 2:.0f}" r="3.5" fill="{ACCENT_GREEN}"/>
 <text x="34" y="{H / 2 + 3.5:.0f}" font-size="9.5" font-weight="600" letter-spacing="2.5" fill="{MUTED}" font-family="{FONT_FAMILY}">{esc(LEFT)}</text>
-<text x="{W - 24}" y="{H / 2 + 3.5:.0f}" font-size="10" fill="{MUTED}" text-anchor="end" font-family="{FONT_FAMILY}">{esc(RIGHT)}</text>
+<text x="{W - 24}" y="{H / 2 + 3.5:.0f}" font-size="10" fill="{MUTED}" text-anchor="end" font-family="{FONT_FAMILY}">{esc(right_text)}</text>
 </svg>
 '''
 
@@ -50,11 +51,16 @@ def render() -> str:
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", default="footer.svg")
+    parser.add_argument(
+        "--stamp",
+        default=None,
+        help="Date string shown as 'last rendered <stamp> · GitHub Actions' (set by the daily workflow).",
+    )
     args = parser.parse_args()
-    svg = render()
-    with open(args.out, "w", encoding="utf-8") as f:
-        f.write(svg)
-    print(f"[OK] Wrote {args.out}")
+    right = f"last rendered {args.stamp} · GitHub Actions" if args.stamp else RIGHT
+    svg = render(right)
+    for path in write_theme_pair(args.out, svg):
+        print(f"[OK] Wrote {path}")
 
 
 if __name__ == "__main__":

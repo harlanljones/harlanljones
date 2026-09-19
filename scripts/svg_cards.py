@@ -13,6 +13,7 @@ there's no font-metrics engine available at generation time. Wrapping widths
 are kept conservative to avoid overflow.
 """
 
+import os
 import re
 from typing import List, Optional, Tuple
 
@@ -32,6 +33,11 @@ ACCENT_GREEN = "#3fb950"
 ACCENT_PURPLE = "#a371f7"
 ACCENT_ORANGE = "#f78166"
 ACCENT_AMBER = "#e3b341"
+
+# Text on bright fills (pills, badges). Visually identical to the dark card
+# background, but a DISTINCT token: the light-theme recolor maps card
+# backgrounds to white and must never touch this value.
+ON_ACCENT = "#0c0e13"
 
 
 def plain_text(s: str) -> str:
@@ -98,7 +104,7 @@ def _is_near_black(hex_color: str) -> bool:
     return (r + g + b) / 3 < 30
 
 
-def pill(x: float, y: float, label: str, fill: str, text_color: str = "#0d1117", font_size: float = 11.5) -> Tuple[str, float]:
+def pill(x: float, y: float, label: str, fill: str, text_color: str = ON_ACCENT, font_size: float = 11.5) -> Tuple[str, float]:
     """Returns (svg_fragment, width) for a rounded badge pill at (x, y) top-left."""
     height = 20
     pad_x = 9
@@ -132,6 +138,44 @@ def flow_pills(x: float, y: float, labels: List[Tuple[str, str, str]], max_x: fl
         cx += actual_w + gap
     total_height = (cy - y) + row_height
     return "\n".join(frags), total_height
+
+
+# Neutral-token map for generating light-theme variants of the dark cards.
+# Only semantic neutrals are remapped; brand/functional accents stay the same
+# so team colors, language dots, and pills render identically in both themes.
+_LIGHT_NEUTRALS = [
+    ("#0b0f16", "#f6f8fa"),                                # hero base
+    ("#0d1117", "#ffffff"),                                # card background
+    ("#161b22", "#f6f8fa"),                                # activity tiles
+    ("#21262d", "#eaeef2"),                                # activity empty bars
+    ("#30363d", "#d0d7de"),                                # borders
+    ("#c9d1d9", "#1f2328"),                                # body text
+    ("#8b949e", "#59636e"),                                # muted text
+    ("#e6edf3", "#1f2328"),                                # titles
+    ("#f0f6fc", "#24292f"),                                # hero name
+    ('fill="#ffffff" fill-opacity="0.04"', 'fill="#1f2328" fill-opacity="0.06"'),  # hero chips
+    ('values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.12 0"',
+     'values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.08 0"'),  # grain: white -> dark speckle
+]
+
+
+def recolor_light(svg: str) -> str:
+    """Remaps the dark-theme neutral palette to GitHub-light equivalents."""
+    for dark, light in _LIGHT_NEUTRALS:
+        svg = svg.replace(dark, light)
+    return svg
+
+
+def write_theme_pair(out_path: str, svg: str) -> List[str]:
+    """Writes the dark SVG to out_path and its light-theme recolor as
+    <stem>-light.svg next to it. Returns the written paths."""
+    with open(out_path, "w", encoding="utf-8") as f:
+        f.write(svg)
+    stem, ext = os.path.splitext(out_path)
+    light_path = f"{stem}-light{ext}"
+    with open(light_path, "w", encoding="utf-8") as f:
+        f.write(recolor_light(svg))
+    return [out_path, light_path]
 
 
 def card_shell(title: str, subtitle: Optional[str], body_svg: str, body_height: float, width: int = CARD_WIDTH, accent: str = ACCENT_BLUE) -> str:

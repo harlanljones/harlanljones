@@ -25,6 +25,7 @@ from svg_cards import (  # noqa: E402
     CARD_WIDTH,
     FONT_FAMILY,
     MUTED,
+    ON_ACCENT,
     PAD_X,
     TEXT,
     TITLE_COLOR,
@@ -33,6 +34,7 @@ from svg_cards import (  # noqa: E402
     plain_text,
     text_width,
     wrap_by_width,
+    write_theme_pair,
 )
 
 DUGOUT_SVG_URL = (
@@ -80,9 +82,9 @@ def contrast_text(hex_color: str) -> str:
     try:
         r, g, b = (int(h[i:i + 2], 16) for i in (0, 2, 4))
     except (ValueError, TypeError):
-        return "#0d1117"
+        return ON_ACCENT
     luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
-    return "#0d1117" if luminance > 0.55 else "#ffffff"
+    return ON_ACCENT if luminance > 0.55 else "#ffffff"
 
 
 def team_fill(team: str, mlb_org: str, is_mlb: bool) -> str:
@@ -866,7 +868,7 @@ def ensure_dugout_image(readme_path: str, svg_url: str = DUGOUT_SVG_URL) -> bool
     section = f"{start_tag}\n{img_tag}\n{end_tag}"
     pattern = re.escape(start_tag) + r".*?" + re.escape(end_tag)
     if re.search(pattern, existing, flags=re.DOTALL):
-        if img_tag in existing:
+        if svg_url in existing:
             print("[INFO] README.md already embeds the Dugout Dispatch image.")
             return False
         updated = re.sub(pattern, section, existing, flags=re.DOTALL)
@@ -920,9 +922,8 @@ def main():
         print("----------------------\n")
         return
 
-    with open(args.svg_out, "w", encoding="utf-8") as f:
-        f.write(svg)
-    print(f"[OK] Wrote {args.svg_out}")
+    for path in write_theme_pair(args.svg_out, svg):
+        print(f"[OK] Wrote {path}")
 
     ensure_dugout_image(args.target_file, args.svg_url)
 
