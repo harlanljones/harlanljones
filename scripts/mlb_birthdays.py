@@ -20,6 +20,7 @@ from typing import Dict, List, Optional, Any, Tuple
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from svg_cards import (  # noqa: E402
+    ACCENT_GREEN,
     BORDER,
     CARD_WIDTH,
     FONT_FAMILY,
@@ -764,7 +765,7 @@ def render_dugout_svg(model: Dict[str, Any]) -> str:
             f'<text x="{PAD_X}" y="{cy + 14:.1f}" font-size="13" fill="{MUTED}" '
             f'font-family="{FONT_FAMILY}">No MLB player birth records indexed for this date.</text>'
         )
-        return card_shell("Daily Dugout Dispatch", model.get("date_str", ""), "\n".join(frags), cy + 28)
+        return card_shell("Daily Dugout Dispatch", model.get("date_str", ""), "\n".join(frags), cy + 28, accent=ACCENT_GREEN)
 
     for i, feat in enumerate(model["featured"]):
         accent = CATEGORY_ACCENTS.get(feat["category"], "#58a6ff")
@@ -845,7 +846,7 @@ def render_dugout_svg(model: Dict[str, Any]) -> str:
             cy += pills_h + 4
 
     subtitle = f"{model['date_str']} · {model['total']} players in the historical index"
-    return card_shell("Daily Dugout Dispatch", subtitle, "\n".join(frags), cy)
+    return card_shell("Daily Dugout Dispatch", subtitle, "\n".join(frags), cy, accent=ACCENT_GREEN)
 
 
 def ensure_dugout_image(readme_path: str, svg_url: str = DUGOUT_SVG_URL) -> bool:

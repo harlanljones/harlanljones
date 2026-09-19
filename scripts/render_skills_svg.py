@@ -13,7 +13,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from svg_cards import CARD_WIDTH, PAD_X, card_shell, esc, flow_pills  # noqa: E402
+from svg_cards import ACCENT_PURPLE, CARD_WIDTH, PAD_X, card_shell, esc, flow_pills  # noqa: E402
 
 CATEGORIES = [
     ("Languages", "#58a6ff", "#0d1117", [
@@ -54,7 +54,7 @@ def render() -> str:
         cy += pills_h + row_gap
 
     body_height = cy
-    return card_shell("Technical Skills", None, "\n".join(body_frags), body_height)
+    return card_shell("Technical Skills", None, "\n".join(body_frags), body_height, accent=ACCENT_PURPLE)
 
 
 def main():

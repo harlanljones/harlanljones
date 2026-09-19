@@ -28,7 +28,7 @@ import urllib.request
 from typing import Dict, List, Optional, Set, Tuple
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from svg_cards import CARD_WIDTH, FONT_FAMILY, MUTED, PAD_X, TEXT, card_shell, esc, flow_pills, plain_text, truncate, wrap_by_width  # noqa: E402
+from svg_cards import ACCENT_ORANGE, CARD_WIDTH, FONT_FAMILY, MUTED, PAD_X, TEXT, card_shell, esc, flow_pills, plain_text, truncate, wrap_by_width  # noqa: E402
 
 PROJECTS_ANCHOR = "<!-- PROJECTS_END -->"
 DEFAULT_STORE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "featured_projects.json")
@@ -565,7 +565,7 @@ def render_projects_svg(entries: List[Dict], columns: int = 2) -> str:
 
     body_height = cy
     subtitle = f"{len(entries)} public repositories"
-    return card_shell("Featured Projects", subtitle, "\n".join(frags), body_height)
+    return card_shell("Featured Projects", subtitle, "\n".join(frags), body_height, accent=ACCENT_ORANGE)
 
 
 def ensure_readme_image(readme_path: str, svg_url: str) -> bool:

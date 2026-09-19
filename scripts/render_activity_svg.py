@@ -38,6 +38,7 @@ from zoneinfo import ZoneInfo
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from svg_cards import (  # noqa: E402
+    ACCENT_AMBER,
     BORDER,
     CARD_WIDTH,
     FONT_FAMILY,
@@ -649,7 +650,8 @@ def render_rhythm_card(
 
     subtitle = f"Commit share by language and local commit time · {total_commits:,} commits in the last 12 months"
     return card_shell(
-        "Languages & Commit Rhythm", subtitle, left_svg + "\n" + right_svg + "\n" + trend_svg, body_height
+        "Languages & Commit Rhythm", subtitle, left_svg + "\n" + right_svg + "\n" + trend_svg, body_height,
+        accent=ACCENT_AMBER,
     )
 
 

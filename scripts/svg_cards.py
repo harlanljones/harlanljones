@@ -27,6 +27,12 @@ TITLE_COLOR = "#e6edf3"
 CARD_WIDTH = 900
 PAD_X = 24
 
+ACCENT_BLUE = "#58a6ff"
+ACCENT_GREEN = "#3fb950"
+ACCENT_PURPLE = "#a371f7"
+ACCENT_ORANGE = "#f78166"
+ACCENT_AMBER = "#e3b341"
+
 
 def plain_text(s: str) -> str:
     """Strips markdown link/emphasis syntax that would otherwise render as
@@ -128,12 +134,22 @@ def flow_pills(x: float, y: float, labels: List[Tuple[str, str, str]], max_x: fl
     return "\n".join(frags), total_height
 
 
-def card_shell(title: str, subtitle: Optional[str], body_svg: str, body_height: float, width: int = CARD_WIDTH) -> str:
+def card_shell(title: str, subtitle: Optional[str], body_svg: str, body_height: float, width: int = CARD_WIDTH, accent: str = ACCENT_BLUE) -> str:
     header_height = 56 if subtitle else 44
     height = header_height + body_height + 20
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height:.0f}" viewBox="0 0 {width} {height:.0f}">',
-        f'<rect x="0.5" y="0.5" width="{width - 1}" height="{height - 1:.0f}" rx="10" fill="{BG}" stroke="{BORDER}"/>',
+        "<defs>",
+        # Signature edge: the border picks up the card's accent along the top
+        # and melts back to the house border color — one gradient, no extra
+        # hairline geometry to fight the rounded corners.
+        '<linearGradient id="shellEdge" x1="0" y1="0" x2="1" y2="0.9">',
+        f'<stop offset="0" stop-color="{accent}" stop-opacity="0.85"/>',
+        f'<stop offset="0.3" stop-color="{accent}" stop-opacity="0.12"/>',
+        f'<stop offset="0.65" stop-color="{BORDER}" stop-opacity="1"/>',
+        "</linearGradient>",
+        "</defs>",
+        f'<rect x="0.5" y="0.5" width="{width - 1}" height="{height - 1:.0f}" rx="12" fill="{BG}" stroke="url(#shellEdge)"/>',
         f'<text x="{PAD_X}" y="30" font-size="18" font-weight="700" fill="{TITLE_COLOR}" '
         f'font-family="{FONT_FAMILY}">{esc(title)}</text>',
     ]
