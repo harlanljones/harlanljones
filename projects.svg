@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1909" viewBox="0 0 900 1909">
-<rect x="0.5" y="0.5" width="899" height="1908" rx="10" fill="#0d1117" stroke="#30363d"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1927" viewBox="0 0 900 1927">
+<rect x="0.5" y="0.5" width="899" height="1926" rx="10" fill="#0d1117" stroke="#30363d"/>
 <text x="24" y="30" font-size="18" font-weight="700" fill="#e6edf3" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Featured Projects</text>
-<text x="24" y="48" font-size="12.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">27 public repositories</text>
+<text x="24" y="48" font-size="12.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">28 public repositories</text>
 <g transform="translate(0,56)"><text x="24.0" y="25.0" font-size="15" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">urban-signal</text>
 <g transform="translate(390.7,9.0)"><rect width="45.3" height="18" rx="9" fill="#238636"/><text x="22.6" y="13" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">LIVE</text></g>
 <text x="24.0" y="46.0" font-size="12.5" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Real-time spatio-temporal forecasting engine using Apache</text>
@@ -189,5 +189,10 @@
 <line x1="24" y1="1727.0" x2="876" y2="1727.0" stroke="#8b949e" stroke-opacity="0.25"/>
 <text x="24.0" y="1753.0" font-size="15" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">jev-experiments</text>
 <text x="24.0" y="1774.0" font-size="12.5" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Recently published JavaScript project.</text>
-<g transform="translate(24.0,1786.0)"><rect width="89.3" height="20" rx="10.0" fill="#F7DF1E"/><text x="44.6" y="14.1" font-size="11.5" font-weight="700" fill="#0d1117" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">JavaScript</text></g></g>
+<g transform="translate(24.0,1786.0)"><rect width="89.3" height="20" rx="10.0" fill="#F7DF1E"/><text x="44.6" y="14.1" font-size="11.5" font-weight="700" fill="#0d1117" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">JavaScript</text></g>
+<text x="464.0" y="1753.0" font-size="15" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">jev-roster-shapes</text>
+<text x="464.0" y="1774.0" font-size="12.5" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Active development focused on roster Shapes development</text>
+<text x="464.0" y="1792.0" font-size="12.5" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">handoff, built with JavaScript and TypeScript.</text>
+<g transform="translate(464.0,1804.0)"><rect width="89.3" height="20" rx="10.0" fill="#F7DF1E"/><text x="44.6" y="14.1" font-size="11.5" font-weight="700" fill="#0d1117" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">JavaScript</text></g>
+<g transform="translate(561.3,1804.0)"><rect width="89.3" height="20" rx="10.0" fill="#3178C6"/><text x="44.6" y="14.1" font-size="11.5" font-weight="700" fill="#ffffff" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">TypeScript</text></g></g>
 </svg>
