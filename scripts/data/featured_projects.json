@@ -244,5 +244,13 @@
       "Machine Learning"
     ],
     "homepage": ""
+  },
+  {
+    "name": "jev-experiments",
+    "summary": "Recently published JavaScript project.",
+    "badges": [
+      "JavaScript"
+    ],
+    "homepage": ""
   }
 ]
