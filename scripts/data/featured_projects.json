@@ -252,5 +252,14 @@
       "JavaScript"
     ],
     "homepage": ""
+  },
+  {
+    "name": "jev-roster-shapes",
+    "summary": "Active development focused on roster Shapes development handoff, built with JavaScript and TypeScript.",
+    "badges": [
+      "JavaScript",
+      "TypeScript"
+    ],
+    "homepage": ""
   }
 ]
