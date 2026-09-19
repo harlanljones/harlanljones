@@ -37,13 +37,14 @@ from svg_cards import (  # noqa: E402
 # (label, value) cells laid out two per row; the final row may hold one cell.
 GRID = [
     ("Currently", "Working with PrimeIQ.ai"),
+    ("Website", "harlanljones.com"),
     ("Interests", "Baseball & sports analytics"),
     ("Education", "B.S. Computer Engineering, Boston University"),
     ("Location", "San Francisco Bay Area"),
     ("Connect", "linkedin.com/in/harlanljones"),
 ]
 
-DOTS = [ACCENT_BLUE, ACCENT_AMBER, ACCENT_GREEN, ACCENT_PURPLE, ACCENT_ORANGE]
+DOTS = [ACCENT_BLUE, "#f778ba", ACCENT_AMBER, ACCENT_GREEN, ACCENT_PURPLE, ACCENT_ORANGE]
 GAP = 32
 ROW_PITCH = 60
 
