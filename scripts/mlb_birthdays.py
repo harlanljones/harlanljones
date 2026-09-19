@@ -13,6 +13,7 @@ import json
 import os
 import re
 import sys
+import time
 import urllib.parse
 import urllib.request
 from typing import Dict, List, Optional, Any, Tuple
@@ -151,34 +152,95 @@ def resolve_person_id(name: str, birth_year: int, include_inactive: bool = False
 _headshot_cache: Dict[str, str] = {}
 
 
-def fetch_headshot_b64(person_id: Any, width: int = 128) -> str:
-    """Embedded data-URI headshot for an MLBAM person id ("" when none).
-
-    Remote images never load inside SVGs served through <img>, so avatars
-    are embedded at generation time; missing headshots fall back to
-    initials rendered by the caller.
-    """
-    key = str(person_id or "")
-    if not key:
-        return ""
-    if key in _headshot_cache:
-        return _headshot_cache[key]
-    b64 = ""
+def download_image_as_data_uri(url: str, max_bytes: int = 300000) -> str:
+    """Fetch a remote image as a data URI ("" on any failure)."""
     try:
-        url = (
-            "https://img.mlbstatic.com/mlb-images/image/upload/"
-            "d_people:generic:headshot:67:current.png/"
-            f"w_{width},q_auto:best/v1/people/{key}/headshot/67/current"
-        )
         req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
         with urllib.request.urlopen(req, timeout=15) as resp:
             ctype = resp.headers.get_content_type()
             raw = resp.read()
             if resp.status == 200 and ctype in ("image/jpeg", "image/png", "image/webp") \
-                    and 500 < len(raw) < 300000:
-                b64 = f"data:{ctype};base64," + base64.b64encode(raw).decode("ascii")
+                    and 500 < len(raw) < max_bytes:
+                return f"data:{ctype};base64," + base64.b64encode(raw).decode("ascii")
     except Exception as e:
-        print(f"Notice: no headshot for person {key}: {e}", file=sys.stderr)
+        print(f"Notice: image download failed for {url[:80]}: {e}", file=sys.stderr)
+    return ""
+
+
+def _ascii_fold(s: str) -> str:
+    import unicodedata
+    return "".join(
+        c for c in unicodedata.normalize("NFKD", s) if not unicodedata.combining(c)
+    ).lower()
+
+
+def _wiki_json(url: str) -> Dict[str, Any]:
+    """GET via the Wikipedia API with an identifying UA and a politeness
+    delay (generic rapid-fire callers get HTTP 429)."""
+    time.sleep(1.0)
+    req = urllib.request.Request(url, headers={
+        "User-Agent": "DugoutDispatch/1.0 (https://github.com/harlanljones/harlanljones)",
+        "Accept": "application/json",
+    })
+    with urllib.request.urlopen(req, timeout=15) as resp:
+        return json.loads(resp.read().decode("utf-8", errors="replace"))
+
+
+def fetch_wikipedia_portrait(name: str, size: int = 128) -> str:
+    """Portrait thumbnail via the Wikipedia API (covers retired players
+    MLBAM no longer hosts). Matches the ballplayer's article by surname
+    guard; "" when no suitable portrait exists."""
+    try:
+        query = urllib.parse.quote(f"{name} baseball")
+        search = _wiki_json(
+            "https://en.wikipedia.org/w/api.php?action=query&format=json"
+            f"&list=search&srsearch={query}&srlimit=3"
+        )
+        results = (search.get("query") or {}).get("search") or []
+        if not results:
+            return ""
+        title = results[0].get("title", "")
+        surname = _ascii_fold(name.strip().split()[-1])
+        if surname not in _ascii_fold(title):
+            return ""
+        page = urllib.parse.quote(title)
+        detail = _wiki_json(
+            "https://en.wikipedia.org/w/api.php?action=query&format=json"
+            f"&prop=pageimages&titles={page}&pithumbsize={size}&redirects=1"
+        )
+        pages = ((detail.get("query") or {}).get("pages")) or {}
+        for entry in pages.values():
+            thumb = (entry.get("thumbnail") or {}).get("source") or ""
+            if thumb and not thumb.lower().endswith(".svg"):
+                data_uri = download_image_as_data_uri(thumb)
+                if data_uri:
+                    return data_uri
+    except Exception as e:
+        print(f"Notice: wikipedia portrait failed for {name}: {e}", file=sys.stderr)
+    return ""
+
+
+def fetch_headshot_b64(person_id: Any, player_name: str = "") -> str:
+    """Embedded data-URI headshot for a player ("" when none).
+
+    MLBAM first (current players), then Wikipedia portraits (retired
+    players). Remote images never load inside SVGs served through <img>,
+    so avatars are embedded at generation time; missing portraits fall
+    back to initials rendered by the caller.
+    """
+    key = f"{person_id}|{player_name}"
+    if key in _headshot_cache:
+        return _headshot_cache[key]
+    b64 = ""
+    if person_id:
+        url = (
+            "https://img.mlbstatic.com/mlb-images/image/upload/"
+            "d_people:generic:headshot:67:current.png/"
+            f"w_128,q_auto:best/v1/people/{person_id}/headshot/67/current"
+        )
+        b64 = download_image_as_data_uri(url)
+    if not b64 and player_name:
+        b64 = fetch_wikipedia_portrait(player_name)
     _headshot_cache[key] = b64
     return b64
 
@@ -489,7 +551,7 @@ def resolve_active_cohort(active_players: List[Dict[str, Any]]) -> Dict[str, Lis
             "mlb_org": (org.get("mlb_org") or "").upper(),
             "person_id": org.get("person_id"),
             "initials": player_initials(ap["name"]),
-            "img": fetch_headshot_b64(org.get("person_id")),
+            "img": fetch_headshot_b64(org.get("person_id"), ap["name"]),
         }
         (mlb if is_mlb else minors).append(entry)
     return {"mlb": mlb, "minors": minors}
@@ -610,7 +672,9 @@ def build_dispatch_model(players: List[Dict[str, Any]], month: int, day: int, cu
             "franchises": franchises if franchises is not None else franchise_label(p),
             "metrics": metrics,
             "initials": player_initials(name),
-            "img": fetch_headshot_b64(resolve_person_id(p["name"], p["birth_year"], include_inactive=True)),
+            "img": fetch_headshot_b64(
+                resolve_person_id(p["name"], p["birth_year"], include_inactive=True), p["name"]
+            ),
         }
 
     featured = [
