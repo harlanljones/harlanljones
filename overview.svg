@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="214" viewBox="0 0 900 214">
+<rect x="0.5" y="0.5" width="899" height="213" rx="10" fill="#0d1117" stroke="#30363d"/>
+<text x="24" y="30" font-size="18" font-weight="700" fill="#e6edf3" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Professional Overview</text>
+<g transform="translate(0,44)"><text x="24" y="23.0" font-size="13" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Currently</text>
+<text x="142" y="23.0" font-size="13.5" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Working with PrimeIQ.ai</text>
+<text x="24" y="51.0" font-size="13" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Interests</text>
+<text x="142" y="51.0" font-size="13.5" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Baseball &amp; sports analytics</text>
+<text x="24" y="79.0" font-size="13" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Education</text>
+<text x="142" y="79.0" font-size="13.5" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">B.S. Computer Engineering, Boston University</text>
+<text x="24" y="107.0" font-size="13" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Location</text>
+<text x="142" y="107.0" font-size="13.5" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">San Francisco Bay Area</text>
+<text x="24" y="135.0" font-size="13" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Connect</text>
+<text x="142" y="135.0" font-size="13.5" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">linkedin.com/in/harlanljones</text></g>
+</svg>
