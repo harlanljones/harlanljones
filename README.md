@@ -30,19 +30,19 @@
 ---
 
 <!-- MLB_BIRTHDAY_START -->
-### Daily Dugout Dispatch: September 18
+### Daily Dugout Dispatch: September 19
 
 | Category | Player | Active Span | Franchise(s) | Key Sabermetrics |
 | :--- | :--- | :--- | :--- | :--- |
-| **WAR Warrior** | [Ryne Sandberg](https://www.baseball-reference.com/players/s/sandbry01.shtml) | 1981–1997 | CHC, PHI | 68.0 bWAR • .795 OPS • 282 HR • 2,386 H • 344 SB |
-| **Immaculate Grid Gem** | [Ken Brett](https://www.baseball-reference.com/players/b/brettke01.shtml) | 1967–1981 | 10 Clubs | 10 Clubs (ANA, BOS, CHW, KCR, LAD, MIL...) • 16.3 bWAR • 14 Yrs — a true Immaculate Grid cheat code |
-| **Antique Ace** | [Wally Andrews](https://www.baseball-reference.com/players/a/andrewa01.shtml) | 1884–1888 | LOU, PRO | Born 1859 • 3 Seasons • 0.4 bWAR • 28 H |
-| **Long Ball Laureate** | [Ryne Sandberg](https://www.baseball-reference.com/players/s/sandbry01.shtml) | 1981–1997 | CHC, PHI | 282 Career HR • 1061 RBI |
-| **Strikeout Savant** | [Harvey Haddix](https://www.baseball-reference.com/players/h/haddiha01.shtml) | 1952–1965 | BAL, CIN, PHI, PIT, STL | 1,575 Strikeouts • 3.63 ERA |
+| **WAR Warrior** | [Joe Morgan](https://www.baseball-reference.com/players/m/morgajo02.shtml) | 1963–1984 | CIN, HOU, OAK, PHI, SFG | 100.6 bWAR • .819 OPS • 268 HR • 2,517 H • 689 SB |
+| **Immaculate Grid Gem** | [Danny Valencia](https://www.baseball-reference.com/players/v/valenda01.shtml) | 2010–2018 | 7 Clubs | 7 Clubs (BAL, BOS, KCR, MIN, OAK, SEA...) • 6.1 bWAR • 9 Yrs — a true Immaculate Grid cheat code |
+| **Antique Ace** | [Phil Baker](https://www.baseball-reference.com/players/b/bakerph01.shtml) | 1883–1886 | BLO, WNA, WNL | Born 1856 • 3 Seasons • 2.2 bWAR • 212 H |
+| **Long Ball Laureate** | [Duke Snider](https://www.baseball-reference.com/players/s/snidedu01.shtml) | 1947–1964 | LAD, NYM, SFG | 407 Career HR • 1333 RBI |
+| **Strikeout Savant** | [Gio Gonzalez](https://www.baseball-reference.com/players/g/gonzagi01.shtml) | 2008–2020 | CHW, MIL, OAK, WSN | 1,860 Strikeouts • 3.70 ERA |
 
-*Active cohort on MLB active rosters today (2):* [Ceddanne Rafaela](https://www.baseball-reference.com/players/r/rafaece01.shtml) (BOS), [Andre Pallante](https://www.baseball-reference.com/players/p/pallaan01.shtml) (STL)
+*Active cohort on MLB active rosters today (8):* [George Springer](https://www.baseball-reference.com/players/s/springe01.shtml) (TOR), [Luke Raley](https://www.baseball-reference.com/players/r/raleylu01.shtml) (SEA), [DL Hall](https://www.baseball-reference.com/players/h/halldl01.shtml) (MIL), [Tyler Schweitzer](https://www.baseball-reference.com/players/s/schwety01.shtml) (CLT), [Austin Peterson](https://www.baseball-reference.com/players/p/peterau01.shtml) (COL), [Blake Burkhalter](https://www.baseball-reference.com/players/b/burkhbl01.shtml) (GWN), [Seth Johnson](https://www.baseball-reference.com/players/j/johnsse01.shtml) (ATH), [Sam Aldegheri](https://www.baseball-reference.com/players/a/aldegsa01.shtml) (SL)
 
-*Historical index contains 61 total Major League Baseball players born on September 18.*
+*Historical index contains 74 total Major League Baseball players born on September 19.*
 <!-- MLB_BIRTHDAY_END -->
 
 ---
