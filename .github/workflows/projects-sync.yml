@@ -95,8 +95,8 @@ jobs:
         run: |
           git checkout profile-cards
           git reset --hard origin/profile-cards
-          cp "${RUNNER_TEMP}/projects.svg" projects.svg
-          git add projects.svg
+          cp "${RUNNER_TEMP}/projects.svg" "${RUNNER_TEMP}/projects-light.svg" .
+          git add projects.svg projects-light.svg
           if git diff --staged --quiet; then
             echo "No card changes to publish"
             exit 0

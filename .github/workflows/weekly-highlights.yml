@@ -102,8 +102,8 @@ jobs:
         run: |
           git checkout profile-cards
           git reset --hard origin/profile-cards
-          cp "${RUNNER_TEMP}/weekly-highlights.svg" weekly-highlights.svg
-          git add weekly-highlights.svg
+          cp "${RUNNER_TEMP}/weekly-highlights.svg" "${RUNNER_TEMP}/weekly-highlights-light.svg" .
+          git add weekly-highlights.svg weekly-highlights-light.svg
           if git diff --staged --quiet; then
             echo "No card changes to publish"
             exit 0

@@ -1,17 +1,17 @@
-name: GitHub Activity Cards
+name: Repo Cards
 
 on:
   schedule:
-    - cron: "0 0 * * *" # Runs daily at 00:00 UTC
+    - cron: "0 6 * * 0" # Weekly, Sunday 06:00 UTC (Sat 11 PM Pacific)
   workflow_dispatch:
 
 concurrency:
-  group: activity-cards-${{ github.ref }}
+  group: repo-cards-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
-  update-activity-cards:
-    name: Render GitHub Activity Cards
+  update-repo-cards:
+    name: Render Repo Leaderboard, Spotlight & Grid
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -39,20 +39,13 @@ jobs:
         with:
           python-version: "3.11"
 
-      # Render from the main checkout (scripts live on main), before switching
-      # to the output branch. SVGs pass through RUNNER_TEMP.
-      - name: Render activity cards
+      - name: Render repo cards
         env:
           GITHUB_TOKEN: ${{ secrets.SUMMARY_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
-          TZ: "America/Los_Angeles"
         run: |
-          python3 scripts/render_activity_svg.py \
+          python3 scripts/render_repo_cards.py \
             --username "${{ github.repository_owner }}" \
             --out-dir "${RUNNER_TEMP}"
-          # Daily footer stamp: keeps the "last rendered" line honest.
-          python3 scripts/render_footer_svg.py \
-            --out "${RUNNER_TEMP}/footer.svg" \
-            --stamp "$(date -u '+%b %d, %Y')"
 
       - name: Checkout output branch
         uses: actions/checkout@v4
@@ -64,10 +57,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          # Drop the retired third-party profile-summary cards from the branch.
-          git rm -r --ignore-unmatch profile-summary-card-output > /dev/null 2>&1 || true
-
-          for f in activity commit-rhythm footer; do
+          for f in repo-leaderboard repo-spotlight dev-grid; do
             cp "${RUNNER_TEMP}/${f}.svg" "${RUNNER_TEMP}/${f}-light.svg" .
             git add "${f}.svg" "${f}-light.svg"
           done
@@ -75,7 +65,7 @@ jobs:
             echo "No card changes to publish"
             exit 0
           fi
-          git commit -m "chore(activity): update rendered GitHub activity cards"
+          git commit -m "chore(repo-cards): update leaderboard, spotlight, and grid"
           for attempt in 1 2 3 4 5; do
             git fetch origin profile-cards
             if git rebase origin/profile-cards; then

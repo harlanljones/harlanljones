@@ -90,8 +90,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          cp "${RUNNER_TEMP}/dugout-dispatch.svg" .
-          git add dugout-dispatch.svg
+          cp "${RUNNER_TEMP}/dugout-dispatch.svg" "${RUNNER_TEMP}/dugout-dispatch-light.svg" .
+          git add dugout-dispatch.svg dugout-dispatch-light.svg
           if git diff --staged --quiet; then
             echo "No card changes to publish"
             exit 0
