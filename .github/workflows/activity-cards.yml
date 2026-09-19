@@ -1,13 +1,17 @@
-name: GitHub Profile Summary Cards
+name: GitHub Activity Cards
 
 on:
   schedule:
     - cron: "0 0 * * *" # Runs daily at 00:00 UTC
   workflow_dispatch:
 
+concurrency:
+  group: activity-cards-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
-  build:
-    name: Generate GitHub Cards
+  update-activity-cards:
+    name: Render GitHub Activity Cards
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -30,16 +34,55 @@ jobs:
             git push origin profile-cards
           fi
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # Render from the main checkout (scripts live on main), before switching
+      # to the output branch. SVGs pass through RUNNER_TEMP.
+      - name: Render activity cards
+        env:
+          GITHUB_TOKEN: ${{ secrets.SUMMARY_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
+          TZ: "America/Los_Angeles"
+        run: |
+          python3 scripts/render_activity_svg.py \
+            --username "${{ github.repository_owner }}" \
+            --out-dir "${RUNNER_TEMP}"
+
       - name: Checkout output branch
         uses: actions/checkout@v4
         with:
           ref: profile-cards
 
-      - name: Generate GitHub Profile Summary Cards
-        uses: vn7n24fzkq/github-profile-summary-cards@release
-        env:
-          GITHUB_TOKEN: ${{ secrets.SUMMARY_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
-        with:
-          USERNAME: ${{ github.repository_owner }}
-          THEME: github_dark
-          UTC_OFFSET: -8
+      - name: Publish rendered cards to profile-cards branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Drop the retired third-party profile-summary cards from the branch.
+          git rm -r --ignore-unmatch profile-summary-card-output > /dev/null 2>&1 || true
+
+          cp "${RUNNER_TEMP}/activity.svg" "${RUNNER_TEMP}/commit-rhythm.svg" .
+          git add activity.svg commit-rhythm.svg
+          if git diff --staged --quiet; then
+            echo "No card changes to publish"
+            exit 0
+          fi
+          git commit -m "chore(activity): update rendered GitHub activity cards"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin profile-cards
+            if git rebase origin/profile-cards; then
+              if git push origin HEAD:profile-cards; then
+                echo "Push succeeded on attempt ${attempt}"
+                exit 0
+              fi
+            else
+              echo "Rebase failed on attempt ${attempt}"
+              git rebase --abort || true
+            fi
+            echo "Attempt ${attempt} failed; retrying..."
+            sleep $((attempt * 2))
+          done
+          echo "Failed to push after 5 attempts"
+          exit 1
