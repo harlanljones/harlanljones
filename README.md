@@ -18,3 +18,5 @@
 <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/activity.svg" alt="GitHub Activity" width="100%" />
 
 <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/commit-rhythm.svg" alt="Languages & Commit Rhythm" width="100%" />
+
+<img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/footer.svg" alt="Footer" width="100%" />
