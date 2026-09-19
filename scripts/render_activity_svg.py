@@ -7,16 +7,19 @@ skills/projects/weekly-highlights).
 Fetches the last 12 months of public contribution data from the GitHub API:
 
   GraphQL contributionsCollection
-    - totals (commits, PRs, issues, repos contributed to)
-    - contributionCalendar -> stat-tile streaks + 52-week heatmap
+    - totals (commits, PRs, repos contributed to)
+    - contributionCalendar -> stat-tile streaks + trailing-30-day chart
     - commitContributionsByRepository -> language commit share
   REST search/commits
     - commit authored hours -> "commits by hour" histogram (Pacific local time)
+    - dated commits + /repos languages -> per-language commits-per-day series
+  REST /repos/{full}
+    - primary language for repos touched in the last 30 days
 
 Renders two SVGs using the shared svg_cards primitives:
 
-  activity.svg      stat tiles + contribution heatmap
-  commit-rhythm.svg language bars + commit-hours histogram
+  activity.svg      stat tiles + trailing-30-day bars + 7-day average
+  commit-rhythm.svg language bars + commit-hours histogram + language trends
 
 The daily `activity-cards.yml` workflow runs this and commits the output to
 the `profile-cards` branch.
@@ -51,8 +54,6 @@ PACIFIC = ZoneInfo("America/Los_Angeles")
 
 TILE_FILL = "#161b22"
 ACCENTS = ["#58a6ff", "#a371f7", "#f78166", "#3fb950", "#e3b341", "#f778ba"]
-
-HEATMAP_SCALE = ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"]
 
 # Official github-linguist language colors; unknown languages fall back to a
 # stable rotation of GitHub-graph palette colors.
@@ -192,12 +193,17 @@ def fetch_contribution_stats(login: str, token: str) -> Optional[Dict]:
     return data["user"]["contributionsCollection"]
 
 
-def fetch_commit_hours(login: str, token: str, start_date: str) -> Dict[int, int]:
+def fetch_commit_hours(login: str, token: str, start_date: str) -> Tuple[Dict[int, int], List[Tuple[date, str]]]:
     """Commit counts by Pacific-local authored hour over the past year.
 
     Uses the commit search API (default branches of public repos), matching
-    the scope the old profile-summary card used."""
+    the scope the old profile-summary card used.
+
+    Returns (hours, commits) where commits is a list of
+    (pacific_local_date, repo_full_name) for language time-series use.
+    """
     hours: Dict[int, int] = {h: 0 for h in range(24)}
+    commits: List[Tuple[date, str]] = []
     query = urllib.parse.quote(f"author:{login} author-date:>{start_date}")
     for page in range(1, 11):
         data = gh_rest(
@@ -213,12 +219,60 @@ def fetch_commit_hours(login: str, token: str, start_date: str) -> Dict[int, int
                 continue
             try:
                 authored = datetime.fromisoformat(raw.replace("Z", "+00:00"))
-                hours[authored.astimezone(PACIFIC).hour] += 1
             except ValueError:
                 continue
+            local = authored.astimezone(PACIFIC)
+            hours[local.hour] += 1
+            repo = ((item.get("repository") or {}).get("full_name")) or ""
+            commits.append((local.date(), repo))
         if len(items) < 100:
             break
-    return hours
+    return hours, commits
+
+
+def fetch_repo_primary_languages(repo_names: List[str], token: str, limit: int = 100) -> Dict[str, str]:
+    """Map repo full_name -> primary language via REST. Best-effort; unknowns omitted."""
+    mapping: Dict[str, str] = {}
+    seen = []
+    for name in repo_names:
+        if name and name not in mapping and name not in seen:
+            seen.append(name)
+    for full_name in seen[:limit]:
+        data = gh_rest(f"/repos/{full_name}", token)
+        if isinstance(data, dict):
+            lang = data.get("language")
+            if lang:
+                mapping[full_name] = str(lang)
+    return mapping
+
+
+def language_timeseries(
+    commits: List[Tuple[date, str]],
+    repo_langs: Dict[str, str],
+    today: Optional[date] = None,
+    window: int = 30,
+    top_n: int = 5,
+) -> Tuple[List[date], Dict[str, List[int]]]:
+    """Daily commit counts per language over the trailing window.
+
+    y-axis stat: commits per day to repos whose primary language is X
+    (a direct measure of language use across all repos).
+    """
+    if today is None:
+        today = datetime.now(PACIFIC).date()
+    dates = [today - timedelta(days=window - 1 - i) for i in range(window)]
+    index = {d: i for i, d in enumerate(dates)}
+    per_lang: Dict[str, List[int]] = {}
+    for d, repo in commits:
+        i = index.get(d)
+        if i is None:
+            continue
+        lang = repo_langs.get(repo or "")
+        if not lang:
+            continue
+        per_lang.setdefault(lang, [0] * window)[i] += 1
+    ranked = sorted(per_lang.items(), key=lambda kv: sum(kv[1]), reverse=True)[:top_n]
+    return dates, dict(ranked)
 
 
 # ---------------------------------------------------------------------------
@@ -296,79 +350,85 @@ def _stat_tiles(x: float, y: float, tiles: List[Tuple[str, str, str]], total_w: 
     return "\n".join(frags)
 
 
-def _heatmap_level(count: int) -> int:
-    if count <= 0:
-        return 0
-    if count <= 3:
-        return 1
-    if count <= 7:
-        return 2
-    if count <= 12:
-        return 3
-    return 4
+def render_last30_days(days: Dict[date, int], x: float, y: float, max_width: float) -> Tuple[str, float]:
+    """Last-30-days contribution chart: rounded vertical bars plus a 7-day
+    moving-average trend line. Deliberately unlike GitHub's default
+    contribution grid. Returns (svg_fragment, height)."""
+    today = datetime.now(PACIFIC).date()
+    dates = [today - timedelta(days=29 - i) for i in range(30)]
+    values = [int(days.get(d, 0) or 0) for d in dates]
+    total = sum(values)
+    avg = total / 30 if values else 0.0
 
+    title_y = y + 12
+    frags = [
+        f'<text x="{x:.1f}" y="{title_y:.1f}" font-size="13" font-weight="700" '
+        f'fill="{TITLE_COLOR}" font-family="{FONT_FAMILY}">Last 30 days</text>',
+        f'<text x="{x + max_width:.1f}" y="{title_y:.1f}" font-size="11" fill="{MUTED}" '
+        f'text-anchor="end" font-family="{FONT_FAMILY}">{total:,} contributions · {avg:.1f}/day</text>',
+    ]
 
-def render_heatmap(days: Dict[date, int], x: float, y: float, max_width: float) -> Tuple[str, float]:
-    """52-week contribution heatmap with month labels and a legend.
-    Returns (svg_fragment, height)."""
-    cell, gap = 13, 3
-    pitch = cell + gap
-    weeks: List[List[Tuple[date, int]]] = [[] for _ in range(60)]
-    for d in sorted(days):
-        col = (d.weekday() + 1) % 7  # Sunday-aligned columns, GitHub-style
-        wk = ((d - timedelta(days=col)) - (min(days) - timedelta(days=(min(days).weekday() + 1) % 7))).days // 7
-        weeks[wk].append((d, days[d]))
-    # Trim leading empty columns
-    first_nonempty = next((i for i, w in enumerate(weeks) if w), 0)
-    weeks = [w for w in weeks[first_nonempty:] if w]
+    top = y + 26
+    chart_h = 96
+    baseline = top + chart_h
+    axis_w = 30
+    plot_x = x + axis_w
+    plot_w = max_width - axis_w
+    pitch = plot_w / 30
+    bar_w = max(4.0, pitch - 5)
+    peak = max(values) or 1
 
-    frags = []
-    month_labels: List[Tuple[float, str]] = []
-    seen_months = set()
-    for ci, week in enumerate(weeks):
-        cx = x + ci * pitch
-        for d, count in week:
-            cy = y + ((d.weekday() + 1) % 7) * pitch
-            fill = HEATMAP_SCALE[_heatmap_level(count)]
-            frags.append(
-                f'<rect x="{cx:.1f}" y="{cy:.1f}" width="{cell}" height="{cell}" rx="2.5" fill="{fill}"'
-                + (' stroke="#30363d" stroke-width="0.5"' if count == 0 else "")
-                + "/>"
-            )
-            if d.day == 1 and d.month not in seen_months:
-                seen_months.add(d.month)
-                month_labels.append((cx, d.strftime("%b")))
-
-    for lx, label in month_labels:
+    # Horizontal gridlines at 0 / 50% / 100% of peak.
+    for frac, label in ((1.0, str(peak)), (0.5, str(peak // 2 if peak > 1 else peak)), (0.0, "0")):
+        gy = baseline - chart_h * frac
         frags.append(
-            f'<text x="{lx:.1f}" y="{y - 7:.1f}" font-size="10" fill="{MUTED}" '
-            f'font-family="{FONT_FAMILY}">{esc(label)}</text>'
+            f'<line x1="{plot_x:.1f}" y1="{gy:.1f}" x2="{plot_x + plot_w:.1f}" y2="{gy:.1f}" '
+            f'stroke="{BORDER}" stroke-width="1" stroke-dasharray="3 4" opacity="0.8"/>'
+            f'<text x="{plot_x - 6:.1f}" y="{gy + 3.5:.1f}" font-size="9" fill="{MUTED}" '
+            f'text-anchor="end" font-family="{FONT_FAMILY}">{esc(label)}</text>'
         )
 
-    # Legend, right-aligned on the month-label row
-    grid_w = (len(weeks) - 1) * pitch + cell
-    legend_right = min(x + max_width, x + grid_w)
-    more_w = len("More") * 9 * 0.54
-    lx = legend_right - more_w
-    frags.append(
-        f'<text x="{lx:.1f}" y="{y - 7:.1f}" font-size="9" fill="{MUTED}" '
-        f'font-family="{FONT_FAMILY}">More</text>'
-    )
-    for level in range(4, -1, -1):
-        lx -= pitch
+    # Bars, intensity-scaled blue.
+    for i, v in enumerate(values):
+        bar_h = max(2.0 if v > 0 else 1.0, chart_h * v / peak)
+        bx = plot_x + i * pitch + (pitch - bar_w) / 2
+        opacity = 0.35 + 0.65 * (v / peak) if v > 0 else 0.25
+        fill = ACCENTS[0] if v > 0 else "#21262d"
         frags.append(
-            f'<rect x="{lx:.1f}" y="{y - 15:.1f}" width="{cell}" height="{cell}" rx="2.5" '
-            f'fill="{HEATMAP_SCALE[level]}"'
-            + (' stroke="#30363d" stroke-width="0.5"' if level == 0 else "")
-            + "/>"
+            f'<rect x="{bx:.1f}" y="{baseline - bar_h:.1f}" width="{bar_w:.1f}" height="{bar_h:.1f}" '
+            f'rx="3" fill="{fill}" opacity="{opacity:.2f}"/>'
         )
-    lx -= 4 + len("Less") * 9 * 0.54
+
+    # 7-day moving-average trend line in contrasting amber.
+    pts = []
+    for i in range(30):
+        window_vals = values[max(0, i - 6): i + 1]
+        m = sum(window_vals) / len(window_vals)
+        px = plot_x + i * pitch + pitch / 2
+        py = baseline - chart_h * m / peak
+        pts.append(f"{px:.1f},{py:.1f}")
     frags.append(
-        f'<text x="{lx:.1f}" y="{y - 7:.1f}" font-size="9" fill="{MUTED}" '
-        f'font-family="{FONT_FAMILY}">Less</text>'
+        f'<polyline points="{" ".join(pts)}" fill="none" stroke="{ACCENTS[4]}" '
+        f'stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>'
     )
 
-    height = 7 * pitch + 22  # grid + month-label row
+    # X-axis: first day, mid-point, today.
+    frags.append(
+        f'<line x1="{plot_x:.1f}" y1="{baseline:.1f}" x2="{plot_x + plot_w:.1f}" y2="{baseline:.1f}" '
+        f'stroke="{BORDER}" stroke-width="1"/>'
+    )
+    for i in (0, 14, 29):
+        tx = plot_x + i * pitch + pitch / 2
+        frags.append(
+            f'<text x="{tx:.1f}" y="{baseline + 14:.1f}" font-size="9" fill="{MUTED}" '
+            f'text-anchor="middle" font-family="{FONT_FAMILY}">{dates[i].strftime("%b %-d")}</text>'
+        )
+    frags.append(
+        f'<text x="{plot_x + plot_w:.1f}" y="{baseline + 26:.1f}" font-size="9" fill="{MUTED}" '
+        f'text-anchor="end" font-family="{FONT_FAMILY}">— 7-day avg</text>'
+    )
+
+    height = 26 + chart_h + 30
     return "\n".join(frags), height
 
 
@@ -377,24 +437,22 @@ def render_activity_card(stats: Dict, updated: datetime) -> str:
     current_streak, longest_streak = compute_streaks(days)
     commits = int(stats.get("totalCommitContributions") or 0)
     prs = int(stats.get("totalPullRequestContributions") or 0)
-    issues = int(stats.get("totalIssueContributions") or 0)
     repos = int(stats.get("totalRepositoriesWithContributedCommits") or 0)
 
     tiles = [
         (f"{commits:,}", "Commits", ACCENTS[0]),
         (f"{prs:,}", "Pull Requests", ACCENTS[1]),
-        (f"{issues:,}", "Issues", ACCENTS[2]),
         (f"{repos:,}", "Repos Contributed", ACCENTS[3]),
         (str(current_streak), "Current Streak (days)", ACCENTS[4]),
         (str(longest_streak), "Longest Streak (days)", ACCENTS[5]),
     ]
 
     frags = [_stat_tiles(PAD_X, 10.0, tiles, CARD_WIDTH - PAD_X * 2)]
-    heatmap, heat_h = render_heatmap(days, PAD_X, 110.0, CARD_WIDTH - PAD_X * 2)
-    frags.append(heatmap)
-    body_height = 110.0 + heat_h - 22
+    chart, chart_h = render_last30_days(days, PAD_X, 110.0, CARD_WIDTH - PAD_X * 2)
+    frags.append(chart)
+    body_height = 110.0 + chart_h - 22
 
-    subtitle = f"Public contributions · last 12 months · updated {updated.strftime('%b %-d, %Y')}"
+    subtitle = f"Public contributions · trailing 30 days · updated {updated.strftime('%b %-d, %Y')}"
     return card_shell("GitHub Activity", subtitle, "\n".join(frags), body_height)
 
 
@@ -464,15 +522,135 @@ def _hour_histogram(x: float, y: float, width: float, hours: Dict[int, int]) -> 
     return "\n".join(frags), chart_h + 26 + 20
 
 
-def render_rhythm_card(langs: List[Tuple[str, int]], hours: Dict[int, int], total_commits: int) -> str:
+def _language_timeseries_chart(
+    x: float, y: float, width: float, dates: List[date], series: Dict[str, List[int]]
+) -> Tuple[str, float]:
+    """Multi-series language activity chart: x = date, y = commits per day
+    to repos whose primary language is X. Returns (svg_fragment, height)."""
+    frags = [
+        f'<text x="{x:.1f}" y="{y + 12:.1f}" font-size="13" font-weight="700" '
+        f'fill="{TITLE_COLOR}" font-family="{FONT_FAMILY}">Language activity · commits per day · last 30 days</text>'
+    ]
+    if not dates or not series:
+        frags.append(
+            f'<text x="{x:.1f}" y="{y + 32:.1f}" font-size="12" fill="{MUTED}" '
+            f'font-family="{FONT_FAMILY}">No dated commit data for the last 30 days.</text>'
+        )
+        return "\n".join(frags), 48
+
+    window = len(dates)
+    names = list(series.keys())
+    # Legend row (dots + names), wrapping if needed.
+    legend_y = y + 20
+    lx = x
+    legend_bottom = legend_y + 14
+    for name in names:
+        label = truncate(name, 11, 110)
+        entry_w = 10 + 5 + len(label) * 11 * 0.54 + 14
+        if lx + entry_w > x + width and lx > x:
+            lx = x
+            legend_y += 16
+            legend_bottom += 16
+        color = lang_color(name)
+        frags.append(
+            f'<circle cx="{lx + 4:.1f}" cy="{legend_y + 4:.1f}" r="4" fill="{color}"/>'
+            f'<text x="{lx + 12:.1f}" y="{legend_y + 8:.1f}" font-size="11" fill="{TEXT}" '
+            f'font-family="{FONT_FAMILY}">{esc(label)}</text>'
+        )
+        lx += entry_w
+    legend_h = legend_bottom - y
+
+    top = y + legend_h + 10
+    chart_h = 104
+    baseline = top + chart_h
+    axis_w = 30
+    plot_x = x + axis_w
+    plot_w = width - axis_w
+    peak = max((v for vals in series.values() for v in vals), default=0)
+    peak = max(peak, 1)
+    mid = (peak + 1) // 2
+
+    for frac_val, label in ((peak, str(peak)), (mid, str(mid)), (0, "0")):
+        gy = baseline - chart_h * frac_val / peak
+        frags.append(
+            f'<line x1="{plot_x:.1f}" y1="{gy:.1f}" x2="{plot_x + plot_w:.1f}" y2="{gy:.1f}" '
+            f'stroke="{BORDER}" stroke-width="1" stroke-dasharray="3 4" opacity="0.8"/>'
+            f'<text x="{plot_x - 6:.1f}" y="{gy + 3.5:.1f}" font-size="9" fill="{MUTED}" '
+            f'text-anchor="end" font-family="{FONT_FAMILY}">{esc(label)}</text>'
+        )
+    frags.append(
+        f'<text x="{x:.1f}" y="{top - 4:.1f}" font-size="9" fill="{MUTED}" '
+        f'font-family="{FONT_FAMILY}">commits/day</text>'
+    )
+
+    n = window
+    for name in names:
+        vals = series[name]
+        color = lang_color(name)
+        pts = []
+        for i, v in enumerate(vals):
+            px = plot_x + (i + 0.5) * plot_w / n
+            py = baseline - chart_h * v / peak
+            pts.append((px, py, v))
+        frags.append(
+            f'<polyline points="{" ".join(f"{px:.1f},{py:.1f}" for px, py, _ in pts)}" '
+            f'fill="none" stroke="{color}" stroke-width="2.2" '
+            f'stroke-linejoin="round" stroke-linecap="round"/>'
+        )
+        for px, py, v in pts:
+            if v > 0:
+                frags.append(
+                    f'<circle cx="{px:.1f}" cy="{py:.1f}" r="2.4" fill="{color}" '
+                    f'stroke="{TILE_FILL}" stroke-width="1"/>'
+                )
+
+    frags.append(
+        f'<line x1="{plot_x:.1f}" y1="{baseline:.1f}" x2="{plot_x + plot_w:.1f}" y2="{baseline:.1f}" '
+        f'stroke="{BORDER}" stroke-width="1"/>'
+    )
+    for i in (0, n // 2, n - 1):
+        tx = plot_x + (i + 0.5) * plot_w / n
+        anchor = "middle"
+        if i == 0:
+            anchor = "start"
+            tx = plot_x
+        elif i == n - 1:
+            anchor = "end"
+            tx = plot_x + plot_w
+        frags.append(
+            f'<text x="{tx:.1f}" y="{baseline + 14:.1f}" font-size="9" fill="{MUTED}" '
+            f'text-anchor="{anchor}" font-family="{FONT_FAMILY}">{dates[i].strftime("%b %-d")}</text>'
+        )
+    frags.append(
+        f'<text x="{plot_x + plot_w / 2:.1f}" y="{baseline + 26:.1f}" font-size="9" fill="{MUTED}" '
+        f'text-anchor="middle" font-family="{FONT_FAMILY}">date</text>'
+    )
+    height = legend_h + 10 + chart_h + 30
+    return "\n".join(frags), height
+
+
+def render_rhythm_card(
+    langs: List[Tuple[str, int]],
+    hours: Dict[int, int],
+    total_commits: int,
+    trend_dates: Optional[List[date]] = None,
+    trend_series: Optional[Dict[str, List[int]]] = None,
+) -> str:
     col_w = (CARD_WIDTH - PAD_X * 2 - 28) / 2
     left_svg, left_h = _language_rows(PAD_X, 10.0, col_w, langs[:7])
     right_x = PAD_X + col_w + 28
     right_svg, right_h = _hour_histogram(right_x, 10.0, col_w, hours)
-    body_height = max(left_h, right_h)
+    top_h = max(left_h, right_h)
+
+    trend_svg, trend_h = _language_timeseries_chart(
+        PAD_X, 10.0 + top_h + 18, CARD_WIDTH - PAD_X * 2, trend_dates or [], trend_series or {}
+    )
+    body_height = top_h + 18 + trend_h
 
     subtitle = f"Commit share by language and local commit time · {total_commits:,} commits in the last 12 months"
-    return card_shell("Languages & Commit Rhythm", subtitle, left_svg + "\n" + right_svg, body_height)
+    return card_shell(
+        "Languages & Commit Rhythm", subtitle, left_svg + "\n" + right_svg + "\n" + trend_svg, body_height
+    )
 
 
 def main() -> None:
@@ -492,13 +670,19 @@ def main() -> None:
         sys.exit(1)
 
     start = (datetime.now(timezone.utc).date() - timedelta(days=364)).isoformat()
-    hours = fetch_commit_hours(args.username, args.token, start)
+    hours, dated_commits = fetch_commit_hours(args.username, args.token, start)
     langs = language_share(stats)
     updated = datetime.now(PACIFIC)
 
+    today = updated.date()
+    cutoff = today - timedelta(days=29)
+    recent_repos = sorted({repo for d, repo in dated_commits if repo and d >= cutoff})
+    repo_langs = fetch_repo_primary_languages(recent_repos, args.token) if recent_repos else {}
+    trend_dates, trend_series = language_timeseries(dated_commits, repo_langs, today=today)
+
     os.makedirs(args.out_dir, exist_ok=True)
     activity = render_activity_card(stats, updated)
-    rhythm = render_rhythm_card(langs, hours, int(stats.get("totalCommitContributions") or 0))
+    rhythm = render_rhythm_card(langs, hours, int(stats.get("totalCommitContributions") or 0), trend_dates, trend_series)
 
     for name, svg in (("activity.svg", activity), ("commit-rhythm.svg", rhythm)):
         path = os.path.join(args.out_dir, name)
