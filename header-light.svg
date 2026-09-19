@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="320" viewBox="0 0 900 320">
+<defs>
+<linearGradient id="hbEdge" x1="0" y1="0" x2="1" y2="0.55"><stop offset="0" stop-color="#3fb950" stop-opacity="0.9"/><stop offset="0.45" stop-color="#58a6ff" stop-opacity="0.55"/><stop offset="0.8" stop-color="#d0d7de" stop-opacity="1"/></linearGradient>
+<radialGradient id="hbEmerald"><stop offset="0" stop-color="#2ea043" stop-opacity="0.55"/><stop offset="1" stop-color="#2ea043" stop-opacity="0"/></radialGradient><radialGradient id="hbBlue"><stop offset="0" stop-color="#1f6feb" stop-opacity="0.45"/><stop offset="1" stop-color="#1f6feb" stop-opacity="0"/></radialGradient><radialGradient id="hbClay"><stop offset="0" stop-color="#f78166" stop-opacity="0.34"/><stop offset="1" stop-color="#f78166" stop-opacity="0"/></radialGradient><radialGradient id="hbAmber"><stop offset="0" stop-color="#e3b341" stop-opacity="0.26"/><stop offset="1" stop-color="#e3b341" stop-opacity="0"/></radialGradient>
+<linearGradient id="hbFade" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+<stop offset="1" stop-color="#ffffff" stop-opacity="0.9"/>
+</linearGradient>
+<filter id="hbWobble" x="-25%" y="-25%" width="150%" height="150%">
+<feTurbulence type="fractalNoise" baseFrequency="0.011 0.019" numOctaves="2" seed="8" result="noise">
+<animate attributeName="baseFrequency" dur="24s" values="0.011 0.019;0.015 0.026;0.011 0.019" repeatCount="indefinite"/>
+</feTurbulence>
+<feDisplacementMap in="SourceGraphic" in2="noise" scale="52" xChannelSelector="R" yChannelSelector="G"/>
+<feGaussianBlur stdDeviation="11"/>
+</filter>
+<filter id="hbGrain" x="0" y="0" width="100%" height="100%">
+<feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" seed="3"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.08 0"/>
+</filter>
+<clipPath id="hbClip"><rect x="0.5" y="0.5" width="899" height="319" rx="12"/></clipPath>
+</defs>
+<g clip-path="url(#hbClip)">
+<rect width="900" height="320" fill="#f6f8fa"/>
+<g filter="url(#hbWobble)">
+<ellipse cx="215" cy="115" rx="265" ry="150" fill="url(#hbEmerald)" opacity="0.6">
+<animateTransform attributeName="transform" type="translate" values="0 0; 42 16; 0 0" dur="36s" repeatCount="indefinite"/>
+</ellipse>
+<ellipse cx="645" cy="70" rx="285" ry="140" fill="url(#hbBlue)" opacity="0.5">
+<animateTransform attributeName="transform" type="translate" values="0 0; -52 14; 0 0" dur="44s" repeatCount="indefinite"/>
+</ellipse>
+<ellipse cx="540" cy="265" rx="300" ry="130" fill="url(#hbClay)" opacity="0.4">
+<animateTransform attributeName="transform" type="translate" values="0 0; 30 -12; 0 0" dur="52s" repeatCount="indefinite"/>
+</ellipse>
+<ellipse cx="115" cy="285" rx="225" ry="110" fill="url(#hbAmber)" opacity="0.28">
+<animateTransform attributeName="transform" type="translate" values="0 0; -26 -10; 0 0" dur="40s" repeatCount="indefinite"/>
+</ellipse>
+</g>
+<g stroke="#1f2328" fill="none" stroke-width="1.5" opacity="0.09">
+<path d="M 758 78 L 856 168 L 758 258 L 660 168 Z"/>
+<path d="M 758 118 L 818 168 L 758 218 L 698 168 Z" opacity="0.6"/>
+</g>
+<circle cx="758" cy="168" r="4" fill="#1f2328" opacity="0.14"/>
+<line x1="0" y1="292" x2="900" y2="252" stroke="#1f2328" stroke-width="1" opacity="0.05"/>
+<rect x="0" y="150" width="900" height="170" fill="url(#hbFade)"/>
+<rect width="900" height="320" filter="url(#hbGrain)" opacity="0.5"/>
+</g>
+<text x="24" y="102" font-size="10.5" font-weight="600" letter-spacing="3" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">SAN FRANCISCO BAY AREA · BOSTON UNIVERSITY</text>
+<text x="24" y="152" font-size="44" font-weight="800" letter-spacing="0.3" fill="#24292f" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Harlan Jones</text>
+<text x="24" y="184" font-size="15" fill="#1f2328" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Building PrimeIQ.ai • Baseball Enthusiast • Software Developer</text>
+<g transform="translate(24.0,208.0)"><rect width="177.6" height="26" rx="13.0" fill="#1f2328" fill-opacity="0.06" stroke="#d0d7de" stroke-width="1"/><circle cx="11" cy="13.0" r="3" fill="#58a6ff"/><text x="21" y="17.0" font-size="11.5" font-weight="600" fill="#1f2328" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Software Development</text></g>
+<g transform="translate(211.6,208.0)"><rect width="227.5" height="26" rx="13.0" fill="#1f2328" fill-opacity="0.06" stroke="#d0d7de" stroke-width="1"/><circle cx="11" cy="13.0" r="3" fill="#e3b341"/><text x="21" y="17.0" font-size="11.5" font-weight="600" fill="#1f2328" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Baseball &amp; Sports Analytics</text></g>
+<g transform="translate(449.1,208.0)"><rect width="184.7" height="26" rx="13.0" fill="#1f2328" fill-opacity="0.06" stroke="#d0d7de" stroke-width="1"/><circle cx="11" cy="13.0" r="3" fill="#a371f7"/><text x="21" y="17.0" font-size="11.5" font-weight="600" fill="#1f2328" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">ML &amp; Data Engineering</text></g>
+<rect x="0.5" y="0.5" width="899" height="319" rx="12" fill="none" stroke="url(#hbEdge)" stroke-width="1"/>
+</svg>
