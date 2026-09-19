@@ -1,22 +1,64 @@
-<img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/header.svg" alt="Harlan Jones" width="100%" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/header.svg" />
+  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/header-light.svg" alt="Harlan Jones" width="100%" />
+</picture>
 
-<img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/overview.svg" alt="Professional Overview" width="100%" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/overview.svg" />
+  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/overview-light.svg" alt="Professional Overview" width="100%" />
+</picture>
 
 <!-- MLB_BIRTHDAY_START -->
-<img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/dugout-dispatch.svg" alt="Daily Dugout Dispatch" width="100%" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/dugout-dispatch.svg" />
+  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/dugout-dispatch-light.svg" alt="Daily Dugout Dispatch" width="100%" />
+</picture>
 <!-- MLB_BIRTHDAY_END -->
 
 <!-- WEEKLY_HIGHLIGHTS_START -->
-<img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/weekly-highlights.svg" alt="What I Did This Week" width="100%" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/weekly-highlights.svg" />
+  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/weekly-highlights-light.svg" alt="What I Did This Week" width="100%" />
+</picture>
 <!-- WEEKLY_HIGHLIGHTS_END -->
 
-<img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/skills.svg" alt="Technical Skills" width="100%" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/repo-spotlight.svg" />
+  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/repo-spotlight-light.svg" alt="Repo Spotlight" width="100%" />
+</picture>
 
-<img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/projects.svg" alt="Featured Projects" width="100%" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/skills.svg" />
+  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/skills-light.svg" alt="Technical Skills" width="100%" />
+</picture>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/projects.svg" />
+  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/projects-light.svg" alt="Featured Projects" width="100%" />
+</picture>
 <!-- PROJECTS_END -->
 
-<img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/activity.svg" alt="GitHub Activity" width="100%" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/repo-leaderboard.svg" />
+  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/repo-leaderboard-light.svg" alt="Repo Leaderboard" width="100%" />
+</picture>
 
-<img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/commit-rhythm.svg" alt="Languages & Commit Rhythm" width="100%" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/dev-grid.svg" />
+  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/dev-grid-light.svg" alt="Dev Immaculate Grid" width="100%" />
+</picture>
 
-<img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/footer.svg" alt="Footer" width="100%" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/activity.svg" />
+  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/activity-light.svg" alt="GitHub Activity" width="100%" />
+</picture>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/commit-rhythm.svg" />
+  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/commit-rhythm-light.svg" alt="Languages & Commit Rhythm" width="100%" />
+</picture>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/footer.svg" />
+  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/footer-light.svg" alt="Footer" width="100%" />
+</picture>

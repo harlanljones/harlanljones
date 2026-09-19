@@ -43,15 +43,18 @@ htmlcov/
 .ruff_cache/
 
 # Generated cards (committed to profile-cards branch by CI, not main)
-/skills.svg
-/projects.svg
-/weekly-highlights.svg
-/activity.svg
-/commit-rhythm.svg
-/header.svg
-/overview.svg
-/dugout-dispatch.svg
-/footer.svg
+/header*.svg
+/overview*.svg
+/dugout-dispatch*.svg
+/weekly-highlights*.svg
+/skills*.svg
+/projects*.svg
+/activity*.svg
+/commit-rhythm*.svg
+/footer*.svg
+/repo-leaderboard*.svg
+/repo-spotlight*.svg
+/dev-grid*.svg
 
 # Operating System Files
 .DS_Store
