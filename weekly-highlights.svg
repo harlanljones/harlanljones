@@ -1,14 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="276" viewBox="0 0 900 276">
 <rect x="0.5" y="0.5" width="899" height="275" rx="10" fill="#0d1117" stroke="#30363d"/>
 <text x="24" y="30" font-size="18" font-weight="700" fill="#e6edf3" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">What I Did This Week</text>
-<text x="24" y="48" font-size="12.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Sep 10 – Sep 17, 2026</text>
-<g transform="translate(0,56)"><text x="24" y="24.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">statcast-lakehouse</text>
-<text x="24" y="44.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Engineered expose manifest generation in export CLI and implemented ghost-trajectory break visualization.</text>
+<text x="24" y="48" font-size="12.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Sep 11 – Sep 18, 2026</text>
+<g transform="translate(0,56)"><text x="24" y="24.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">dotfiles</text>
+<text x="24" y="44.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Automated developer workspace tooling, added Linear agent tracking, and hardened systemd periodic usage scrapers.</text>
 <line x1="24" y1="59.0" x2="876" y2="59.0" stroke="#8b949e" stroke-opacity="0.25"/>
-<text x="24" y="81.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">dotfiles</text>
-<text x="24" y="101.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Automated developer workspace tooling, added Linear agent tracking, and hardened systemd periodic usage scrapers.</text>
-<line x1="24" y1="116.0" x2="876" y2="116.0" stroke="#8b949e" stroke-opacity="0.25"/>
-<text x="24" y="138.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">typeframe</text>
-<text x="24" y="158.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Engineered help/version commands and studio playback preview and implemented generate JSON Schema artifact from zod</text>
-<text x="24" y="177.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">source of truth.</text></g>
+<text x="24" y="81.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">statcast-lakehouse</text>
+<text x="24" y="101.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Engineered complete Sprints 6-13 (telemetry, tunneling, dispersion, heatmaps, and production cutover) and implemented</text>
+<text x="24" y="120.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">expose manifest generation in export CLI.</text>
+<line x1="24" y1="135.0" x2="876" y2="135.0" stroke="#8b949e" stroke-opacity="0.25"/>
+<text x="24" y="157.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">tinylsm</text>
+<text x="24" y="177.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Engineered leveldb benchmark and implemented honest leveldb cold-read protocol.</text></g>
 </svg>
