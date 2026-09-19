@@ -48,6 +48,10 @@ htmlcov/
 /weekly-highlights.svg
 /activity.svg
 /commit-rhythm.svg
+/header.svg
+/overview.svg
+/dugout-dispatch.svg
+/footer.svg
 
 # Operating System Files
 .DS_Store
