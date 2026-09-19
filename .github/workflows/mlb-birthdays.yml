@@ -44,12 +44,24 @@ jobs:
         with:
           python-version: "3.11"
 
+      # The README embeds a static <img> pointing at the profile-cards
+      # branch; only the SVG itself changes day to day.
+      - name: Create output branch if missing
+        run: |
+          if ! git ls-remote --exit-code --heads origin profile-cards > /dev/null; then
+            git checkout --orphan profile-cards
+            git rm -rf --cached . > /dev/null
+            git commit --allow-empty -m "Initialize profile-cards output branch"
+            git push origin profile-cards
+            git checkout main
+          fi
+
       - name: Sync with remote and generate dispatch
         run: |
           git fetch origin main
           git checkout main
           git reset --hard origin/main
-          ARGS=""
+          ARGS="--svg-out ${RUNNER_TEMP}/dugout-dispatch.svg"
           if [ -n "${{ github.event.inputs.month }}" ]; then
             ARGS="$ARGS --month ${{ github.event.inputs.month }}"
           fi
@@ -58,18 +70,37 @@ jobs:
           fi
           python3 scripts/mlb_birthdays.py $ARGS
 
-      - name: Commit and push changes
+      - name: Commit README image tag if changed
         run: |
           git add README.md
           if git diff --staged --quiet; then
-            echo "No changes to commit"
+            echo "No README changes to commit"
             exit 0
           fi
-          git commit -m "chore(almanac): update daily MLB birthday dispatch [skip ci]"
+          git commit -m "chore(almanac): point dugout dispatch at rendered SVG card [skip ci]"
+          git push origin HEAD:main || echo "README push deferred to next run"
+
+      - name: Checkout output branch
+        uses: actions/checkout@v4
+        with:
+          ref: profile-cards
+
+      - name: Publish rendered dispatch to profile-cards branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          cp "${RUNNER_TEMP}/dugout-dispatch.svg" .
+          git add dugout-dispatch.svg
+          if git diff --staged --quiet; then
+            echo "No card changes to publish"
+            exit 0
+          fi
+          git commit -m "chore(almanac): update rendered dugout dispatch card"
           for attempt in 1 2 3 4 5; do
-            git fetch origin main
-            if git rebase origin/main; then
-              if git push origin HEAD:main; then
+            git fetch origin profile-cards
+            if git rebase origin/profile-cards; then
+              if git push origin HEAD:profile-cards; then
                 echo "Push succeeded on attempt ${attempt}"
                 exit 0
               fi
