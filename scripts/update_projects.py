@@ -31,7 +31,6 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from svg_cards import CARD_WIDTH, FONT_FAMILY, MUTED, PAD_X, TEXT, card_shell, esc, flow_pills, plain_text, truncate, wrap_by_width  # noqa: E402
 
 PROJECTS_ANCHOR = "<!-- PROJECTS_END -->"
-SECTION_HEADING = "### Featured Projects"
 DEFAULT_STORE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "featured_projects.json")
 
 FALLBACK_PALETTE = ["#6e40c9", "#bf3989", "#0969da", "#1a7f37", "#9a6700", "#cf222e"]
@@ -586,15 +585,8 @@ def ensure_readme_image(readme_path: str, svg_url: str) -> bool:
     if PROJECTS_ANCHOR in content:
         updated = content.replace(PROJECTS_ANCHOR, f"{img_tag}\n{PROJECTS_ANCHOR}", 1)
     else:
-        m = re.search(rf"{re.escape(SECTION_HEADING)}", content)
-        if not m:
-            print("[ERROR] Featured Projects heading and anchor both missing; aborting.", file=sys.stderr)
-            return False
-        insert_at = content.find("\n---\n", m.start())
-        if insert_at == -1:
-            print("[ERROR] Could not find end of Featured Projects section; aborting.", file=sys.stderr)
-            return False
-        updated = content[:insert_at] + f"\n{img_tag}\n" + content[insert_at:]
+        print("[ERROR] Projects anchor missing; aborting.", file=sys.stderr)
+        return False
 
     with open(readme_path, "w", encoding="utf-8") as f:
         f.write(updated)

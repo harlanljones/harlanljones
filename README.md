@@ -19,13 +19,7 @@
 
 ---
 
-### Professional Overview
-
-* **Currently:** Working with PrimeIQ.ai
-* **Interests:** Baseball & sports analytics
-* **Education:** B.S. Computer Engineering, Boston University
-* **Location:** San Francisco Bay Area
-* **Connect:** [linkedin.com/in/harlanljones](https://www.linkedin.com/in/harlanljones/)
+<img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/overview.svg" alt="Professional Overview" width="100%" />
 
 ---
 
@@ -41,20 +35,14 @@
 
 ---
 
-### Technical Skills
-
 <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/skills.svg" alt="Technical Skills" width="100%" />
 
 ---
-
-### Featured Projects
 
 <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/projects.svg" alt="Featured Projects" width="100%" />
 <!-- PROJECTS_END -->
 
 ---
-
-### GitHub Activity
 
 <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/activity.svg" alt="GitHub Activity" width="100%" />
 

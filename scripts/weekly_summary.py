@@ -519,10 +519,11 @@ def ensure_readme_image(readme_path: str, svg_url: str) -> bool:
             "<!-- MLB_BIRTHDAY_END -->",
             f"<!-- MLB_BIRTHDAY_END -->\n\n---\n\n{section}"
         )
-    elif "### Featured Projects" in content:
+    elif "<!-- PROJECTS_END -->" in content:
         updated_content = content.replace(
-            "### Featured Projects",
-            f"{section}\n\n---\n\n### Featured Projects"
+            "<!-- PROJECTS_END -->",
+            f"{section}\n\n---\n\n<!-- PROJECTS_END -->",
+            1
         )
     else:
         updated_content = content + f"\n\n---\n\n{section}\n"

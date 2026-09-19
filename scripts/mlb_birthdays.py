@@ -622,9 +622,9 @@ def ensure_dugout_image(readme_path: str, svg_url: str = DUGOUT_SVG_URL) -> bool
             return False
         updated = re.sub(pattern, section, existing, flags=re.DOTALL)
     else:
-        anchor = "### Professional Overview"
+        anchor = "</div>"
         if anchor in existing:
-            updated = existing.replace(anchor, f"{section}\n\n---\n\n{anchor}")
+            updated = existing.replace(anchor, f"{anchor}\n\n---\n\n{section}", 1)
         else:
             updated = f"{existing}\n\n---\n\n{section}\n"
     if updated != existing:
@@ -634,40 +634,6 @@ def ensure_dugout_image(readme_path: str, svg_url: str = DUGOUT_SVG_URL) -> bool
         return True
     print("[INFO] No changes needed in README.md")
     return False
-
-
-def update_readme(target_file: str, new_content: str) -> bool:
-    start_tag = "<!-- MLB_BIRTHDAY_START -->"
-    end_tag = "<!-- MLB_BIRTHDAY_END -->"
-
-    if not os.path.exists(target_file):
-        print(f"Error: Target file {target_file} not found.", file=sys.stderr)
-        return False
-
-    with open(target_file, "r", encoding="utf-8") as f:
-        existing = f.read()
-
-    replacement_block = f"{start_tag}\n{new_content.strip()}\n{end_tag}"
-
-    if start_tag in existing and end_tag in existing:
-        pattern = re.compile(rf"{re.escape(start_tag)}.*?{re.escape(end_tag)}", re.DOTALL)
-        updated = pattern.sub(replacement_block, existing)
-    else:
-        # If tags are not present, append after professional overview
-        anchor = "### Professional Overview"
-        if anchor in existing:
-            updated = existing.replace(anchor, f"{replacement_block}\n\n---\n\n{anchor}")
-        else:
-            updated = f"{existing}\n\n---\n\n{replacement_block}\n"
-
-    if updated != existing:
-        with open(target_file, "w", encoding="utf-8") as f:
-            f.write(updated)
-        print(f"Successfully updated {target_file}")
-        return True
-    else:
-        print(f"No changes required for {target_file}")
-        return False
 
 
 def main():
