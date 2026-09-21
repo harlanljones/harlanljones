@@ -1,0 +1,614 @@
+{
+  "source": "mirrors",
+  "updated": "2026-09-21T05:26:30Z",
+  "weeks": {
+    "2025-09-22": {
+      "commits": 14,
+      "diffs": 30,
+      "repos": 2,
+      "skills": {
+        "Data Viz": 4.24,
+        "Docs & Writing": 22.35,
+        "Next.js": 3.46,
+        "React": 28.14,
+        "Tailwind CSS": 14.83
+      }
+    },
+    "2025-09-29": {
+      "commits": 4,
+      "diffs": 14,
+      "repos": 2,
+      "skills": {
+        "Docs & Writing": 18.16
+      }
+    },
+    "2025-10-06": {
+      "commits": 4,
+      "diffs": 14,
+      "repos": 2,
+      "skills": {
+        "Docs & Writing": 12.21,
+        "React": 7.35,
+        "Tailwind CSS": 3.46
+      }
+    },
+    "2025-10-13": {
+      "commits": 15,
+      "diffs": 40,
+      "repos": 3,
+      "skills": {
+        "Data Viz": 1.41,
+        "Docs & Writing": 16.86,
+        "Error Handling": 13.8,
+        "React": 6.78,
+        "SQL & Data Modeling": 14.66,
+        "pandas": 14.92
+      }
+    },
+    "2025-10-20": {
+      "commits": 4,
+      "diffs": 17,
+      "repos": 2,
+      "skills": {
+        "Docs & Writing": 11.34,
+        "pandas": 1.73
+      }
+    },
+    "2025-10-27": {
+      "commits": 4,
+      "diffs": 19,
+      "repos": 1,
+      "skills": {
+        "Docs & Writing": 15.18
+      }
+    },
+    "2025-11-03": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2025-11-10": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2025-11-17": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2025-11-24": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2025-12-01": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2025-12-08": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2025-12-15": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2025-12-22": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2025-12-29": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2026-01-05": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2026-01-12": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2026-01-19": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2026-01-26": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2026-02-02": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2026-02-09": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2026-02-16": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2026-02-23": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2026-03-02": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2026-03-09": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2026-03-16": {
+      "commits": 4,
+      "diffs": 33,
+      "repos": 1,
+      "skills": {
+        "CLI Design": 15.27,
+        "Data Viz": 4.0,
+        "Docs & Writing": 61.94,
+        "Error Handling": 6.0,
+        "NumPy": 14.42,
+        "PyTorch": 19.6,
+        "Regex & Parsing": 2.0,
+        "Testing": 32.0,
+        "pandas": 14.0,
+        "scikit-learn": 6.0
+      }
+    },
+    "2026-03-23": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2026-03-30": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2026-04-06": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2026-04-13": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2026-04-20": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2026-04-27": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2026-05-04": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2026-05-11": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2026-05-18": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2026-05-25": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2026-06-01": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2026-06-08": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2026-06-15": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2026-06-22": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2026-06-29": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2026-07-06": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2026-07-13": {
+      "commits": 50,
+      "diffs": 185,
+      "repos": 2,
+      "skills": {
+        "API Integration": 4.0,
+        "Agent Tooling": 2.45,
+        "Build Config": 7.75,
+        "Concurrency": 85.91,
+        "Data Viz": 6.93,
+        "Docs & Writing": 199.62,
+        "Error Handling": 21.4,
+        "Lint & Format": 4.24,
+        "Next.js": 29.66,
+        "NumPy": 4.9,
+        "React": 241.2,
+        "Regex & Parsing": 2.83,
+        "Tailwind CSS": 142.88,
+        "Type Design": 58.38
+      }
+    },
+    "2026-07-20": {
+      "commits": 2,
+      "diffs": 7,
+      "repos": 1,
+      "skills": {
+        "Concurrency": 6.93,
+        "Docs & Writing": 19.25,
+        "Error Handling": 2.0,
+        "React": 16.63,
+        "Tailwind CSS": 9.38,
+        "Type Design": 2.83
+      }
+    },
+    "2026-07-27": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
+    },
+    "2026-08-03": {
+      "commits": 29,
+      "diffs": 221,
+      "repos": 1,
+      "skills": {
+        "Agent Tooling": 15.72,
+        "Astro": 167.13,
+        "Build Config": 15.99,
+        "Concurrency": 29.02,
+        "Docs & Writing": 118.32,
+        "Regex & Parsing": 2.0,
+        "Testing": 2.65,
+        "Type Design": 21.67,
+        "Zod": 20.14
+      }
+    },
+    "2026-08-10": {
+      "commits": 26,
+      "diffs": 166,
+      "repos": 3,
+      "skills": {
+        "API Integration": 2.0,
+        "Agent Tooling": 1.58,
+        "Astro": 123.59,
+        "Build Config": 15.12,
+        "Concurrency": 51.52,
+        "Data Viz": 4.9,
+        "Docs & Writing": 166.77,
+        "Error Handling": 33.35,
+        "GitHub Actions": 10.58,
+        "Lint & Format": 1.0,
+        "Next.js": 2.0,
+        "Performance": 2.0,
+        "Polars": 5.66,
+        "React": 49.68,
+        "Tailwind CSS": 29.02,
+        "Testing": 119.46,
+        "Type Design": 36.79,
+        "Zod": 14.06
+      }
+    },
+    "2026-08-17": {
+      "commits": 245,
+      "diffs": 4931,
+      "repos": 21,
+      "skills": {
+        "API Integration": 185.83,
+        "Agent Tooling": 270.48,
+        "Astro": 107.21,
+        "Build Config": 296.94,
+        "CLI Design": 133.44,
+        "Cloudflare Workers": 105.59,
+        "Concurrency": 579.62,
+        "Data Viz": 159.04,
+        "Docker": 28.43,
+        "Docs & Writing": 1731.83,
+        "Dotfiles": 334.96,
+        "DuckDB": 12.14,
+        "Error Handling": 653.21,
+        "FastAPI": 21.68,
+        "GitHub Actions": 204.49,
+        "Gradient Boosting": 13.41,
+        "Hono": 14.75,
+        "Kubernetes": 23.05,
+        "LLM APIs": 40.76,
+        "Lint & Format": 24.14,
+        "Make & Just": 12.95,
+        "Next.js": 15.76,
+        "NumPy": 51.8,
+        "Performance": 132.7,
+        "Polars": 61.32,
+        "PyTorch": 37.32,
+        "Pydantic": 35.28,
+        "React": 627.07,
+        "Regex & Parsing": 82.56,
+        "SQL & Data Modeling": 152.94,
+        "SQLAlchemy": 11.77,
+        "Serde": 37.91,
+        "Tailwind CSS": 193.47,
+        "Testing": 1133.96,
+        "Tokio": 11.3,
+        "Type Design": 337.65,
+        "Zod": 83.97,
+        "pandas": 55.31,
+        "scikit-learn": 2.0,
+        "systemd": 32.5
+      }
+    },
+    "2026-08-24": {
+      "commits": 821,
+      "diffs": 8848,
+      "repos": 40,
+      "skills": {
+        "API Integration": 467.56,
+        "Agent Tooling": 264.6,
+        "Astro": 99.65,
+        "Axum": 84.4,
+        "Build Config": 545.12,
+        "CLI Design": 262.65,
+        "Clap": 6.93,
+        "Cloudflare Workers": 149.21,
+        "Concurrency": 1464.81,
+        "Data Viz": 115.23,
+        "Docker": 67.6,
+        "Docs & Writing": 4681.29,
+        "Dotfiles": 291.82,
+        "DuckDB": 40.0,
+        "Error Handling": 1604.6,
+        "FastAPI": 20.66,
+        "GitHub Actions": 350.87,
+        "Hono": 38.44,
+        "Kubernetes": 3.45,
+        "LLM APIs": 101.83,
+        "Lint & Format": 78.4,
+        "Make & Just": 22.33,
+        "Next.js": 54.06,
+        "NumPy": 150.51,
+        "Performance": 478.14,
+        "Polars": 25.32,
+        "PyTorch": 7.48,
+        "Pydantic": 59.04,
+        "React": 1471.1,
+        "Regex & Parsing": 112.33,
+        "SQL & Data Modeling": 422.15,
+        "SQLAlchemy": 3.46,
+        "Serde": 75.7,
+        "Supabase": 5.66,
+        "Tailwind CSS": 592.69,
+        "Testing": 4501.64,
+        "Tokio": 103.64,
+        "Type Design": 1201.61,
+        "Zod": 74.73,
+        "pandas": 192.83,
+        "scikit-learn": 3.46,
+        "systemd": 11.98
+      }
+    },
+    "2026-08-31": {
+      "commits": 245,
+      "diffs": 7334,
+      "repos": 28,
+      "skills": {
+        "API Integration": 96.81,
+        "Agent Tooling": 125.77,
+        "Astro": 157.23,
+        "Axum": 7.48,
+        "Build Config": 132.96,
+        "CLI Design": 66.4,
+        "Clap": 13.62,
+        "Cloudflare Workers": 20.34,
+        "Concurrency": 422.87,
+        "Data Viz": 93.2,
+        "Docker": 23.49,
+        "Docs & Writing": 1580.67,
+        "Dotfiles": 149.9,
+        "DuckDB": 5.66,
+        "Error Handling": 469.76,
+        "FastAPI": 2.0,
+        "Flask": 4.0,
+        "GitHub Actions": 91.46,
+        "Kubernetes": 7.75,
+        "LLM APIs": 73.72,
+        "Lint & Format": 12.58,
+        "Make & Just": 15.68,
+        "Next.js": 2.83,
+        "NumPy": 29.07,
+        "Performance": 198.35,
+        "Polars": 12.96,
+        "PyTorch": 7.48,
+        "Pydantic": 13.76,
+        "React": 511.04,
+        "Regex & Parsing": 34.92,
+        "Remotion": 8.94,
+        "SQL & Data Modeling": 72.1,
+        "SQLAlchemy": 2.83,
+        "Serde": 23.21,
+        "Supabase": 24.42,
+        "Tailwind CSS": 195.86,
+        "Testing": 1377.65,
+        "Tokio": 5.66,
+        "Type Design": 344.44,
+        "Zod": 25.3,
+        "pandas": 17.48,
+        "systemd": 2.45
+      }
+    },
+    "2026-09-07": {
+      "commits": 166,
+      "diffs": 1578,
+      "repos": 22,
+      "skills": {
+        "API Integration": 45.57,
+        "Agent Tooling": 60.94,
+        "Astro": 25.92,
+        "Build Config": 85.41,
+        "CLI Design": 48.36,
+        "Clap": 4.83,
+        "Cloudflare Workers": 4.3,
+        "Concurrency": 238.08,
+        "Data Viz": 43.55,
+        "Docker": 11.36,
+        "Docs & Writing": 1171.59,
+        "Dotfiles": 240.2,
+        "DuckDB": 29.0,
+        "Error Handling": 259.84,
+        "FastAPI": 8.36,
+        "GitHub Actions": 23.6,
+        "Hono": 3.46,
+        "LLM APIs": 47.79,
+        "Lint & Format": 16.18,
+        "Make & Just": 31.03,
+        "Next.js": 33.34,
+        "NumPy": 53.1,
+        "Performance": 80.64,
+        "Polars": 40.72,
+        "Pydantic": 11.74,
+        "React": 208.41,
+        "Regex & Parsing": 33.4,
+        "SQL & Data Modeling": 77.87,
+        "SQLAlchemy": 4.0,
+        "Serde": 13.3,
+        "Tailwind CSS": 19.5,
+        "Testing": 775.56,
+        "Type Design": 188.93,
+        "Zod": 56.32,
+        "pandas": 45.87,
+        "scikit-learn": 4.0,
+        "systemd": 6.36
+      }
+    },
+    "2026-09-14": {
+      "commits": 315,
+      "diffs": 8245,
+      "repos": 24,
+      "skills": {
+        "API Integration": 161.27,
+        "Agent Tooling": 276.37,
+        "Astro": 105.52,
+        "Axum": 2.0,
+        "Build Config": 139.7,
+        "CLI Design": 205.42,
+        "Clap": 15.26,
+        "Cloudflare Workers": 6.36,
+        "Concurrency": 453.64,
+        "Data Viz": 172.71,
+        "Docker": 12.72,
+        "Docs & Writing": 1456.02,
+        "Dotfiles": 484.25,
+        "DuckDB": 4.45,
+        "Error Handling": 557.61,
+        "FastAPI": 20.67,
+        "Flask": 4.83,
+        "GitHub Actions": 136.33,
+        "LLM APIs": 122.79,
+        "Lint & Format": 29.24,
+        "Make & Just": 25.38,
+        "Next.js": 15.14,
+        "NumPy": 42.16,
+        "Performance": 364.22,
+        "Polars": 13.49,
+        "PyTorch": 3.46,
+        "Pydantic": 21.06,
+        "React": 239.39,
+        "Regex & Parsing": 168.58,
+        "Remotion": 8.32,
+        "SQL & Data Modeling": 117.67,
+        "SQLAlchemy": 2.0,
+        "Serde": 32.47,
+        "Streamlit": 6.47,
+        "Supabase": 16.12,
+        "Tailwind CSS": 37.85,
+        "Terraform": 30.52,
+        "Testing": 1163.3,
+        "Tokio": 23.3,
+        "Type Design": 246.71,
+        "Zod": 38.71,
+        "pandas": 82.98,
+        "scikit-learn": 2.0,
+        "systemd": 4.69
+      }
+    }
+  }
+}
