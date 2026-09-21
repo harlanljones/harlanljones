@@ -8,15 +8,15 @@
 </defs>
 <rect x="0.5" y="0.5" width="899" height="294" rx="12" fill="#0d1117" stroke="url(#shellEdge)"/>
 <text x="24" y="30" font-size="18" font-weight="700" fill="#e6edf3" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">What I Did This Week</text>
-<text x="24" y="48" font-size="12.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Sep 12 – Sep 19, 2026</text>
-<g transform="translate(0,56)"><text x="24" y="24.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">dotfiles</text>
-<text x="24" y="44.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Automated developer workspace tooling, added Linear agent tracking, and hardened systemd periodic usage scrapers.</text>
-<line x1="24" y1="59.0" x2="876" y2="59.0" stroke="#8b949e" stroke-opacity="0.25"/>
-<text x="24" y="81.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">harlanljones</text>
-<text x="24" y="101.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Engineered picture embeds with light fallbacks and new card slots and implemented publish light variants, daily footer</text>
-<text x="24" y="120.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">stamp, weekly repo cards.</text>
+<text x="24" y="48" font-size="12.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Sep 13 – Sep 20, 2026</text>
+<g transform="translate(0,56)"><text x="24" y="24.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">harlanljones</text>
+<text x="24" y="44.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Engineered wRP skills bubbles, gWAR, Lang+/Pace+ splits, pipeline and glossary cards and implemented nightly GCP Cloud</text>
+<text x="24" y="63.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Run job mining full diffs from repo mirrors.</text>
+<line x1="24" y1="78.0" x2="876" y2="78.0" stroke="#8b949e" stroke-opacity="0.25"/>
+<text x="24" y="100.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">dotfiles</text>
+<text x="24" y="120.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Automated developer workspace tooling, added Linear agent tracking, and hardened systemd periodic usage scrapers.</text>
 <line x1="24" y1="135.0" x2="876" y2="135.0" stroke="#8b949e" stroke-opacity="0.25"/>
-<text x="24" y="157.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">statcast-lakehouse</text>
-<text x="24" y="177.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Engineered complete Sprints 6-13 (telemetry, tunneling, dispersion, heatmaps, and production cutover) and implemented</text>
-<text x="24" y="196.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">expose manifest generation in export CLI.</text></g>
+<text x="24" y="157.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">draft</text>
+<text x="24" y="177.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Engineered first-party EADA archive ingest with provenance manifest and registry join and implemented resolve EADA</text>
+<text x="24" y="196.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">context through registry teamid before name fallback.</text></g>
 </svg>
