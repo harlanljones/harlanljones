@@ -181,3 +181,30 @@ def commit_skill_lines(files: List[dict]) -> Dict[str, float]:
         ).items():
             totals[name] = totals.get(name, 0.0) + lines
     return totals
+
+
+# Programming languages by file extension, for Lang+ and the language lanes.
+# Prose, config, and data formats are left out, matching GitHub's language bar.
+_EXT_LANGUAGE = {
+    "py": "Python", "pyi": "Python", "ts": "TypeScript", "tsx": "TypeScript", "mts": "TypeScript",
+    "cts": "TypeScript", "js": "JavaScript", "jsx": "JavaScript", "mjs": "JavaScript", "cjs": "JavaScript",
+    "rs": "Rust", "go": "Go", "sh": "Shell", "bash": "Shell", "zsh": "Shell", "fish": "Shell",
+    "html": "HTML", "htm": "HTML", "css": "CSS", "scss": "SCSS", "astro": "Astro", "svelte": "Svelte",
+    "vue": "Vue", "java": "Java", "kt": "Kotlin", "kts": "Kotlin", "swift": "Swift", "rb": "Ruby",
+    "php": "PHP", "c": "C", "h": "C", "cc": "C++", "cpp": "C++", "cxx": "C++", "hpp": "C++", "hh": "C++",
+    "cs": "C#", "lua": "Lua", "ex": "Elixir", "exs": "Elixir", "dart": "Dart", "sql": "SQL", "nix": "Nix",
+    "tf": "HCL", "zig": "Zig", "r": "R", "jl": "Julia", "hs": "Haskell", "ml": "OCaml", "scala": "Scala",
+    "ps1": "PowerShell", "vim": "Vim Script", "mdx": "MDX",
+}
+
+
+def file_language(filename: str) -> Optional[str]:
+    """Programming language of a changed file, or None for prose/config/noise."""
+    if NOISE_PATH.search(filename):
+        return None
+    base = filename.rsplit("/", 1)[-1]
+    if base == "Dockerfile" or base.endswith(".dockerfile"):
+        return "Dockerfile"
+    if "." not in base:
+        return None
+    return _EXT_LANGUAGE.get(base.rsplit(".", 1)[-1].lower())

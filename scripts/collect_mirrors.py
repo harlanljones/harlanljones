@@ -13,8 +13,10 @@ Runs as a nightly GCP Cloud Run Job (collector/setup.sh):
      commit's files feed skill_signals, reps aggregate per Pacific week. The
      whole window is recomputed every run, so detector changes apply
      retroactively and there is no incremental state to drift.
-  4. Render skills.svg, pipeline.svg + glossary.svg, push the store to main and the SVGs to
-     profile-cards.
+     The same pass tallies languages (by file extension) and commit hours
+     for the Languages & Commit Rhythm card.
+  4. Render skills, commit-rhythm, pipeline, and glossary SVGs; push the
+     store to main and the SVGs to profile-cards.
 
 Privacy: private repos contribute to aggregate counts only. The published
 store carries skill names and counts, never repository names.
@@ -44,10 +46,11 @@ from typing import Dict, Iterator, List, Optional, Tuple
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import render_glossary_svg  # noqa: E402
+from render_activity_svg import lang_plus, render_rhythm_card  # noqa: E402
 import render_pipeline_svg  # noqa: E402
 from render_skills_svg import KEEP_WEEKS, PACIFIC, render, skill_board, week_record, week_start  # noqa: E402
 from sabermetrics import wrp_reps  # noqa: E402
-from skill_signals import commit_skill_lines, is_noise_commit  # noqa: E402
+from skill_signals import commit_skill_lines, file_language, is_noise_commit  # noqa: E402
 from svg_cards import write_theme_pair  # noqa: E402
 
 PROFILE_REPO = "harlanljones/harlanljones"
@@ -57,6 +60,11 @@ MAX_REPO_MB = 1500
 MAX_PATCH_LINES = 4000
 NUMSTAT = re.compile(r"^(\d+|-)\t(\d+|-)\t(.+)$")
 RECORD_SEP, FIELD_SEP = "\x1e", "\x1f"
+RHYTHM_DAYS = 365
+LANE_DAYS = 30
+# Scheduled bot commits land at cron times, not when I work: keep them out of
+# the hour histogram (they still count for skills and languages).
+BOT_AUTHOR = re.compile(r"\[bot\]|bot@", re.I)
 
 
 def log(msg: str) -> None:
@@ -147,20 +155,20 @@ def _diff_path(header: str) -> str:
 
 
 def iter_commits(git_dir: str, since: datetime, author_pattern: str, env: Dict[str, str]
-                 ) -> Iterator[Tuple[str, datetime, str, List[dict]]]:
-    """(sha, author_date, subject, files[]) for my non-merge commits on any
-    branch. files[] entries match the REST shape skill_signals expects."""
+                 ) -> Iterator[Tuple[str, datetime, str, str, List[dict]]]:
+    """(sha, author_date, author, subject, files[]) for my non-merge commits on
+    any branch. files[] entries match the REST shape skill_signals expects."""
     cmd = [
         "git", "--git-dir", git_dir, "log", "--all", "--no-merges", "--no-renames",
         "--extended-regexp", "--regexp-ignore-case", f"--author={author_pattern}",
-        f"--since={since.isoformat()}", f"--format={RECORD_SEP}%H{FIELD_SEP}%aI{FIELD_SEP}%s",
+        f"--since={since.isoformat()}", f"--format={RECORD_SEP}%H{FIELD_SEP}%aI{FIELD_SEP}%an <%ae>{FIELD_SEP}%s",
         "--numstat", "-p", "-U0", "--no-color", "--no-ext-diff",
     ]
     proc = subprocess.Popen(cmd, env=env, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
                             text=True, errors="replace")
     assert proc.stdout is not None
 
-    header: Optional[Tuple[str, datetime, str]] = None
+    header: Optional[Tuple[str, datetime, str, str]] = None
     stats: Dict[str, Tuple[int, int]] = {}
     patches: Dict[str, List[str]] = {}
     current: Optional[str] = None
@@ -170,15 +178,15 @@ def iter_commits(git_dir: str, since: datetime, author_pattern: str, env: Dict[s
             {"filename": name, "additions": a, "deletions": d, "patch": "\n".join(patches.get(name, []))}
             for name, (a, d) in stats.items()
         ]
-        return (header[0], header[1], header[2], files)
+        return (*header, files)
 
     for raw in proc.stdout:
         line = raw.rstrip("\n")
         if line.startswith(RECORD_SEP):
             if header:
                 yield flush()
-            sha, date_s, subject = (line[1:].split(FIELD_SEP) + ["", ""])[:3]
-            header = (sha, datetime.fromisoformat(date_s), subject)
+            sha, date_s, author, subject = (line[1:].split(FIELD_SEP) + ["", "", ""])[:4]
+            header = (sha, datetime.fromisoformat(date_s), author, subject)
             stats, patches, current = {}, {}, None
             continue
         if header is None:
@@ -201,26 +209,64 @@ def iter_commits(git_dir: str, since: datetime, author_pattern: str, env: Dict[s
     proc.wait()
 
 
-def compute_weeks(mirrors: List[str], author_pattern: str, env: Dict[str, str]) -> Dict[str, Dict]:
-    current = week_start(datetime.now(PACIFIC).date())
-    first = current - timedelta(weeks=KEEP_WEEKS - 1)
+def mine(mirrors: List[str], author_pattern: str, env: Dict[str, str]) -> Tuple[Dict[str, Dict], Dict]:
+    """One pass over every mirror: weekly skill records for the store, plus
+    the rhythm tallies (language commits, 30-day language lanes, hours)."""
+    today = datetime.now(PACIFIC).date()
+    current = week_start(today)
+    first = min(current - timedelta(weeks=KEEP_WEEKS - 1), today - timedelta(days=RHYTHM_DAYS - 1))
     since = datetime(first.year, first.month, first.day, tzinfo=PACIFIC)
+    rhythm_start = today - timedelta(days=RHYTHM_DAYS - 1)
+    lane_start = today - timedelta(days=LANE_DAYS - 1)
+
     buckets: Dict[str, List[Tuple[str, Dict[str, float], int]]] = {}
+    season: Dict[str, int] = {}
+    lanes: Dict[str, List[int]] = {}
+    hours = {h: 0 for h in range(24)}
+    season_commits = 0
     seen = set()
     for git_dir in mirrors:
-        for sha, authored, subject, files in iter_commits(git_dir, since, author_pattern, env):
+        for sha, authored, author, subject, files in iter_commits(git_dir, since, author_pattern, env):
             if sha in seen or is_noise_commit(subject):
                 continue
             seen.add(sha)
-            wk = week_start(authored.astimezone(PACIFIC).date()).isoformat()
+            local = authored.astimezone(PACIFIC)
+            wk = week_start(local.date()).isoformat()
             reps = {name: wrp_reps(lines) for name, lines in commit_skill_lines(files).items()}
             buckets.setdefault(wk, []).append((os.path.basename(git_dir), reps, len(files)))
+            if local.date() < rhythm_start:
+                continue
+            season_commits += 1
+            if not BOT_AUTHOR.search(author):
+                hours[local.hour] += 1
+            # A commit counts once for every language whose files it touched.
+            for lang in {file_language(f["filename"]) for f in files} - {None}:
+                season[lang] = season.get(lang, 0) + 1
+                if local.date() >= lane_start:
+                    lanes.setdefault(lang, [0] * LANE_DAYS)[(local.date() - lane_start).days] += 1
+
     weeks = {}
     for back in range(KEEP_WEEKS):
         wk = (current - timedelta(weeks=back)).isoformat()
         weeks[wk] = week_record(buckets.get(wk, []))
-    log(f"[INFO] {len(seen)} commits across {len(mirrors)} mirrors, {KEEP_WEEKS} weeks")
-    return weeks
+    rhythm = {
+        "season": sorted(season.items(), key=lambda kv: -kv[1]),
+        "lanes": lanes,
+        "lane_dates": [lane_start + timedelta(days=i) for i in range(LANE_DAYS)],
+        "hours": hours,
+        "commits": season_commits,
+    }
+    log(f"[INFO] {len(seen)} commits across {len(mirrors)} mirrors; {season_commits} in the last {RHYTHM_DAYS} days")
+    return weeks, rhythm
+
+
+def render_rhythm(rhythm: Dict) -> str:
+    recent = {lang: sum(days) for lang, days in rhythm["lanes"].items()}
+    top_lanes = dict(sorted(rhythm["lanes"].items(), key=lambda kv: -sum(kv[1]))[:5])
+    return render_rhythm_card(
+        rhythm["season"], rhythm["hours"], rhythm["commits"],
+        rhythm["lane_dates"], top_lanes, lang_plus(rhythm["season"], recent),
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -294,8 +340,9 @@ def main() -> None:
     if os.path.isdir(state_dir):
         save_state(state_dir, mirror_dir)
 
+    weeks, rhythm = mine(mirrors, author_pattern, read_env)
     store = {
-        "weeks": compute_weeks(mirrors, author_pattern, read_env),
+        "weeks": weeks,
         "source": "mirrors",
         "updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
@@ -307,6 +354,7 @@ def main() -> None:
     current = week_start(datetime.now(PACIFIC).date())
     board, summary = skill_board(store, current)
     write_theme_pair(os.path.join(out, "skills.svg"), render(board, summary, current))
+    write_theme_pair(os.path.join(out, "commit-rhythm.svg"), render_rhythm(rhythm))
     write_theme_pair(os.path.join(out, "glossary.svg"), render_glossary_svg.render())
     write_theme_pair(os.path.join(out, "pipeline.svg"), render_pipeline_svg.render())
     log(f"[OK] rendered into {out}")
@@ -316,9 +364,9 @@ def main() -> None:
     write_env = git_env(write_token)
     publish({STORE_PATH: store_file}, "main", "chore(skills): nightly skill reps snapshot [skip ci]", write_env, work)
     publish({name: os.path.join(out, name) for name in
-             ("skills.svg", "skills-light.svg", "glossary.svg", "glossary-light.svg",
-              "pipeline.svg", "pipeline-light.svg")},
-            "profile-cards", "chore(skills): update Skills in Practice, pipeline, and Glossary cards", write_env, work)
+             ("skills.svg", "skills-light.svg", "commit-rhythm.svg", "commit-rhythm-light.svg",
+              "glossary.svg", "glossary-light.svg", "pipeline.svg", "pipeline-light.svg")},
+            "profile-cards", "chore(collector): update skills, commit rhythm, pipeline, and Glossary cards", write_env, work)
 
 
 if __name__ == "__main__":

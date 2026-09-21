@@ -4,25 +4,13 @@ GitHub Activity card generator (replaces the third-party streak-stats and
 profile-summary-card graphics with cards rendered in the same house style as
 skills/projects/weekly-highlights).
 
-Fetches the last 12 months of public contribution data from the GitHub API:
-
-  GraphQL contributionsCollection
-    - totals (commits, PRs, repos contributed to)
-    - contributionCalendar -> stat-tile streaks + trailing-30-day chart
-    - commitContributionsByRepository -> language commit share
-  REST search/commits
-    - commit authored hours -> "commits by hour" histogram (Pacific local time)
-    - dated commits + /repos languages -> per-language commits-per-day series
-  REST /repos/{full}
-    - primary language for repos touched in the last 30 days
-
-Renders two SVGs using the shared svg_cards primitives:
-
-  activity.svg      stat tiles (incl. Pace+) + trailing-30-day bars + 7-day average
-  commit-rhythm.svg language bars with Lang+ + commit-hours histogram + language lanes
-
-The daily `activity-cards.yml` workflow runs this and commits the output to
-the `profile-cards` branch.
+  activity.svg       stat tiles (incl. Pace+) + trailing-30-day bars + 7-day
+                     average, from the GraphQL contributionsCollection calendar.
+                     Rendered by the daily `activity-cards.yml` workflow.
+  commit-rhythm.svg  language share with Lang+, commits by hour, language lanes.
+                     Rendered by the nightly GCP collector (collect_mirrors.py)
+                     from full local diffs of every repo; this module only owns
+                     the drawing (render_rhythm_card) and lang_plus.
 """
 
 import argparse
@@ -112,21 +100,6 @@ def lang_color(name: str) -> str:
 # Data fetching
 # ---------------------------------------------------------------------------
 
-def gh_rest(path: str, token: str) -> Optional[object]:
-    url = f"https://api.github.com{path}"
-    req = urllib.request.Request(url, headers={
-        "User-Agent": "ActivityCardRenderer/1.0",
-        "Accept": "application/vnd.github+json",
-        "Authorization": f"Bearer {token}",
-    })
-    try:
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            return json.loads(resp.read().decode("utf-8"))
-    except Exception as e:
-        print(f"[WARN] REST request failed for {url}: {e}", file=sys.stderr)
-        return None
-
-
 def gh_graphql(query: str, variables: Dict, token: str) -> Optional[Dict]:
     body = json.dumps({"query": query, "variables": variables}).encode("utf-8")
     req = urllib.request.Request(
@@ -166,16 +139,6 @@ query($login: String!, $from: DateTime!, $to: DateTime!) {
           }
         }
       }
-      commitContributionsByRepository(maxRepositories: 100) {
-        contributions(first: 1) {
-          totalCount
-        }
-        repository {
-          primaryLanguage {
-            name
-          }
-        }
-      }
     }
   }
 }
@@ -196,102 +159,8 @@ def fetch_contribution_stats(login: str, token: str) -> Optional[Dict]:
     return data["user"]["contributionsCollection"]
 
 
-def fetch_commit_hours(login: str, token: str, start_date: str) -> Tuple[Dict[int, int], List[Tuple[date, str]]]:
-    """Commit counts by Pacific-local authored hour over the past year.
-
-    Uses the commit search API (default branches of public repos), matching
-    the scope the old profile-summary card used.
-
-    Returns (hours, commits) where commits is a list of
-    (pacific_local_date, repo_full_name) for language time-series use.
-    """
-    hours: Dict[int, int] = {h: 0 for h in range(24)}
-    commits: List[Tuple[date, str]] = []
-    query = urllib.parse.quote(f"author:{login} author-date:>{start_date}")
-    for page in range(1, 11):
-        data = gh_rest(
-            f"/search/commits?q={query}&sort=committer-date&order=desc&per_page=100&page={page}",
-            token,
-        )
-        if not isinstance(data, dict):
-            break
-        items = data.get("items") or []
-        for item in items:
-            raw = (((item.get("commit") or {}).get("author")) or {}).get("date") or ""
-            if not raw:
-                continue
-            try:
-                authored = datetime.fromisoformat(raw.replace("Z", "+00:00"))
-            except ValueError:
-                continue
-            local = authored.astimezone(PACIFIC)
-            hours[local.hour] += 1
-            repo = ((item.get("repository") or {}).get("full_name")) or ""
-            commits.append((local.date(), repo))
-        if len(items) < 100:
-            break
-    return hours, commits
-
-
-def fetch_repo_primary_languages(repo_names: List[str], token: str, limit: int = 100) -> Dict[str, str]:
-    """Map repo full_name -> primary language via REST. Best-effort; unknowns omitted."""
-    mapping: Dict[str, str] = {}
-    seen = []
-    for name in repo_names:
-        if name and name not in mapping and name not in seen:
-            seen.append(name)
-    for full_name in seen[:limit]:
-        data = gh_rest(f"/repos/{full_name}", token)
-        if isinstance(data, dict):
-            lang = data.get("language")
-            if lang:
-                mapping[full_name] = str(lang)
-    return mapping
-
-
-def language_timeseries(
-    commits: List[Tuple[date, str]],
-    repo_langs: Dict[str, str],
-    today: Optional[date] = None,
-    window: int = 30,
-    top_n: int = 5,
-) -> Tuple[List[date], Dict[str, List[int]]]:
-    """Daily commit counts per language over the trailing window.
-
-    y-axis stat: commits per day to repos whose primary language is X
-    (a direct measure of language use across all repos).
-    """
-    if today is None:
-        today = datetime.now(PACIFIC).date()
-    dates = [today - timedelta(days=window - 1 - i) for i in range(window)]
-    index = {d: i for i, d in enumerate(dates)}
-    per_lang: Dict[str, List[int]] = {}
-    for d, repo in commits:
-        i = index.get(d)
-        if i is None:
-            continue
-        lang = repo_langs.get(repo or "")
-        if not lang:
-            continue
-        per_lang.setdefault(lang, [0] * window)[i] += 1
-    ranked = sorted(per_lang.items(), key=lambda kv: sum(kv[1]), reverse=True)[:top_n]
-    return dates, dict(ranked)
-
-
-def recent_language_counts(
-    commits: List[Tuple[date, str]], repo_langs: Dict[str, str], cutoff: date
-) -> Dict[str, int]:
-    """Commits per primary language on or after `cutoff` (all languages)."""
-    counts: Dict[str, int] = {}
-    for d, repo in commits:
-        lang = repo_langs.get(repo or "")
-        if lang and d >= cutoff:
-            counts[lang] = counts.get(lang, 0) + 1
-    return counts
-
-
 def lang_plus(season: List[Tuple[str, int]], recent: Dict[str, int]) -> Dict[str, int]:
-    """Lang+: a language's 30-day commit share vs its 12-month share, 100 =
+    """Lang+: a language's 30-day share of commits vs its 12-month share, 100 =
     normal usage. Split shares regress toward the season share (sabermetrics.PLUS_PRIOR)."""
     season_total = sum(c for _, c in season)
     recent_total = sum(recent.values())
@@ -336,19 +205,6 @@ def compute_streaks(days: Dict[date, int]) -> Tuple[int, int]:
         else:
             run = 0
     return current, longest
-
-
-def language_share(collection: Dict) -> List[Tuple[str, int]]:
-    """Aggregated commit counts by repository primary language, descending."""
-    totals: Dict[str, int] = {}
-    for entry in collection.get("commitContributionsByRepository") or []:
-        repo = entry.get("repository") or {}
-        lang = ((repo.get("primaryLanguage") or {}).get("name")) or ""
-        if not lang:
-            continue
-        count = (((entry.get("contributions") or {}).get("totalCount")) or 0)
-        totals[lang] = totals.get(lang, 0) + int(count)
-    return sorted(totals.items(), key=lambda kv: kv[1], reverse=True)
 
 
 # ---------------------------------------------------------------------------
@@ -664,7 +520,7 @@ def render_rhythm_card(
     )
     body_height = top_h + 18 + trend_h
 
-    subtitle = (f"Commit share by language and local commit time · {total_commits:,} commits in the last 12 months"
+    subtitle = (f"Every repo I own, all branches · {total_commits:,} commits in the last 12 months"
                 " · Lang+ in Glossary")
     return card_shell(
         "Languages & Commit Rhythm", subtitle, left_svg + "\n" + right_svg + "\n" + trend_svg, body_height,
@@ -673,9 +529,9 @@ def render_rhythm_card(
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Render GitHub activity SVG cards.")
+    parser = argparse.ArgumentParser(description="Render the GitHub Activity SVG card.")
     parser.add_argument("--username", default="harlanljones")
-    parser.add_argument("--out-dir", default=".", help="Directory for activity.svg / commit-rhythm.svg")
+    parser.add_argument("--out-dir", default=".", help="Directory for activity.svg")
     parser.add_argument("--token", default=os.getenv("GITHUB_TOKEN"))
     args = parser.parse_args()
 
@@ -688,26 +544,9 @@ def main() -> None:
         print("[ERROR] Could not fetch contribution stats; aborting.", file=sys.stderr)
         sys.exit(1)
 
-    start = (datetime.now(timezone.utc).date() - timedelta(days=364)).isoformat()
-    hours, dated_commits = fetch_commit_hours(args.username, args.token, start)
-    langs = language_share(stats)
-    updated = datetime.now(PACIFIC)
-
-    today = updated.date()
-    cutoff = today - timedelta(days=29)
-    recent_repos = sorted({repo for d, repo in dated_commits if repo and d >= cutoff})
-    repo_langs = fetch_repo_primary_languages(recent_repos, args.token) if recent_repos else {}
-    trend_dates, trend_series = language_timeseries(dated_commits, repo_langs, today=today)
-    plus = lang_plus(langs, recent_language_counts(dated_commits, repo_langs, cutoff))
-
     os.makedirs(args.out_dir, exist_ok=True)
-    activity = render_activity_card(stats, updated)
-    rhythm = render_rhythm_card(langs, hours, int(stats.get("totalCommitContributions") or 0),
-                               trend_dates, trend_series, plus)
-
-    for name, svg in (("activity.svg", activity), ("commit-rhythm.svg", rhythm)):
-        for path in write_theme_pair(os.path.join(args.out_dir, name), svg):
-            print(f"[OK] Wrote {path}")
+    for path in write_theme_pair(os.path.join(args.out_dir, "activity.svg"), render_activity_card(stats, datetime.now(PACIFIC))):
+        print(f"[OK] Wrote {path}")
 
 
 if __name__ == "__main__":

@@ -45,9 +45,10 @@ ENTRIES = [
      "my public index, so a forgettable repo sits near 0 and can dip negative. Not Baseball-Reference's bWAR."),
     ("Lang+", "language usage, 100-neutral split",
      "100 × (30-day share, regressed) ÷ 12-month share",
-     "Like OPS+: 100 is my normal usage of a language, 130 means 30% more of my commits went to it this month "
-     "than over the year. The 30-day share is regressed toward the season share with 25 phantom commits, so a "
-     "language needs real volume before it moves far from 100."),
+     "Like OPS+: 100 is my normal usage of a language, 130 means 30% more of my commits touched it this month "
+     "than over the year. Languages come from the extensions of the files each commit changed, across every "
+     "repo and branch, so a commit counts once for each language it touched. The 30-day share is regressed "
+     "toward the season share with 25 phantom commits, so a language needs real volume before it moves far from 100."),
     ("Pace+", "commit pace, 100-neutral split",
      "100 × (recent daily rate, regressed) ÷ baseline daily rate",
      "Recent pace against the usual pace, regressed with 7 days at the baseline rate. Activity: the last 30 days "

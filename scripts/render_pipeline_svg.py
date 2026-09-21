@@ -38,10 +38,10 @@ RUNTIME_ACCENT = {GCP: ACCENT_GREEN, ACTIONS: ACCENT_BLUE, LOCAL: MUTED}
 JOBS: List[Tuple[str, str, str, str, str]] = [
     ("nightly 3:15a PT", "profile-collector", GCP,
      "bare mirrors of every repo I own, full diffs on all branches",
-     "Skills in Practice · this card · Glossary"),
+     "Skills in Practice · Languages & Commit Rhythm · this card · Glossary"),
     ("daily", "activity-cards", ACTIONS,
-     "GitHub GraphQL contributions, commit search, repo languages",
-     "GitHub Activity · Languages & Commit Rhythm · footer stamp"),
+     "GitHub GraphQL contribution calendar",
+     "GitHub Activity · footer stamp"),
     ("daily", "mlb-birthdays", ACTIONS,
      "MLB Stats API, Baseball-Reference birthdays, Wikipedia",
      "Daily Dugout Dispatch"),

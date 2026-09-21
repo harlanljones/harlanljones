@@ -67,7 +67,8 @@ jobs:
           # Drop the retired third-party profile-summary cards from the branch.
           git rm -r --ignore-unmatch profile-summary-card-output > /dev/null 2>&1 || true
 
-          for f in activity commit-rhythm footer; do
+          # commit-rhythm.svg is rendered by the nightly GCP collector from full diffs.
+          for f in activity footer; do
             cp "${RUNNER_TEMP}/${f}.svg" "${RUNNER_TEMP}/${f}-light.svg" .
             git add "${f}.svg" "${f}-light.svg"
           done
