@@ -270,5 +270,13 @@
       "Shell"
     ],
     "homepage": ""
+  },
+  {
+    "name": "sabr-jev",
+    "summary": "Season stats lie by omission. Sabr-Jev grades Batter|Pitcher seasons with typed AI judgments behind a confidence latch: act, review, or escalate \u2014 full probabilities, never hype. Recent work includes ship sabr-jev first build (cards, latch, workbench, prospective ledger) and storyline surface with 20 verified seasons and real verdicts, built with Python.",
+    "badges": [
+      "Python"
+    ],
+    "homepage": "https://sabr-jev.fly.dev/"
   }
 ]
