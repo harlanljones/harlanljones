@@ -222,7 +222,7 @@ def lang_color(lang: Optional[str]) -> str:
 
 def render_leaderboard(rows: List[dict], date_str: str) -> str:
     max_x = CARD_WIDTH - PAD_X
-    bar_x, bar_w = 340.0, 300.0
+    bar_x, bar_w = 356.0, 280.0
     top = max(max(r["gwar"] for r in rows), 0.1)
     frags = [
         f'<text x="{PAD_X}" y="{14}" font-size="9" font-weight="700" letter-spacing="1.5" '
@@ -244,8 +244,8 @@ def render_leaderboard(rows: List[dict], date_str: str) -> str:
         frags.append(f'<circle cx="52" cy="{cy + 8:.1f}" r="4" fill="{lang_color(r["language"])}"/>')
         frags.append(f'<text x="62" y="{cy + 12:.1f}" font-size="11" fill="{MUTED}" '
                      f'font-family="{FONT_FAMILY}">{esc(truncate(r["language"] or "—", 11, 80))}</text>')
-        frags.append(f'<text x="150" y="{cy + 12:.1f}" font-size="13" font-weight="700" fill="{TEXT}" '
-                     f'font-family="{FONT_FAMILY}">{esc(truncate(r["name"], 20, 175, bold=True))}</text>')
+        frags.append(f'<text x="150" y="{cy + 12:.1f}" font-size="12.5" font-weight="700" fill="{TEXT}" '
+                     f'font-family="{FONT_FAMILY}">{esc(truncate(r["name"], 12.5, 200, bold=True))}</text>')
         w = max(6.0, bar_w * max(0.0, r["gwar"]) / top)
         frags.append(f'<rect x="{bar_x}" y="{cy + 3:.1f}" width="{w:.1f}" height="10" rx="5" '
                      f'fill="{ACCENT_BLUE}" fill-opacity="{opacity:.2f}"/>')
