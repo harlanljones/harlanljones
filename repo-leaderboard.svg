@@ -34,10 +34,10 @@
 <circle cx="52" cy="88.0" r="4" fill="#3572A5"/>
 <text x="62" y="92.0" font-size="11" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Python</text>
 <text x="150" y="92.0" font-size="13" font-weight="700" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">harlanljones</text>
-<rect x="340.0" y="83.0" width="231.8" height="10" rx="5" fill="#58a6ff" fill-opacity="0.81"/>
+<rect x="340.0" y="83.0" width="238.6" height="10" rx="5" fill="#58a6ff" fill-opacity="0.81"/>
 <text x="652.0" y="92.0" font-size="11.5" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">0</text>
-<text x="704.0" y="92.0" font-size="11.5" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">94</text>
-<text x="876" y="92.0" font-size="13" font-weight="800" text-anchor="end" fill="#e3b341" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">3.4</text>
+<text x="704.0" y="92.0" font-size="11.5" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">99</text>
+<text x="876" y="92.0" font-size="13" font-weight="800" text-anchor="end" fill="#e3b341" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">3.5</text>
 <text x="38" y="120.0" font-size="12" font-weight="700" text-anchor="end" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">4</text>
 <circle cx="52" cy="116.0" r="4" fill="#3178c6"/>
 <text x="62" y="120.0" font-size="11" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">TypeScript</text>
