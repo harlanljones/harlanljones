@@ -160,15 +160,39 @@ def fetch_contribution_stats(login: str, token: str) -> Optional[Dict]:
     return data["user"]["contributionsCollection"]
 
 
-def lang_plus(season: List[Tuple[str, int]], recent: Dict[str, int]) -> Dict[str, int]:
+def lang_plus(
+    season: List[Tuple[str, int]],
+    recent: Dict[str, int],
+    prior: float = 25.0,
+) -> Dict[str, int]:
     """Lang+: a language's 30-day share of commits vs its 12-month share, 100 =
-    normal usage. Split shares regress toward the season share (sabermetrics.PLUS_PRIOR)."""
+    normal usage.
+
+    Uses empirical Bayes shrinkage on volume so small samples regress to 100
+    while high-volume languages reflect real shifts in focus. Resolves the
+    cancellation flaw where languages active only in the recent window tied
+    at identical values.
+    """
     season_total = sum(c for _, c in season)
     recent_total = sum(recent.values())
-    return {
-        name: plus_stat(recent.get(name, 0), recent_total, count, season_total)
-        for name, count in season
-    }
+    if season_total <= 0 or recent_total <= 0:
+        return {name: 100 for name, _ in season}
+
+    out: Dict[str, int] = {}
+    for name, s_count in season:
+        r_count = recent.get(name, 0)
+        s_share = s_count / season_total
+        r_share = r_count / recent_total
+        raw_ratio = (r_share / s_share) if s_share > 0 else 1.0
+        raw_index = 100.0 * raw_ratio
+
+        # Active languages shrink by recent commit volume;
+        # dormant languages shrink by season volume (confidence in absence).
+        n_events = r_count if r_count > 0 else s_count
+        w = n_events / (n_events + prior)
+        val = int(round(100.0 + (raw_index - 100.0) * w))
+        out[name] = max(1, val)
+    return out
 
 
 # ---------------------------------------------------------------------------
@@ -334,10 +358,14 @@ def render_activity_card(stats: Dict, updated: datetime) -> str:
         (str(longest_streak), "Career Best (days)", ACCENTS[5]),
     ]
 
-    frags = [_stat_tiles(PAD_X, 10.0, tiles, CARD_WIDTH - PAD_X * 2)]
-    chart, chart_h = render_last30_days(days, PAD_X, 110.0, CARD_WIDTH - PAD_X * 2)
+    row_w = CARD_WIDTH - PAD_X * 2
+    frags = [_stat_tiles(PAD_X, 10.0, tiles[:3], row_w)]
+    cy = 10.0 + 62 + 10
+    frags.append(_stat_tiles(PAD_X, cy, tiles[3:], row_w))
+    cy += 62 + 16
+    chart, chart_h = render_last30_days(days, PAD_X, cy, row_w)
     frags.append(chart)
-    body_height = 110.0 + chart_h - 22
+    body_height = cy + chart_h - 16
 
     subtitle = f"Public contributions · trailing 30 days · updated {updated.strftime('%b %-d, %Y')}"
     return card_shell("GitHub Activity", subtitle, "\n".join(frags), body_height)
@@ -448,7 +476,7 @@ def _language_timeseries_chart(
 
     plus = plus or {}
     label_w = 104
-    total_w = 140
+    total_w = 156
     plot_x = x + label_w
     plot_w = width - label_w - total_w
     pitch = plot_w / n
@@ -456,10 +484,6 @@ def _language_timeseries_chart(
     lane_h = 26
     lane_gap = 8
     top = y + 26
-
-    # Share of the last-30-day commit volume: distinct per language (unlike
-    # Lang+, which ties for languages that only exist inside the window).
-    lane_total = sum(sum(vals) for vals in series.values())
 
     for row, name in enumerate(names):
         vals = series[name]
@@ -483,12 +507,13 @@ def _language_timeseries_chart(
                 f'<rect x="{bx:.1f}" y="{baseline - bar_h:.1f}" width="{bar_w:.1f}" height="{bar_h:.1f}" '
                 f'rx="2" fill="{color}"/>'
             )
-        share = max(0.1, round(1000 * sum(vals) / lane_total) / 10) if sum(vals) and lane_total else 0.0
+        lp_val = plus.get(name, 100)
+        lp_color = TITLE_COLOR if lp_val >= 105 else (TEXT if lp_val >= 95 else MUTED)
         frags.append(
-            f'<text x="{x + width - 74:.1f}" y="{mid_y:.1f}" font-size="11" fill="{MUTED}" '
-            f'text-anchor="end" font-family="{FONT_FAMILY}">{sum(vals):,} total</text>'
-            f'<text x="{x + width:.1f}" y="{mid_y:.1f}" font-size="11" font-weight="700" fill="{TEXT}" '
-            f'text-anchor="end" font-family="{FONT_FAMILY}">{share}% of month</text>'
+            f'<text x="{x + width - 78:.1f}" y="{mid_y:.1f}" font-size="11" fill="{MUTED}" '
+            f'text-anchor="end" font-family="{FONT_FAMILY}">{sum(vals):,} commits</text>'
+            f'<text x="{x + width:.1f}" y="{mid_y:.1f}" font-size="11.5" font-weight="700" fill="{lp_color}" '
+            f'text-anchor="end" font-family="{FONT_FAMILY}">Lang+ {lp_val}</text>'
         )
 
     axis_y = top + len(names) * (lane_h + lane_gap) - lane_gap

@@ -19,9 +19,74 @@ Featured Projects store (scripts/data/featured_projects.json).
 """
 
 import os
+import re
 import sys
 import datetime as dt
-from typing import Dict, List, Tuple
+from typing import Dict, List, Optional, Tuple
+
+def parse_iso(ts: str) -> dt.datetime:
+    return dt.datetime.fromisoformat(ts.replace("Z", "+00:00"))
+
+
+def format_section_stat(r: dict, section_name: str, now: Optional[dt.datetime] = None) -> str:
+    now = now or dt.datetime.now(dt.timezone.utc)
+    commits_90 = r.get("commits_90", 0)
+    commit_days = r.get("commit_days", [])
+    active_days = len(set(d[:10] for d in commit_days))
+    gwar = r.get("gwar", 0.0)
+    pace = r.get("pace_plus", 100)
+    stars = r.get("stargazers_count", 0)
+
+    if section_name.startswith("Top 5"):
+        parts = [f"gWAR {gwar:.1f}", f"{commits_90} commits"]
+        if active_days > 0:
+            parts.append(f"{active_days}d active")
+        elif stars > 0:
+            parts.append(f"★ {stars}")
+        return " · ".join(parts)
+
+    if section_name.startswith("September call-ups"):
+        created = r.get("created_at")
+        if created:
+            c_date = parse_iso(created)
+            days_ago = max(0, (now - c_date).days)
+            return f"debut {c_date.strftime('%b %-d')} ({days_ago}d ago) · {commits_90} commits"
+        return f"{commits_90} commits · gWAR {gwar:.1f}"
+
+    if section_name.startswith("Live in production"):
+        hp = r.get("homepage") or ""
+        domain = re.sub(r"^https?://(www\.)?", "", hp).rstrip("/")
+        domain = domain.split("/")[0] if domain else ""
+        parts = []
+        if domain:
+            parts.append(domain)
+        pushed = r.get("pushed_at")
+        if pushed:
+            p_days = max(0, (now - parse_iso(pushed)).days)
+            push_str = "today" if p_days == 0 else (f"{p_days}d ago" if p_days < 30 else f"{p_days // 7}w ago")
+            parts.append(f"pushed {push_str}")
+        if not parts:
+            parts = [f"{commits_90} commits", f"gWAR {gwar:.1f}"]
+        return " · ".join(parts)
+
+    if section_name.startswith("Hitting streak"):
+        recent_30 = sum(1 for d in commit_days if parse_iso(d) >= now - dt.timedelta(days=30))
+        parts = [f"Pace+ {pace}"]
+        if recent_30 > 0:
+            parts.append(f"{recent_30} in 30d")
+        elif commits_90 > 0:
+            parts.append(f"{commits_90} in 90d")
+        return " · ".join(parts)
+
+    if section_name.startswith("Hidden gems"):
+        size_kb = r.get("size", 0)
+        parts = [f"gWAR {gwar:.1f}"]
+        if size_kb > 0:
+            parts.append(f"{size_kb:,} KB")
+        parts.append(f"{commits_90} commits")
+        return " · ".join(parts)
+
+    return f"gWAR {gwar:.1f} · {commits_90} commits"
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -67,31 +132,31 @@ def build_sections(ranked: List[dict], now, featured: Dict[str, dict]) -> List[T
     sections = [("Top 5 · by gWAR", take(ranked, 5))]
     fresh = sorted((r for r in ranked if r["gwar"] > 0),
                    key=lambda r: r.get("created_at") or "", reverse=True)
-    sections.append(("September call-ups", take(fresh, 5)))
+    sections.append(("September call-ups", take(fresh, 3)))
     live = sorted((r for r in ranked if r.get("homepage")), key=lambda r: -r["gwar"])
-    sections.append(("Live in production", take(live, 5)))
+    sections.append(("Live in production", take(live, 3)))
     streak = sorted((r for r in ranked if r.get("commits_90", 0) > 0),
                     key=lambda r: (-r.get("pace_plus", 100), -r.get("commits_90", 0)))
-    sections.append(("Hitting streak", take(streak, 5)))
+    sections.append(("Hitting streak", take(streak, 3)))
     gems = sorted((r for r in ranked if r["gwar"] > 0), key=lambda r: (r["stargazers_count"], -r["gwar"]))
-    sections.append(("Hidden gems", take(gems, 5)))
+    sections.append(("Hidden gems", take(gems, 3)))
     return [(name, rows) for name, rows in sections if rows]
 
 
-def _entry(x: float, y: float, w: float, r: dict, featured: Dict[str, dict], first: bool) -> Tuple[str, float]:
+def _entry(x: float, y: float, w: float, r: dict, featured: Dict[str, dict], first: bool, section_name: str = "") -> Tuple[str, float]:
     """One repo row: name, right-side stat, two-line summary."""
     # Lazy import: render_repo_cards imports this module, so a top-level
     # import of lang_color would be circular when run standalone.
     from render_repo_cards import lang_color
     frags = []
     cy = y
-    stat = f"gWAR {r['gwar']:.1f} · ★ {r['stargazers_count']:,} · Pace+ {r['pace_plus']}"
+    stat = format_section_stat(r, section_name)
     live_w = (len("LIVE") * 11 * 0.62 + 18) if r.get("homepage") else 0.0
     name_max = w - live_w - 10
     frags.append(
         f'<circle cx="{x + 4}" cy="{cy + 11:.1f}" r="4" fill="{lang_color(r.get("language"))}"/>'
         f'<text x="{x + 14:.1f}" y="{cy + 15:.1f}" font-size="14.5" font-weight="700" fill="{ACCENT_BLUE}" '
-        f'font-family="{FONT_FAMILY}">{esc(truncate(r["name"], 24, name_max - 78, bold=True))}</text>'
+        f'font-family="{FONT_FAMILY}"><title>{esc(r.get("full_name", r["name"]))} · {esc(stat)}</title>{esc(truncate(r["name"], 24, name_max - 78, bold=True))}</text>'
     )
     if r.get("homepage"):
         frags.append(
@@ -109,6 +174,8 @@ def _entry(x: float, y: float, w: float, r: dict, featured: Dict[str, dict], fir
     summary = (featured.get(r["name"]) or {}).get("summary") or r.get("description") or ""
     if not summary:
         summary = " · ".join((r.get("topics") or [])[:6])
+    # Strip markdown link markup [text](url) -> text
+    summary = re.sub(r"\[([^\]]+)\]\([^\)]+\)", r"\1", summary)
     for i, line in enumerate(wrap_by_width(summary, 11.5, w, max_lines=2)):
         frags.append(f'<text x="{x + 14:.1f}" y="{cy + 11 + i * 16:.1f}" font-size="11.5" fill="{MUTED}" '
                      f'font-family="{FONT_FAMILY}">{esc(line)}</text>')
@@ -127,7 +194,7 @@ def _section_block(name: str, rows: List[dict], width: float) -> Tuple[str, floa
     ]
     cy = 24.0
     for r in rows:
-        svg, h = _entry(0.0, cy, width, r, FEATURED_REF[0], False)
+        svg, h = _entry(0.0, cy, width, r, FEATURED_REF[0], False, name)
         frags.append(svg)
         cy += h + 8
     return "\n".join(frags), cy - 8

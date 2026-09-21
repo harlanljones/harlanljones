@@ -44,13 +44,12 @@ ENTRIES = [
      "the scale, plus up to 1 for a push in the last 90 days. Replacement level is the 20th-percentile repo in "
      "my public index, so a forgettable repo sits near 0 and can dip negative. Not Baseball-Reference's bWAR."),
     ("Lang+", "language usage, 100-neutral split",
-     "100 × (30-day share, regressed) ÷ 12-month share",
+     "100 + (100 × (30d share ÷ 12m share) − 100) × volume-weight",
      "Like OPS+: 100 is my normal usage of a language, 130 means 30% more of my commits touched it this month "
      "than over the year. Languages come from the extensions of the files each commit changed, across every "
-     "repo and branch, so a commit counts once for each language it touched. The 30-day share is regressed "
-      "toward the season share with 25 phantom commits, so a language needs real volume before it moves far "
-      "from 100. The activity lanes below it rank by raw 30-day volume and show each language's share of the "
-      "month instead — Lang+ only compares against history, and a brand-new language has none."),
+     "repo and branch, so a commit counts once for each language it touched. Empirical Bayes shrinkage regresses "
+     "small samples toward 100 based on commit volume (prior = 25 commits), so a language needs real reps before "
+     "it moves far from 100. Displayed in both Top Languages and the 30-day Language Activity lanes."),
     ("wDC", "weighted Deployments Created",
      "Σ weeks-of-last-4 (deployments that week) · weights 1 / .6 / .36 / .22",
      "Every deployment I created in the last four weeks: Cloudflare Pages deploys plus Workers "

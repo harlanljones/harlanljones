@@ -139,7 +139,7 @@ def deployment_stats(cf_token: str, cf_account: str, gh_token: str, repos: List[
                 break
     return {
         "wdc": wdc,
-        "wdc_sub": f"deployments created · last {STAT_DAYS}d",
+        "wdc_sub": f"{len(deploys)} deployments created · last {STAT_DAYS}d",
         "aera": aera(fails, runs),
         "aera_sub": f"{fails} of {runs} runs failed · public repos · {STAT_DAYS}d",
     }

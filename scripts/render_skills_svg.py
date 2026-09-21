@@ -131,6 +131,7 @@ def _bubble_row(x: float, y: float, width: float, name: str, value: float, pct: 
     color = savant_color(pct)
     mid = track_x + track_w / 2
     return (
+        f'<g><title>{esc(name)}: {value:.1f} wRP ({pct}th percentile)</title>'
         f'<text x="{x:.1f}" y="{cy + 4:.1f}" font-size="11.5" fill="{TEXT}" '
         f'font-family="{FONT_FAMILY}">{esc(truncate(name, 11.5, name_w - 8))}</text>'
         f'<line x1="{track_x:.1f}" y1="{cy:.1f}" x2="{track_x + track_w:.1f}" y2="{cy:.1f}" '
@@ -143,6 +144,7 @@ def _bubble_row(x: float, y: float, width: float, name: str, value: float, pct: 
         f'text-anchor="middle" font-family="{FONT_FAMILY}">{pct}</text>'
         f'<text x="{x + width:.1f}" y="{cy + 4:.1f}" font-size="10" fill="{MUTED}" '
         f'text-anchor="end" font-family="{FONT_FAMILY}">{value:.1f}</text>'
+        f'</g>'
     )
 
 

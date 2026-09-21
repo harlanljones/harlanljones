@@ -46,6 +46,7 @@ from svg_cards import (  # noqa: E402
     card_shell,
     esc,
     legible_lang_color,
+    pill,
     text_width,
     truncate,
     wrap_by_width,
@@ -221,45 +222,131 @@ def lang_color(lang: Optional[str]) -> str:
 # ---------------------------------------------------------------- leaderboard
 
 def render_leaderboard(rows: List[dict], date_str: str) -> str:
+    if not rows:
+        return card_shell("Repo Leaderboard", "no repositories found", "", 40, accent=ACCENT_AMBER)
+
     max_x = CARD_WIDTH - PAD_X
-    bar_x, bar_w = 356.0, 280.0
+    bar_x, bar_w = 330.0, 240.0
+    col_act_x, col_com_x = 596.0, 696.0
     top = max(max(r["gwar"] for r in rows), 0.1)
-    frags = [
-        f'<text x="{PAD_X}" y="{14}" font-size="9" font-weight="700" letter-spacing="1.5" '
-        f'fill="{MUTED}" font-family="{FONT_FAMILY}">LANGUAGE</text>',
-        f'<text x="150" y="{14}" font-size="9" font-weight="700" letter-spacing="1.5" '
-        f'fill="{MUTED}" font-family="{FONT_FAMILY}">REPOSITORY</text>',
-        f'<text x="{bar_x + bar_w + 12}" y="{14}" font-size="9" font-weight="700" letter-spacing="1.5" '
-        f'fill="{MUTED}" font-family="{FONT_FAMILY}">STARS</text>',
-        f'<text x="{bar_x + bar_w + 64}" y="{14}" font-size="9" font-weight="700" letter-spacing="1.5" '
-        f'fill="{MUTED}" font-family="{FONT_FAMILY}">COMMITS 90D</text>',
-        f'<text x="{max_x}" y="{14}" font-size="9" font-weight="700" letter-spacing="1.5" text-anchor="end" '
-        f'fill="{ACCENT_AMBER}" font-family="{FONT_FAMILY}">gWAR</text>',
-    ]
-    cy = 24.0
-    for i, r in enumerate(rows):
-        opacity = 0.95 - i * 0.05  # floor 0.55: lower ranks stay visible on white
-        frags.append(f'<text x="38" y="{cy + 12:.1f}" font-size="12" font-weight="700" text-anchor="end" '
-                     f'fill="{MUTED}" font-family="{FONT_FAMILY}">{i + 1}</text>')
-        frags.append(f'<circle cx="52" cy="{cy + 8:.1f}" r="4" fill="{lang_color(r["language"])}"/>')
-        frags.append(f'<text x="62" y="{cy + 12:.1f}" font-size="11" fill="{MUTED}" '
-                     f'font-family="{FONT_FAMILY}">{esc(truncate(r["language"] or "—", 11, 80))}</text>')
-        frags.append(f'<text x="150" y="{cy + 12:.1f}" font-size="12.5" font-weight="700" fill="{TEXT}" '
-                     f'font-family="{FONT_FAMILY}">{esc(truncate(r["name"], 12.5, 200, bold=True))}</text>')
+
+    hero = rows[0]
+    if "daily_30" not in hero and hero.get("commit_days"):
+        now_dt = dt.datetime.now(dt.timezone.utc)
+        cutoff = (now_dt - dt.timedelta(days=29)).date()
+        daily: Dict[dt.date, int] = {}
+        for raw in hero.get("commit_days", []):
+            day = parse_iso(raw).date()
+            if day >= cutoff:
+                daily[day] = daily.get(day, 0) + 1
+        hero["daily_30"] = [daily.get(cutoff + dt.timedelta(days=i), 0) for i in range(30)]
+
+    frags = []
+    cy = 10.0
+
+    # 1. Hero Block for Row #1 Leader
+    pill_svg, pill_w = pill(PAD_X, cy, "#1 LEADER", ACCENT_AMBER, "#0d1117", font_size=10.5)
+    frags.append(pill_svg)
+    lang_name = hero.get("language") or "—"
+    lx = PAD_X + pill_w + 12
+    frags.append(f'<circle cx="{lx + 4:.1f}" cy="{cy + 10:.1f}" r="4" fill="{lang_color(hero.get("language"))}"/>')
+    frags.append(f'<text x="{lx + 14:.1f}" y="{cy + 14:.1f}" font-size="11.5" fill="{MUTED}" font-family="{FONT_FAMILY}">{esc(truncate(lang_name, 11.5, 70))}</text>')
+    lw = text_width(truncate(lang_name, 11.5, 70), 11.5) + 18
+    nx = lx + lw
+    hero_title = f"{hero['full_name']} · gWAR {hero['gwar']:.1f}"
+    frags.append(
+        f'<text x="{nx:.1f}" y="{cy + 15:.1f}" font-size="15" font-weight="800" fill="{TITLE_COLOR}" font-family="{FONT_FAMILY}">'
+        f'<title>{esc(hero_title)}</title>{esc(hero["name"])}</text>'
+    )
+    # Right-hand hero stats
+    h_act_days = len(set(d[:10] for d in hero.get("commit_days", [])))
+    h_act_str = f"{h_act_days}d active" if h_act_days > 0 else (f"★ {hero['stargazers_count']}" if hero.get("stargazers_count") else "")
+    h_stats = []
+    if h_act_str:
+        h_stats.append(h_act_str)
+    h_stats.append(f"{hero.get('commits_90', 0)} commits")
+    h_stats.append(f"Pace+ {hero.get('pace_plus', 100)}")
+    h_stat_line = " · ".join(h_stats)
+    frags.append(
+        f'<text x="{max_x}" y="{cy + 14:.1f}" font-size="11.5" text-anchor="end" fill="{MUTED}" font-family="{FONT_FAMILY}">'
+        f'{h_stat_line} · <tspan font-size="13" font-weight="800" fill="{ACCENT_AMBER}">gWAR {hero["gwar"]:.1f}</tspan></text>'
+    )
+    cy += 24
+
+    desc = hero.get("description") or " · ".join((hero.get("topics") or [])[:5]) or ""
+    desc_lines = wrap_by_width(desc, 12, max_x - PAD_X, max_lines=1)
+    if desc_lines:
+        frags.append(f'<text x="{PAD_X}" y="{cy + 10:.1f}" font-size="12" fill="{TEXT}" font-family="{FONT_FAMILY}">{esc(desc_lines[0])}</text>')
+        cy += 18
+
+    counts = hero.get("daily_30")
+    if counts and any(counts):
+        chart_x, chart_w, chart_h = float(PAD_X), max_x - PAD_X, 32.0
+        baseline = cy + chart_h + 4
+        peak = max(counts) or 1
+        n = len(counts)
+        step = chart_w / max(1, n - 1)
+        pts = [(chart_x + k * step, baseline - (counts[k] / peak) * (chart_h - 4) if counts[k] else baseline) for k in range(n)]
+        line = " ".join(f"{x:.1f},{y:.1f}" for x, y in pts)
+        area = f"M {chart_x},{baseline:.1f} L " + " L ".join(f"{x:.1f},{y:.1f}" for x, y in pts) + f" L {chart_x + chart_w:.1f},{baseline:.1f} Z"
+        start_date_str = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=29)).strftime("%b %d")
+        frags.extend([
+            f'<defs><linearGradient id="leadHeroArea" x1="0" y1="0" x2="0" y2="1">'
+            f'<stop offset="0" stop-color="{ACCENT_BLUE}" stop-opacity="0.30"/>'
+            f'<stop offset="1" stop-color="{ACCENT_BLUE}" stop-opacity="0"/></linearGradient></defs>',
+            f'<path d="{area}" fill="url(#leadHeroArea)"/>',
+            f'<polyline points="{line}" fill="none" stroke="{ACCENT_BLUE}" stroke-width="1.5"/>',
+            f'<circle cx="{pts[-1][0]:.1f}" cy="{pts[-1][1]:.1f}" r="3" fill="{ACCENT_BLUE}"/>',
+            f'<text x="{PAD_X}" y="{cy + 5:.1f}" font-size="9" fill="{MUTED}" font-family="{FONT_FAMILY}">{esc(start_date_str)}</text>',
+            f'<text x="{chart_x + chart_w / 2:.1f}" y="{cy + 5:.1f}" font-size="9.5" font-weight="700" text-anchor="middle" fill="{TEXT}" font-family="{FONT_FAMILY}">{sum(counts)} commits in trailing 30 days</text>',
+            f'<text x="{max_x}" y="{cy + 5:.1f}" font-size="9" fill="{MUTED}" text-anchor="end" font-family="{FONT_FAMILY}">{esc(date_str)}</text>',
+        ])
+        cy = baseline + 8
+
+    release = hero.get("latest_release")
+    if release:
+        tag, published = release.get("tag_name", ""), (release.get("published_at") or "")[:10]
+        label = f"↳ latest release {tag} · {published}"
+        frags.append(f'<text x="{PAD_X}" y="{cy + 6:.1f}" font-size="10.5" fill="{MUTED}" font-family="{FONT_FAMILY}">{esc(label)}</text>')
+        cy += 14
+
+    cy += 4
+    frags.append(f'<line x1="{PAD_X}" y1="{cy:.1f}" x2="{max_x}" y2="{cy:.1f}" stroke="{BORDER}" stroke-width="1"/>')
+    cy += 16
+
+    # 2. Contenders Table
+    frags.extend([
+        f'<text x="{PAD_X}" y="{cy:.1f}" font-size="9" font-weight="700" letter-spacing="1.5" fill="{MUTED}" font-family="{FONT_FAMILY}">LANGUAGE</text>',
+        f'<text x="145" y="{cy:.1f}" font-size="9" font-weight="700" letter-spacing="1.5" fill="{MUTED}" font-family="{FONT_FAMILY}">CONTENDER REPOSITORY</text>',
+        f'<text x="{col_act_x}" y="{cy:.1f}" font-size="9" font-weight="700" letter-spacing="1.5" fill="{MUTED}" font-family="{FONT_FAMILY}">ACTIVE 90D</text>',
+        f'<text x="{col_com_x}" y="{cy:.1f}" font-size="9" font-weight="700" letter-spacing="1.5" fill="{MUTED}" font-family="{FONT_FAMILY}">COMMITS 90D</text>',
+        f'<text x="{max_x}" y="{cy:.1f}" font-size="9" font-weight="700" letter-spacing="1.5" text-anchor="end" fill="{ACCENT_AMBER}" font-family="{FONT_FAMILY}">gWAR</text>',
+    ])
+    cy += 14
+
+    for i, r in enumerate(rows[1:], start=2):
+        opacity = max(0.55, 0.90 - (i - 2) * 0.05)
         w = max(6.0, bar_w * max(0.0, r["gwar"]) / top)
-        frags.append(f'<rect x="{bar_x}" y="{cy + 3:.1f}" width="{w:.1f}" height="10" rx="5" '
-                     f'fill="{ACCENT_BLUE}" fill-opacity="{opacity:.2f}"/>')
-        frags.append(f'<text x="{bar_x + bar_w + 12}" y="{cy + 12:.1f}" font-size="11.5" fill="{TEXT}" '
-                     f'font-family="{FONT_FAMILY}">{r["stargazers_count"]:,}</text>')
-        frags.append(f'<text x="{bar_x + bar_w + 64}" y="{cy + 12:.1f}" font-size="11.5" fill="{TEXT}" '
-                     f'font-family="{FONT_FAMILY}">{r.get("commits_90", 0)}</text>')
-        frags.append(f'<text x="{max_x}" y="{cy + 12:.1f}" font-size="13" font-weight="800" text-anchor="end" '
-                     f'fill="{ACCENT_AMBER}" font-family="{FONT_FAMILY}">{r["gwar"]:.1f}</text>')
+        active_days = len(set(d[:10] for d in r.get("commit_days", [])))
+        active_str = f"{active_days}d" if active_days > 0 else (f"★ {r['stargazers_count']}" if r.get("stargazers_count") else "—")
+        frags.append(
+            f'<g><title>{esc(r["full_name"])} · gWAR {r["gwar"]:.1f}</title>'
+            f'<text x="38" y="{cy + 12:.1f}" font-size="12" font-weight="700" text-anchor="end" fill="{MUTED}" font-family="{FONT_FAMILY}">{i}</text>'
+            f'<circle cx="52" cy="{cy + 8:.1f}" r="4" fill="{lang_color(r["language"])}"/>'
+            f'<text x="62" y="{cy + 12:.1f}" font-size="11" fill="{MUTED}" font-family="{FONT_FAMILY}">{esc(truncate(r["language"] or "—", 11, 75))}</text>'
+            f'<text x="145" y="{cy + 12:.1f}" font-size="12.5" font-weight="700" fill="{TEXT}" font-family="{FONT_FAMILY}">{esc(truncate(r["name"], 12.5, 175, bold=True))}</text>'
+            f'<rect x="{bar_x}" y="{cy + 3:.1f}" width="{w:.1f}" height="10" rx="5" fill="{ACCENT_BLUE}" fill-opacity="{opacity:.2f}"/>'
+            f'<text x="{col_act_x}" y="{cy + 12:.1f}" font-size="11.5" fill="{TEXT}" font-family="{FONT_FAMILY}">{active_str}</text>'
+            f'<text x="{col_com_x}" y="{cy + 12:.1f}" font-size="11.5" fill="{TEXT}" font-family="{FONT_FAMILY}">{r.get("commits_90", 0)}</text>'
+            f'<text x="{max_x}" y="{cy + 12:.1f}" font-size="13" font-weight="800" text-anchor="end" fill="{ACCENT_AMBER}" font-family="{FONT_FAMILY}">{r["gwar"]:.1f}</text>'
+            f'</g>'
+        )
         cy += 28
+
     cy += 6
     frags.append(f'<text x="{PAD_X}" y="{cy + 8:.1f}" font-size="9.5" fill="{MUTED}" '
                  f'font-family="{FONT_FAMILY}">gWAR defined in Glossary · {esc(date_str)} · GitHub Actions</text>')
-    return card_shell("Repo Leaderboard", "top repositories ranked by gWAR — Git Wins Above Replacement",
+    return card_shell("Repo Leaderboard", "leader spotlight & top contenders ranked by gWAR — Git Wins Above Replacement",
                       "\n".join(frags), cy + 16, accent=ACCENT_AMBER)
 
 
@@ -268,13 +355,23 @@ def render_leaderboard(rows: List[dict], date_str: str) -> str:
 def render_spotlight(repo: dict, date_str: str) -> str:
     max_x = CARD_WIDTH - PAD_X
     cy = 14.0
+    active_days = len(set(d[:10] for d in repo.get("commit_days", [])))
+    stat_parts = []
+    if active_days > 0:
+        stat_parts.append(f"{active_days}d active (90d)")
+    if repo.get("stargazers_count", 0) > 0:
+        stat_parts.append(f"★ {repo['stargazers_count']:,}")
+    if repo.get("forks_count", 0) > 0:
+        stat_parts.append(f"forks {repo['forks_count']:,}")
+    stat_parts.extend([f"gWAR {repo['gwar']:.1f}", f"Pace+ {repo['pace_plus']}"])
+    stat_line = " · ".join(stat_parts)
+
     frags = [
         f'<circle cx="{PAD_X + 5}" cy="{cy + 2}" r="5" fill="{lang_color(repo["language"])}"/>',
         f'<text x="{PAD_X + 16}" y="{cy + 6:.1f}" font-size="19" font-weight="800" fill="{TITLE_COLOR}" '
         f'font-family="{FONT_FAMILY}">{esc(repo["name"])}</text>',
         f'<text x="{max_x}" y="{cy + 6:.1f}" font-size="11.5" fill="{MUTED}" text-anchor="end" '
-        f'font-family="{FONT_FAMILY}">★ {repo["stargazers_count"]:,} · forks {repo["forks_count"]:,} · '
-        f'gWAR {repo["gwar"]:.1f} · Pace+ {repo["pace_plus"]}</text>',
+        f'font-family="{FONT_FAMILY}">{stat_line}</text>',
     ]
     cy += 24
     desc = repo.get("description") or " · ".join((repo.get("topics") or [])[:5]) or "No description yet."
@@ -414,13 +511,18 @@ def render_grid(langs: List[str], doms: List[str], assigned: Dict[Tuple[str, str
             repo = assigned.get((l, d))
             if repo:
                 filled += 1
+                c_stat = f"★ {repo['stargazers_count']:,} · Pace+ {repo['pace_plus']}" if repo.get("stargazers_count", 0) > 0 else f"{repo.get('commits_90', 0)}c · Pace+ {repo['pace_plus']}"
+                tooltip = f"{repo['full_name']} · gWAR {repo['gwar']:.1f} · {c_stat}"
+                if repo.get("description"):
+                    tooltip += f" — {repo['description']}"
                 frags.append(
+                    f'<g><title>{esc(tooltip)}</title>'
                     f'<rect x="{x:.1f}" y="{cy:.1f}" width="{cell_w:.1f}" height="{cell_h:.0f}" rx="8" '
                     f'fill="#161b22" stroke="{BORDER}"/>'
                     f'<text x="{x + 10:.1f}" y="{cy + 22:.1f}" font-size="12" font-weight="700" fill="{TEXT}" '
                     f'font-family="{FONT_FAMILY}">{esc(truncate(repo["name"], 18, cell_w - 20, bold=True))}</text>'
                     f'<text x="{x + cell_w - 10:.1f}" y="{cy + cell_h - 10:.1f}" font-size="9.5" text-anchor="end" '
-                    f'fill="{MUTED}" font-family="{FONT_FAMILY}">★ {repo["stargazers_count"]:,} · Pace+ {repo["pace_plus"]}</text>'
+                    f'fill="{MUTED}" font-family="{FONT_FAMILY}">{c_stat}</text></g>'
                 )
             else:
                 frags.append(
@@ -478,6 +580,7 @@ def main() -> None:
     hero["daily_30"] = [daily.get(cutoff + dt.timedelta(days=i), 0) for i in range(30)]
     release = gh_get(f"/repos/{hero['full_name']}/releases/latest", args.token)
     hero["latest_release"] = release if isinstance(release, dict) else None
+    top[0] = hero
 
     os.makedirs(args.out_dir, exist_ok=True)
     cards = {

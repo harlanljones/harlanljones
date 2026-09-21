@@ -577,12 +577,7 @@ def build_daily_ledger(players: List[Dict[str, Any]], month: int, day: int, curr
     valid_birth_years = [p for p in players if p["birth_year"] > 1800]
     vintage = min(valid_birth_years, key=lambda p: p["birth_year"]) if valid_birth_years else players[-1]
 
-    # 4. Superlatives
-    hr_leader = max(players, key=lambda p: p["hr"])
-    sb_leader = max(players, key=lambda p: p["sb"])
-    so_leader = max(players, key=lambda p: p["so_p"])
-
-    # 5. Active cohort (on MLB active rosters this season)
+    # 4. Active cohort (on MLB active rosters this season)
     active_players = [p for p in players if p["year_max"] >= current_year]
     active_players.sort(key=lambda p: p["war"], reverse=True)
 
@@ -619,13 +614,25 @@ def build_daily_ledger(players: List[Dict[str, Any]], month: int, day: int, curr
         f"| **Antique Ace** | {format_player_link(vintage)} | {format_span(vintage)} | {format_franchises(vintage)} | {format_vintage_metrics(vintage)} |",
     ]
 
-    # Add superlatives if valid
-    if hr_leader["hr"] > 15:
+    # 5. Superlatives (deduplicated against earlier featured players)
+    used_names = {war_leader["name"], polymath["name"], vintage["name"]}
+    hr_candidates = [p for p in players if p["name"] not in used_names and p["hr"] > 15]
+    if hr_candidates:
+        hr_leader = max(hr_candidates, key=lambda p: p["hr"])
         lines.append(f"| **Long Ball Laureate** | {format_player_link(hr_leader)} | {format_span(hr_leader)} | {format_franchises(hr_leader)} | {hr_leader['hr']} Career HR • {hr_leader['rbi']} RBI |")
-    if so_leader["so_p"] > 100:
+        used_names.add(hr_leader["name"])
+
+    so_candidates = [p for p in players if p["name"] not in used_names and p["so_p"] > 100]
+    if so_candidates:
+        so_leader = max(so_candidates, key=lambda p: p["so_p"])
         lines.append(f"| **Strikeout Savant** | {format_player_link(so_leader)} | {format_span(so_leader)} | {format_franchises(so_leader)} | {so_leader['so_p']:,} Strikeouts • {so_leader['era']} ERA |")
-    elif sb_leader["sb"] > 50:
-        lines.append(f"| **Speed Superlative** | {format_player_link(sb_leader)} | {format_span(sb_leader)} | {format_franchises(sb_leader)} | {sb_leader['sb']} Stolen Bases • {sb_leader['hits']:,} H |")
+        used_names.add(so_leader["name"])
+    else:
+        sb_candidates = [p for p in players if p["name"] not in used_names and p["sb"] > 50]
+        if sb_candidates:
+            sb_leader = max(sb_candidates, key=lambda p: p["sb"])
+            lines.append(f"| **Speed Superlative** | {format_player_link(sb_leader)} | {format_span(sb_leader)} | {format_franchises(sb_leader)} | {sb_leader['sb']} Stolen Bases • {sb_leader['hits']:,} H |")
+            used_names.add(sb_leader["name"])
 
     lines.append("")
     
@@ -686,15 +693,22 @@ def build_dispatch_model(players: List[Dict[str, Any]], month: int, day: int, cu
             f"{len(polymath['franchises'])} Clubs"),
         row("Antique Ace", vintage, vintage_metrics_text(vintage)),
     ]
-    if hr_leader["hr"] > 15:
+    used_names = {war_leader["name"], polymath["name"], vintage["name"]}
+    if hr_leader["hr"] > 15 and hr_leader["name"] not in used_names:
         featured.append(row("Long Ball Laureate", hr_leader,
                              f"{hr_leader['hr']} Career HR • {hr_leader['rbi']} RBI"))
-    if so_leader["so_p"] > 100:
-        featured.append(row("Strikeout Savant", so_leader,
-                             f"{so_leader['so_p']:,} Strikeouts • {so_leader['era']} ERA"))
-    elif sb_leader["sb"] > 50:
+        used_names.add(hr_leader["name"])
+
+    so_candidates = [p for p in players if p["name"] not in used_names and p["so_p"] > 100]
+    if so_candidates:
+        so_pick = max(so_candidates, key=lambda p: p["so_p"])
+        featured.append(row("Strikeout Savant", so_pick,
+                             f"{so_pick['so_p']:,} Strikeouts • {so_pick['era']} ERA"))
+        used_names.add(so_pick["name"])
+    elif sb_leader["sb"] > 50 and sb_leader["name"] not in used_names:
         featured.append(row("Speed Superlative", sb_leader,
                              f"{sb_leader['sb']} Stolen Bases • {sb_leader['hits']:,} H"))
+        used_names.add(sb_leader["name"])
 
     active_players = [p for p in players if p["year_max"] >= current_year]
     active_players.sort(key=lambda p: p["war"], reverse=True)

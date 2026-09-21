@@ -174,10 +174,13 @@ def build(token: str, ranked: List[dict], now: dt.datetime, store_path: str) -> 
         (str(merge) + "%" if merge is not None else "—", "wMRG+ (merge rate 90d)",
          _polar(merge, 70, 90, False) if merge is not None else MUTED),
     ]
+    wdc_sub = season.get('wdc_sub', 'deployments created · last 28d')
+    if wdc is not None and not wdc_sub[0].isdigit():
+        wdc_sub = f"{wdc:.0f} weighted {wdc_sub}"
     note = (f"{fix_store.get('fix_28', '?')} fixes in {fix_store.get('commits_28', '?')} commits · "
             f"{shipped} of {active} active repos shipped a release · "
             f"{len(sidelined)} sidelined{': ' + ', '.join(sorted(sidelined)[:4]) if sidelined else ''} · "
-            f"{merged_n} of {decided_n} PRs merged · {season.get('wdc_sub', '28-day windows')}")
+            f"{merged_n} of {decided_n} PRs merged · {wdc_sub}")
     return {"tiles": tiles, "note": note}
 
 
