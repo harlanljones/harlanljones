@@ -159,11 +159,11 @@ def build(token: str, ranked: List[dict], now: dt.datetime, store_path: str) -> 
     tiles = [
         (str(fix) if fix is not None else "—", "FIX− (28d vs year)",
          _polar(fix, 90, 130, True) if fix is not None else MUTED),
-        (str(ship) if ship is not None else "—", "SHIP+ (% active w/ release)",
+        (str(ship) + "%" if ship is not None else "—", "SHIP+ (% active w/ release)",
          _polar(ship, 40, 70, False)),
         (str(len(sidelined)), "dOUT− (red default checks)",
          _polar(len(sidelined), 0, 3, True)),
-        (str(merge) if merge is not None else "—", "wMRG+ (merge rate 90d)",
+        (str(merge) + "%" if merge is not None else "—", "wMRG+ (merge rate 90d)",
          _polar(merge, 70, 90, False) if merge is not None else MUTED),
     ]
     note = (f"{fix_store.get('fix_28', '?')} fixes in {fix_store.get('commits_28', '?')} commits · "
