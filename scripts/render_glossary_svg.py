@@ -65,6 +65,17 @@ ENTRIES = [
      "Recent pace against the usual pace, regressed with 7 days at the baseline rate. Activity: the last 30 days "
      "of contributions vs the year. Repo cards and the Immaculate Grid: a repo's last 30 days of commits vs "
      "its own 90-day rate."),
+    ("+/−", "polarity suffixes",
+     "100 = my normal baseline",
+     "A trailing + means higher is more-or-better (Lang+, Pace+, SHIP+); a trailing − means lower is better "
+     "(FIX−, RUST−). On a 100-neutral split, 100 is always my normal rate and distance from 100 is the story, "
+     "in whichever direction the suffix points."),
+    ("a w g d n", "method and scope prefixes",
+     "a regressed · w recency-weighted · g/d/n scoped",
+     "a (adjusted): small samples are regressed toward the baseline with phantom league-average events, so a "
+     "quiet stretch can't fake elite (aERA, aTURN−). w (weighted): weekly values decay 1, .6, .36, .22 "
+     "newest-first, so this week counts about five times as much as four weeks ago (wDC, wMRG+, wROT+). g/d/n "
+     "scope the count: git-native totals, the default branch, or nocturnal hours outside 9–5 PT."),
 ]
 
 
