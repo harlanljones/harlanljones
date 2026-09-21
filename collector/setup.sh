@@ -165,12 +165,11 @@ step "Build image"
 step "Cloud Run Job"
 g run jobs deploy "$JOB" --image="$IMAGE" --region="$REGION" --service-account="$JOB_SA" \
 	--cpu=2 --memory=4Gi --task-timeout=3600 --max-retries=1 \
-	SECRETS="GH_READ_TOKEN=gh-read-token:latest,GH_WRITE_TOKEN=gh-write-token:latest"
+	--set-secrets="$(printf 'GH_READ_TOKEN=gh-read-token:latest,GH_WRITE_TOKEN=gh-write-token:latest'
 	if g secrets describe cloudflare-token >/dev/null 2>&1; then
-		SECRETS="$SECRETS,CLOUDFLARE_API_TOKEN=cloudflare-token:latest"
-		g secrets describe cloudflare-account >/dev/null 2>&1 && SECRETS="$SECRETS,CLOUDFLARE_ACCOUNT_ID=cloudflare-account:latest"
-	fi
-	--set-secrets="$SECRETS" \
+		printf ',CLOUDFLARE_API_TOKEN=cloudflare-token:latest'
+		g secrets describe cloudflare-account >/dev/null 2>&1 && printf ',CLOUDFLARE_ACCOUNT_ID=cloudflare-account:latest'
+	fi)" \
 	--add-volume="name=state,type=cloud-storage,bucket=$BUCKET" \
 	--add-volume-mount="volume=state,mount-path=/mnt/state"
 g run jobs add-iam-policy-binding "$JOB" --region="$REGION" --member="serviceAccount:$SCHED_SA" \
