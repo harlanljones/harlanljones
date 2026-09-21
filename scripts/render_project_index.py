@@ -10,6 +10,9 @@ one section — first category that claims it wins.
   Hitting streak      hottest repos by Pace+ (30-day vs 90-day commit rate)
   Hidden gems         positive-gWAR repos with the fewest stars
 
+Layout: Top 5 hero full-width on top, the other four categories in a 2x2
+grid below; repos stack in a single column inside each category block.
+
 Rendered by the weekly repo-cards workflow, which owns the repo metadata
 (gWAR, Pace+, commit counts). Summaries/badges come from the
 Featured Projects store (scripts/data/featured_projects.json).
@@ -114,59 +117,53 @@ def _entry(x: float, y: float, w: float, r: dict, featured: Dict[str, dict], fir
     return "\n".join(frags), cy - y
 
 
+def _section_block(name: str, rows: List[dict], width: float) -> Tuple[str, float]:
+    """One category block in local coords (origin = block top-left): accent
+    header plus single-column repo entries. The caller places the block with
+    <g transform="translate(x,y)">. Returns (svg_fragment, height)."""
+    frags = [
+        f'<text x="0" y="12" font-size="13" font-weight="800" '
+        f'fill="{SECTION_ACCENTS.get(name, ACCENT_BLUE)}" font-family="{FONT_FAMILY}">{esc(name)}</text>'
+    ]
+    cy = 24.0
+    for r in rows:
+        svg, h = _entry(0.0, cy, width, r, FEATURED_REF[0], False)
+        frags.append(svg)
+        cy += h + 8
+    return "\n".join(frags), cy - 8
+
+
 def render(sections: List[Tuple[str, List[dict]]], date_str: str, total_repos: int) -> str:
     max_x = CARD_WIDTH - PAD_X
+    full_w = max_x - PAD_X
     col_gap = 30.0
-    col_w = (max_x - PAD_X - col_gap) / 2
+    row_gap = 20.0
+    cell_w = (full_w - col_gap) / 2
     frags = []
     cy = 10.0
-    first_section = True
-    for name, rows in sections:
-        if not first_section:
-            cy += 10
-            frags.append(f'<line x1="{PAD_X}" y1="{cy:.1f}" x2="{max_x}" y2="{cy:.1f}" '
-                         f'stroke="{BORDER}" stroke-width="1"/>')
-            cy += 16
-        first_section = False
-        frags.append(f'<text x="{PAD_X}" y="{cy + 12:.1f}" font-size="13" font-weight="800" '
-                     f'fill="{SECTION_ACCENTS.get(name, ACCENT_BLUE)}" font-family="{FONT_FAMILY}">{esc(name)}</text>')
-        cy += 22
-        if name == "Top 5 · by gWAR":
-            # Two columns of detailed entries; the top repo spans full width.
-            x0, y0 = PAD_X, cy
-            svg, h = _entry(x0, y0, max_x - PAD_X, rows[0], FEATURED_REF[0], True)
-            frags.append(svg)
-            cy = y0 + h + 12
-            for i in range(1, len(rows), 2):
-                pair = rows[i:i + 2]
-                if len(pair) == 1:
-                    svg, h = _entry(PAD_X, cy, max_x - PAD_X, pair[0], FEATURED_REF[0], False)
-                    frags.append(svg)
-                    cy += h + 8
-                    continue
-                col_h = 0.0
-                for j, r in enumerate(pair):
-                    x = PAD_X + j * (col_w + col_gap)
-                    svg, h = _entry(x, cy, col_w, r, FEATURED_REF[0], False)
-                    frags.append(svg)
-                    col_h = max(col_h, h)
-                cy += col_h + 8
-        else:
-            for i in range(0, len(rows), 2):
-                pair = rows[i:i + 2]
-                if len(pair) == 1:
-                    svg, h = _entry(PAD_X, cy, max_x - PAD_X, pair[0], FEATURED_REF[0], False)
-                    frags.append(svg)
-                    cy += h + 8
-                    continue
-                col_h = 0.0
-                for j, r in enumerate(pair):
-                    x = PAD_X + j * (col_w + col_gap)
-                    svg, h = _entry(x, cy, col_w, r, FEATURED_REF[0], False)
-                    frags.append(svg)
-                    col_h = max(col_h, h)
-                cy += col_h + 8
-        cy += 2
+
+    by_name = dict(sections)
+    # Hero: Top 5 spans the full width, single column.
+    hero = by_name.get("Top 5 · by gWAR", [])
+    if hero:
+        svg, h = _section_block("Top 5 · by gWAR", hero, full_w)
+        frags.append(f'<g transform="translate({PAD_X:.1f},{cy:.1f})">{svg}</g>')
+        cy += h
+
+    # The remaining categories pair into a 2x2 grid; cells in a row share the
+    # taller cell's height so the next row starts clean.
+    grid = [(n, rows) for n, rows in sections if n != "Top 5 · by gWAR"]
+    for i in range(0, len(grid), 2):
+        cy += 10
+        frags.append(f'<line x1="{PAD_X}" y1="{cy:.1f}" x2="{max_x}" y2="{cy:.1f}" '
+                     f'stroke="{BORDER}" stroke-width="1"/>')
+        cy += 16
+        rendered = [_section_block(n, rows, cell_w) for n, rows in grid[i:i + 2]]
+        row_h = max(h for _, h in rendered)
+        for j, (svg, _) in enumerate(rendered):
+            x = PAD_X + j * (cell_w + col_gap)
+            frags.append(f'<g transform="translate({x:.1f},{cy:.1f})">{svg}</g>')
+        cy += row_h + row_gap
     cy += 4
     frags.append(f'<text x="{max_x}" y="{cy + 8:.1f}" font-size="9.5" fill="{MUTED}" text-anchor="end" '
                  f'font-family="{FONT_FAMILY}">{total_repos} public repos · one entry per repo, best section wins · '
