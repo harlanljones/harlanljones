@@ -159,10 +159,43 @@ _LIGHT_NEUTRALS = [
 ]
 
 
+# github-linguist colors are brand colors, but some vanish on one theme. Each
+# fix steps HLS lightness (same hue) until the mark reaches 3:1 against that
+# theme's card background — the WCAG minimum for graphical objects.
+# Too dark on the dark card (#0d1117): lighter step, used in both themes (all
+# of these still clear 6:1 on white).
+_LANG_DARK_LEGIBLE = {
+    "#555555": "#606060",  # C
+    "#563d7c": "#704fa2",  # CSS
+    "#384d54": "#49656e",  # Dockerfile
+    "#701516": "#bb2325",  # Ruby
+    "#012456": "#0259d4",  # PowerShell
+    "#000080": "#3e3eff",  # Lua
+    "#083fa1": "#0b56db",  # Markdown
+    "#6e4a7e": "#79528b",  # Elixir
+    "#5e5086": "#675893",  # Haskell
+}
+# Too light on white: darker step, light variant only.
+_LIGHT_LANG = [
+    ("#f1e05a", "#a6950e"),  # JavaScript
+    ("#89e051", "#54a81e"),  # Shell
+    ("#fcb32c", "#cc8503"),  # MDX
+    ("#dea584", "#d18052"),  # Rust
+]
+
+
+def legible_lang_color(hex_color: str) -> str:
+    """A language color that stays visible on the dark card background."""
+    return _LANG_DARK_LEGIBLE.get(hex_color.lower(), hex_color)
+
+
 def recolor_light(svg: str) -> str:
-    """Remaps the dark-theme neutral palette to GitHub-light equivalents."""
+    """Remaps the dark-theme neutral palette to GitHub-light equivalents and
+    darkens language colors that would wash out on white."""
     for dark, light in _LIGHT_NEUTRALS:
         svg = svg.replace(dark, light)
+    for dark, light in _LIGHT_LANG:
+        svg = re.sub(re.escape(dark), light, svg, flags=re.I)
     return svg
 
 

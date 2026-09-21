@@ -44,6 +44,7 @@ from svg_cards import (  # noqa: E402
     TITLE_COLOR,
     card_shell,
     esc,
+    legible_lang_color,
     text_width,
     truncate,
     wrap_by_width,
@@ -213,7 +214,7 @@ def pace_plus(repo: dict, now: dt.datetime) -> int:
 
 
 def lang_color(lang: Optional[str]) -> str:
-    return LANG_COLORS.get(lang or "", DEFAULT_LANG_COLOR)
+    return legible_lang_color(LANG_COLORS.get(lang or "", DEFAULT_LANG_COLOR))
 
 
 # ---------------------------------------------------------------- leaderboard

@@ -37,6 +37,7 @@ from svg_cards import (  # noqa: E402
     TITLE_COLOR,
     card_shell,
     esc,
+    legible_lang_color,
     truncate,
     write_theme_pair,
 )
@@ -86,12 +87,12 @@ LANGUAGE_COLORS = {
     "Zig": "#ec915c",
     "Perl": "#0298c3",
 }
-FALLBACK_PALETTE = ["#6e40c9", "#bf3989", "#0969da", "#1a7f37", "#9a6700", "#cf222e"]
+FALLBACK_PALETTE = ["#8250df", "#bf3989", "#0969da", "#1a7f37", "#9a6700", "#cf222e"]
 
 
 def lang_color(name: str) -> str:
     if name in LANGUAGE_COLORS:
-        return LANGUAGE_COLORS[name]
+        return legible_lang_color(LANGUAGE_COLORS[name])
     idx = sum(ord(c) for c in name) % len(FALLBACK_PALETTE)
     return FALLBACK_PALETTE[idx]
 
