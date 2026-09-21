@@ -28,8 +28,13 @@
 </picture>
 
 <picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/dev-grid.svg" />
+  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/dev-grid-light.svg" alt="Dev Immaculate Grid" width="100%" />
+</picture>
+
+<picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/skills.svg" />
-  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/skills-light.svg" alt="Technical Skills" width="100%" />
+  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/skills-light.svg" alt="Skills in Practice" width="100%" />
 </picture>
 
 <picture>
@@ -44,11 +49,6 @@
 </picture>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/dev-grid.svg" />
-  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/dev-grid-light.svg" alt="Dev Immaculate Grid" width="100%" />
-</picture>
-
-<picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/activity.svg" />
   <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/activity-light.svg" alt="GitHub Activity" width="100%" />
 </picture>
@@ -56,6 +56,16 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/commit-rhythm.svg" />
   <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/commit-rhythm-light.svg" alt="Languages & Commit Rhythm" width="100%" />
+</picture>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/pipeline.svg" />
+  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/pipeline-light.svg" alt="How This Page Is Built" width="100%" />
+</picture>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/glossary.svg" />
+  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/glossary-light.svg" alt="Glossary" width="100%" />
 </picture>
 
 <picture>

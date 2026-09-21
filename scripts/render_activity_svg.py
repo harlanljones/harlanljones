@@ -18,8 +18,8 @@ Fetches the last 12 months of public contribution data from the GitHub API:
 
 Renders two SVGs using the shared svg_cards primitives:
 
-  activity.svg      stat tiles + trailing-30-day bars + 7-day average
-  commit-rhythm.svg language bars + commit-hours histogram + language trends
+  activity.svg      stat tiles (incl. Pace+) + trailing-30-day bars + 7-day average
+  commit-rhythm.svg language bars with Lang+ + commit-hours histogram + language lanes
 
 The daily `activity-cards.yml` workflow runs this and commits the output to
 the `profile-cards` branch.
@@ -37,6 +37,7 @@ from typing import Dict, List, Optional, Tuple
 from zoneinfo import ZoneInfo
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from sabermetrics import plus_stat, rate_plus  # noqa: E402
 from svg_cards import (  # noqa: E402
     ACCENT_AMBER,
     BORDER,
@@ -277,6 +278,29 @@ def language_timeseries(
     return dates, dict(ranked)
 
 
+def recent_language_counts(
+    commits: List[Tuple[date, str]], repo_langs: Dict[str, str], cutoff: date
+) -> Dict[str, int]:
+    """Commits per primary language on or after `cutoff` (all languages)."""
+    counts: Dict[str, int] = {}
+    for d, repo in commits:
+        lang = repo_langs.get(repo or "")
+        if lang and d >= cutoff:
+            counts[lang] = counts.get(lang, 0) + 1
+    return counts
+
+
+def lang_plus(season: List[Tuple[str, int]], recent: Dict[str, int]) -> Dict[str, int]:
+    """Lang+: a language's 30-day commit share vs its 12-month share, 100 =
+    normal usage. Split shares regress toward the season share (sabermetrics.PLUS_PRIOR)."""
+    season_total = sum(c for _, c in season)
+    recent_total = sum(recent.values())
+    return {
+        name: plus_stat(recent.get(name, 0), recent_total, count, season_total)
+        for name, count in season
+    }
+
+
 # ---------------------------------------------------------------------------
 # Derived stats
 # ---------------------------------------------------------------------------
@@ -440,11 +464,15 @@ def render_activity_card(stats: Dict, updated: datetime) -> str:
     commits = int(stats.get("totalCommitContributions") or 0)
     prs = int(stats.get("totalPullRequestContributions") or 0)
     repos = int(stats.get("totalRepositoriesWithContributedCommits") or 0)
+    today = datetime.now(PACIFIC).date()
+    last30 = sum(v for d, v in days.items() if d > today - timedelta(days=30))
+    pace = rate_plus(last30, 30, sum(days.values()), max(1, len(days)))
 
     tiles = [
         (f"{commits:,}", "Commits", ACCENTS[0]),
         (f"{prs:,}", "Pull Requests", ACCENTS[1]),
         (f"{repos:,}", "Repos Contributed", ACCENTS[3]),
+        (str(pace), "Pace+ (30d vs year)", ACCENTS[2]),
         (str(current_streak), "Hitting Streak (days)", ACCENTS[4]),
         (str(longest_streak), "Career Best (days)", ACCENTS[5]),
     ]
@@ -458,11 +486,18 @@ def render_activity_card(stats: Dict, updated: datetime) -> str:
     return card_shell("GitHub Activity", subtitle, "\n".join(frags), body_height)
 
 
-def _language_rows(x: float, y: float, width: float, langs: List[Tuple[str, int]]) -> Tuple[str, float]:
-    """Horizontal language share bars. Returns (svg_fragment, height used)."""
+def _language_rows(
+    x: float, y: float, width: float, langs: List[Tuple[str, int]], plus: Optional[Dict[str, int]] = None
+) -> Tuple[str, float]:
+    """Horizontal language share bars with a Lang+ column. Returns (svg_fragment, height used)."""
+    plus = plus or {}
     frags = [
         f'<text x="{x:.1f}" y="{y + 12:.1f}" font-size="13" font-weight="700" '
-        f'fill="{TITLE_COLOR}" font-family="{FONT_FAMILY}">Top Languages</text>'
+        f'fill="{TITLE_COLOR}" font-family="{FONT_FAMILY}">Top Languages</text>',
+        f'<text x="{x + width - 50:.1f}" y="{y + 12:.1f}" font-size="9" font-weight="700" letter-spacing="1.2" '
+        f'text-anchor="end" fill="{MUTED}" font-family="{FONT_FAMILY}">SHARE</text>',
+        f'<text x="{x + width:.1f}" y="{y + 12:.1f}" font-size="9" font-weight="700" letter-spacing="1.2" '
+        f'text-anchor="end" fill="{MUTED}" font-family="{FONT_FAMILY}">LANG+</text>',
     ]
     cy = y + 24
     if not langs:
@@ -474,7 +509,7 @@ def _language_rows(x: float, y: float, width: float, langs: List[Tuple[str, int]
     max_count = max(c for _, c in langs) or 1
     total = sum(c for _, c in langs)
     name_w = 105
-    pct_w = 42
+    pct_w = 92
     bar_max = width - name_w - pct_w - 14
     for name, count in langs:
         pct = round(100 * count / total)
@@ -485,8 +520,10 @@ def _language_rows(x: float, y: float, width: float, langs: List[Tuple[str, int]
             f'font-family="{FONT_FAMILY}">{esc(truncate(name, 12, name_w))}</text>'
             f'<rect x="{x + name_w:.1f}" y="{cy:.1f}" width="{bar_w:.1f}" height="9" rx="3" '
             f'fill="{lang_color(name)}"/>'
-            f'<text x="{x + width:.1f}" y="{cy + 9:.1f}" font-size="11" fill="{MUTED}" '
+            f'<text x="{x + width - 50:.1f}" y="{cy + 9:.1f}" font-size="11" fill="{MUTED}" '
             f'text-anchor="end" font-family="{FONT_FAMILY}">{pct}%</text>'
+            f'<text x="{x + width:.1f}" y="{cy + 9:.1f}" font-size="11.5" font-weight="700" fill="{TEXT}" '
+            f'text-anchor="end" font-family="{FONT_FAMILY}">{plus.get(name, 100)}</text>'
         )
         cy += 20
     return "\n".join(frags), cy - y
@@ -525,10 +562,14 @@ def _hour_histogram(x: float, y: float, width: float, hours: Dict[int, int]) -> 
 
 
 def _language_timeseries_chart(
-    x: float, y: float, width: float, dates: List[date], series: Dict[str, List[int]]
+    x: float, y: float, width: float, dates: List[date], series: Dict[str, List[int]],
+    plus: Optional[Dict[str, int]] = None,
 ) -> Tuple[str, float]:
-    """Multi-series language activity chart: x = date, y = commits per day
-    to repos whose primary language is X. Returns (svg_fragment, height)."""
+    """Language activity as small multiples: one lane per language, daily
+    commit bars on a shared y-scale so lanes compare honestly. Overlaid lines
+    were unreadable with spiky daily counts and near-identical linguist blues
+    (Python vs TypeScript); lanes carry identity by name, not color alone.
+    Returns (svg_fragment, height)."""
     frags = [
         f'<text x="{x:.1f}" y="{y + 12:.1f}" font-size="13" font-weight="700" '
         f'fill="{TITLE_COLOR}" font-family="{FONT_FAMILY}">Language activity · commits per day · last 30 days</text>'
@@ -540,94 +581,67 @@ def _language_timeseries_chart(
         )
         return "\n".join(frags), 48
 
-    window = len(dates)
+    n = len(dates)
     names = list(series.keys())
-    # Legend row (dots + names), wrapping if needed.
-    legend_y = y + 20
-    lx = x
-    legend_bottom = legend_y + 14
-    for name in names:
-        label = truncate(name, 11, 110)
-        entry_w = 10 + 5 + len(label) * 11 * 0.54 + 14
-        if lx + entry_w > x + width and lx > x:
-            lx = x
-            legend_y += 16
-            legend_bottom += 16
-        color = lang_color(name)
-        frags.append(
-            f'<circle cx="{lx + 4:.1f}" cy="{legend_y + 4:.1f}" r="4" fill="{color}"/>'
-            f'<text x="{lx + 12:.1f}" y="{legend_y + 8:.1f}" font-size="11" fill="{TEXT}" '
-            f'font-family="{FONT_FAMILY}">{esc(label)}</text>'
-        )
-        lx += entry_w
-    legend_h = legend_bottom - y
-
-    top = y + legend_h + 10
-    chart_h = 104
-    baseline = top + chart_h
-    axis_w = 30
-    plot_x = x + axis_w
-    plot_w = width - axis_w
-    peak = max((v for vals in series.values() for v in vals), default=0)
-    peak = max(peak, 1)
-    mid = (peak + 1) // 2
-
-    for frac_val, label in ((peak, str(peak)), (mid, str(mid)), (0, "0")):
-        gy = baseline - chart_h * frac_val / peak
-        frags.append(
-            f'<line x1="{plot_x:.1f}" y1="{gy:.1f}" x2="{plot_x + plot_w:.1f}" y2="{gy:.1f}" '
-            f'stroke="{BORDER}" stroke-width="1" stroke-dasharray="3 4" opacity="0.8"/>'
-            f'<text x="{plot_x - 6:.1f}" y="{gy + 3.5:.1f}" font-size="9" fill="{MUTED}" '
-            f'text-anchor="end" font-family="{FONT_FAMILY}">{esc(label)}</text>'
-        )
+    peak = max(max((v for vals in series.values() for v in vals), default=0), 1)
     frags.append(
-        f'<text x="{x:.1f}" y="{top - 4:.1f}" font-size="9" fill="{MUTED}" '
-        f'font-family="{FONT_FAMILY}">commits/day</text>'
+        f'<text x="{x + width:.1f}" y="{y + 12:.1f}" font-size="11" fill="{MUTED}" '
+        f'text-anchor="end" font-family="{FONT_FAMILY}">shared scale · tallest bar = {peak}/day</text>'
     )
 
-    n = window
-    for name in names:
+    plus = plus or {}
+    label_w = 104
+    total_w = 140
+    plot_x = x + label_w
+    plot_w = width - label_w - total_w
+    pitch = plot_w / n
+    bar_w = max(3.0, pitch - 4)
+    lane_h = 26
+    lane_gap = 8
+    top = y + 26
+
+    for row, name in enumerate(names):
         vals = series[name]
         color = lang_color(name)
-        pts = []
-        for i, v in enumerate(vals):
-            px = plot_x + (i + 0.5) * plot_w / n
-            py = baseline - chart_h * v / peak
-            pts.append((px, py, v))
+        lane_top = top + row * (lane_h + lane_gap)
+        baseline = lane_top + lane_h
+        mid_y = lane_top + lane_h / 2 + 4
         frags.append(
-            f'<polyline points="{" ".join(f"{px:.1f},{py:.1f}" for px, py, _ in pts)}" '
-            f'fill="none" stroke="{color}" stroke-width="2.2" '
-            f'stroke-linejoin="round" stroke-linecap="round"/>'
+            f'<circle cx="{x + 4:.1f}" cy="{mid_y - 4:.1f}" r="4" fill="{color}"/>'
+            f'<text x="{x + 13:.1f}" y="{mid_y:.1f}" font-size="11.5" fill="{TEXT}" '
+            f'font-family="{FONT_FAMILY}">{esc(truncate(name, 11.5, label_w - 18))}</text>'
+            f'<line x1="{plot_x:.1f}" y1="{baseline:.1f}" x2="{plot_x + plot_w:.1f}" y2="{baseline:.1f}" '
+            f'stroke="{BORDER}" stroke-width="1"/>'
         )
-        for px, py, v in pts:
-            if v > 0:
-                frags.append(
-                    f'<circle cx="{px:.1f}" cy="{py:.1f}" r="2.4" fill="{color}" '
-                    f'stroke="{TILE_FILL}" stroke-width="1"/>'
-                )
+        for i, v in enumerate(vals):
+            if v <= 0:
+                continue
+            bar_h = max(2.0, lane_h * v / peak)
+            bx = plot_x + i * pitch + (pitch - bar_w) / 2
+            frags.append(
+                f'<rect x="{bx:.1f}" y="{baseline - bar_h:.1f}" width="{bar_w:.1f}" height="{bar_h:.1f}" '
+                f'rx="2" fill="{color}"/>'
+            )
+        frags.append(
+            f'<text x="{x + width - 74:.1f}" y="{mid_y:.1f}" font-size="11" fill="{MUTED}" '
+            f'text-anchor="end" font-family="{FONT_FAMILY}">{sum(vals):,} total</text>'
+            f'<text x="{x + width:.1f}" y="{mid_y:.1f}" font-size="11" font-weight="700" fill="{TEXT}" '
+            f'text-anchor="end" font-family="{FONT_FAMILY}">Lang+ {plus.get(name, 100)}</text>'
+        )
 
-    frags.append(
-        f'<line x1="{plot_x:.1f}" y1="{baseline:.1f}" x2="{plot_x + plot_w:.1f}" y2="{baseline:.1f}" '
-        f'stroke="{BORDER}" stroke-width="1"/>'
-    )
+    axis_y = top + len(names) * (lane_h + lane_gap) - lane_gap
     for i in (0, n // 2, n - 1):
-        tx = plot_x + (i + 0.5) * plot_w / n
+        tx = plot_x + (i + 0.5) * pitch
         anchor = "middle"
         if i == 0:
-            anchor = "start"
-            tx = plot_x
+            anchor, tx = "start", plot_x
         elif i == n - 1:
-            anchor = "end"
-            tx = plot_x + plot_w
+            anchor, tx = "end", plot_x + plot_w
         frags.append(
-            f'<text x="{tx:.1f}" y="{baseline + 14:.1f}" font-size="9" fill="{MUTED}" '
+            f'<text x="{tx:.1f}" y="{axis_y + 14:.1f}" font-size="9" fill="{MUTED}" '
             f'text-anchor="{anchor}" font-family="{FONT_FAMILY}">{dates[i].strftime("%b %-d")}</text>'
         )
-    frags.append(
-        f'<text x="{plot_x + plot_w / 2:.1f}" y="{baseline + 26:.1f}" font-size="9" fill="{MUTED}" '
-        f'text-anchor="middle" font-family="{FONT_FAMILY}">date</text>'
-    )
-    height = legend_h + 10 + chart_h + 30
+    height = axis_y + 18 - y
     return "\n".join(frags), height
 
 
@@ -637,19 +651,21 @@ def render_rhythm_card(
     total_commits: int,
     trend_dates: Optional[List[date]] = None,
     trend_series: Optional[Dict[str, List[int]]] = None,
+    plus: Optional[Dict[str, int]] = None,
 ) -> str:
     col_w = (CARD_WIDTH - PAD_X * 2 - 28) / 2
-    left_svg, left_h = _language_rows(PAD_X, 10.0, col_w, langs[:7])
+    left_svg, left_h = _language_rows(PAD_X, 10.0, col_w, langs[:7], plus)
     right_x = PAD_X + col_w + 28
     right_svg, right_h = _hour_histogram(right_x, 10.0, col_w, hours)
     top_h = max(left_h, right_h)
 
     trend_svg, trend_h = _language_timeseries_chart(
-        PAD_X, 10.0 + top_h + 18, CARD_WIDTH - PAD_X * 2, trend_dates or [], trend_series or {}
+        PAD_X, 10.0 + top_h + 18, CARD_WIDTH - PAD_X * 2, trend_dates or [], trend_series or {}, plus
     )
     body_height = top_h + 18 + trend_h
 
-    subtitle = f"Commit share by language and local commit time · {total_commits:,} commits in the last 12 months"
+    subtitle = (f"Commit share by language and local commit time · {total_commits:,} commits in the last 12 months"
+                " · Lang+ in Glossary")
     return card_shell(
         "Languages & Commit Rhythm", subtitle, left_svg + "\n" + right_svg + "\n" + trend_svg, body_height,
         accent=ACCENT_AMBER,
@@ -682,10 +698,12 @@ def main() -> None:
     recent_repos = sorted({repo for d, repo in dated_commits if repo and d >= cutoff})
     repo_langs = fetch_repo_primary_languages(recent_repos, args.token) if recent_repos else {}
     trend_dates, trend_series = language_timeseries(dated_commits, repo_langs, today=today)
+    plus = lang_plus(langs, recent_language_counts(dated_commits, repo_langs, cutoff))
 
     os.makedirs(args.out_dir, exist_ok=True)
     activity = render_activity_card(stats, updated)
-    rhythm = render_rhythm_card(langs, hours, int(stats.get("totalCommitContributions") or 0), trend_dates, trend_series)
+    rhythm = render_rhythm_card(langs, hours, int(stats.get("totalCommitContributions") or 0),
+                               trend_dates, trend_series, plus)
 
     for name, svg in (("activity.svg", activity), ("commit-rhythm.svg", rhythm)):
         for path in write_theme_pair(os.path.join(args.out_dir, name), svg):

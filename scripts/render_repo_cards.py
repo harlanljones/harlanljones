@@ -4,12 +4,13 @@ Renders the repository cards: Repo Leaderboard, Repo Spotlight, and the
 Dev Immaculate Grid — one data pass against the GitHub REST API, six SVGs
 (dark + light for each card).
 
-- Repo Leaderboard: top repositories ranked by a bWAR-style composite
-  (commits/10 + stars + forks + freshness), drawn as a horizontal bar chart.
+- Repo Leaderboard: top repositories ranked by gWAR (Git Wins Above
+  Replacement; formula in score_repo and on the Glossary card), drawn as a
+  horizontal bar chart.
 - Repo Spotlight: the leaderboard's #1 repo for this cycle — description plus
   a 30-day commit area chart and latest release pill.
 - Dev Immaculate Grid: a 3x3 languages x stack grid where every filled cell
-  is a real repository from the public index.
+  is a real repository from the public index, tagged with its Pace+ split.
 
 Weekly cadence via .github/workflows/repo-cards.yml; static/one-off runs are
 just `python3 scripts/render_repo_cards.py --out-dir <dir>` with a token.
@@ -18,6 +19,7 @@ just `python3 scripts/render_repo_cards.py --out-dir <dir>` with a token.
 import argparse
 import datetime as dt
 import json
+import math
 import os
 import re
 import sys
@@ -27,6 +29,7 @@ from typing import Dict, List, Optional, Tuple
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+from sabermetrics import rate_plus  # noqa: E402
 from svg_cards import (  # noqa: E402
     ACCENT_AMBER,
     ACCENT_BLUE,
@@ -137,32 +140,76 @@ def fetch_repos(username: str, token: str) -> List[dict]:
     ]
 
 
-def enrich_with_commits(repos: List[dict], token: str) -> None:
-    """Adds commits_90 (count, capped at 100) and commit_days (last-90d dates)
-    to each repo dict from a single commits call per repo."""
+def enrich_with_commits(repos: List[dict], token: str, max_pages: int = 3) -> None:
+    """Adds commits_90 (count, capped at 100 * max_pages) and commit_days
+    (last-90d dates) to each repo dict. Paging past 100 keeps busy repos'
+    90-day baselines real, which Pace+ depends on."""
     since = (dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=90)).strftime("%Y-%m-%dT%H:%M:%SZ")
     for repo in repos:
-        data = gh_get(
-            f"/repos/{repo['full_name']}/commits?since={since}&per_page=100", token
-        )
-        if isinstance(data, list):
-            repo["commits_90"] = len(data)
-            repo["commit_days"] = [
+        days: List[str] = []
+        for page in range(1, max_pages + 1):
+            data = gh_get(
+                f"/repos/{repo['full_name']}/commits?since={since}&per_page=100&page={page}", token
+            )
+            if not isinstance(data, list):
+                break
+            days.extend(
                 d for d in (
                     (c.get("commit") or {}).get("committer", {}).get("date", "")
                     for c in data
                 ) if d
-            ]
-        else:
-            repo["commits_90"] = 0
-            repo["commit_days"] = []
+            )
+            if len(data) < 100:
+                break
+            time.sleep(0.05)
+        repo["commits_90"] = len(days)
+        repo["commit_days"] = days
         time.sleep(0.05)
 
 
-def score_repo(repo: dict, now: dt.datetime) -> float:
+def repo_runs(repo: dict, now: dt.datetime) -> float:
+    """Runs created: log-damped activity and adoption, plus freshness. Logs
+    keep one viral repo (or one 100-commit sprint) from owning the scale."""
     days_pushed = max(0.0, (now - parse_iso(repo["pushed_at"])).total_seconds() / 86400)
-    freshness = 3.0 * max(0.0, 1.0 - days_pushed / 90)
-    return round(repo["commits_90"] / 10.0 + repo["stargazers_count"] + repo["forks_count"] + freshness, 1)
+    freshness = max(0.0, 1.0 - days_pushed / 90)
+    return (
+        math.log1p(repo.get("commits_90", 0))
+        + 1.25 * math.log1p(repo["stargazers_count"])
+        + 0.75 * math.log1p(repo["forks_count"])
+        + freshness
+    )
+
+
+def replacement_level(runs: List[float]) -> float:
+    """The 20th-percentile repo: what a freely available, forgettable repo
+    produces. gWAR is measured above this line, so it can go negative."""
+    ordered = sorted(runs)
+    return ordered[int(0.2 * (len(ordered) - 1))] if ordered else 0.0
+
+
+def score_repo(repo: dict, now: dt.datetime, replacement: float) -> float:
+    """gWAR = runs created above the replacement-level repo."""
+    return round(repo_runs(repo, now) - replacement, 1)
+
+
+def pace_plus(repo: dict, now: dt.datetime) -> int:
+    """Pace+: last-30-day commit rate vs the repo's own 90-day rate (100 = normal).
+
+    The baseline window shrinks to what the data actually covers: a repo
+    younger than 90 days, or one whose commit list hit the 300 cap, would
+    otherwise be divided by days it never had and read as red-hot."""
+    days = [parse_iso(d) for d in repo.get("commit_days", [])]
+    if not days:
+        return 100
+    base_days = 90.0
+    if repo.get("created_at"):
+        base_days = min(base_days, (now - parse_iso(repo["created_at"])).total_seconds() / 86400)
+    if len(days) >= 300:
+        base_days = min(base_days, (now - min(days)).total_seconds() / 86400)
+    base_days = max(base_days, 1.0)
+    split_days = min(30.0, base_days)
+    recent = sum(1 for d in days if d >= now - dt.timedelta(days=split_days))
+    return rate_plus(recent, split_days, len(days), base_days)
 
 
 def lang_color(lang: Optional[str]) -> str:
@@ -174,7 +221,7 @@ def lang_color(lang: Optional[str]) -> str:
 def render_leaderboard(rows: List[dict], date_str: str) -> str:
     max_x = CARD_WIDTH - PAD_X
     bar_x, bar_w = 340.0, 300.0
-    top = max(r["bwar"] for r in rows) or 1.0
+    top = max(max(r["gwar"] for r in rows), 0.1)
     frags = [
         f'<text x="{PAD_X}" y="{14}" font-size="9" font-weight="700" letter-spacing="1.5" '
         f'fill="{MUTED}" font-family="{FONT_FAMILY}">LANGUAGE</text>',
@@ -185,7 +232,7 @@ def render_leaderboard(rows: List[dict], date_str: str) -> str:
         f'<text x="{bar_x + bar_w + 64}" y="{14}" font-size="9" font-weight="700" letter-spacing="1.5" '
         f'fill="{MUTED}" font-family="{FONT_FAMILY}">COMMITS 90D</text>',
         f'<text x="{max_x}" y="{14}" font-size="9" font-weight="700" letter-spacing="1.5" text-anchor="end" '
-        f'fill="{ACCENT_AMBER}" font-family="{FONT_FAMILY}">BWAR</text>',
+        f'fill="{ACCENT_AMBER}" font-family="{FONT_FAMILY}">gWAR</text>',
     ]
     cy = 24.0
     for i, r in enumerate(rows):
@@ -197,21 +244,20 @@ def render_leaderboard(rows: List[dict], date_str: str) -> str:
                      f'font-family="{FONT_FAMILY}">{esc(truncate(r["language"] or "—", 11, 80))}</text>')
         frags.append(f'<text x="150" y="{cy + 12:.1f}" font-size="13" font-weight="700" fill="{TEXT}" '
                      f'font-family="{FONT_FAMILY}">{esc(truncate(r["name"], 20, 175, bold=True))}</text>')
-        w = max(6.0, bar_w * (r["bwar"] / top))
+        w = max(6.0, bar_w * max(0.0, r["gwar"]) / top)
         frags.append(f'<rect x="{bar_x}" y="{cy + 3:.1f}" width="{w:.1f}" height="10" rx="5" '
                      f'fill="{ACCENT_BLUE}" fill-opacity="{opacity:.2f}"/>')
         frags.append(f'<text x="{bar_x + bar_w + 12}" y="{cy + 12:.1f}" font-size="11.5" fill="{TEXT}" '
                      f'font-family="{FONT_FAMILY}">{r["stargazers_count"]:,}</text>')
         frags.append(f'<text x="{bar_x + bar_w + 64}" y="{cy + 12:.1f}" font-size="11.5" fill="{TEXT}" '
-                     f'font-family="{FONT_FAMILY}">{r["commits_90"]}</text>')
+                     f'font-family="{FONT_FAMILY}">{r.get("commits_90", 0)}</text>')
         frags.append(f'<text x="{max_x}" y="{cy + 12:.1f}" font-size="13" font-weight="800" text-anchor="end" '
-                     f'fill="{ACCENT_AMBER}" font-family="{FONT_FAMILY}">{r["bwar"]:.1f}</text>')
+                     f'fill="{ACCENT_AMBER}" font-family="{FONT_FAMILY}">{r["gwar"]:.1f}</text>')
         cy += 28
     cy += 6
     frags.append(f'<text x="{PAD_X}" y="{cy + 8:.1f}" font-size="9.5" fill="{MUTED}" '
-                 f'font-family="{FONT_FAMILY}">bWAR = commits(90d)/10 + stars + forks + freshness · '
-                 f'commits capped at 100/repo · {esc(date_str)} · GitHub Actions</text>')
-    return card_shell("Repo Leaderboard", "top repositories ranked by bWAR — win above replacement, sort of",
+                 f'font-family="{FONT_FAMILY}">gWAR defined in Glossary · {esc(date_str)} · GitHub Actions</text>')
+    return card_shell("Repo Leaderboard", "top repositories ranked by gWAR — Git Wins Above Replacement",
                       "\n".join(frags), cy + 16, accent=ACCENT_AMBER)
 
 
@@ -226,7 +272,7 @@ def render_spotlight(repo: dict, date_str: str) -> str:
         f'font-family="{FONT_FAMILY}">{esc(repo["name"])}</text>',
         f'<text x="{max_x}" y="{cy + 6:.1f}" font-size="11.5" fill="{MUTED}" text-anchor="end" '
         f'font-family="{FONT_FAMILY}">★ {repo["stargazers_count"]:,} · forks {repo["forks_count"]:,} · '
-        f'bWAR {repo["bwar"]:.1f}</text>',
+        f'gWAR {repo["gwar"]:.1f} · Pace+ {repo["pace_plus"]}</text>',
     ]
     cy += 24
     desc = repo.get("description") or " · ".join((repo.get("topics") or [])[:5]) or "No description yet."
@@ -305,7 +351,7 @@ def build_grid(repos: List[dict], now: dt.datetime) -> Tuple[List[str], List[str
                 if r.get("language") == l:
                     candidates.setdefault((l, d), []).append(r)
     for cell in candidates:
-        candidates[cell].sort(key=lambda r: -r["bwar"])
+        candidates[cell].sort(key=lambda r: -r["gwar"])
 
     domain_counts = {d: sum(1 for (l, dd) in candidates if dd == d) for d, _ in DOMAINS}
     domain_candidates = [d for d, _ in sorted(DOMAINS, key=lambda kv: -domain_counts.get(kv[0], 0))[:4]]
@@ -325,7 +371,7 @@ def build_grid(repos: List[dict], now: dt.datetime) -> Tuple[List[str], List[str
                         c = candidates.get((l, d))
                         if c:
                             filled += 1
-                            total += c[0]["bwar"]
+                            total += c[0]["gwar"]
                 if (filled, total) > (best[0], best[1]):
                     best = (filled, total, list(langs), list(doms))
 
@@ -333,7 +379,7 @@ def build_grid(repos: List[dict], now: dt.datetime) -> Tuple[List[str], List[str
     assigned: Dict[Tuple[str, str], Optional[dict]] = {}
     used = set()
     cells = [(l, d) for l in langs for d in doms if candidates.get((l, d))]
-    cells.sort(key=lambda c: -candidates[c][0]["bwar"])
+    cells.sort(key=lambda c: -candidates[c][0]["gwar"])
     for cell in cells:
         pick = next((r for r in candidates[cell] if r["full_name"] not in used), None)
         assigned[cell] = pick
@@ -372,7 +418,7 @@ def render_grid(langs: List[str], doms: List[str], assigned: Dict[Tuple[str, str
                     f'<text x="{x + 10:.1f}" y="{cy + 22:.1f}" font-size="12" font-weight="700" fill="{TEXT}" '
                     f'font-family="{FONT_FAMILY}">{esc(truncate(repo["name"], 18, cell_w - 20, bold=True))}</text>'
                     f'<text x="{x + cell_w - 10:.1f}" y="{cy + cell_h - 10:.1f}" font-size="9.5" text-anchor="end" '
-                    f'fill="{MUTED}" font-family="{FONT_FAMILY}">★ {repo["stargazers_count"]:,} · bWAR {repo["bwar"]:.1f}</text>'
+                    f'fill="{MUTED}" font-family="{FONT_FAMILY}">★ {repo["stargazers_count"]:,} · Pace+ {repo["pace_plus"]}</text>'
                 )
             else:
                 frags.append(
@@ -384,7 +430,8 @@ def render_grid(langs: List[str], doms: List[str], assigned: Dict[Tuple[str, str
         cy += cell_h + gap
     cy += 2
     frags.append(f'<text x="{PAD_X}" y="{cy + 8:.1f}" font-size="9.5" fill="{MUTED}" font-family="{FONT_FAMILY}">'
-                 f'{filled}/9 filled · every cell is a real repo from the public index · {esc(date_str)} · GitHub Actions</text>')
+                 f'{filled}/9 filled · every cell is a real repo from the public index · Pace+ defined in Glossary · '
+                 f'{esc(date_str)} · GitHub Actions</text>')
     return card_shell("Dev Immaculate Grid", "languages x stack — the daily lineup, gamified",
                       "\n".join(frags), cy + 16, accent=ACCENT_PURPLE)
 
@@ -410,10 +457,12 @@ def main() -> None:
     repos.sort(key=lambda r: r.get("pushed_at", ""), reverse=True)
     enrich_with_commits(repos[: args.max_repos], args.token)
 
+    replacement = replacement_level([repo_runs(r, now) for r in repos])
     for r in repos:
-        r["bwar"] = score_repo(r, now)
-    ranked = sorted(repos, key=lambda r: (-r["bwar"], -r["commits_90"], -r["stargazers_count"]))
-    top = [r for r in ranked if r["commits_90"] > 0][:8] or ranked[:8]
+        r["gwar"] = score_repo(r, now, replacement)
+        r["pace_plus"] = pace_plus(r, now)
+    ranked = sorted(repos, key=lambda r: (-r["gwar"], -r.get("commits_90", 0), -r["stargazers_count"]))
+    top = [r for r in ranked if r.get("commits_90", 0) > 0][:8] or ranked[:8]
 
     hero = dict(top[0])
     cutoff = (now - dt.timedelta(days=29)).date()
