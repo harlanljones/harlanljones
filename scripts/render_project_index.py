@@ -5,9 +5,10 @@ sections drawn from the live repo index. Every repository appears in at most
 one section — first category that claims it wins.
 
   Top 5 · by gWAR     the leaderboard's best, with the Featured summary text
-  Fresh off the bench newest repos, not already shown
+  September call-ups  newest repos (rookies), not already shown
   Live in production  repos with a homepage URL
-  The long haul       oldest repos still pushed within 90 days
+  Hitting streak      hottest repos by Pace+ (30-day vs 90-day commit rate)
+  Hidden gems         positive-gWAR repos with the fewest stars
 
 Rendered by the weekly repo-cards workflow, which owns the repo metadata
 (gWAR, Pace+, commit counts). Summaries/badges come from the
@@ -26,6 +27,7 @@ from svg_cards import (  # noqa: E402
     ACCENT_BLUE,
     ACCENT_GREEN,
     ACCENT_ORANGE,
+    ACCENT_PURPLE,
     BORDER,
     CARD_WIDTH,
     FONT_FAMILY,
@@ -40,8 +42,9 @@ from svg_cards import (  # noqa: E402
     write_theme_pair,
 )
 
-SECTION_ACCENTS = {"Top 5 · by gWAR": ACCENT_AMBER, "Fresh off the bench": ACCENT_GREEN,
-                   "Live in production": ACCENT_ORANGE, "The long haul": ACCENT_BLUE}
+SECTION_ACCENTS = {"Top 5 · by gWAR": ACCENT_AMBER, "September call-ups": ACCENT_GREEN,
+                   "Live in production": ACCENT_BLUE, "Hitting streak": ACCENT_ORANGE,
+                   "Hidden gems": ACCENT_PURPLE}
 
 
 def build_sections(ranked: List[dict], now, featured: Dict[str, dict]) -> List[Tuple[str, List[dict]]]:
@@ -61,13 +64,14 @@ def build_sections(ranked: List[dict], now, featured: Dict[str, dict]) -> List[T
     sections = [("Top 5 · by gWAR", take(ranked, 5))]
     fresh = sorted((r for r in ranked if r["gwar"] > 0),
                    key=lambda r: r.get("created_at") or "", reverse=True)
-    sections.append(("Fresh off the bench", take(fresh, 5)))
+    sections.append(("September call-ups", take(fresh, 5)))
     live = sorted((r for r in ranked if r.get("homepage")), key=lambda r: -r["gwar"])
-    sections.append(("Live in production", take(live, 4)))
-    cutoff = (now - dt.timedelta(days=90)).strftime("%Y-%m-%dT%H:%M:%SZ")
-    long_haul = sorted((r for r in ranked if (r.get("pushed_at") or "") >= cutoff),
-                       key=lambda r: r.get("created_at") or "")
-    sections.append(("The long haul", take(long_haul, 3)))
+    sections.append(("Live in production", take(live, 5)))
+    streak = sorted((r for r in ranked if r.get("commits_90", 0) > 0),
+                    key=lambda r: (-r.get("pace_plus", 100), -r.get("commits_90", 0)))
+    sections.append(("Hitting streak", take(streak, 5)))
+    gems = sorted((r for r in ranked if r["gwar"] > 0), key=lambda r: (r["stargazers_count"], -r["gwar"]))
+    sections.append(("Hidden gems", take(gems, 5)))
     return [(name, rows) for name, rows in sections if rows]
 
 
@@ -167,7 +171,7 @@ def render(sections: List[Tuple[str, List[dict]]], date_str: str, total_repos: i
     frags.append(f'<text x="{max_x}" y="{cy + 8:.1f}" font-size="9.5" fill="{MUTED}" text-anchor="end" '
                  f'font-family="{FONT_FAMILY}">{total_repos} public repos · one entry per repo, best section wins · '
                  f'gWAR and Pace+ in Glossary · {esc(date_str)} · GitHub Actions</text>')
-    return card_shell("Projects", "what I ship — ranked, fresh, live, and enduring",
+    return card_shell("Projects", "what I ship — ranked, rookies, live, hot, and hidden",
                       "\n".join(frags), cy + 16, accent=ACCENT_ORANGE)
 
 
