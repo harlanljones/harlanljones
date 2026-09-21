@@ -9,14 +9,14 @@
 <rect x="0.5" y="0.5" width="899" height="294" rx="12" fill="#ffffff" stroke="url(#shellEdge)"/>
 <text x="24" y="30" font-size="18" font-weight="700" fill="#1f2328" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">What I Did This Week</text>
 <text x="24" y="48" font-size="12.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Sep 14 – Sep 21, 2026</text>
-<g transform="translate(0,56)"><text x="24" y="24.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">harlanljones</text>
-<text x="24" y="44.0" font-size="13" fill="#1f2328" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Engineered wDC and Actions ERA stats on the pipeline card; exclude pure automations from reps and implemented wRP skills</text>
-<text x="24" y="63.0" font-size="13" fill="#1f2328" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">bubbles, gWAR, Lang+/Pace+ splits, pipeline and glossary cards.</text>
-<line x1="24" y1="78.0" x2="876" y2="78.0" stroke="#59636e" stroke-opacity="0.25"/>
-<text x="24" y="100.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">rosetta</text>
-<text x="24" y="120.0" font-size="13" fill="#1f2328" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Engineered complete NPB redesign support and refresh snapshots and implemented real-data pipeline — playerPool=ALL,</text>
-<text x="24" y="139.0" font-size="13" fill="#1f2328" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">relative holdout, KBO name romanization.</text>
-<line x1="24" y1="154.0" x2="876" y2="154.0" stroke="#59636e" stroke-opacity="0.25"/>
-<text x="24" y="176.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">jev-roster-shapes</text>
-<text x="24" y="196.0" font-size="13" fill="#1f2328" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Engineered improve roster field and scenario navigation and implemented make shape roster the landing focus.</text></g>
+<g transform="translate(0,56)"><text x="24" y="24.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">jev-roster-shapes</text>
+<text x="24" y="44.0" font-size="13" fill="#1f2328" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Engineered group roster players by shape and implemented visualize paired lineups and shape roster.</text>
+<line x1="24" y1="59.0" x2="876" y2="59.0" stroke="#59636e" stroke-opacity="0.25"/>
+<text x="24" y="81.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">harlanljones</text>
+<text x="24" y="101.0" font-size="13" fill="#1f2328" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Engineered wDC + aERA on Season Stat Line; pipeline is a pure jobs table and implemented wDC and Actions ERA stats on the</text>
+<text x="24" y="120.0" font-size="13" fill="#1f2328" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">pipeline card; exclude pure automations from reps.</text>
+<line x1="24" y1="135.0" x2="876" y2="135.0" stroke="#59636e" stroke-opacity="0.25"/>
+<text x="24" y="157.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">rosetta</text>
+<text x="24" y="177.0" font-size="13" fill="#1f2328" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Engineered leakage-safe prior-fold calibration to rolling backtest and implemented complete NPB redesign support and</text>
+<text x="24" y="196.0" font-size="13" fill="#1f2328" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">refresh snapshots.</text></g>
 </svg>
