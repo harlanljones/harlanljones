@@ -49,7 +49,7 @@ import render_glossary_svg  # noqa: E402
 from render_activity_svg import lang_plus, render_rhythm_card  # noqa: E402
 import render_pipeline_svg  # noqa: E402
 from render_skills_svg import KEEP_WEEKS, PACIFIC, render, skill_board, week_record, week_start  # noqa: E402
-from sabermetrics import aera, weighted_recent, wrp_reps  # noqa: E402
+from sabermetrics import aera, plus_stat, weighted_recent, wrp_reps  # noqa: E402
 from skill_signals import (  # noqa: E402
     commit_skill_lines,
     file_language,
@@ -67,6 +67,9 @@ NUMSTAT = re.compile(r"^(\d+|-)\t(\d+|-)\t(.+)$")
 RECORD_SEP, FIELD_SEP = "\x1e", "\x1f"
 RHYTHM_DAYS = 365
 LANE_DAYS = 30
+# FIX− window: corrective-share split vs the full-season baseline.
+FIX_DAYS = 28
+FIX_SUBJECT = re.compile(r"\b(hotfix|bugfix|revert|fix(?:es|ed)?)\b", re.I)
 # Scheduled bot commits land at cron times, not when I work: keep them out of
 # the hour histogram (they still count for skills and languages).
 BOT_AUTHOR = re.compile(r"\[bot\]|bot@", re.I)
@@ -301,21 +304,24 @@ def iter_commits(git_dir: str, since: datetime, author_pattern: str, env: Dict[s
     proc.wait()
 
 
-def mine(mirrors: List[str], author_pattern: str, env: Dict[str, str]) -> Tuple[Dict[str, Dict], Dict]:
+def mine(mirrors: List[str], author_pattern: str, env: Dict[str, str]) -> Tuple[Dict[str, Dict], Dict, Dict]:
     """One pass over every mirror: weekly skill records for the store, plus
-    the rhythm tallies (language commits, 30-day language lanes, hours)."""
+    the rhythm tallies (language commits, 30-day language lanes, hours) and
+    the FIX− tallies (corrective subjects in the last FIX_DAYS vs season)."""
     today = datetime.now(PACIFIC).date()
     current = week_start(today)
     first = min(current - timedelta(weeks=KEEP_WEEKS - 1), today - timedelta(days=RHYTHM_DAYS - 1))
     since = datetime(first.year, first.month, first.day, tzinfo=PACIFIC)
     rhythm_start = today - timedelta(days=RHYTHM_DAYS - 1)
     lane_start = today - timedelta(days=LANE_DAYS - 1)
+    fix_start = today - timedelta(days=FIX_DAYS - 1)
 
     buckets: Dict[str, List[Tuple[str, Dict[str, float], int]]] = {}
     season: Dict[str, int] = {}
     lanes: Dict[str, List[int]] = {}
     hours = {h: 0 for h in range(24)}
     season_commits = 0
+    fix_season = fix_28 = total_season = total_28 = 0
     seen = set()
     for git_dir in mirrors:
         for sha, authored, author, subject, files in iter_commits(git_dir, since, author_pattern, env):
@@ -329,6 +335,12 @@ def mine(mirrors: List[str], author_pattern: str, env: Dict[str, str]) -> Tuple[
             if local.date() < rhythm_start:
                 continue
             season_commits += 1
+            total_season += 1
+            is_fix = bool(FIX_SUBJECT.search(subject))
+            fix_season += is_fix
+            if local.date() >= fix_start:
+                total_28 += 1
+                fix_28 += is_fix
             if not BOT_AUTHOR.search(author):
                 hours[local.hour] += 1
             # A commit counts once for every language whose files it touched.
@@ -349,7 +361,12 @@ def mine(mirrors: List[str], author_pattern: str, env: Dict[str, str]) -> Tuple[
         "commits": season_commits,
     }
     log(f"[INFO] {len(seen)} commits across {len(mirrors)} mirrors; {season_commits} in the last {RHYTHM_DAYS} days")
-    return weeks, rhythm
+    fix = {
+        "value": plus_stat(fix_28, total_28, fix_season, total_season),
+        "fix_28": fix_28,
+        "commits_28": total_28,
+    }
+    return weeks, rhythm, fix
 
 
 def render_rhythm(rhythm: Dict) -> str:
@@ -436,9 +453,10 @@ def main() -> None:
     if os.path.isdir(state_dir):
         save_state(state_dir, mirror_dir)
 
-    weeks, rhythm = mine(mirrors, author_pattern, read_env)
+    weeks, rhythm, fix = mine(mirrors, author_pattern, read_env)
     store = {
         "weeks": weeks,
+        "fix_minus": fix,
         "source": "mirrors",
         "updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
     }

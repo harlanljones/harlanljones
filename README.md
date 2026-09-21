@@ -49,6 +49,11 @@
 </picture>
 
 <picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/statline.svg" />
+  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/statline-light.svg" alt="Season Stat Line" width="100%" />
+</picture>
+
+<picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/activity.svg" />
   <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/activity-light.svg" alt="GitHub Activity" width="100%" />
 </picture>

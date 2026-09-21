@@ -499,6 +499,12 @@ def main() -> None:
     sections = render_project_index.build_sections(ranked, now, featured)
     cards["projects.svg"] = render_project_index.render(sections, date_str, len(repos))
 
+    # Season Stat Line: API stats + the collector's FIX− from the skills store.
+    import render_statline_svg  # noqa: E402
+    store = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "skill_weeks.json")
+    cards["statline.svg"] = render_statline_svg.render(
+        render_statline_svg.build(args.token, ranked, now, store), date_str)
+
     for name, svg in cards.items():
         for path in write_theme_pair(os.path.join(args.out_dir, name), svg):
             print(f"[OK] Wrote {path}")

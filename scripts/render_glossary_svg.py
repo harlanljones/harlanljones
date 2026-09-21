@@ -65,6 +65,22 @@ ENTRIES = [
      "Recent pace against the usual pace, regressed with 7 days at the baseline rate. Activity: the last 30 days "
      "of contributions vs the year. Repo cards and the Immaculate Grid: a repo's last 30 days of commits vs "
      "its own 90-day rate."),
+    ("FIX−", "corrective load, 100-neutral",
+     "100 × 28-day fix share (regressed) ÷ season fix share",
+     "Share of commits fixing rather than building: subjects matching fix, hotfix, revert, or bugfix across "
+     "every owned repo and branch. 100 is my usual load, 70 means a third fewer fixes than usual. On the "
+     "Season Stat Line card."),
+    ("SHIP+", "share of active repos shipping",
+     "repos with a release in 90 days ÷ active repos",
+     "What share of repos I actually touched shipped a release this quarter. Higher is better. On the "
+     "Season Stat Line card."),
+    ("dOUT−", "sidelined repos",
+     "repos whose latest default-branch check failed",
+     "The injured list: a plain count, lower is better. On the Season Stat Line card."),
+    ("wMRG+", "recency-weighted merge rate",
+     "merged ÷ decided PRs, weeks weighted 1/.6/.36/.22",
+     "Share of closed pull requests that merged over 90 days, this week's outcomes counting most. Higher is "
+     "better. On the Season Stat Line card."),
     ("+/−", "polarity suffixes",
      "100 = my normal baseline",
      "A trailing + means higher is more-or-better (Lang+, Pace+, SHIP+); a trailing − means lower is better "
