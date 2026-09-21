@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="768" viewBox="0 0 900 768">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="992" viewBox="0 0 900 992">
 <defs>
 <linearGradient id="shellEdge" x1="0" y1="0" x2="1" y2="0.9">
 <stop offset="0" stop-color="#e3b341" stop-opacity="0.85"/>
@@ -6,7 +6,7 @@
 <stop offset="0.65" stop-color="#30363d" stop-opacity="1"/>
 </linearGradient>
 </defs>
-<rect x="0.5" y="0.5" width="899" height="767" rx="12" fill="#0d1117" stroke="url(#shellEdge)"/>
+<rect x="0.5" y="0.5" width="899" height="991" rx="12" fill="#0d1117" stroke="url(#shellEdge)"/>
 <text x="24" y="30" font-size="18" font-weight="700" fill="#e6edf3" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Glossary</text>
 <text x="24" y="48" font-size="12.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">the homegrown stats on this page, and how they're computed</text>
 <g transform="translate(0,56)"><text x="24" y="19.0" font-size="15" font-weight="800" fill="#e3b341" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">wRP</text><text x="120" y="19.0" font-size="12.5" font-weight="700" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">weighted Reps Practiced</text>
@@ -48,5 +48,18 @@
 <text x="24" y="635.0" font-size="15" font-weight="800" fill="#e3b341" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Pace+</text><text x="120" y="635.0" font-size="12.5" font-weight="700" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">commit pace, 100-neutral split</text>
 <text x="120" y="653.0" font-size="11" fill="#c9d1d9" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">100 × (recent daily rate, regressed) ÷ baseline daily rate</text>
 <text x="120" y="671.0" font-size="11.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Recent pace against the usual pace, regressed with 7 days at the baseline rate. Activity: the last 30 days of</text>
-<text x="120" y="687.0" font-size="11.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">contributions vs the year. Repo cards and the Immaculate Grid: a repo's last 30 days of commits vs its own 90-day rate.</text></g>
+<text x="120" y="687.0" font-size="11.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">contributions vs the year. Repo cards and the Immaculate Grid: a repo's last 30 days of commits vs its own 90-day rate.</text>
+<line x1="24" y1="702.0" x2="876" y2="702.0" stroke="#30363d" stroke-width="1"/>
+<text x="24" y="723.0" font-size="15" font-weight="800" fill="#e3b341" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">+/−</text><text x="120" y="723.0" font-size="12.5" font-weight="700" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">polarity suffixes</text>
+<text x="120" y="741.0" font-size="11" fill="#c9d1d9" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">100 = my normal baseline</text>
+<text x="120" y="759.0" font-size="11.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">A trailing + means higher is more-or-better (Lang+, Pace+, SHIP+); a trailing − means lower is better (FIX−, RUST−). On a</text>
+<text x="120" y="775.0" font-size="11.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">100-neutral split, 100 is always my normal rate and distance from 100 is the story, in whichever direction the suffix</text>
+<text x="120" y="791.0" font-size="11.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">points.</text>
+<line x1="24" y1="806.0" x2="876" y2="806.0" stroke="#30363d" stroke-width="1"/>
+<text x="24" y="827.0" font-size="15" font-weight="800" fill="#e3b341" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">a w g d n</text><text x="120" y="827.0" font-size="12.5" font-weight="700" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">method and scope prefixes</text>
+<text x="120" y="845.0" font-size="11" fill="#c9d1d9" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">a regressed · w recency-weighted · g/d/n scoped</text>
+<text x="120" y="863.0" font-size="11.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">a (adjusted): small samples are regressed toward the baseline with phantom league-average events, so a quiet stretch</text>
+<text x="120" y="879.0" font-size="11.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">can't fake elite (aERA, aTURN−). w (weighted): weekly values decay 1, .6, .36, .22 newest-first, so this week counts</text>
+<text x="120" y="895.0" font-size="11.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">about five times as much as four weeks ago (wDC, wMRG+, wROT+). g/d/n scope the count: git-native totals, the default</text>
+<text x="120" y="911.0" font-size="11.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">branch, or nocturnal hours outside 9–5 PT.</text></g>
 </svg>
