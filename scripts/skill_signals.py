@@ -131,6 +131,22 @@ DOC_PATH = re.compile(r"\.(md|mdx|rst|txt)$")
 # only message-level noise is reverts: the reverted diff already counted once.
 NOISE_MESSAGE = re.compile(r"^revert \"", re.I)
 
+# Pure automations: their commits mirror work already counted (deploys,
+# snapshots, dependency bumps) or are housekeeping. Dev agents and CI bots
+# that actually edit code (lint auto-fixes, generated migrations) stay in.
+AUTOMATION_AUTHOR = re.compile(
+    r"github-actions\[bot\]|profile-collector|dependabot|renovate|semantic-release|release-please",
+    re.I,
+)
+AUTOMATION_MESSAGE = re.compile(
+    r"\[skip ci\]|nightly \w+ snapshot|sync newly published|chore\(deps?\)|bump \S+ from ",
+    re.I,
+)
+
+
+def is_automation(author: str, message: str) -> bool:
+    return bool(AUTOMATION_AUTHOR.search(author) or AUTOMATION_MESSAGE.search(message))
+
 
 def is_noise_commit(message: str) -> bool:
     return bool(NOISE_MESSAGE.search(message.strip().split("\n")[0]))

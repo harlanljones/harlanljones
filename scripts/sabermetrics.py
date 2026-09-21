@@ -77,3 +77,25 @@ def savant_color(pct: float) -> str:
 def weighted_recent(weekly: List[float], weights: Sequence[float] = (1.0, 0.6, 0.36, 0.22)) -> float:
     """Recency-weighted sum over the newest-first weekly values."""
     return sum(w * v for w, v in zip(weights, weekly))
+
+
+def era(failures: float, total: float, prior_failures: float = 0.5) -> float:
+    """Actions ERA: failed workflow runs per 9 runs, like earned runs per 9
+    innings. Lower is better; 4.50 is roughly baseball's league average.
+    Small samples are regressed toward 4.50 by `prior_failures` phantom runs."""
+    if total <= 0:
+        return 4.50
+    regressed = failures + prior_failures * (4.50 / 9.0) * 9.0 / 4.50
+    return round(9.0 * regressed / (total + 9.0), 2)
+
+
+def era_color(e: float) -> str:
+    """Savant-ish poles for ERA: under 3.00 is elite green, over 6.00 is red."""
+    if e <= 3.0:
+        return "#1a7f37"
+    if e >= 6.0:
+        return "#cf222e"
+    t = (e - 3.0) / 3.0
+    a, b = (0x1A, 0x7F, 0x37), (0xCF, 0x22, 0x2E)
+    r, g, bl = (round(a[i] + (b[i] - a[i]) * t) for i in range(3))
+    return f"#{r:02x}{g:02x}{bl:02x}"

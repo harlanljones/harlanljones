@@ -10,17 +10,19 @@ to glossary.svg. Keep JOBS in sync with .github/workflows/ and collector/.
 import argparse
 import os
 import sys
-from typing import List, Tuple
+from typing import Dict, List, Optional, Tuple
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from svg_cards import (  # noqa: E402
     ACCENT_BLUE,
     ACCENT_GREEN,
+    ACCENT_ORANGE,
     BORDER,
     CARD_WIDTH,
     FONT_FAMILY,
     MUTED,
+    ON_ACCENT,
     PAD_X,
     TEXT,
     card_shell,
@@ -28,6 +30,7 @@ from svg_cards import (  # noqa: E402
     wrap_by_width,
     write_theme_pair,
 )
+from sabermetrics import era, era_color  # noqa: E402
 
 GCP = "GCP Cloud Run Job"
 ACTIONS = "GitHub Actions"
@@ -50,17 +53,46 @@ JOBS: List[Tuple[str, str, str, str, str]] = [
      "What I Did This Week"),
     ("weekly · Sat", "projects-sync", ACTIONS,
      "public repo index + README, summarized by Gemini",
-     "Featured Projects"),
+     "Featured Projects store (summaries for the Projects card)"),
     ("weekly · Sun", "repo-cards", ACTIONS,
-     "repo metadata, stars, forks, 90-day commits",
-     "Repo Leaderboard · Repo Spotlight · Dev Immaculate Grid"),
+     "repo metadata, stars, forks, 90-day commits, featured store",
+     "Projects · Repo Leaderboard · Repo Spotlight · Dev Immaculate Grid"),
     ("when edited", "header / overview", LOCAL,
      "hand-written constants in the generator scripts",
      "Header · Professional Overview"),
 ]
 
 
-def render() -> str:
+
+def _stat_tile(x: float, y: float, w: float, label: str, value: str, sub: str, color: str) -> str:
+    return (
+        f'<rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="58" rx="8" fill="{BORDER}" fill-opacity="0.45"/>'
+        f'<rect x="{x:.1f}" y="{y:.1f}" width="3" height="58" rx="1.5" fill="{color}"/>'
+        f'<text x="{x + 14:.1f}" y="{y + 17:.1f}" font-size="9" font-weight="700" letter-spacing="1.5" '
+        f'fill="{MUTED}" font-family="{FONT_FAMILY}">{esc(label)}</text>'
+        f'<text x="{x + 14:.1f}" y="{y + 39:.1f}" font-size="21" font-weight="800" fill="{color}" '
+        f'font-family="{FONT_FAMILY}">{esc(value)}</text>'
+        f'<text x="{x + 14:.1f}" y="{y + 52:.1f}" font-size="9.5" fill="{MUTED}" '
+        f'font-family="{FONT_FAMILY}">{esc(sub)}</text>'
+    )
+
+
+def _stats_strip(frags: List[str], stats: Dict) -> float:
+    """Two Savant-style tiles under the jobs table: wDC and Actions ERA.
+    Returns the extra height consumed."""
+    max_x = CARD_WIDTH - PAD_X
+    gap, tile_w = 14.0, (max_x - PAD_X - 14.0) / 2
+    y = 6.0
+    if "wdc" in stats:
+        frags.append(_stat_tile(PAD_X, y, tile_w, "wDC · SEASON", f"{stats['wdc']:.0f}",
+                                stats["wdc_sub"], ACCENT_ORANGE))
+    if "era" in stats:
+        frags.append(_stat_tile(PAD_X + tile_w + gap, y, tile_w, "ACTIONS ERA", f"{stats['era']:.2f}",
+                                stats["era_sub"], era_color(stats["era"])))
+    return y + 58 + 14 if stats else 0.0
+
+def render(stats: Optional[Dict] = None) -> str:
+    stats = stats or {}
     max_x = CARD_WIDTH - PAD_X
     col_job = PAD_X + 118
     col_src = col_job + 180
@@ -96,7 +128,7 @@ def render() -> str:
             frags.append(f'<text x="{col_cards}" y="{cy + 11 + i * 16:.1f}" font-size="11.5" fill="{TEXT}" '
                          f'font-family="{FONT_FAMILY}">{esc(line)}</text>')
         cy += row_h + 8
-    cy += 2
+    cy += _stats_strip(frags, stats) + 2
     note = ("Every card is a hand-rolled SVG (no headless browser): jobs commit dark and light variants to the "
             "profile-cards branch, and the README embeds each pair with <picture> so it follows your theme. "
             "Private repos feed aggregate stats only; their names never leave the collector.")

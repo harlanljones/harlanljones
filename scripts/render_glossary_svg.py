@@ -32,7 +32,7 @@ from svg_cards import (  # noqa: E402
 ENTRIES = [
     ("wRP", "weighted Reps Practiced",
      "Σ commits √min(400, lines credited to the skill) · 4-week weights 1 / .6 / .36 / .22",
-     "Reads each week's actual diffs, not commit messages, across every repo I own: my commits plus the agents' and bots' I run. A file that is the skill (Dockerfile, workflow YAML, "
+     "Reads each week's actual diffs, not commit messages, across every repo I own: my commits, the dev agents' (Claude, Cursor, Copilot) and code-fixing CI bots'; pure automations — snapshot pushes, dependency bots — don't count. A file that is the skill (Dockerfile, workflow YAML, "
      "test file) credits all its changed lines; a changed line that uses it (import torch, async def, CREATE TABLE) "
      "credits 4 lines of context. Deletions count half; lockfiles, vendored and generated files are ignored. "
      "The square root rewards steady, focused reps over one giant dump. Bubbles show the percentile of that "
@@ -49,6 +49,16 @@ ENTRIES = [
      "than over the year. Languages come from the extensions of the files each commit changed, across every "
      "repo and branch, so a commit counts once for each language it touched. The 30-day share is regressed "
      "toward the season share with 25 phantom commits, so a language needs real volume before it moves far from 100."),
+    ("wDC", "weighted Deployments Created",
+     "Σ weeks-of-last-4 (deployments that week) · weights 1 / .6 / .36 / .22",
+     "Every deployment I created in the last four weeks: Cloudflare Pages deploys plus Workers "
+     "last-deployed timestamps. Recency-weighted, so shipping this week counts about five times as "
+     "much as shipping four weeks ago. Lives on the How This Page Is Built card."),
+    ("ERA", "Actions Env Reliability Average",
+     "9 × (failed runs, regressed) ÷ total runs · lower is better",
+     "Borrowed from pitching: earned runs per 9 innings, here failed GitHub Actions runs per 9 runs "
+     "across my public repos over the last 28 days. League average is about 4.50; green means the "
+     "pipelines mostly stay up. Small samples are regressed toward 4.50."),
     ("Pace+", "commit pace, 100-neutral split",
      "100 × (recent daily rate, regressed) ÷ baseline daily rate",
      "Recent pace against the usual pace, regressed with 7 days at the baseline rate. Activity: the last 30 days "

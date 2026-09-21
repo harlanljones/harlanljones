@@ -126,6 +126,38 @@ for secret in gh-read-token gh-write-token; do
 		--role=roles/secretmanager.secretAccessor >/dev/null
 done
 
+step "Cloudflare token (optional: wDC stat on the pipeline card)"
+# cloudflare-token: user API token, Workers Scripts Read + Pages Read
+# cloudflare-account: the account id, plain text
+if ! g secrets describe cloudflare-token >/dev/null 2>&1; then
+	if [[ -f "$HOME/.config/dots/cloudflare.env" ]]; then
+		token=$(grep -oP '^CLOUDFLARE_API_TOKEN=\K.*' "$HOME/.config/dots/cloudflare.env")
+		acct=$(grep -oP '^CLOUDFLARE_ACCOUNT_ID=\K.*' "$HOME/.config/dots/cloudflare.env")
+		if [[ -n "$token" ]]; then
+			printf '%s' "$token" | g secrets create cloudflare-token --replication-policy=automatic --data-file=-
+		else
+			read -rsp "Paste value for cloudflare-token: " token; echo
+			printf '%s' "$token" | g secrets create cloudflare-token --replication-policy=automatic --data-file=-
+		fi
+		[[ -n "$acct" ]] && printf '%s' "$acct" | g secrets create cloudflare-account --replication-policy=automatic --data-file=-
+		unset token acct
+	else
+		read -rsp "Paste value for cloudflare-token (empty to skip): " token; echo
+		if [[ -n "$token" ]]; then
+			printf '%s' "$token" | g secrets create cloudflare-token --replication-policy=automatic --data-file=-
+			read -rsp "Paste value for cloudflare-account-id: " acct; echo
+			printf '%s' "$acct" | g secrets create cloudflare-account --replication-policy=automatic --data-file=-
+			unset acct
+		fi
+		unset token
+	fi
+fi
+for secret in cloudflare-token cloudflare-account; do
+	g secrets describe "$secret" >/dev/null 2>&1 || continue
+	g secrets add-iam-policy-binding "$secret" --member="serviceAccount:$JOB_SA" \
+		--role=roles/secretmanager.secretAccessor >/dev/null
+done
+
 step "Build image"
 (cd "$ROOT" && g builds submit --config=collector/cloudbuild.yaml --substitutions="_IMAGE=$IMAGE" \
 	--gcs-source-staging-dir="gs://$SRC_BUCKET/source" --service-account="projects/$PROJECT_ID/serviceAccounts/$BUILD_SA" --region="$REGION" .)
@@ -133,7 +165,12 @@ step "Build image"
 step "Cloud Run Job"
 g run jobs deploy "$JOB" --image="$IMAGE" --region="$REGION" --service-account="$JOB_SA" \
 	--cpu=2 --memory=4Gi --task-timeout=3600 --max-retries=1 \
-	--set-secrets="GH_READ_TOKEN=gh-read-token:latest,GH_WRITE_TOKEN=gh-write-token:latest" \
+	SECRETS="GH_READ_TOKEN=gh-read-token:latest,GH_WRITE_TOKEN=gh-write-token:latest"
+	if g secrets describe cloudflare-token >/dev/null 2>&1; then
+		SECRETS="$SECRETS,CLOUDFLARE_API_TOKEN=cloudflare-token:latest"
+		g secrets describe cloudflare-account >/dev/null 2>&1 && SECRETS="$SECRETS,CLOUDFLARE_ACCOUNT_ID=cloudflare-account:latest"
+	fi
+	--set-secrets="$SECRETS" \
 	--add-volume="name=state,type=cloud-storage,bucket=$BUCKET" \
 	--add-volume-mount="volume=state,mount-path=/mnt/state"
 g run jobs add-iam-policy-binding "$JOB" --region="$REGION" --member="serviceAccount:$SCHED_SA" \

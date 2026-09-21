@@ -49,8 +49,13 @@ import render_glossary_svg  # noqa: E402
 from render_activity_svg import lang_plus, render_rhythm_card  # noqa: E402
 import render_pipeline_svg  # noqa: E402
 from render_skills_svg import KEEP_WEEKS, PACIFIC, render, skill_board, week_record, week_start  # noqa: E402
-from sabermetrics import wrp_reps  # noqa: E402
-from skill_signals import commit_skill_lines, file_language, is_noise_commit  # noqa: E402
+from sabermetrics import era, weighted_recent, wrp_reps  # noqa: E402
+from skill_signals import (  # noqa: E402
+    commit_skill_lines,
+    file_language,
+    is_automation,
+    is_noise_commit,
+)
 from svg_cards import write_theme_pair  # noqa: E402
 
 PROFILE_REPO = "harlanljones/harlanljones"
@@ -65,6 +70,93 @@ LANE_DAYS = 30
 # Scheduled bot commits land at cron times, not when I work: keep them out of
 # the hour histogram (they still count for skills and languages).
 BOT_AUTHOR = re.compile(r"\[bot\]|bot@", re.I)
+# Seasons for the two pipeline stats.
+STAT_DAYS = 28
+CF_ENV_FILE = os.path.expanduser("~/.config/dots/cloudflare.env")
+
+
+def cf_get(path: str, token: str) -> Optional[dict]:
+    req = urllib.request.Request(
+        f"https://api.cloudflare.com/client/v4{path}",
+        headers={"Authorization": f"Bearer {token}", "User-Agent": "ProfileCollector/1.0"},
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            body = json.loads(resp.read().decode("utf-8"))
+        return body if body.get("success") else None
+    except Exception as e:  # noqa: BLE001
+        log(f"[WARN] cloudflare GET {path}: {e}")
+        return None
+
+
+def deployment_stats(cf_token: str, cf_account: str, gh_token: str, repos: List[dict]) -> Dict:
+    """wDC: recency-weighted Deployments Created over the last 4 weeks
+    (Cloudflare Pages deployments + Workers last-deploys). Actions ERA: failed
+    GitHub Actions runs per 9, public repos only (the read token cannot list
+    private-repo runs). Both feed the pipeline card's stats strip."""
+    now = datetime.now(timezone.utc)
+    cutoff = now - timedelta(days=STAT_DAYS)
+
+    deploys: List[datetime] = []
+    if cf_token and cf_account:
+        base = f"/accounts/{cf_account}"
+        for proj in (cf_get(f"{base}/pages/projects", cf_token) or {}).get("result") or []:
+            body = cf_get(f"{base}/pages/projects/{proj['name']}/deployments?per_page=25", cf_token) or {}
+            for d in (body.get("result") or []):
+                ts = d.get("created_on") or d.get("modified_on")
+                if ts:
+                    deploys.append(datetime.fromisoformat(ts.replace("Z", "+00:00")))
+        for w in (cf_get(f"{base}/workers/scripts", cf_token) or {}).get("result") or []:
+            if w.get("modified_on"):
+                deploys.append(datetime.fromisoformat(w["modified_on"].replace("Z", "+00:00")))
+        deploys = [d for d in deploys if d >= cutoff]
+    weekly = [0.0] * 4
+    current = week_start(datetime.now(PACIFIC).date())
+    for d in deploys:
+        wk = week_start(d.astimezone(PACIFIC).date())
+        back = (current - wk).days // 7
+        if 0 <= back < 4:
+            weekly[back] += 1
+    wdc = weighted_recent(weekly)
+
+    runs = fails = 0
+    for r in repos:
+        if r.get("private"):
+            continue
+        since = cutoff.strftime("%Y-%m-%dT%H:%M:%SZ")
+        for page in (1, 2):
+            body = gh_get(f"/repos/{r['full_name']}/actions/runs?created=%3E{since}&per_page=100&page={page}", gh_token)
+            if not isinstance(body, dict):
+                break
+            batch = body.get("workflow_runs") or []
+            runs += len(batch)
+            fails += sum(1 for x in batch if x.get("conclusion") == "failure")
+            if len(batch) < 100:
+                break
+    return {
+        "wdc": wdc,
+        "wdc_sub": f"deployments created · last {STAT_DAYS}d",
+        "era": era(fails, runs),
+        "era_sub": f"{fails} of {runs} runs failed · public repos · {STAT_DAYS}d",
+    }
+
+
+def load_cf_env() -> Tuple[str, str]:
+    """CLOUDFLARE_API_TOKEN + ACCOUNT_ID from the environment or the dots env
+    file (the same file the splash refresher uses)."""
+    if os.environ.get("CLOUDFLARE_API_TOKEN"):
+        return os.environ["CLOUDFLARE_API_TOKEN"], os.environ.get("CLOUDFLARE_ACCOUNT_ID", "")
+    try:
+        with open(CF_ENV_FILE, encoding="utf-8") as f:
+            for line in f:
+                k, _, v = line.strip().partition("=")
+                if k == "CLOUDFLARE_API_TOKEN":
+                    os.environ.setdefault("CLOUDFLARE_API_TOKEN", v)
+                if k == "CLOUDFLARE_ACCOUNT_ID":
+                    os.environ.setdefault("CLOUDFLARE_ACCOUNT_ID", v)
+    except OSError:
+        pass
+    return os.environ.get("CLOUDFLARE_API_TOKEN", ""), os.environ.get("CLOUDFLARE_ACCOUNT_ID", "")
 
 
 def log(msg: str) -> None:
@@ -227,7 +319,7 @@ def mine(mirrors: List[str], author_pattern: str, env: Dict[str, str]) -> Tuple[
     seen = set()
     for git_dir in mirrors:
         for sha, authored, author, subject, files in iter_commits(git_dir, since, author_pattern, env):
-            if sha in seen or is_noise_commit(subject):
+            if sha in seen or is_noise_commit(subject) or is_automation(author, subject):
                 continue
             seen.add(sha)
             local = authored.astimezone(PACIFIC)
@@ -324,7 +416,7 @@ def main() -> None:
     if not read_token or (not write_token and not dry_run):
         sys.exit("[ERROR] GH_READ_TOKEN and GH_WRITE_TOKEN are required (or DRY_RUN=1)")
     state_dir = os.environ.get("STATE_DIR", "/mnt/state")
-    author_pattern = os.environ.get("AUTHOR_PATTERN", r"harlanljones|Harlan Jones|harlan@jolai\.com|harlan@local|\[bot\]|bot@|agent|claude|copilot|cursor")
+    author_pattern = os.environ.get("AUTHOR_PATTERN", r"harlanljones|Harlan Jones|harlan@jolai\.com|harlan@local|agent|claude|copilot|cursor")
     work = os.environ.get("WORK_DIR") or tempfile.mkdtemp(prefix="collector-")
     mirror_dir = os.path.join(work, "mirrors")
     out = os.path.join(work, "out")
@@ -356,7 +448,10 @@ def main() -> None:
     write_theme_pair(os.path.join(out, "skills.svg"), render(board, summary, current))
     write_theme_pair(os.path.join(out, "commit-rhythm.svg"), render_rhythm(rhythm))
     write_theme_pair(os.path.join(out, "glossary.svg"), render_glossary_svg.render())
-    write_theme_pair(os.path.join(out, "pipeline.svg"), render_pipeline_svg.render())
+    cf_token, cf_account = load_cf_env()
+    stats = deployment_stats(cf_token, cf_account, read_token, repos)
+    log(f"[INFO] wDC {stats['wdc']:.0f} · Actions ERA {stats['era']:.2f}")
+    write_theme_pair(os.path.join(out, "pipeline.svg"), render_pipeline_svg.render(stats))
     log(f"[OK] rendered into {out}")
     if dry_run:
         return
