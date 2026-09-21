@@ -1,11 +1,17 @@
 {
   "fix_minus": {
-    "commits_28": 1384,
-    "fix_28": 198,
+    "commits_28": 1392,
+    "fix_28": 200,
     "value": 118
   },
+  "season": {
+    "aera": 1.76,
+    "aera_sub": "179 of 932 runs failed \u00b7 public repos \u00b7 28d",
+    "wdc": 23.32,
+    "wdc_sub": "deployments created \u00b7 last 28d"
+  },
   "source": "mirrors",
-  "updated": "2026-09-21T21:20:30Z",
+  "updated": "2026-09-21T21:50:21Z",
   "weeks": {
     "2025-09-29": {
       "commits": 4,
@@ -604,31 +610,33 @@
       }
     },
     "2026-09-21": {
-      "commits": 71,
-      "diffs": 488,
+      "commits": 79,
+      "diffs": 523,
       "repos": 10,
       "skills": {
         "API Integration": 22.03,
         "Agent Tooling": 5.15,
-        "Astro": 72.37,
+        "Astro": 83.07,
         "Build Config": 3.16,
-        "CLI Design": 18.82,
+        "CLI Design": 25.15,
         "Concurrency": 32.78,
-        "Data Viz": 21.61,
+        "Data Viz": 23.61,
         "Docker": 10.34,
-        "Docs & Writing": 186.47,
+        "Docs & Writing": 200.98,
         "Dotfiles": 20.99,
-        "Error Handling": 46.84,
+        "Error Handling": 50.84,
         "GitHub Actions": 25.24,
         "Lint & Format": 1.22,
         "Make & Just": 7.39,
-        "Performance": 82.32,
+        "NumPy": 4.47,
+        "Performance": 84.32,
         "React": 20.0,
         "Regex & Parsing": 22.57,
         "SQL & Data Modeling": 10.83,
-        "Tailwind CSS": 26.69,
-        "Testing": 139.57,
-        "Type Design": 17.07,
+        "Tailwind CSS": 31.27,
+        "Testing": 173.02,
+        "Type Design": 19.9,
+        "pandas": 2.83,
         "systemd": 9.11
       }
     }
