@@ -261,5 +261,14 @@
       "TypeScript"
     ],
     "homepage": ""
+  },
+  {
+    "name": "sleeper-zone-desktop",
+    "summary": "Rust Desktop App for Sleeper focused on SleeperZone Sunday fantasy football tracking. Recent work includes complete milestone 4 and begin UI polishing, built with Rust and Shell.",
+    "badges": [
+      "Rust",
+      "Shell"
+    ],
+    "homepage": ""
   }
 ]
