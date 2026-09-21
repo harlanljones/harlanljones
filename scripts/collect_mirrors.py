@@ -96,7 +96,8 @@ def deployment_stats(cf_token: str, cf_account: str, gh_token: str, repos: List[
     """wDC: recency-weighted Deployments Created over the last 4 weeks
     (Cloudflare Pages deployments + Workers last-deploys). aERA: failed
     GitHub Actions runs per 9, public repos only (the read token cannot list
-    private-repo runs). Both feed the pipeline card's stats strip."""
+    private-repo runs). Published into the skills store under "season"; the
+    Season Stat Line card (repo-cards) tiles them."""
     now = datetime.now(timezone.utc)
     cutoff = now - timedelta(days=STAT_DAYS)
 
@@ -454,9 +455,13 @@ def main() -> None:
         save_state(state_dir, mirror_dir)
 
     weeks, rhythm, fix = mine(mirrors, author_pattern, read_env)
+    cf_token, cf_account = load_cf_env()
+    season = deployment_stats(cf_token, cf_account, read_token, repos)
+    log(f"[INFO] wDC {season['wdc']:.0f} · aERA {season['aera']:.2f}")
     store = {
         "weeks": weeks,
         "fix_minus": fix,
+        "season": season,
         "source": "mirrors",
         "updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
@@ -470,10 +475,9 @@ def main() -> None:
     write_theme_pair(os.path.join(out, "skills.svg"), render(board, summary, current))
     write_theme_pair(os.path.join(out, "commit-rhythm.svg"), render_rhythm(rhythm))
     write_theme_pair(os.path.join(out, "glossary.svg"), render_glossary_svg.render())
-    cf_token, cf_account = load_cf_env()
-    stats = deployment_stats(cf_token, cf_account, read_token, repos)
-    log(f"[INFO] wDC {stats['wdc']:.0f} · aERA {stats['aera']:.2f}")
-    write_theme_pair(os.path.join(out, "pipeline.svg"), render_pipeline_svg.render(stats))
+    # wDC/aERA live in the store now (tiled on Season Stat Line); the pipeline
+    # card is a pure jobs table again.
+    write_theme_pair(os.path.join(out, "pipeline.svg"), render_pipeline_svg.render())
     log(f"[OK] rendered into {out}")
     if dry_run:
         return

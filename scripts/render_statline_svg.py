@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """
-Season Stat Line card: four season numbers — FIX−, SHIP+, dOUT−, wMRG+.
+Season Stat Line card: the six season numbers, all defined in the Glossary.
 
 - FIX− is mined by the nightly collector from full local diffs and published
   in the skills store (scripts/data/skill_weeks.json); this module only reads
   the published value.
+- wDC and aERA are computed by the collector (Cloudflare Pages/Workers and
+  GitHub Actions) and published under the store's "season" key.
 - SHIP+, dOUT−, wMRG+ are computed here from the REST API over the public
   repo index (the same index the leaderboard uses).
 
@@ -22,9 +24,8 @@ from typing import Dict, List, Optional, Tuple
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from sabermetrics import weighted_recent  # noqa: E402
+from sabermetrics import aera_color, weighted_recent  # noqa: E402
 from svg_cards import (  # noqa: E402
-    ACCENT_AMBER,
     ACCENT_BLUE,
     ACCENT_GREEN,
     ACCENT_ORANGE,
@@ -78,7 +79,7 @@ def _polar(value: float, lo: float, hi: float, lower_good: bool) -> str:
         return ACCENT_GREEN
     if bad:
         return "#cf222e"
-    return ACCENT_AMBER
+    return "#e3b341"
 
 
 def closed_prs(full_name: str, token: str, cutoff: dt.datetime) -> List[dict]:
@@ -151,16 +152,23 @@ def build(token: str, ranked: List[dict], now: dt.datetime, store_path: str) -> 
 
     try:
         with open(store_path, encoding="utf-8") as f:
-            fix_store = json.load(f).get("fix_minus") or {}
+            store = json.load(f)
+        fix_store = store.get("fix_minus") or {}
+        season = store.get("season") or {}
     except (OSError, ValueError):
-        fix_store = {}
+        fix_store, season = {}, {}
     fix = fix_store.get("value")
+    wdc, aera = season.get("wdc"), season.get("aera")
 
     tiles = [
+        (f"{wdc:.0f}" if wdc is not None else "—", "wDC (deployments, weighted)",
+         ACCENT_ORANGE if wdc is not None else MUTED),
+        (f"{aera:.2f}" if aera is not None else "—", "aERA (fails per 9)",
+         aera_color(aera) if aera is not None else MUTED),
         (str(fix) if fix is not None else "—", "FIX− (28d vs year)",
          _polar(fix, 90, 130, True) if fix is not None else MUTED),
         (str(ship) + "%" if ship is not None else "—", "SHIP+ (% active w/ release)",
-         _polar(ship, 40, 70, False)),
+         _polar(ship, 40, 70, False) if ship is not None else MUTED),
         (str(len(sidelined)), "dOUT− (red default checks)",
          _polar(len(sidelined), 0, 3, True)),
         (str(merge) + "%" if merge is not None else "—", "wMRG+ (merge rate 90d)",
@@ -169,20 +177,25 @@ def build(token: str, ranked: List[dict], now: dt.datetime, store_path: str) -> 
     note = (f"{fix_store.get('fix_28', '?')} fixes in {fix_store.get('commits_28', '?')} commits · "
             f"{shipped} of {active} active repos shipped a release · "
             f"{len(sidelined)} sidelined{': ' + ', '.join(sorted(sidelined)[:4]) if sidelined else ''} · "
-            f"{merged_n} of {decided_n} PRs merged · 90-day windows (fixes 28d)")
+            f"{merged_n} of {decided_n} PRs merged · {season.get('wdc_sub', '28-day windows')}")
     return {"tiles": tiles, "note": note}
 
 
 def render(stat: Dict, date_str: str) -> str:
     max_x = CARD_WIDTH - PAD_X
-    tiles_svg = _stat_tiles(PAD_X, 10.0, stat["tiles"], CARD_WIDTH - PAD_X * 2)
-    frags = [tiles_svg]
-    cy = 10.0 + 62 + 12
+    tiles = stat["tiles"]
+    row_w = CARD_WIDTH - PAD_X * 2
+    third = (row_w - 20) / 3
+    frags = [_stat_tiles(PAD_X, 10.0, tiles[:3], row_w)]
+    cy = 10.0 + 62 + 10
+    # Row 2 mirrors row 1's tile geometry (3-up grid, no leaning on one row).
+    frags.append(_stat_tiles(PAD_X, cy, tiles[3:], row_w))
+    cy += 62 + 12
     for line in wrap_by_width(stat["note"] + f" · {date_str} · GitHub Actions", 11, max_x - PAD_X):
         frags.append(f'<text x="{PAD_X}" y="{cy + 8:.1f}" font-size="11" fill="{MUTED}" '
                       f'font-family="{FONT_FAMILY}">{esc(line)}</text>')
         cy += 15
-    return card_shell("Season Stat Line", "fixes, ships, health, and relief — this season's numbers",
+    return card_shell("Season Stat Line", "the season on six numbers — see Glossary",
                       "\n".join(frags), cy + 8, accent=ACCENT_PURPLE)
 
 

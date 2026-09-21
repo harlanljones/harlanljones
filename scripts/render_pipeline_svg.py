@@ -5,12 +5,15 @@ the profile, when it runs, where it runs, what it reads, and what it draws.
 
 Static text like the Glossary; the nightly GCP collector re-renders it next
 to glossary.svg. Keep JOBS in sync with .github/workflows/ and collector/.
+
+Season stats (wDC, aERA) moved to the Season Stat Line card; this card is a
+pure jobs table.
 """
 
 import argparse
 import os
 import sys
-from typing import Dict, List, Optional, Tuple
+from typing import List, Tuple
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -22,7 +25,6 @@ from svg_cards import (  # noqa: E402
     CARD_WIDTH,
     FONT_FAMILY,
     MUTED,
-    ON_ACCENT,
     PAD_X,
     TEXT,
     card_shell,
@@ -30,7 +32,6 @@ from svg_cards import (  # noqa: E402
     wrap_by_width,
     write_theme_pair,
 )
-from sabermetrics import aera_color  # noqa: E402
 
 GCP = "GCP Cloud Run Job"
 ACTIONS = "GitHub Actions"
@@ -64,34 +65,7 @@ JOBS: List[Tuple[str, str, str, str, str]] = [
 
 
 
-def _stat_tile(x: float, y: float, w: float, label: str, value: str, sub: str, color: str) -> str:
-    return (
-        f'<rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="58" rx="8" fill="{BORDER}" fill-opacity="0.45"/>'
-        f'<rect x="{x:.1f}" y="{y:.1f}" width="3" height="58" rx="1.5" fill="{color}"/>'
-        f'<text x="{x + 14:.1f}" y="{y + 17:.1f}" font-size="9" font-weight="700" letter-spacing="1.5" '
-        f'fill="{MUTED}" font-family="{FONT_FAMILY}">{esc(label)}</text>'
-        f'<text x="{x + 14:.1f}" y="{y + 39:.1f}" font-size="21" font-weight="800" fill="{color}" '
-        f'font-family="{FONT_FAMILY}">{esc(value)}</text>'
-        f'<text x="{x + 14:.1f}" y="{y + 52:.1f}" font-size="9.5" fill="{MUTED}" '
-        f'font-family="{FONT_FAMILY}">{esc(sub)}</text>'
-    )
-
-
-def _stats_strip(frags: List[str], stats: Dict, y: float) -> float:
-    """Two Savant-style tiles under the jobs table: wDC and aERA.
-    Drawn at `y` (below the last table row). Returns the height consumed."""
-    max_x = CARD_WIDTH - PAD_X
-    gap, tile_w = 14.0, (max_x - PAD_X - 14.0) / 2
-    if "wdc" in stats:
-        frags.append(_stat_tile(PAD_X, y, tile_w, "wDC · SEASON", f"{stats['wdc']:.0f}",
-                                stats["wdc_sub"], ACCENT_ORANGE))
-    if "aera" in stats:
-        frags.append(_stat_tile(PAD_X + tile_w + gap, y, tile_w, "aERA", f"{stats['aera']:.2f}",
-                                stats["aera_sub"], aera_color(stats["aera"])))
-    return 58 + 14 if stats else 0.0
-
-def render(stats: Optional[Dict] = None) -> str:
-    stats = stats or {}
+def render() -> str:
     max_x = CARD_WIDTH - PAD_X
     col_job = PAD_X + 118
     col_src = col_job + 180
@@ -128,7 +102,6 @@ def render(stats: Optional[Dict] = None) -> str:
                          f'font-family="{FONT_FAMILY}">{esc(line)}</text>')
         cy += row_h + 8
     cy += 2
-    cy += _stats_strip(frags, stats, cy)
     note = ("Every card is a hand-rolled SVG (no headless browser): jobs commit dark and light variants to the "
             "profile-cards branch, and the README embeds each pair with <picture> so it follows your theme. "
             "Private repos feed aggregate stats only; their names never leave the collector.")

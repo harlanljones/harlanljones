@@ -52,8 +52,8 @@ ENTRIES = [
     ("wDC", "weighted Deployments Created",
      "Σ weeks-of-last-4 (deployments that week) · weights 1 / .6 / .36 / .22",
      "Every deployment I created in the last four weeks: Cloudflare Pages deploys plus Workers "
-     "last-deployed timestamps. Recency-weighted, so shipping this week counts about five times as "
-     "much as shipping four weeks ago. Lives on the How This Page Is Built card."),
+      "last-deployed timestamps. Recency-weighted, so shipping this week counts about five times as "
+      "much as shipping four weeks ago. On the Season Stat Line card."),
     ("aERA", "adjusted Actions ERA",
      "9 × (failed runs, regressed) ÷ total runs · lower is better",
      "Borrowed from pitching: earned runs per 9 innings, here failed GitHub Actions runs per 9 runs "
