@@ -1,0 +1,7 @@
+# Cloud Build uploads only what the collector image needs.
+*
+!collector/
+!collector/**
+!scripts/
+!scripts/**
+scripts/__pycache__/

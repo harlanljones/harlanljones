@@ -1,0 +1,9 @@
+# Builds the collector image from the repo root (the Dockerfile lives in
+# collector/, the code in scripts/). Invoked by collector/setup.sh.
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args: ["build", "-f", "collector/Dockerfile", "-t", "${_IMAGE}", "."]
+images:
+  - "${_IMAGE}"
+options:
+  logging: CLOUD_LOGGING_ONLY
