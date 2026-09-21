@@ -278,5 +278,13 @@
       "Python"
     ],
     "homepage": "https://sabr-jev.fly.dev/"
+  },
+  {
+    "name": "ring-the-pen",
+    "summary": "Active development focused on scaffold Ring The Pen app, ETL pipeline, and project docs, built with Python.",
+    "badges": [
+      "Python"
+    ],
+    "homepage": ""
   }
 ]
