@@ -457,6 +457,10 @@ def _language_timeseries_chart(
     lane_gap = 8
     top = y + 26
 
+    # Share of the last-30-day commit volume: distinct per language (unlike
+    # Lang+, which ties for languages that only exist inside the window).
+    lane_total = sum(sum(vals) for vals in series.values())
+
     for row, name in enumerate(names):
         vals = series[name]
         color = lang_color(name)
@@ -479,11 +483,12 @@ def _language_timeseries_chart(
                 f'<rect x="{bx:.1f}" y="{baseline - bar_h:.1f}" width="{bar_w:.1f}" height="{bar_h:.1f}" '
                 f'rx="2" fill="{color}"/>'
             )
+        share = max(1, round(100 * sum(vals) / lane_total)) if sum(vals) and lane_total else 0
         frags.append(
             f'<text x="{x + width - 74:.1f}" y="{mid_y:.1f}" font-size="11" fill="{MUTED}" '
             f'text-anchor="end" font-family="{FONT_FAMILY}">{sum(vals):,} total</text>'
             f'<text x="{x + width:.1f}" y="{mid_y:.1f}" font-size="11" font-weight="700" fill="{TEXT}" '
-            f'text-anchor="end" font-family="{FONT_FAMILY}">Lang+ {plus.get(name, 100)}</text>'
+            f'text-anchor="end" font-family="{FONT_FAMILY}">{share}% of month</text>'
         )
 
     axis_y = top + len(names) * (lane_h + lane_gap) - lane_gap
@@ -516,12 +521,11 @@ def render_rhythm_card(
     right_svg, right_h = _hour_histogram(right_x, 10.0, col_w, hours)
     top_h = max(left_h, right_h)
 
-    # Language Activity lanes: top 5 by Lang+, sorted Lang+ desc (not commit share).
-    # Ties break toward higher recent volume so the-big movers lead.
+    # Language Activity lanes: top 5 by 30-day volume, ranked by total commits
+    # (distinct per language — Lang+ ties for all-new languages).
     series = trend_series or {}
-    plus_map = plus or {}
     top_series = dict(
-        sorted(series.items(), key=lambda kv: (-plus_map.get(kv[0], 100), -sum(kv[1])))[:5]
+        sorted(series.items(), key=lambda kv: -sum(kv[1]))[:5]
     )
     trend_svg, trend_h = _language_timeseries_chart(
         PAD_X, 10.0 + top_h + 18, CARD_WIDTH - PAD_X * 2, trend_dates or [], top_series, plus

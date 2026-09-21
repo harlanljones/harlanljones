@@ -373,10 +373,9 @@ def mine(mirrors: List[str], author_pattern: str, env: Dict[str, str]) -> Tuple[
 def render_rhythm(rhythm: Dict) -> str:
     recent = {lang: sum(days) for lang, days in rhythm["lanes"].items()}
     plus = lang_plus(rhythm["season"], recent)
-    # Top lanes by Lang+ (not commit share); ties break toward higher recent
-    # volume. render_rhythm_card re-sorts too so direct callers agree.
-    top_lanes = dict(sorted(rhythm["lanes"].items(),
-                            key=lambda kv: (-plus.get(kv[0], 100), -sum(kv[1])))[:5])
+    # Top lanes by raw 30-day volume (distinct per language — Lang+ ties for
+    # languages that only exist inside the window).
+    top_lanes = dict(sorted(rhythm["lanes"].items(), key=lambda kv: -sum(kv[1]))[:5])
     return render_rhythm_card(
         rhythm["season"], rhythm["hours"], rhythm["commits"],
         rhythm["lane_dates"], top_lanes, plus,

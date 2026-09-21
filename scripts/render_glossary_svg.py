@@ -48,7 +48,9 @@ ENTRIES = [
      "Like OPS+: 100 is my normal usage of a language, 130 means 30% more of my commits touched it this month "
      "than over the year. Languages come from the extensions of the files each commit changed, across every "
      "repo and branch, so a commit counts once for each language it touched. The 30-day share is regressed "
-     "toward the season share with 25 phantom commits, so a language needs real volume before it moves far from 100."),
+      "toward the season share with 25 phantom commits, so a language needs real volume before it moves far "
+      "from 100. The activity lanes below it rank by raw 30-day volume and show each language's share of the "
+      "month instead — Lang+ only compares against history, and a brand-new language has none."),
     ("wDC", "weighted Deployments Created",
      "Σ weeks-of-last-4 (deployments that week) · weights 1 / .6 / .36 / .22",
      "Every deployment I created in the last four weeks: Cloudflare Pages deploys plus Workers "
