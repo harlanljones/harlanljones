@@ -29,6 +29,7 @@ from typing import Dict, List, Optional, Tuple
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+import render_project_index  # noqa: E402
 from sabermetrics import rate_plus  # noqa: E402
 from svg_cards import (  # noqa: E402
     ACCENT_AMBER,
@@ -484,6 +485,17 @@ def main() -> None:
     }
     langs, doms, assigned = build_grid(ranked, now)
     cards["dev-grid.svg"] = render_grid(langs, doms, assigned, date_str)
+
+    # Merged Projects card: sections from this index + featured summaries.
+    store = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "featured_projects.json")
+    try:
+        with open(store, encoding="utf-8") as f:
+            featured = {e["name"]: e for e in json.load(f)}
+    except (OSError, ValueError):
+        featured = {}
+    render_project_index.FEATURED_REF[0] = featured
+    sections = render_project_index.build_sections(ranked, now, featured)
+    cards["projects.svg"] = render_project_index.render(sections, date_str, len(repos))
 
     for name, svg in cards.items():
         for path in write_theme_pair(os.path.join(args.out_dir, name), svg):

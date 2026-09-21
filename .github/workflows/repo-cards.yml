@@ -57,7 +57,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          for f in repo-leaderboard repo-spotlight dev-grid; do
+          for f in repo-leaderboard repo-spotlight dev-grid projects; do
             cp "${RUNNER_TEMP}/${f}.svg" "${RUNNER_TEMP}/${f}-light.svg" .
             git add "${f}.svg" "${f}-light.svg"
           done
