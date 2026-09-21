@@ -516,8 +516,14 @@ def render_rhythm_card(
     right_svg, right_h = _hour_histogram(right_x, 10.0, col_w, hours)
     top_h = max(left_h, right_h)
 
+    # Language Activity lanes: top 5 by Lang+, sorted Lang+ desc (not commit share).
+    series = trend_series or {}
+    plus_map = plus or {}
+    top_series = dict(
+        sorted(series.items(), key=lambda kv: -plus_map.get(kv[0], 100))[:5]
+    )
     trend_svg, trend_h = _language_timeseries_chart(
-        PAD_X, 10.0 + top_h + 18, CARD_WIDTH - PAD_X * 2, trend_dates or [], trend_series or {}, plus
+        PAD_X, 10.0 + top_h + 18, CARD_WIDTH - PAD_X * 2, trend_dates or [], top_series, plus
     )
     body_height = top_h + 18 + trend_h
 
