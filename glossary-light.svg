@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="512" viewBox="0 0 900 512">
+<defs>
+<linearGradient id="shellEdge" x1="0" y1="0" x2="1" y2="0.9">
+<stop offset="0" stop-color="#e3b341" stop-opacity="0.85"/>
+<stop offset="0.3" stop-color="#e3b341" stop-opacity="0.12"/>
+<stop offset="0.65" stop-color="#d0d7de" stop-opacity="1"/>
+</linearGradient>
+</defs>
+<rect x="0.5" y="0.5" width="899" height="511" rx="12" fill="#ffffff" stroke="url(#shellEdge)"/>
+<text x="24" y="30" font-size="18" font-weight="700" fill="#1f2328" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Glossary</text>
+<text x="24" y="48" font-size="12.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">the homegrown stats on this page, and how they're computed</text>
+<g transform="translate(0,56)"><text x="24" y="19.0" font-size="15" font-weight="800" fill="#e3b341" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">wRP</text><text x="120" y="19.0" font-size="12.5" font-weight="700" fill="#1f2328" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">weighted Reps Practiced</text>
+<text x="120" y="37.0" font-size="11" fill="#1f2328" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">Σ commits √min(400, lines credited to the skill) · 4-week weights 1 / .6 / .36 / .22</text>
+<text x="120" y="55.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Reads each week's actual diffs, not commit messages, across every repo I own: my commits plus the agents' and bots' I</text>
+<text x="120" y="71.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">run. A file that is the skill (Dockerfile, workflow YAML, test file) credits all its changed lines; a changed line that</text>
+<text x="120" y="87.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">uses it (import torch, async def, CREATE TABLE) credits 4 lines of context. Deletions count half; lockfiles, vendored and</text>
+<text x="120" y="103.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">generated files are ignored. The square root rewards steady, focused reps over one giant dump. Bubbles show the</text>
+<text x="120" y="119.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">percentile of that 4-week wRP among every skill's 4-week wRP over the last 26 weeks, a league made of my own skill-weeks:</text>
+<text x="120" y="135.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">50 is a median skill-week, 99 is among my most-practiced.</text>
+<line x1="24" y1="150.0" x2="876" y2="150.0" stroke="#d0d7de" stroke-width="1"/>
+<text x="24" y="171.0" font-size="15" font-weight="800" fill="#e3b341" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">gWAR</text><text x="120" y="171.0" font-size="12.5" font-weight="700" fill="#1f2328" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Git Wins Above Replacement</text>
+<text x="120" y="189.0" font-size="11" fill="#1f2328" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">ln(1+commits 90d) + 1.25·ln(1+stars) + 0.75·ln(1+forks) + freshness − replacement</text>
+<text x="120" y="207.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Runs created by a repo: recent activity and adoption, log-damped so one viral repo or one sprint can't own the scale,</text>
+<text x="120" y="223.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">plus up to 1 for a push in the last 90 days. Replacement level is the 20th-percentile repo in my public index, so a</text>
+<text x="120" y="239.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">forgettable repo sits near 0 and can dip negative. Not Baseball-Reference's bWAR.</text>
+<line x1="24" y1="254.0" x2="876" y2="254.0" stroke="#d0d7de" stroke-width="1"/>
+<text x="24" y="275.0" font-size="15" font-weight="800" fill="#e3b341" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Lang+</text><text x="120" y="275.0" font-size="12.5" font-weight="700" fill="#1f2328" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">language usage, 100-neutral split</text>
+<text x="120" y="293.0" font-size="11" fill="#1f2328" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">100 × (30-day share, regressed) ÷ 12-month share</text>
+<text x="120" y="311.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Like OPS+: 100 is my normal usage of a language, 130 means 30% more of my commits went to it this month than over the</text>
+<text x="120" y="327.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">year. The 30-day share is regressed toward the season share with 25 phantom commits, so a language needs real volume</text>
+<text x="120" y="343.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">before it moves far from 100.</text>
+<line x1="24" y1="358.0" x2="876" y2="358.0" stroke="#d0d7de" stroke-width="1"/>
+<text x="24" y="379.0" font-size="15" font-weight="800" fill="#e3b341" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Pace+</text><text x="120" y="379.0" font-size="12.5" font-weight="700" fill="#1f2328" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">commit pace, 100-neutral split</text>
+<text x="120" y="397.0" font-size="11" fill="#1f2328" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">100 × (recent daily rate, regressed) ÷ baseline daily rate</text>
+<text x="120" y="415.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Recent pace against the usual pace, regressed with 7 days at the baseline rate. Activity: the last 30 days of</text>
+<text x="120" y="431.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">contributions vs the year. Repo cards and the Immaculate Grid: a repo's last 30 days of commits vs its own 90-day rate.</text></g>
+</svg>
