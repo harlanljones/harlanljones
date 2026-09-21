@@ -483,7 +483,7 @@ def _language_timeseries_chart(
                 f'<rect x="{bx:.1f}" y="{baseline - bar_h:.1f}" width="{bar_w:.1f}" height="{bar_h:.1f}" '
                 f'rx="2" fill="{color}"/>'
             )
-        share = max(1, round(100 * sum(vals) / lane_total)) if sum(vals) and lane_total else 0
+        share = max(0.1, round(1000 * sum(vals) / lane_total) / 10) if sum(vals) and lane_total else 0.0
         frags.append(
             f'<text x="{x + width - 74:.1f}" y="{mid_y:.1f}" font-size="11" fill="{MUTED}" '
             f'text-anchor="end" font-family="{FONT_FAMILY}">{sum(vals):,} total</text>'
