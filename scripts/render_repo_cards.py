@@ -54,13 +54,12 @@ from svg_cards import (  # noqa: E402
 )
 
 API = "https://api.github.com"
-LANG_COLORS = {
-    "Python": "#3572A5", "Rust": "#dea584", "TypeScript": "#3178c6", "JavaScript": "#f1e05a",
-    "Go": "#00ADD8", "Shell": "#89e051", "C++": "#f34b7d", "C": "#555555", "C#": "#178600",
-    "HTML": "#e34c26", "CSS": "#563d7c", "Jupyter Notebook": "#DA5B0B", "Dockerfile": "#384d54",
-    "Nix": "#7e7eff", "Vue": "#41b883", "Java": "#b07219", "Kotlin": "#A97BFF", "Ruby": "#701516",
-}
-DEFAULT_LANG_COLOR = "#8b949e"
+from repo_languages import (  # noqa: E402
+    DEFAULT_LANG_COLOR,
+    LANG_COLORS,
+    enrich_repo_languages,
+    lang_color,
+)
 
 DOMAINS: List[Tuple[str, set]] = [
     ("AI / ML", {
@@ -215,10 +214,6 @@ def pace_plus(repo: dict, now: dt.datetime) -> int:
     return rate_plus(recent, split_days, len(days), base_days)
 
 
-def lang_color(lang: Optional[str]) -> str:
-    return legible_lang_color(LANG_COLORS.get(lang or "", DEFAULT_LANG_COLOR))
-
-
 # ---------------------------------------------------------------- leaderboard
 
 def render_leaderboard(rows: List[dict], date_str: str) -> str:
@@ -247,13 +242,22 @@ def render_leaderboard(rows: List[dict], date_str: str) -> str:
     # 1. Hero Block for Row #1 Leader
     pill_svg, pill_w = pill(PAD_X, cy, "#1 LEADER", ACCENT_AMBER, "#0d1117", font_size=10.5)
     frags.append(pill_svg)
-    lang_name = hero.get("language") or "—"
+    prim_l = hero.get("primary_language") or hero.get("language")
+    sec_l = hero.get("secondary_language")
+    disp_l = hero.get("lang_display") or prim_l or "—"
     lx = PAD_X + pill_w + 12
-    frags.append(f'<circle cx="{lx + 4:.1f}" cy="{cy + 10:.1f}" r="4" fill="{lang_color(hero.get("language"))}"/>')
-    frags.append(f'<text x="{lx + 14:.1f}" y="{cy + 14:.1f}" font-size="11.5" fill="{MUTED}" font-family="{FONT_FAMILY}">{esc(truncate(lang_name, 11.5, 70))}</text>')
-    lw = text_width(truncate(lang_name, 11.5, 70), 11.5) + 18
+    if sec_l:
+        frags.append(f'<circle cx="{lx + 4:.1f}" cy="{cy + 10:.1f}" r="3.5" fill="{lang_color(prim_l)}"/>')
+        frags.append(f'<circle cx="{lx + 12:.1f}" cy="{cy + 10:.1f}" r="3.5" fill="{lang_color(sec_l)}"/>')
+        tx = lx + 20
+        lw = text_width(truncate(disp_l, 11.5, 90), 11.5) + 26
+    else:
+        frags.append(f'<circle cx="{lx + 4:.1f}" cy="{cy + 10:.1f}" r="4" fill="{lang_color(prim_l)}"/>')
+        tx = lx + 14
+        lw = text_width(truncate(disp_l, 11.5, 90), 11.5) + 20
+    frags.append(f'<text x="{tx:.1f}" y="{cy + 14:.1f}" font-size="11.5" fill="{MUTED}" font-family="{FONT_FAMILY}">{esc(truncate(disp_l, 11.5, 90))}</text>')
     nx = lx + lw
-    hero_title = f"{hero['full_name']} · gWAR {hero['gwar']:.1f}"
+    hero_title = f"{hero['full_name']} · {hero.get('languages_pct', disp_l)} · gWAR {hero['gwar']:.1f}"
     frags.append(
         f'<text x="{nx:.1f}" y="{cy + 15:.1f}" font-size="15" font-weight="800" fill="{TITLE_COLOR}" font-family="{FONT_FAMILY}">'
         f'<title>{esc(hero_title)}</title>{esc(hero["name"])}</text>'
@@ -329,11 +333,26 @@ def render_leaderboard(rows: List[dict], date_str: str) -> str:
         w = max(6.0, bar_w * max(0.0, r["gwar"]) / top)
         active_days = len(set(d[:10] for d in r.get("commit_days", [])))
         active_str = f"{active_days}d" if active_days > 0 else (f"★ {r['stargazers_count']}" if r.get("stargazers_count") else "—")
+        prim_l = r.get("primary_language") or r.get("language")
+        sec_l = r.get("secondary_language")
+        disp_l = r.get("lang_display") or prim_l or "—"
+        r_title = f"{r['full_name']} · {r.get('languages_pct', disp_l)} · gWAR {r['gwar']:.1f}"
+
+        if sec_l:
+            dots_svg = (
+                f'<circle cx="47" cy="{cy + 8:.1f}" r="3.5" fill="{lang_color(prim_l)}"/>'
+                f'<circle cx="{55}" cy="{cy + 8:.1f}" r="3.5" fill="{lang_color(sec_l)}"/>'
+            )
+            tx = 63
+        else:
+            dots_svg = f'<circle cx="51" cy="{cy + 8:.1f}" r="4" fill="{lang_color(prim_l)}"/>'
+            tx = 62
+
         frags.append(
-            f'<g><title>{esc(r["full_name"])} · gWAR {r["gwar"]:.1f}</title>'
+            f'<g><title>{esc(r_title)}</title>'
             f'<text x="38" y="{cy + 12:.1f}" font-size="12" font-weight="700" text-anchor="end" fill="{MUTED}" font-family="{FONT_FAMILY}">{i}</text>'
-            f'<circle cx="52" cy="{cy + 8:.1f}" r="4" fill="{lang_color(r["language"])}"/>'
-            f'<text x="62" y="{cy + 12:.1f}" font-size="11" fill="{MUTED}" font-family="{FONT_FAMILY}">{esc(truncate(r["language"] or "—", 11, 75))}</text>'
+            f'{dots_svg}'
+            f'<text x="{tx}" y="{cy + 12:.1f}" font-size="11" fill="{MUTED}" font-family="{FONT_FAMILY}">{esc(truncate(disp_l, 11, 76))}</text>'
             f'<text x="145" y="{cy + 12:.1f}" font-size="12.5" font-weight="700" fill="{TEXT}" font-family="{FONT_FAMILY}">{esc(truncate(r["name"], 12.5, 175, bold=True))}</text>'
             f'<rect x="{bar_x}" y="{cy + 3:.1f}" width="{w:.1f}" height="10" rx="5" fill="{ACCENT_BLUE}" fill-opacity="{opacity:.2f}"/>'
             f'<text x="{col_act_x}" y="{cy + 12:.1f}" font-size="11.5" fill="{TEXT}" font-family="{FONT_FAMILY}">{active_str}</text>'
@@ -366,10 +385,24 @@ def render_spotlight(repo: dict, date_str: str) -> str:
     stat_parts.extend([f"gWAR {repo['gwar']:.1f}", f"Pace+ {repo['pace_plus']}"])
     stat_line = " · ".join(stat_parts)
 
+    prim_l = repo.get("primary_language") or repo.get("language")
+    sec_l = repo.get("secondary_language")
+    disp_l = repo.get("lang_display") or prim_l or "—"
+
+    if sec_l:
+        dots = (
+            f'<circle cx="{PAD_X + 4}" cy="{cy + 2}" r="4.5" fill="{lang_color(prim_l)}"/>'
+            f'<circle cx="{PAD_X + 14}" cy="{cy + 2}" r="4.5" fill="{lang_color(sec_l)}"/>'
+        )
+        nx = PAD_X + 24
+    else:
+        dots = f'<circle cx="{PAD_X + 5}" cy="{cy + 2}" r="5" fill="{lang_color(prim_l)}"/>'
+        nx = PAD_X + 16
+
     frags = [
-        f'<circle cx="{PAD_X + 5}" cy="{cy + 2}" r="5" fill="{lang_color(repo["language"])}"/>',
-        f'<text x="{PAD_X + 16}" y="{cy + 6:.1f}" font-size="19" font-weight="800" fill="{TITLE_COLOR}" '
-        f'font-family="{FONT_FAMILY}">{esc(repo["name"])}</text>',
+        dots,
+        f'<text x="{nx}" y="{cy + 6:.1f}" font-size="19" font-weight="800" fill="{TITLE_COLOR}" '
+        f'font-family="{FONT_FAMILY}"><title>{esc(repo.get("languages_pct", disp_l))}</title>{esc(repo["name"])}</text>',
         f'<text x="{max_x}" y="{cy + 6:.1f}" font-size="11.5" fill="{MUTED}" text-anchor="end" '
         f'font-family="{FONT_FAMILY}">{stat_line}</text>',
     ]
@@ -432,9 +465,18 @@ def build_grid(repos: List[dict], now: dt.datetime) -> Tuple[List[str], List[str
     """Chooses 3 languages x 3 domains maximizing filled, high-scoring cells."""
     lang_counts: Dict[str, int] = {}
     for r in repos:
-        if r.get("language"):
-            lang_counts[r["language"]] = lang_counts.get(r["language"], 0) + 1
-    lang_candidates = [l for l, _ in sorted(lang_counts.items(), key=lambda kv: -kv[1])[:4]]
+        r_langs = set(r.get("eligible_languages") or ([r["language"]] if r.get("language") else []))
+        for l in r_langs:
+            if l not in {"HTML", "CSS", "SCSS", "Dockerfile", "Makefile"}:
+                weight = 3 if l == r.get("primary_language") else 1
+                lang_counts[l] = lang_counts.get(l, 0) + weight
+
+    lang_candidates = [l for l, _ in sorted(lang_counts.items(), key=lambda kv: -kv[1])[:5]]
+    if len(lang_candidates) < 3:
+        for r in repos:
+            if r.get("language"):
+                lang_counts[r["language"]] = lang_counts.get(r["language"], 0) + 1
+        lang_candidates = [l for l, _ in sorted(lang_counts.items(), key=lambda kv: -kv[1])[:4]]
 
     def domain_of(r: dict) -> List[str]:
         topics = {t.lower() for t in (r.get("topics") or [])}
@@ -445,45 +487,44 @@ def build_grid(repos: List[dict], now: dt.datetime) -> Tuple[List[str], List[str
 
     candidates: Dict[Tuple[str, str], List[dict]] = {}
     for r in repos:
+        r_langs = set(r.get("eligible_languages") or ([r["language"]] if r.get("language") else []))
         for d in domain_of(r):
             for l in lang_candidates:
-                if r.get("language") == l:
+                if l in r_langs:
                     candidates.setdefault((l, d), []).append(r)
     for cell in candidates:
         candidates[cell].sort(key=lambda r: -r["gwar"])
 
-    domain_counts = {d: sum(1 for (l, dd) in candidates if dd == d) for d, _ in DOMAINS}
-    domain_candidates = [d for d, _ in sorted(DOMAINS, key=lambda kv: -domain_counts.get(kv[0], 0))[:4]]
-    domain_names = domain_candidates
+    all_domains = [d for d, _ in DOMAINS]
 
     from itertools import combinations
-    # Degrade gracefully when the index has fewer than 3 languages/domains.
     k_lang = min(3, len(lang_candidates))
-    k_dom = min(3, len(domain_names))
-    best = (0, 0.0, [], [])
+    k_dom = min(3, len(all_domains))
+    best = (0, 0.0, [], [], {})
+
+    def evaluate_assignment(langs, doms):
+        cells = [(l, d) for l in langs for d in doms if candidates.get((l, d))]
+        cells.sort(key=lambda c: -candidates[c][0]["gwar"])
+        assigned_map = {}
+        used_repos = set()
+        total_gwar = 0.0
+        for cell in cells:
+            pick = next((r for r in candidates[cell] if r["full_name"] not in used_repos), None)
+            if pick:
+                assigned_map[cell] = pick
+                used_repos.add(pick["full_name"])
+                total_gwar += pick["gwar"]
+        return len(assigned_map), total_gwar, assigned_map
+
     if k_lang and k_dom:
         for langs in combinations(lang_candidates, k_lang):
-            for doms in combinations(domain_names, k_dom):
-                filled, total = 0, 0.0
-                for l in langs:
-                    for d in doms:
-                        c = candidates.get((l, d))
-                        if c:
-                            filled += 1
-                            total += c[0]["gwar"]
+            for doms in combinations(all_domains, k_dom):
+                filled, total, cur_assigned = evaluate_assignment(langs, doms)
                 if (filled, total) > (best[0], best[1]):
-                    best = (filled, total, list(langs), list(doms))
+                    best = (filled, total, list(langs), list(doms), cur_assigned)
 
     langs, doms = best[2], best[3]
-    assigned: Dict[Tuple[str, str], Optional[dict]] = {}
-    used = set()
-    cells = [(l, d) for l in langs for d in doms if candidates.get((l, d))]
-    cells.sort(key=lambda c: -candidates[c][0]["gwar"])
-    for cell in cells:
-        pick = next((r for r in candidates[cell] if r["full_name"] not in used), None)
-        assigned[cell] = pick
-        if pick:
-            used.add(pick["full_name"])
+    assigned = best[4]
     for l in langs:
         for d in doms:
             assigned.setdefault((l, d), None)
@@ -512,7 +553,8 @@ def render_grid(langs: List[str], doms: List[str], assigned: Dict[Tuple[str, str
             if repo:
                 filled += 1
                 c_stat = f"★ {repo['stargazers_count']:,} · Pace+ {repo['pace_plus']}" if repo.get("stargazers_count", 0) > 0 else f"{repo.get('commits_90', 0)}c · Pace+ {repo['pace_plus']}"
-                tooltip = f"{repo['full_name']} · gWAR {repo['gwar']:.1f} · {c_stat}"
+                pct_info = repo.get("languages_pct") or repo.get("lang_display") or repo.get("language") or ""
+                tooltip = f"{repo['full_name']} · {pct_info} · gWAR {repo['gwar']:.1f} · {c_stat}"
                 if repo.get("description"):
                     tooltip += f" — {repo['description']}"
                 frags.append(
@@ -559,6 +601,7 @@ def main() -> None:
     repos = fetch_repos(args.username, args.token)
     print(f"[INFO] {len(repos)} public (non-fork, non-archived) repositories")
     repos.sort(key=lambda r: r.get("pushed_at", ""), reverse=True)
+    enrich_repo_languages(repos, args.token)
     enrich_with_commits(repos[: args.max_repos], args.token)
 
     replacement = replacement_level([repo_runs(r, now) for r in repos])
@@ -569,6 +612,9 @@ def main() -> None:
     ranked = sorted((r for r in repos if r["full_name"] != "harlanljones/harlanljones"),
                     key=lambda r: (-r["gwar"], -r.get("commits_90", 0), -r["stargazers_count"]))
     top = [r for r in ranked if r.get("commits_90", 0) > 0][:8] or ranked[:8]
+    if not top:
+        print("[WARN] No repositories available to render cards")
+        return
 
     hero = dict(top[0])
     cutoff = (now - dt.timedelta(days=29)).date()

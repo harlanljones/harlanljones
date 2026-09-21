@@ -145,18 +145,35 @@ def build_sections(ranked: List[dict], now, featured: Dict[str, dict]) -> List[T
 
 def _entry(x: float, y: float, w: float, r: dict, featured: Dict[str, dict], first: bool, section_name: str = "") -> Tuple[str, float]:
     """One repo row: name, right-side stat, two-line summary."""
-    # Lazy import: render_repo_cards imports this module, so a top-level
-    # import of lang_color would be circular when run standalone.
-    from render_repo_cards import lang_color
+    from repo_languages import lang_color
     frags = []
     cy = y
     stat = format_section_stat(r, section_name)
     live_w = (len("LIVE") * 11 * 0.62 + 18) if r.get("homepage") else 0.0
     name_max = w - live_w - 10
+
+    prim_l = r.get("primary_language") or r.get("language")
+    sec_l = r.get("secondary_language")
+    disp_l = r.get("lang_display") or prim_l or "—"
+
+    if sec_l:
+        frags.append(
+            f'<circle cx="{x + 4}" cy="{cy + 11:.1f}" r="3.5" fill="{lang_color(prim_l)}"/>'
+            f'<circle cx="{x + 12}" cy="{cy + 11:.1f}" r="3.5" fill="{lang_color(sec_l)}"/>'
+        )
+        tx = x + 20
+        pad_offset = 84
+    else:
+        frags.append(
+            f'<circle cx="{x + 4}" cy="{cy + 11:.1f}" r="4" fill="{lang_color(prim_l)}"/>'
+        )
+        tx = x + 14
+        pad_offset = 78
+
+    title_tooltip = f'{r.get("full_name", r["name"])} · {r.get("languages_pct", disp_l)} · {stat}'
     frags.append(
-        f'<circle cx="{x + 4}" cy="{cy + 11:.1f}" r="4" fill="{lang_color(r.get("language"))}"/>'
-        f'<text x="{x + 14:.1f}" y="{cy + 15:.1f}" font-size="14.5" font-weight="700" fill="{ACCENT_BLUE}" '
-        f'font-family="{FONT_FAMILY}"><title>{esc(r.get("full_name", r["name"]))} · {esc(stat)}</title>{esc(truncate(r["name"], 24, name_max - 78, bold=True))}</text>'
+        f'<text x="{tx:.1f}" y="{cy + 15:.1f}" font-size="14.5" font-weight="700" fill="{ACCENT_BLUE}" '
+        f'font-family="{FONT_FAMILY}"><title>{esc(title_tooltip)}</title>{esc(truncate(r["name"], 24, name_max - pad_offset, bold=True))}</text>'
     )
     if r.get("homepage"):
         frags.append(
@@ -264,6 +281,8 @@ def main() -> None:
     now = dt.datetime.now(dt.timezone.utc)
     repos = fetch_repos(args.username, args.token)
     repos.sort(key=lambda r: r.get("pushed_at", ""), reverse=True)
+    from repo_languages import enrich_repo_languages
+    enrich_repo_languages(repos, args.token)
     enrich_with_commits(repos[: args.max_repos], args.token)
     replacement = replacement_level([repo_runs(r, now) for r in repos])
     for r in repos:

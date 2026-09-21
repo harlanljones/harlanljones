@@ -1,0 +1,707 @@
+{
+  "arbkit": {
+    "bytes": {
+      "CSS": 33402,
+      "HTML": 1441,
+      "JavaScript": 14380,
+      "Rust": 1018076,
+      "TypeScript": 301757
+    },
+    "display": "Rust \u00b7 TS",
+    "eligible": [
+      "CSS",
+      "Rust",
+      "TypeScript"
+    ],
+    "is_fullstack": true,
+    "pct_summary": "Rust 76% \u00b7 TypeScript 23%",
+    "primary": "Rust",
+    "secondary": "TypeScript",
+    "sig_prog": [
+      "Rust",
+      "TypeScript"
+    ],
+    "stack_type": "fullstack"
+  },
+  "baseball-dashboard": {
+    "bytes": {
+      "CSS": 4127,
+      "JavaScript": 719,
+      "TypeScript": 409562
+    },
+    "display": "TypeScript",
+    "eligible": [
+      "TypeScript"
+    ],
+    "is_fullstack": false,
+    "pct_summary": "TypeScript 100%",
+    "primary": "TypeScript",
+    "secondary": null,
+    "sig_prog": [
+      "TypeScript"
+    ],
+    "stack_type": "frontend"
+  },
+  "bayes-horizon": {
+    "bytes": {
+      "CSS": 53670,
+      "HTML": 473057,
+      "JavaScript": 4932,
+      "Python": 179121
+    },
+    "display": "Python",
+    "eligible": [
+      "CSS",
+      "HTML",
+      "Python"
+    ],
+    "is_fullstack": false,
+    "pct_summary": "Python 97%",
+    "primary": "Python",
+    "secondary": null,
+    "sig_prog": [
+      "Python"
+    ],
+    "stack_type": "backend"
+  },
+  "chacha20-avx2": {
+    "bytes": {
+      "Assembly": 38960,
+      "C": 82994,
+      "Makefile": 5007
+    },
+    "display": "C \u00b7 Asm",
+    "eligible": [
+      "Assembly",
+      "C"
+    ],
+    "is_fullstack": false,
+    "pct_summary": "C 68% \u00b7 Assembly 32%",
+    "primary": "C",
+    "secondary": "Assembly",
+    "sig_prog": [
+      "C",
+      "Assembly"
+    ],
+    "stack_type": "systems"
+  },
+  "dotfiles": {
+    "bytes": {
+      "CSS": 6348,
+      "Go": 1573,
+      "Go Template": 285665,
+      "JavaScript": 10755,
+      "Lua": 53374,
+      "Python": 17524,
+      "Shell": 385949
+    },
+    "display": "Shell \u00b7 Lua",
+    "eligible": [
+      "Go Template",
+      "Lua",
+      "Shell"
+    ],
+    "is_fullstack": false,
+    "pct_summary": "Shell 82% \u00b7 Lua 11%",
+    "primary": "Shell",
+    "secondary": "Lua",
+    "sig_prog": [
+      "Shell",
+      "Lua"
+    ],
+    "stack_type": "infra"
+  },
+  "dotfiles-showcase": {
+    "bytes": {
+      "CSS": 23586,
+      "HTML": 78420,
+      "Lua": 912,
+      "Ruby": 329,
+      "TypeScript": 1074146
+    },
+    "display": "TypeScript",
+    "eligible": [
+      "HTML",
+      "TypeScript"
+    ],
+    "is_fullstack": false,
+    "pct_summary": "TypeScript 100%",
+    "primary": "TypeScript",
+    "secondary": null,
+    "sig_prog": [
+      "TypeScript"
+    ],
+    "stack_type": "frontend"
+  },
+  "draft": {
+    "bytes": {
+      "Makefile": 1169,
+      "Python": 172382,
+      "Shell": 11844
+    },
+    "display": "Python",
+    "eligible": [
+      "Python"
+    ],
+    "is_fullstack": false,
+    "pct_summary": "Python 94%",
+    "primary": "Python",
+    "secondary": null,
+    "sig_prog": [
+      "Python"
+    ],
+    "stack_type": "backend"
+  },
+  "ferrite-db": {
+    "bytes": {
+      "CSS": 5443,
+      "HTML": 47085,
+      "JavaScript": 44595,
+      "Rust": 429297,
+      "Shell": 6618,
+      "TypeScript": 87685
+    },
+    "display": "Rust \u00b7 TS",
+    "eligible": [
+      "HTML",
+      "JavaScript",
+      "Rust",
+      "TypeScript"
+    ],
+    "is_fullstack": true,
+    "pct_summary": "Rust 76% \u00b7 TypeScript 15% \u00b7 JavaScript 8%",
+    "primary": "Rust",
+    "secondary": "TypeScript",
+    "sig_prog": [
+      "Rust",
+      "TypeScript",
+      "JavaScript"
+    ],
+    "stack_type": "fullstack"
+  },
+  "film-lab": {
+    "bytes": {
+      "CSS": 21768,
+      "HTML": 382,
+      "JavaScript": 19823,
+      "TypeScript": 185633
+    },
+    "display": "TypeScript",
+    "eligible": [
+      "CSS",
+      "TypeScript"
+    ],
+    "is_fullstack": false,
+    "pct_summary": "TypeScript 90%",
+    "primary": "TypeScript",
+    "secondary": null,
+    "sig_prog": [
+      "TypeScript"
+    ],
+    "stack_type": "frontend"
+  },
+  "gan-enhanced-pneumonia-classifier": {
+    "bytes": {
+      "Python": 156051
+    },
+    "display": "Python",
+    "eligible": [
+      "Python"
+    ],
+    "is_fullstack": false,
+    "pct_summary": "Python 100%",
+    "primary": "Python",
+    "secondary": null,
+    "sig_prog": [
+      "Python"
+    ],
+    "stack_type": "backend"
+  },
+  "harlanljones": {
+    "bytes": {
+      "Dockerfile": 652,
+      "Python": 251324,
+      "Shell": 9674
+    },
+    "display": "Python",
+    "eligible": [
+      "Python"
+    ],
+    "is_fullstack": false,
+    "pct_summary": "Python 96%",
+    "primary": "Python",
+    "secondary": null,
+    "sig_prog": [
+      "Python"
+    ],
+    "stack_type": "backend"
+  },
+  "herdr-outpost": {
+    "bytes": {
+      "HTML": 169233,
+      "JavaScript": 4123,
+      "PowerShell": 3413,
+      "Python": 252945,
+      "Shell": 14774
+    },
+    "display": "Python",
+    "eligible": [
+      "HTML",
+      "Python"
+    ],
+    "is_fullstack": false,
+    "pct_summary": "Python 93%",
+    "primary": "Python",
+    "secondary": null,
+    "sig_prog": [
+      "Python"
+    ],
+    "stack_type": "backend"
+  },
+  "hermes-repo-devsetup": {
+    "bytes": {
+      "Shell": 11342
+    },
+    "display": "Shell",
+    "eligible": [
+      "Shell"
+    ],
+    "is_fullstack": false,
+    "pct_summary": "Shell 100%",
+    "primary": "Shell",
+    "secondary": null,
+    "sig_prog": [
+      "Shell"
+    ],
+    "stack_type": "infra"
+  },
+  "jev-experiments": {
+    "bytes": {
+      "JavaScript": 32657
+    },
+    "display": "JavaScript",
+    "eligible": [
+      "JavaScript"
+    ],
+    "is_fullstack": false,
+    "pct_summary": "JavaScript 100%",
+    "primary": "JavaScript",
+    "secondary": null,
+    "sig_prog": [
+      "JavaScript"
+    ],
+    "stack_type": "frontend"
+  },
+  "jev-roster-shapes": {
+    "bytes": {
+      "HTML": 331,
+      "JavaScript": 34235,
+      "Svelte": 123136,
+      "TypeScript": 186355
+    },
+    "display": "TS \u00b7 Svelte",
+    "eligible": [
+      "JavaScript",
+      "Svelte",
+      "TypeScript"
+    ],
+    "is_fullstack": false,
+    "pct_summary": "TypeScript 54% \u00b7 Svelte 36% \u00b7 JavaScript 10%",
+    "primary": "TypeScript",
+    "secondary": "Svelte",
+    "sig_prog": [
+      "TypeScript",
+      "Svelte",
+      "JavaScript"
+    ],
+    "stack_type": "frontend"
+  },
+  "linear-bucket": {
+    "bytes": {
+      "Python": 71435
+    },
+    "display": "Python",
+    "eligible": [
+      "Python"
+    ],
+    "is_fullstack": false,
+    "pct_summary": "Python 100%",
+    "primary": "Python",
+    "secondary": null,
+    "sig_prog": [
+      "Python"
+    ],
+    "stack_type": "backend"
+  },
+  "march-madness": {
+    "bytes": {
+      "Python": 106870
+    },
+    "display": "Python",
+    "eligible": [
+      "Python"
+    ],
+    "is_fullstack": false,
+    "pct_summary": "Python 100%",
+    "primary": "Python",
+    "secondary": null,
+    "sig_prog": [
+      "Python"
+    ],
+    "stack_type": "backend"
+  },
+  "omarchy-agents": {
+    "bytes": {
+      "CSS": 53215,
+      "HTML": 5338,
+      "JavaScript": 44810,
+      "Python": 39231,
+      "QML": 96284,
+      "Shell": 11935,
+      "TypeScript": 446849
+    },
+    "display": "TS \u00b7 QML",
+    "eligible": [
+      "CSS",
+      "JavaScript",
+      "Python",
+      "QML",
+      "TypeScript"
+    ],
+    "is_fullstack": true,
+    "pct_summary": "TypeScript 70% \u00b7 QML 15% \u00b7 JavaScript 7%",
+    "primary": "TypeScript",
+    "secondary": "QML",
+    "sig_prog": [
+      "TypeScript",
+      "QML",
+      "JavaScript",
+      "Python"
+    ],
+    "stack_type": "fullstack"
+  },
+  "proof": {
+    "bytes": {
+      "CSS": 2346,
+      "HTML": 9473,
+      "JavaScript": 5702,
+      "Makefile": 977,
+      "Python": 107962,
+      "Shell": 9386
+    },
+    "display": "Python",
+    "eligible": [
+      "Python"
+    ],
+    "is_fullstack": false,
+    "pct_summary": "Python 88%",
+    "primary": "Python",
+    "secondary": null,
+    "sig_prog": [
+      "Python"
+    ],
+    "stack_type": "backend"
+  },
+  "ring-the-pen": {
+    "bytes": {
+      "CSS": 712,
+      "Elixir": 78619,
+      "HTML": 490,
+      "JavaScript": 333,
+      "Makefile": 713,
+      "Python": 63531,
+      "Shell": 8727
+    },
+    "display": "Elixir \u00b7 Py",
+    "eligible": [
+      "Elixir",
+      "Python"
+    ],
+    "is_fullstack": false,
+    "pct_summary": "Elixir 52% \u00b7 Python 42%",
+    "primary": "Elixir",
+    "secondary": "Python",
+    "sig_prog": [
+      "Elixir",
+      "Python"
+    ],
+    "stack_type": "backend"
+  },
+  "rosetta": {
+    "bytes": {
+      "HTML": 35754,
+      "Makefile": 2353,
+      "Python": 349074,
+      "Shell": 9215
+    },
+    "display": "Python",
+    "eligible": [
+      "HTML",
+      "Python"
+    ],
+    "is_fullstack": false,
+    "pct_summary": "Python 97%",
+    "primary": "Python",
+    "secondary": null,
+    "sig_prog": [
+      "Python"
+    ],
+    "stack_type": "backend"
+  },
+  "saberkit": {
+    "bytes": {
+      "Python": 148343,
+      "Rust": 108119
+    },
+    "display": "Python \u00b7 Rust",
+    "eligible": [
+      "Python",
+      "Rust"
+    ],
+    "is_fullstack": false,
+    "pct_summary": "Python 58% \u00b7 Rust 42%",
+    "primary": "Python",
+    "secondary": "Rust",
+    "sig_prog": [
+      "Python",
+      "Rust"
+    ],
+    "stack_type": "systems"
+  },
+  "sabr-jev": {
+    "bytes": {
+      "Batchfile": 48,
+      "CSS": 7149,
+      "Dockerfile": 3095,
+      "Elixir": 238860,
+      "HTML": 479,
+      "JavaScript": 301,
+      "Makefile": 396,
+      "Python": 41255,
+      "Shell": 8638
+    },
+    "display": "Elixir \u00b7 Py",
+    "eligible": [
+      "Elixir",
+      "Python"
+    ],
+    "is_fullstack": false,
+    "pct_summary": "Elixir 83% \u00b7 Python 14%",
+    "primary": "Elixir",
+    "secondary": "Python",
+    "sig_prog": [
+      "Elixir",
+      "Python"
+    ],
+    "stack_type": "backend"
+  },
+  "scheme-db": {
+    "bytes": {
+      "CSS": 60072,
+      "HTML": 20995,
+      "TypeScript": 3197529
+    },
+    "display": "TypeScript",
+    "eligible": [
+      "CSS",
+      "TypeScript"
+    ],
+    "is_fullstack": false,
+    "pct_summary": "TypeScript 100%",
+    "primary": "TypeScript",
+    "secondary": null,
+    "sig_prog": [
+      "TypeScript"
+    ],
+    "stack_type": "frontend"
+  },
+  "seismic-ml": {
+    "bytes": {
+      "CSS": 14953,
+      "HTML": 21971,
+      "JavaScript": 34127,
+      "Python": 89965
+    },
+    "display": "Python \u00b7 JS",
+    "eligible": [
+      "CSS",
+      "HTML",
+      "JavaScript",
+      "Python"
+    ],
+    "is_fullstack": true,
+    "pct_summary": "Python 72% \u00b7 JavaScript 28%",
+    "primary": "Python",
+    "secondary": "JavaScript",
+    "sig_prog": [
+      "Python",
+      "JavaScript"
+    ],
+    "stack_type": "fullstack"
+  },
+  "sleeper-zone-desktop": {
+    "bytes": {
+      "Rust": 175539,
+      "Shell": 9362
+    },
+    "display": "Rust",
+    "eligible": [
+      "Rust"
+    ],
+    "is_fullstack": false,
+    "pct_summary": "Rust 95%",
+    "primary": "Rust",
+    "secondary": null,
+    "sig_prog": [
+      "Rust"
+    ],
+    "stack_type": "systems"
+  },
+  "statcast-lakehouse": {
+    "bytes": {
+      "Dockerfile": 1116,
+      "HCL": 6251,
+      "HTML": 1065,
+      "Python": 202439,
+      "TypeScript": 256014
+    },
+    "display": "TS \u00b7 Py",
+    "eligible": [
+      "Python",
+      "TypeScript"
+    ],
+    "is_fullstack": true,
+    "pct_summary": "TypeScript 55% \u00b7 Python 44%",
+    "primary": "TypeScript",
+    "secondary": "Python",
+    "sig_prog": [
+      "TypeScript",
+      "Python"
+    ],
+    "stack_type": "fullstack"
+  },
+  "tinylsm": {
+    "bytes": {
+      "C++": 192788,
+      "CMake": 9891,
+      "CSS": 4496,
+      "HTML": 5132,
+      "JavaScript": 55967,
+      "Shell": 13214
+    },
+    "display": "C++ \u00b7 JS",
+    "eligible": [
+      "C++",
+      "JavaScript"
+    ],
+    "is_fullstack": true,
+    "pct_summary": "C++ 74% \u00b7 JavaScript 21%",
+    "primary": "C++",
+    "secondary": "JavaScript",
+    "sig_prog": [
+      "C++",
+      "JavaScript"
+    ],
+    "stack_type": "fullstack"
+  },
+  "typeframe": {
+    "bytes": {
+      "TypeScript": 82966
+    },
+    "display": "TypeScript",
+    "eligible": [
+      "TypeScript"
+    ],
+    "is_fullstack": false,
+    "pct_summary": "TypeScript 100%",
+    "primary": "TypeScript",
+    "secondary": null,
+    "sig_prog": [
+      "TypeScript"
+    ],
+    "stack_type": "frontend"
+  },
+  "urban-signal": {
+    "bytes": {
+      "CSS": 38108,
+      "Dockerfile": 2292,
+      "HTML": 252373,
+      "JavaScript": 126071,
+      "Python": 6677585,
+      "TypeScript": 150419
+    },
+    "display": "Python \u00b7 TS",
+    "eligible": [
+      "CSS",
+      "HTML",
+      "JavaScript",
+      "Python",
+      "TypeScript"
+    ],
+    "is_fullstack": true,
+    "pct_summary": "Python 96% \u00b7 TypeScript 2% \u00b7 JavaScript 2%",
+    "primary": "Python",
+    "secondary": "TypeScript",
+    "sig_prog": [
+      "Python",
+      "TypeScript",
+      "JavaScript"
+    ],
+    "stack_type": "fullstack"
+  },
+  "web-backends": {
+    "bytes": {
+      "C#": 20568,
+      "Dockerfile": 10577,
+      "Elixir": 21937,
+      "Go": 23241,
+      "Java": 29303,
+      "JavaScript": 33854,
+      "PLpgSQL": 4614,
+      "Python": 76827,
+      "Rust": 21354,
+      "Shell": 57570,
+      "TypeScript": 14138
+    },
+    "display": "Python \u00b7 Shell",
+    "eligible": [
+      "Java",
+      "JavaScript",
+      "Python",
+      "Shell"
+    ],
+    "is_fullstack": true,
+    "pct_summary": "Python 26% \u00b7 Shell 19% \u00b7 JavaScript 11%",
+    "primary": "Python",
+    "secondary": "Shell",
+    "sig_prog": [
+      "Python",
+      "Shell",
+      "JavaScript",
+      "Java"
+    ],
+    "stack_type": "fullstack"
+  },
+  "wikipedia-worlds": {
+    "bytes": {},
+    "display": "\u2014",
+    "eligible": [],
+    "is_fullstack": false,
+    "pct_summary": "\u2014",
+    "primary": null,
+    "secondary": null,
+    "sig_prog": [],
+    "stack_type": "general"
+  },
+  "winter-meetings": {
+    "bytes": {},
+    "display": "\u2014",
+    "eligible": [],
+    "is_fullstack": false,
+    "pct_summary": "\u2014",
+    "primary": null,
+    "secondary": null,
+    "sig_prog": [],
+    "stack_type": "general"
+  }
+}
