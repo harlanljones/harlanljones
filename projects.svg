@@ -30,7 +30,7 @@
 <text x="14.0" y="259.0" font-size="11.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">player props.</text>
 <circle cx="4.0" cy="283.0" r="4" fill="#3178c6"/><text x="14.0" y="287.0" font-size="14.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">omarchy-agents</text>
 <g transform="translate(806.7,271.0)"><rect width="45.3" height="18" rx="9" fill="#238636"/><text x="22.6" y="13" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">LIVE</text></g>
-<text x="796.7" y="287.0" font-size="10.5" fill="#8b949e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">gWAR 2.7 · ★ 0 · Pace+ 96</text>
+<text x="796.7" y="287.0" font-size="10.5" fill="#8b949e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">gWAR 2.7 · ★ 0 · Pace+ 94</text>
 <text x="14.0" y="305.0" font-size="11.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Dashboards and bar widgets for tracking AI coding-agent usage on [Omarchy](https://omarchy.org), with a local-first Bun + Hono + React +</text>
 <text x="14.0" y="321.0" font-size="11.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">SQLite web console plus QML bar widgets ranking token usage across local agents.</text></g>
 <line x1="24" y1="346.0" x2="876" y2="346.0" stroke="#30363d" stroke-width="1"/>
