@@ -79,18 +79,19 @@ def weighted_recent(weekly: List[float], weights: Sequence[float] = (1.0, 0.6, 0
     return sum(w * v for w, v in zip(weights, weekly))
 
 
-def era(failures: float, total: float, prior_failures: float = 0.5) -> float:
-    """Actions ERA: failed workflow runs per 9 runs, like earned runs per 9
-    innings. Lower is better; 4.50 is roughly baseball's league average.
-    Small samples are regressed toward 4.50 by `prior_failures` phantom runs."""
+def aera(failures: float, total: float, prior_failures: float = 0.5) -> float:
+    """aERA: adjusted Actions ERA — failed workflow runs per 9 runs, like
+    earned runs per 9 innings. Lower is better; 4.50 is roughly baseball's
+    league average. Small samples are regressed toward 4.50 with 9 phantom
+    runs at the league-average rate (prior_failures * 9 phantom failures)."""
     if total <= 0:
         return 4.50
-    regressed = failures + prior_failures * (4.50 / 9.0) * 9.0 / 4.50
+    regressed = failures + prior_failures * 9.0
     return round(9.0 * regressed / (total + 9.0), 2)
 
 
-def era_color(e: float) -> str:
-    """Savant-ish poles for ERA: under 3.00 is elite green, over 6.00 is red."""
+def aera_color(e: float) -> str:
+    """Savant-ish poles for aERA: under 3.00 is elite green, over 6.00 is red."""
     if e <= 3.0:
         return "#1a7f37"
     if e >= 6.0:

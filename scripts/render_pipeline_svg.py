@@ -30,7 +30,7 @@ from svg_cards import (  # noqa: E402
     wrap_by_width,
     write_theme_pair,
 )
-from sabermetrics import era, era_color  # noqa: E402
+from sabermetrics import aera_color  # noqa: E402
 
 GCP = "GCP Cloud Run Job"
 ACTIONS = "GitHub Actions"
@@ -78,7 +78,7 @@ def _stat_tile(x: float, y: float, w: float, label: str, value: str, sub: str, c
 
 
 def _stats_strip(frags: List[str], stats: Dict) -> float:
-    """Two Savant-style tiles under the jobs table: wDC and Actions ERA.
+    """Two Savant-style tiles under the jobs table: wDC and aERA.
     Returns the extra height consumed."""
     max_x = CARD_WIDTH - PAD_X
     gap, tile_w = 14.0, (max_x - PAD_X - 14.0) / 2
@@ -86,9 +86,9 @@ def _stats_strip(frags: List[str], stats: Dict) -> float:
     if "wdc" in stats:
         frags.append(_stat_tile(PAD_X, y, tile_w, "wDC · SEASON", f"{stats['wdc']:.0f}",
                                 stats["wdc_sub"], ACCENT_ORANGE))
-    if "era" in stats:
-        frags.append(_stat_tile(PAD_X + tile_w + gap, y, tile_w, "ACTIONS ERA", f"{stats['era']:.2f}",
-                                stats["era_sub"], era_color(stats["era"])))
+    if "aera" in stats:
+        frags.append(_stat_tile(PAD_X + tile_w + gap, y, tile_w, "aERA", f"{stats['aera']:.2f}",
+                                stats["aera_sub"], aera_color(stats["aera"])))
     return y + 58 + 14 if stats else 0.0
 
 def render(stats: Optional[Dict] = None) -> str:

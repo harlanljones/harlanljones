@@ -49,7 +49,7 @@ import render_glossary_svg  # noqa: E402
 from render_activity_svg import lang_plus, render_rhythm_card  # noqa: E402
 import render_pipeline_svg  # noqa: E402
 from render_skills_svg import KEEP_WEEKS, PACIFIC, render, skill_board, week_record, week_start  # noqa: E402
-from sabermetrics import era, weighted_recent, wrp_reps  # noqa: E402
+from sabermetrics import aera, weighted_recent, wrp_reps  # noqa: E402
 from skill_signals import (  # noqa: E402
     commit_skill_lines,
     file_language,
@@ -91,7 +91,7 @@ def cf_get(path: str, token: str) -> Optional[dict]:
 
 def deployment_stats(cf_token: str, cf_account: str, gh_token: str, repos: List[dict]) -> Dict:
     """wDC: recency-weighted Deployments Created over the last 4 weeks
-    (Cloudflare Pages deployments + Workers last-deploys). Actions ERA: failed
+    (Cloudflare Pages deployments + Workers last-deploys). aERA: failed
     GitHub Actions runs per 9, public repos only (the read token cannot list
     private-repo runs). Both feed the pipeline card's stats strip."""
     now = datetime.now(timezone.utc)
@@ -136,8 +136,8 @@ def deployment_stats(cf_token: str, cf_account: str, gh_token: str, repos: List[
     return {
         "wdc": wdc,
         "wdc_sub": f"deployments created · last {STAT_DAYS}d",
-        "era": era(fails, runs),
-        "era_sub": f"{fails} of {runs} runs failed · public repos · {STAT_DAYS}d",
+        "aera": aera(fails, runs),
+        "aera_sub": f"{fails} of {runs} runs failed · public repos · {STAT_DAYS}d",
     }
 
 
@@ -453,7 +453,7 @@ def main() -> None:
     write_theme_pair(os.path.join(out, "glossary.svg"), render_glossary_svg.render())
     cf_token, cf_account = load_cf_env()
     stats = deployment_stats(cf_token, cf_account, read_token, repos)
-    log(f"[INFO] wDC {stats['wdc']:.0f} · Actions ERA {stats['era']:.2f}")
+    log(f"[INFO] wDC {stats['wdc']:.0f} · aERA {stats['aera']:.2f}")
     write_theme_pair(os.path.join(out, "pipeline.svg"), render_pipeline_svg.render(stats))
     log(f"[OK] rendered into {out}")
     if dry_run:

@@ -54,11 +54,12 @@ ENTRIES = [
      "Every deployment I created in the last four weeks: Cloudflare Pages deploys plus Workers "
      "last-deployed timestamps. Recency-weighted, so shipping this week counts about five times as "
      "much as shipping four weeks ago. Lives on the How This Page Is Built card."),
-    ("ERA", "Actions Env Reliability Average",
+    ("aERA", "adjusted Actions ERA",
      "9 × (failed runs, regressed) ÷ total runs · lower is better",
      "Borrowed from pitching: earned runs per 9 innings, here failed GitHub Actions runs per 9 runs "
      "across my public repos over the last 28 days. League average is about 4.50; green means the "
-     "pipelines mostly stay up. Small samples are regressed toward 4.50."),
+     "pipelines mostly stay up. Small samples are regressed toward 4.50 with 9 phantom league-average "
+     "runs. The lowercase-a prefix keeps it clear of the pitching ERA on the Dugout Dispatch card."),
     ("Pace+", "commit pace, 100-neutral split",
      "100 × (recent daily rate, regressed) ÷ baseline daily rate",
      "Recent pace against the usual pace, regressed with 7 days at the baseline rate. Activity: the last 30 days "
