@@ -9,8 +9,8 @@
 <rect x="0.5" y="0.5" width="899" height="229" rx="12" fill="#ffffff" stroke="url(#shellEdge)"/>
 <text x="24" y="30" font-size="18" font-weight="700" fill="#1f2328" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Repo Spotlight</text>
 <text x="24" y="48" font-size="12.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">top of this week's leaderboard · Sep 21, 2026</text>
-<g transform="translate(0,56)"><circle cx="29" cy="16.0" r="5" fill="#54a81e"/>
-<text x="40" y="20.0" font-size="19" font-weight="800" fill="#1f2328" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">dotfiles</text>
+<g transform="translate(0,56)"><circle cx="28" cy="16.0" r="4.5" fill="#54a81e"/><circle cx="38" cy="16.0" r="4.5" fill="#3e3eff"/>
+<text x="48" y="20.0" font-size="19" font-weight="800" fill="#1f2328" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>Shell 82% · Lua 11%</title>dotfiles</text>
 <text x="876" y="20.0" font-size="11.5" fill="#59636e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">26d active (90d) · gWAR 4.4 · Pace+ 244</text>
 <text x="24" y="50.0" font-size="12.5" fill="#1f2328" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">The dotfiles I use</text>
 <defs><linearGradient id="spotArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#58a6ff" stop-opacity="0.35"/><stop offset="1" stop-color="#58a6ff" stop-opacity="0"/></linearGradient></defs>
