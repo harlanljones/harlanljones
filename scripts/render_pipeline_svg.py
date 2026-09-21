@@ -132,8 +132,8 @@ def render(stats: Optional[Dict] = None) -> str:
     note = ("Every card is a hand-rolled SVG (no headless browser): jobs commit dark and light variants to the "
             "profile-cards branch, and the README embeds each pair with <picture> so it follows your theme. "
             "Private repos feed aggregate stats only; their names never leave the collector.")
-    for line in wrap_by_width(note, 10.5, max_x - PAD_X):
-        frags.append(f'<text x="{PAD_X}" y="{cy + 8:.1f}" font-size="10.5" fill="{MUTED}" '
+    for line in wrap_by_width(note, 11, max_x - PAD_X):
+        frags.append(f'<text x="{PAD_X}" y="{cy + 8:.1f}" font-size="11" fill="{MUTED}" '
                      f'font-family="{FONT_FAMILY}">{esc(line)}</text>')
         cy += 15
     return card_shell("How This Page Is Built", "the jobs behind every card, when they run, and what they read",

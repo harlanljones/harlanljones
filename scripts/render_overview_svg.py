@@ -36,7 +36,7 @@ from svg_cards import (  # noqa: E402
 
 # (label, value) cells laid out two per row; the final row may hold one cell.
 GRID = [
-    ("Currently", "Working with PrimeIQ.ai"),
+    ("Currently", "Software Engineer @ PrimeIQ.ai"),
     ("Website", "harlanljones.com"),
     ("Interests", "Baseball & sports analytics"),
     ("Education", "B.S. Computer Engineering, Boston University"),

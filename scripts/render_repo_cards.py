@@ -238,7 +238,7 @@ def render_leaderboard(rows: List[dict], date_str: str) -> str:
     ]
     cy = 24.0
     for i, r in enumerate(rows):
-        opacity = 0.95 - i * 0.07
+        opacity = 0.95 - i * 0.05  # floor 0.55: lower ranks stay visible on white
         frags.append(f'<text x="38" y="{cy + 12:.1f}" font-size="12" font-weight="700" text-anchor="end" '
                      f'fill="{MUTED}" font-family="{FONT_FAMILY}">{i + 1}</text>')
         frags.append(f'<circle cx="52" cy="{cy + 8:.1f}" r="4" fill="{lang_color(r["language"])}"/>')
@@ -463,7 +463,9 @@ def main() -> None:
     for r in repos:
         r["gwar"] = score_repo(r, now, replacement)
         r["pace_plus"] = pace_plus(r, now)
-    ranked = sorted(repos, key=lambda r: (-r["gwar"], -r.get("commits_90", 0), -r["stargazers_count"]))
+    # The profile README is a profile, not a project: keep it out of rankings.
+    ranked = sorted((r for r in repos if r["full_name"] != "harlanljones/harlanljones"),
+                    key=lambda r: (-r["gwar"], -r.get("commits_90", 0), -r["stargazers_count"]))
     top = [r for r in ranked if r.get("commits_90", 0) > 0][:8] or ranked[:8]
 
     hero = dict(top[0])

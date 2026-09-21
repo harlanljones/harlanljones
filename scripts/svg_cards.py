@@ -151,6 +151,7 @@ _LIGHT_NEUTRALS = [
     ("#30363d", "#d0d7de"),                                # borders
     ("#c9d1d9", "#1f2328"),                                # body text
     ("#8b949e", "#59636e"),                                # muted text
+    ("#e3b341", "#9a6700"),                                # amber accent: text/bars unreadable on white
     ("#e6edf3", "#1f2328"),                                # titles
     ("#f0f6fc", "#24292f"),                                # hero name
     ('fill="#ffffff" fill-opacity="0.04"', 'fill="#1f2328" fill-opacity="0.06"'),  # hero chips

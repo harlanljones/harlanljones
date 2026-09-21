@@ -59,7 +59,8 @@ def build_sections(ranked: List[dict], now, featured: Dict[str, dict]) -> List[T
         return out
 
     sections = [("Top 5 · by gWAR", take(ranked, 5))]
-    fresh = sorted(ranked, key=lambda r: r.get("created_at") or "", reverse=True)
+    fresh = sorted((r for r in ranked if r["gwar"] > 0),
+                   key=lambda r: r.get("created_at") or "", reverse=True)
     sections.append(("Fresh off the bench", take(fresh, 5)))
     live = sorted((r for r in ranked if r.get("homepage")), key=lambda r: -r["gwar"])
     sections.append(("Live in production", take(live, 4)))

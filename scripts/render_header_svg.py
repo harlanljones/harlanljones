@@ -34,7 +34,7 @@ from svg_cards import (  # noqa: E402
 )
 
 NAME = "Harlan Jones"
-TAGLINE = "Building PrimeIQ.ai • Baseball Enthusiast • Software Developer"
+TAGLINE = "Software Engineer @ PrimeIQ.ai • Baseball Analytics • Systems & Data"
 BYLINE = "San Francisco Bay Area · Boston University"
 CHIPS = [
     ("Software Development", "#58a6ff"),
