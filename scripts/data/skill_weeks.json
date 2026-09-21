@@ -1,17 +1,17 @@
 {
   "fix_minus": {
-    "commits_28": 1392,
-    "fix_28": 200,
-    "value": 118
+    "commits_28": 1411,
+    "fix_28": 208,
+    "value": 119
   },
   "season": {
-    "aera": 1.76,
-    "aera_sub": "179 of 932 runs failed \u00b7 public repos \u00b7 28d",
-    "wdc": 23.32,
+    "aera": 1.77,
+    "aera_sub": "183 of 947 runs failed \u00b7 public repos \u00b7 28d",
+    "wdc": 26.32,
     "wdc_sub": "deployments created \u00b7 last 28d"
   },
   "source": "mirrors",
-  "updated": "2026-09-21T21:50:21Z",
+  "updated": "2026-09-21T22:24:45Z",
   "weeks": {
     "2025-09-29": {
       "commits": 4,
@@ -610,32 +610,34 @@
       }
     },
     "2026-09-21": {
-      "commits": 79,
-      "diffs": 523,
-      "repos": 10,
+      "commits": 98,
+      "diffs": 660,
+      "repos": 12,
       "skills": {
-        "API Integration": 22.03,
-        "Agent Tooling": 5.15,
+        "API Integration": 24.03,
+        "Agent Tooling": 21.87,
         "Astro": 83.07,
-        "Build Config": 3.16,
-        "CLI Design": 25.15,
+        "Build Config": 4.89,
+        "CLI Design": 39.38,
+        "Cloudflare Workers": 2.24,
         "Concurrency": 32.78,
-        "Data Viz": 23.61,
+        "Data Viz": 26.44,
         "Docker": 10.34,
-        "Docs & Writing": 200.98,
+        "Docs & Writing": 259.6,
         "Dotfiles": 20.99,
-        "Error Handling": 50.84,
+        "Error Handling": 73.22,
+        "FastAPI": 4.0,
         "GitHub Actions": 25.24,
         "Lint & Format": 1.22,
-        "Make & Just": 7.39,
+        "Make & Just": 12.29,
         "NumPy": 4.47,
-        "Performance": 84.32,
-        "React": 20.0,
+        "Performance": 100.13,
+        "React": 99.14,
         "Regex & Parsing": 22.57,
         "SQL & Data Modeling": 10.83,
-        "Tailwind CSS": 31.27,
-        "Testing": 173.02,
-        "Type Design": 19.9,
+        "Tailwind CSS": 33.27,
+        "Testing": 249.07,
+        "Type Design": 29.84,
         "pandas": 2.83,
         "systemd": 9.11
       }
