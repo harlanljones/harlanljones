@@ -77,19 +77,18 @@ def _stat_tile(x: float, y: float, w: float, label: str, value: str, sub: str, c
     )
 
 
-def _stats_strip(frags: List[str], stats: Dict) -> float:
+def _stats_strip(frags: List[str], stats: Dict, y: float) -> float:
     """Two Savant-style tiles under the jobs table: wDC and aERA.
-    Returns the extra height consumed."""
+    Drawn at `y` (below the last table row). Returns the height consumed."""
     max_x = CARD_WIDTH - PAD_X
     gap, tile_w = 14.0, (max_x - PAD_X - 14.0) / 2
-    y = 6.0
     if "wdc" in stats:
         frags.append(_stat_tile(PAD_X, y, tile_w, "wDC · SEASON", f"{stats['wdc']:.0f}",
                                 stats["wdc_sub"], ACCENT_ORANGE))
     if "aera" in stats:
         frags.append(_stat_tile(PAD_X + tile_w + gap, y, tile_w, "aERA", f"{stats['aera']:.2f}",
                                 stats["aera_sub"], aera_color(stats["aera"])))
-    return y + 58 + 14 if stats else 0.0
+    return 58 + 14 if stats else 0.0
 
 def render(stats: Optional[Dict] = None) -> str:
     stats = stats or {}
@@ -128,7 +127,8 @@ def render(stats: Optional[Dict] = None) -> str:
             frags.append(f'<text x="{col_cards}" y="{cy + 11 + i * 16:.1f}" font-size="11.5" fill="{TEXT}" '
                          f'font-family="{FONT_FAMILY}">{esc(line)}</text>')
         cy += row_h + 8
-    cy += _stats_strip(frags, stats) + 2
+    cy += 2
+    cy += _stats_strip(frags, stats, cy)
     note = ("Every card is a hand-rolled SVG (no headless browser): jobs commit dark and light variants to the "
             "profile-cards branch, and the README embeds each pair with <picture> so it follows your theme. "
             "Private repos feed aggregate stats only; their names never leave the collector.")
