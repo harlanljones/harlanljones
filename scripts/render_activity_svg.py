@@ -169,29 +169,53 @@ def lang_plus(
     normal usage.
 
     Uses empirical Bayes shrinkage on volume so small samples regress to 100
-    while high-volume languages reflect real shifts in focus. Resolves the
-    cancellation flaw where languages active only in the recent window tied
-    at identical values.
+    while high-volume languages reflect real shifts in focus. Breaks ties
+    deterministically using continuous volume gradients and rank resolution so
+    no active languages share the same value at the top of the chart.
     """
     season_total = sum(c for _, c in season)
     recent_total = sum(recent.values())
     if season_total <= 0 or recent_total <= 0:
         return {name: 100 for name, _ in season}
 
-    out: Dict[str, int] = {}
+    num_langs = len(season)
+    even_share = 1.0 / max(1, num_langs)
+    raw_scores: Dict[str, Tuple[float, int, int]] = {}
+
     for name, s_count in season:
         r_count = recent.get(name, 0)
         s_share = s_count / season_total
         r_share = r_count / recent_total
-        raw_ratio = (r_share / s_share) if s_share > 0 else 1.0
-        raw_index = 100.0 * raw_ratio
 
-        # Active languages shrink by recent commit volume;
-        # dormant languages shrink by season volume (confidence in absence).
+        if season_total == recent_total:
+            ratio = r_share / even_share if even_share > 0 else 1.0
+        else:
+            ratio = (r_share / s_share) if s_share > 0 else 1.0
+
         n_events = r_count if r_count > 0 else s_count
         w = n_events / (n_events + prior)
-        val = int(round(100.0 + (raw_index - 100.0) * w))
-        out[name] = max(1, val)
+
+        # Micro volume gradient provides continuous differentiation so near-identical
+        # ratios don't collapse into integer ties at the top.
+        vol_boost = 0.05 * (r_count ** 0.5) if r_count > 0 else 0.0
+        continuous = 100.0 + (100.0 * ratio - 100.0) * w + vol_boost
+        raw_scores[name] = (continuous, r_count, s_count)
+
+    sorted_langs = sorted(
+        raw_scores.items(),
+        key=lambda kv: (-kv[1][0], -kv[1][1], -kv[1][2], kv[0])
+    )
+
+    out: Dict[str, int] = {}
+    used_scores = set()
+    for name, (c_score, r_count, s_count) in sorted_langs:
+        val = max(1, int(round(c_score)))
+        # For active languages, ensure unique distinct integer scores at the top of the list
+        if r_count > 0:
+            while val in used_scores and val > 1:
+                val -= 1
+            used_scores.add(val)
+        out[name] = val
     return out
 
 
@@ -457,7 +481,7 @@ def _language_timeseries_chart(
     Returns (svg_fragment, height)."""
     frags = [
         f'<text x="{x:.1f}" y="{y + 12:.1f}" font-size="13" font-weight="700" '
-        f'fill="{TITLE_COLOR}" font-family="{FONT_FAMILY}">Language activity · commits per day · last 30 days</text>'
+        f'fill="{TITLE_COLOR}" font-family="{FONT_FAMILY}">Language activity · ranked by Lang+ · last 30 days</text>'
     ]
     if not dates or not series:
         frags.append(
@@ -467,7 +491,8 @@ def _language_timeseries_chart(
         return "\n".join(frags), 48
 
     n = len(dates)
-    names = list(series.keys())
+    plus = plus or {}
+    names = sorted(series.keys(), key=lambda n: (-plus.get(n, 100), -sum(series[n]), n))
     peak = max(max((v for vals in series.values() for v in vals), default=0), 1)
     frags.append(
         f'<text x="{x + width:.1f}" y="{y + 12:.1f}" font-size="11" fill="{MUTED}" '
@@ -546,11 +571,16 @@ def render_rhythm_card(
     right_svg, right_h = _hour_histogram(right_x, 10.0, col_w, hours)
     top_h = max(left_h, right_h)
 
-    # Language Activity lanes: top 5 by 30-day volume, ranked by total commits
-    # (distinct per language — Lang+ ties for all-new languages).
+    # Language Activity lanes: top 5 ranked by Lang+ (highest first), tie-breaker by 30-day volume.
     series = trend_series or {}
+    plus_map = plus or {}
+    active_series = {k: v for k, v in series.items() if sum(v) > 0}
+    pool = active_series if active_series else series
     top_series = dict(
-        sorted(series.items(), key=lambda kv: -sum(kv[1]))[:5]
+        sorted(
+            pool.items(),
+            key=lambda kv: (-plus_map.get(kv[0], 100), -sum(kv[1]), kv[0])
+        )[:5]
     )
     trend_svg, trend_h = _language_timeseries_chart(
         PAD_X, 10.0 + top_h + 18, CARD_WIDTH - PAD_X * 2, trend_dates or [], top_series, plus
