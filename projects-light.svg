@@ -37,7 +37,7 @@
 <g transform="translate(24.0,362.0)"><text x="0" y="12" font-size="13" font-weight="800" fill="#3fb950" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">September call-ups</text>
 <circle cx="4.0" cy="35.0" r="4" fill="#59636e"/><text x="14.0" y="39.0" font-size="14.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">sabr-jev</text>
 <g transform="translate(365.7,23.0)"><rect width="45.3" height="18" rx="9" fill="#238636"/><text x="22.6" y="13" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">LIVE</text></g>
-<text x="355.7" y="39.0" font-size="10.5" fill="#59636e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">gWAR 1.7 · ★ 0 · Pace+ 99</text>
+<text x="355.7" y="39.0" font-size="10.5" fill="#59636e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">gWAR 1.8 · ★ 0 · Pace+ 99</text>
 <text x="14.0" y="57.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Season stats lie by omission. Sabr-Jev grades Batter|Pitcher</text>
 <text x="14.0" y="73.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">seasons with typed AI judgments behind a confidence latch: act,...</text>
 <circle cx="4.0" cy="97.0" r="4" fill="#d18052"/><text x="14.0" y="101.0" font-size="14.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">sleeper-zone-desktop</text>
@@ -45,7 +45,7 @@
 <text x="14.0" y="119.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Rust Desktop App for Sleeper focused on SleeperZone Sunday fantasy</text>
 <text x="14.0" y="135.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">football tracking. Recent work includes complete milestone 4 an...</text>
 <circle cx="4.0" cy="159.0" r="4" fill="#3178c6"/><text x="14.0" y="163.0" font-size="14.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">jev-roster-shapes</text>
-<text x="411.0" y="163.0" font-size="10.5" fill="#59636e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">gWAR 1.9 · ★ 0 · Pace+ 98</text>
+<text x="411.0" y="163.0" font-size="10.5" fill="#59636e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">gWAR 2.0 · ★ 0 · Pace+ 98</text>
 <text x="14.0" y="181.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Active development focused on roster Shapes development handoff,</text>
 <text x="14.0" y="197.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">built with JavaScript and TypeScript.</text>
 <circle cx="4.0" cy="221.0" r="4" fill="#3572A5"/><text x="14.0" y="225.0" font-size="14.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">draft</text>

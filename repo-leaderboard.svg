@@ -71,12 +71,12 @@
 <text x="700.0" y="204.0" font-size="11.5" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">37</text>
 <text x="876" y="204.0" font-size="13" font-weight="800" text-anchor="end" fill="#e3b341" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">2.3</text>
 <text x="38" y="232.0" font-size="12" font-weight="700" text-anchor="end" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">8</text>
-<circle cx="52" cy="228.0" r="4" fill="#dea584"/>
-<text x="62" y="232.0" font-size="11" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Rust</text>
-<text x="150" y="232.0" font-size="12.5" font-weight="700" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">arbkit</text>
-<rect x="356.0" y="223.0" width="126.7" height="10" rx="5" fill="#58a6ff" fill-opacity="0.60"/>
+<circle cx="52" cy="228.0" r="4" fill="#3178c6"/>
+<text x="62" y="232.0" font-size="11" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">TypeScript</text>
+<text x="150" y="232.0" font-size="12.5" font-weight="700" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">jev-roster-shapes</text>
+<rect x="356.0" y="223.0" width="133.3" height="10" rx="5" fill="#58a6ff" fill-opacity="0.60"/>
 <text x="648.0" y="232.0" font-size="11.5" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">0</text>
-<text x="700.0" y="232.0" font-size="11.5" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">32</text>
-<text x="876" y="232.0" font-size="13" font-weight="800" text-anchor="end" fill="#e3b341" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">1.9</text>
+<text x="700.0" y="232.0" font-size="11.5" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">25</text>
+<text x="876" y="232.0" font-size="13" font-weight="800" text-anchor="end" fill="#e3b341" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">2.0</text>
 <text x="24" y="262.0" font-size="9.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">gWAR defined in Glossary · Sep 21, 2026 · GitHub Actions</text></g>
 </svg>
