@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="512" viewBox="0 0 900 512">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="528" viewBox="0 0 900 528">
 <defs>
 <linearGradient id="shellEdge" x1="0" y1="0" x2="1" y2="0.9">
 <stop offset="0" stop-color="#e3b341" stop-opacity="0.85"/>
@@ -6,7 +6,7 @@
 <stop offset="0.65" stop-color="#30363d" stop-opacity="1"/>
 </linearGradient>
 </defs>
-<rect x="0.5" y="0.5" width="899" height="511" rx="12" fill="#0d1117" stroke="url(#shellEdge)"/>
+<rect x="0.5" y="0.5" width="899" height="527" rx="12" fill="#0d1117" stroke="url(#shellEdge)"/>
 <text x="24" y="30" font-size="18" font-weight="700" fill="#e6edf3" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Glossary</text>
 <text x="24" y="48" font-size="12.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">the homegrown stats on this page, and how they're computed</text>
 <g transform="translate(0,56)"><text x="24" y="19.0" font-size="15" font-weight="800" fill="#e3b341" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">wRP</text><text x="120" y="19.0" font-size="12.5" font-weight="700" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">weighted Reps Practiced</text>
@@ -26,12 +26,13 @@
 <line x1="24" y1="254.0" x2="876" y2="254.0" stroke="#30363d" stroke-width="1"/>
 <text x="24" y="275.0" font-size="15" font-weight="800" fill="#e3b341" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Lang+</text><text x="120" y="275.0" font-size="12.5" font-weight="700" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">language usage, 100-neutral split</text>
 <text x="120" y="293.0" font-size="11" fill="#c9d1d9" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">100 × (30-day share, regressed) ÷ 12-month share</text>
-<text x="120" y="311.0" font-size="11.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Like OPS+: 100 is my normal usage of a language, 130 means 30% more of my commits went to it this month than over the</text>
-<text x="120" y="327.0" font-size="11.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">year. The 30-day share is regressed toward the season share with 25 phantom commits, so a language needs real volume</text>
-<text x="120" y="343.0" font-size="11.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">before it moves far from 100.</text>
-<line x1="24" y1="358.0" x2="876" y2="358.0" stroke="#30363d" stroke-width="1"/>
-<text x="24" y="379.0" font-size="15" font-weight="800" fill="#e3b341" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Pace+</text><text x="120" y="379.0" font-size="12.5" font-weight="700" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">commit pace, 100-neutral split</text>
-<text x="120" y="397.0" font-size="11" fill="#c9d1d9" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">100 × (recent daily rate, regressed) ÷ baseline daily rate</text>
-<text x="120" y="415.0" font-size="11.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Recent pace against the usual pace, regressed with 7 days at the baseline rate. Activity: the last 30 days of</text>
-<text x="120" y="431.0" font-size="11.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">contributions vs the year. Repo cards and the Immaculate Grid: a repo's last 30 days of commits vs its own 90-day rate.</text></g>
+<text x="120" y="311.0" font-size="11.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Like OPS+: 100 is my normal usage of a language, 130 means 30% more of my commits touched it this month than over the</text>
+<text x="120" y="327.0" font-size="11.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">year. Languages come from the extensions of the files each commit changed, across every repo and branch, so a commit</text>
+<text x="120" y="343.0" font-size="11.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">counts once for each language it touched. The 30-day share is regressed toward the season share with 25 phantom commits,</text>
+<text x="120" y="359.0" font-size="11.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">so a language needs real volume before it moves far from 100.</text>
+<line x1="24" y1="374.0" x2="876" y2="374.0" stroke="#30363d" stroke-width="1"/>
+<text x="24" y="395.0" font-size="15" font-weight="800" fill="#e3b341" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Pace+</text><text x="120" y="395.0" font-size="12.5" font-weight="700" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">commit pace, 100-neutral split</text>
+<text x="120" y="413.0" font-size="11" fill="#c9d1d9" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">100 × (recent daily rate, regressed) ÷ baseline daily rate</text>
+<text x="120" y="431.0" font-size="11.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Recent pace against the usual pace, regressed with 7 days at the baseline rate. Activity: the last 30 days of</text>
+<text x="120" y="447.0" font-size="11.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">contributions vs the year. Repo cards and the Immaculate Grid: a repo's last 30 days of commits vs its own 90-day rate.</text></g>
 </svg>
