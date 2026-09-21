@@ -1,19 +1,7 @@
 {
   "source": "mirrors",
-  "updated": "2026-09-21T06:16:14Z",
+  "updated": "2026-09-21T08:31:07Z",
   "weeks": {
-    "2025-09-22": {
-      "commits": 14,
-      "diffs": 30,
-      "repos": 2,
-      "skills": {
-        "Data Viz": 4.24,
-        "Docs & Writing": 22.35,
-        "Next.js": 3.46,
-        "React": 28.14,
-        "Tailwind CSS": 14.83
-      }
-    },
     "2025-09-29": {
       "commits": 4,
       "diffs": 14,
@@ -371,8 +359,8 @@
       }
     },
     "2026-08-17": {
-      "commits": 245,
-      "diffs": 4931,
+      "commits": 237,
+      "diffs": 4522,
       "repos": 21,
       "skills": {
         "API Integration": 185.83,
@@ -384,7 +372,7 @@
         "Concurrency": 579.62,
         "Data Viz": 159.04,
         "Docker": 28.43,
-        "Docs & Writing": 1731.83,
+        "Docs & Writing": 1698.59,
         "Dotfiles": 334.96,
         "DuckDB": 12.14,
         "Error Handling": 653.21,
@@ -418,8 +406,8 @@
       }
     },
     "2026-08-24": {
-      "commits": 821,
-      "diffs": 8848,
+      "commits": 797,
+      "diffs": 8799,
       "repos": 40,
       "skills": {
         "API Integration": 467.56,
@@ -433,7 +421,7 @@
         "Concurrency": 1464.81,
         "Data Viz": 115.23,
         "Docker": 67.6,
-        "Docs & Writing": 4681.29,
+        "Docs & Writing": 4637.2,
         "Dotfiles": 291.82,
         "DuckDB": 40.0,
         "Error Handling": 1604.6,
@@ -467,9 +455,9 @@
       }
     },
     "2026-08-31": {
-      "commits": 245,
-      "diffs": 7334,
-      "repos": 28,
+      "commits": 230,
+      "diffs": 7299,
+      "repos": 27,
       "skills": {
         "API Integration": 96.81,
         "Agent Tooling": 125.77,
@@ -482,7 +470,7 @@
         "Concurrency": 422.87,
         "Data Viz": 93.2,
         "Docker": 23.49,
-        "Docs & Writing": 1580.67,
+        "Docs & Writing": 1554.3,
         "Dotfiles": 149.9,
         "DuckDB": 5.66,
         "Error Handling": 469.76,
@@ -516,8 +504,8 @@
       }
     },
     "2026-09-07": {
-      "commits": 166,
-      "diffs": 1578,
+      "commits": 150,
+      "diffs": 1542,
       "repos": 22,
       "skills": {
         "API Integration": 45.57,
@@ -530,7 +518,7 @@
         "Concurrency": 238.08,
         "Data Viz": 43.55,
         "Docker": 11.36,
-        "Docs & Writing": 1171.59,
+        "Docs & Writing": 1143.66,
         "Dotfiles": 240.2,
         "DuckDB": 29.0,
         "Error Handling": 259.84,
@@ -560,12 +548,12 @@
       }
     },
     "2026-09-14": {
-      "commits": 323,
-      "diffs": 8271,
+      "commits": 275,
+      "diffs": 8168,
       "repos": 24,
       "skills": {
         "API Integration": 163.72,
-        "Agent Tooling": 276.37,
+        "Agent Tooling": 277.6,
         "Astro": 105.52,
         "Axum": 2.0,
         "Build Config": 139.7,
@@ -575,8 +563,8 @@
         "Concurrency": 453.64,
         "Data Viz": 172.71,
         "Docker": 12.72,
-        "Docs & Writing": 1464.66,
-        "Dotfiles": 484.25,
+        "Docs & Writing": 1434.5,
+        "Dotfiles": 519.74,
         "DuckDB": 4.45,
         "Error Handling": 560.44,
         "FastAPI": 20.67,
@@ -587,7 +575,7 @@
         "Make & Just": 25.38,
         "Next.js": 15.14,
         "NumPy": 42.16,
-        "Performance": 368.22,
+        "Performance": 375.94,
         "Polars": 13.49,
         "PyTorch": 3.46,
         "Pydantic": 21.06,
@@ -608,6 +596,22 @@
         "pandas": 82.98,
         "scikit-learn": 2.0,
         "systemd": 4.69
+      }
+    },
+    "2026-09-21": {
+      "commits": 6,
+      "diffs": 26,
+      "repos": 2,
+      "skills": {
+        "API Integration": 2.83,
+        "CLI Design": 5.29,
+        "Data Viz": 5.66,
+        "Docs & Writing": 10.0,
+        "Dotfiles": 11.06,
+        "Error Handling": 8.0,
+        "GitHub Actions": 4.0,
+        "Performance": 7.46,
+        "Regex & Parsing": 2.83
       }
     }
   }
