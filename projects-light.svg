@@ -30,7 +30,7 @@
 <text x="14.0" y="259.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">player props.</text>
 <circle cx="4.0" cy="283.0" r="4" fill="#3178c6"/><text x="14.0" y="287.0" font-size="14.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">omarchy-agents</text>
 <g transform="translate(806.7,271.0)"><rect width="45.3" height="18" rx="9" fill="#238636"/><text x="22.6" y="13" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">LIVE</text></g>
-<text x="796.7" y="287.0" font-size="10.5" fill="#59636e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">gWAR 2.7 · ★ 0 · Pace+ 94</text>
+<text x="796.7" y="287.0" font-size="10.5" fill="#59636e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">gWAR 2.7 · ★ 0 · Pace+ 93</text>
 <text x="14.0" y="305.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Dashboards and bar widgets for tracking AI coding-agent usage on [Omarchy](https://omarchy.org), with a local-first Bun + Hono + React +</text>
 <text x="14.0" y="321.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">SQLite web console plus QML bar widgets ranking token usage across local agents.</text></g>
 <line x1="24" y1="346.0" x2="876" y2="346.0" stroke="#d0d7de" stroke-width="1"/>
@@ -45,7 +45,7 @@
 <text x="14.0" y="119.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Rust Desktop App for Sleeper focused on SleeperZone Sunday fantasy</text>
 <text x="14.0" y="135.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">football tracking. Recent work includes complete milestone 4 an...</text>
 <circle cx="4.0" cy="159.0" r="4" fill="#3178c6"/><text x="14.0" y="163.0" font-size="14.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">jev-roster-shapes</text>
-<text x="411.0" y="163.0" font-size="10.5" fill="#59636e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">gWAR 2.0 · ★ 0 · Pace+ 98</text>
+<text x="411.0" y="163.0" font-size="10.5" fill="#59636e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">gWAR 2.1 · ★ 0 · Pace+ 98</text>
 <text x="14.0" y="181.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Active development focused on roster Shapes development handoff,</text>
 <text x="14.0" y="197.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">built with JavaScript and TypeScript.</text>
 <circle cx="4.0" cy="221.0" r="4" fill="#3572A5"/><text x="14.0" y="225.0" font-size="14.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">draft</text>
@@ -96,7 +96,7 @@
 <text x="411.0" y="163.0" font-size="10.5" fill="#59636e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">gWAR -0.7 · ★ 0 · Pace+ 100</text>
 <text x="14.0" y="181.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Recently published a polyglot stack project.</text>
 <circle cx="4.0" cy="205.0" r="4" fill="#3572A5"/><text x="14.0" y="209.0" font-size="14.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">rosetta</text>
-<text x="411.0" y="209.0" font-size="10.5" fill="#59636e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">gWAR 1.5 · ★ 0 · Pace+ 95</text>
+<text x="411.0" y="209.0" font-size="10.5" fill="#59636e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">gWAR 1.5 · ★ 0 · Pace+ 96</text>
 <text x="14.0" y="227.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Translate NPB, KBO, CPBL, Cuban, and minor-league performance into</text>
 <text x="14.0" y="243.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">MLB-equivalent rates with uncertainty bands. Recent work includ...</text>
 <circle cx="4.0" cy="267.0" r="4" fill="#606060"/><text x="14.0" y="271.0" font-size="14.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">chacha20-avx2</text>
