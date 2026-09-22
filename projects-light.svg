@@ -41,9 +41,9 @@
 <line x1="24" y1="346.0" x2="876" y2="346.0" stroke="#d0d7de" stroke-width="1"/>
 <g transform="translate(24.0,362.0)"><text x="0" y="12" font-size="13" font-weight="800" fill="#3fb950" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">September call-ups</text>
 <circle cx="4.0" cy="35.0" r="3.5" fill="#79528b"/><circle cx="12.0" cy="35.0" r="3.5" fill="#3572A5"/>
-<text x="20.0" y="39.0" font-size="14.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>harlanljones/sabr-jev · Elixir 83% · Python 14% · debut Sep 21 (1d ago) · 25 commits</title>sabr-jev</text>
+<text x="20.0" y="39.0" font-size="14.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>harlanljones/sabr-jev · Elixir 83% · Python 14% · debut Sep 21 (1d ago) · 26 commits</title>sabr-jev</text>
 <g transform="translate(365.7,23.0)"><rect width="45.3" height="18" rx="9" fill="#238636"/><text x="22.6" y="13" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">LIVE</text></g>
-<text x="355.7" y="39.0" font-size="10.5" fill="#59636e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">debut Sep 21 (1d ago) · 25 commits</text>
+<text x="355.7" y="39.0" font-size="10.5" fill="#59636e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">debut Sep 21 (1d ago) · 26 commits</text>
 <text x="14.0" y="57.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Season stats lie by omission. Sabr-Jev grades Batter|Pitcher</text>
 <text x="14.0" y="73.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">seasons with typed AI judgments behind a confidence latch: act,...</text>
 <circle cx="4.0" cy="97.0" r="4" fill="#d18052"/>
