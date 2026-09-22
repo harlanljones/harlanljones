@@ -353,7 +353,7 @@ def generate_featured_repos_table(
 
     table_lines = [
         "<details>",
-        "  <summary><h3>🚀 Featured Repositories & Live Demos</h3></summary>",
+        "  <summary><b>🚀 Featured Repositories & Live Demos</b></summary>",
         "",
         "| Project | Focus | Tech Stack | Live Deployment |",
         "| :--- | :--- | :--- | :--- |",

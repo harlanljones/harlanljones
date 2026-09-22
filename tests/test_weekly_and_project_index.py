@@ -92,7 +92,7 @@ def test_generate_featured_repos_table_collapsed_by_default():
     assert "<details>" in table_md
     assert "<details open>" not in table_md
     assert "</details>" in table_md
-    assert "<summary><h3>🚀 Featured Repositories & Live Demos</h3></summary>" in table_md
+    assert "<summary><b>🚀 Featured Repositories & Live Demos</b></summary>" in table_md
 
     # Header check
     assert "| Project | Focus | Tech Stack | Live Deployment |" in table_md

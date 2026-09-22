@@ -30,7 +30,7 @@
 
 <!-- FEATURED_REPOS_START -->
 <details>
-  <summary><h3>🚀 Featured Repositories & Live Demos</h3></summary>
+  <summary><b>🚀 Featured Repositories & Live Demos</b></summary>
 
 | Project | Focus | Tech Stack | Live Deployment |
 | :--- | :--- | :--- | :--- |
@@ -79,7 +79,7 @@
 </picture>
 
 <details>
-  <summary><h3>📐 Sabermetric Glossary & Architecture Details</h3></summary>
+  <summary><b>📐 Sabermetric Glossary & Architecture Details</b></summary>
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/pipeline.svg" />
     <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/pipeline-light.svg" alt="How This Page Is Built" width="100%" />
