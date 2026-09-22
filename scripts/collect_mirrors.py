@@ -321,6 +321,7 @@ def mine(mirrors: List[str], author_pattern: str, env: Dict[str, str]) -> Tuple[
     season: Dict[str, int] = {}
     lanes: Dict[str, List[int]] = {}
     hours = {h: 0 for h in range(24)}
+    weekdays = {day: 0 for day in range(7)}
     season_commits = 0
     fix_season = fix_28 = total_season = total_28 = 0
     seen = set()
@@ -344,6 +345,7 @@ def mine(mirrors: List[str], author_pattern: str, env: Dict[str, str]) -> Tuple[
                 fix_28 += is_fix
             if not BOT_AUTHOR.search(author):
                 hours[local.hour] += 1
+                weekdays[local.weekday()] += 1
             # A commit counts once for every language whose files it touched.
             for lang in {file_language(f["filename"]) for f in files} - {None}:
                 season[lang] = season.get(lang, 0) + 1
@@ -359,6 +361,7 @@ def mine(mirrors: List[str], author_pattern: str, env: Dict[str, str]) -> Tuple[
         "lanes": lanes,
         "lane_dates": [lane_start + timedelta(days=i) for i in range(LANE_DAYS)],
         "hours": hours,
+        "weekdays": weekdays,
         "commits": season_commits,
     }
     log(f"[INFO] {len(seen)} commits across {len(mirrors)} mirrors; {season_commits} in the last {RHYTHM_DAYS} days")
@@ -384,7 +387,7 @@ def render_rhythm(rhythm: Dict) -> str:
     )
     return render_rhythm_card(
         rhythm["season"], rhythm["hours"], rhythm["commits"],
-        rhythm["lane_dates"], top_lanes, plus,
+        rhythm["lane_dates"], top_lanes, plus, weekdays=rhythm["weekdays"],
     )
 
 

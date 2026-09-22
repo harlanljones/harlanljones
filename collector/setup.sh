@@ -25,14 +25,21 @@ SCHED_SA="collector-scheduler@${PROJECT_ID}.iam.gserviceaccount.com"
 BUILD_SA="collector-build@${PROJECT_ID}.iam.gserviceaccount.com"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 
-g() {
+gcloud_cli() {
 	if command -v gcloud >/dev/null 2>&1; then
-		CLOUDSDK_ACTIVE_CONFIG_NAME="$CONFIG" gcloud "$@"
+		gcloud "$@"
 	else
-		CLOUDSDK_ACTIVE_CONFIG_NAME="$CONFIG" mise exec gcloud@585.0.0 -- gcloud "$@"
+		mise exec gcloud@585.0.0 -- gcloud "$@"
 	fi
 }
+g() { CLOUDSDK_ACTIVE_CONFIG_NAME="$CONFIG" gcloud_cli "$@"; }
 step() { printf '\n==> %s\n' "$*"; }
+
+# Create the dedicated personal config without switching away from the user's
+# current config. Commands below select it explicitly through CLOUDSDK_ACTIVE_CONFIG_NAME.
+if ! gcloud_cli config configurations describe "$CONFIG" >/dev/null 2>&1; then
+	gcloud_cli config configurations create "$CONFIG" --no-activate >/dev/null
+fi
 
 # ---- Guard: personal account only, never the work (primeiq.ai) identity.
 account="$(g config get-value account 2>/dev/null || true)"

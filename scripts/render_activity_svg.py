@@ -7,7 +7,8 @@ skills/projects/weekly-highlights).
   activity.svg       stat tiles (incl. Pace+) + trailing-30-day bars + 7-day
                      average, from the GraphQL contributionsCollection calendar.
                      Rendered by the daily `activity-cards.yml` workflow.
-  commit-rhythm.svg  language share with Lang+, commits by hour, language lanes.
+  commit-rhythm.svg  language share with Lang+, commits by hour and weekday,
+                     and language lanes.
                      Rendered by the nightly GCP collector (collect_mirrors.py)
                      from full local diffs of every repo; this module only owns
                      the drawing (render_rhythm_card) and lang_plus.
@@ -470,6 +471,38 @@ def _hour_histogram(x: float, y: float, width: float, hours: Dict[int, int]) -> 
     return "\n".join(frags), chart_h + 26 + 20
 
 
+def _weekday_histogram(x: float, y: float, width: float, weekdays: Dict[int, int]) -> Tuple[str, float]:
+    """Seven-bar commit-weekday histogram (Pacific local time)."""
+    frags = [
+        f'<text x="{x:.1f}" y="{y + 12:.1f}" font-size="13" font-weight="700" '
+        f'fill="{TITLE_COLOR}" font-family="{FONT_FAMILY}">Commits by Weekday (Pacific)</text>'
+    ]
+    top = y + 26
+    chart_h = 78
+    baseline = top + chart_h
+    pitch = width / 7
+    bar_w = min(28.0, pitch - 12)
+    max_count = max(weekdays.values(), default=0) or 1
+    # Week starts on Sunday: display slot i maps to Python weekday key
+    # (i + 6) % 7 — slot 0 is Sunday (6), then Mon..Sat (0..5).
+    labels = ("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat")
+    for day, label in enumerate(labels):
+        key = (day + 6) % 7
+        bar_h = max(2.0, chart_h * weekdays.get(key, 0) / max_count)
+        bx = x + day * pitch + (pitch - bar_w) / 2
+        frags.append(
+            f'<rect x="{bx:.1f}" y="{baseline - bar_h:.1f}" width="{bar_w:.1f}" height="{bar_h:.1f}" '
+            f'rx="2" fill="{ACCENTS[1]}"/>'
+            f'<text x="{x + day * pitch + pitch / 2:.1f}" y="{baseline + 14:.1f}" font-size="9" '
+            f'fill="{MUTED}" text-anchor="middle" font-family="{FONT_FAMILY}">{label}</text>'
+        )
+    frags.append(
+        f'<line x1="{x:.1f}" y1="{baseline:.1f}" x2="{x + width:.1f}" y2="{baseline:.1f}" '
+        f'stroke="{BORDER}" stroke-width="1"/>'
+    )
+    return "\n".join(frags), chart_h + 26 + 20
+
+
 def _language_timeseries_chart(
     x: float, y: float, width: float, dates: List[date], series: Dict[str, List[int]],
     plus: Optional[Dict[str, int]] = None,
@@ -564,12 +597,17 @@ def render_rhythm_card(
     trend_dates: Optional[List[date]] = None,
     trend_series: Optional[Dict[str, List[int]]] = None,
     plus: Optional[Dict[str, int]] = None,
+    weekdays: Optional[Dict[int, int]] = None,
 ) -> str:
     col_w = (CARD_WIDTH - PAD_X * 2 - 28) / 2
     left_svg, left_h = _language_rows(PAD_X, 10.0, col_w, langs[:7], plus)
     right_x = PAD_X + col_w + 28
     right_svg, right_h = _hour_histogram(right_x, 10.0, col_w, hours)
-    top_h = max(left_h, right_h)
+    weekday_svg, weekday_h = _weekday_histogram(
+        right_x, 10.0 + right_h + 8, col_w, weekdays or {}
+    )
+    right_stack_h = right_h + 8 + weekday_h
+    top_h = max(left_h, right_stack_h)
 
     # Language Activity lanes: top 5 ranked by Lang+ (highest first), tie-breaker by 30-day volume.
     series = trend_series or {}
@@ -590,7 +628,8 @@ def render_rhythm_card(
     subtitle = (f"Every repo I own, all branches · {total_commits:,} commits in the last 12 months"
                 " · Lang+ in Glossary")
     return card_shell(
-        "Languages & Commit Rhythm", subtitle, left_svg + "\n" + right_svg + "\n" + trend_svg, body_height,
+        "Languages & Commit Rhythm", subtitle,
+        left_svg + "\n" + right_svg + "\n" + weekday_svg + "\n" + trend_svg, body_height,
         accent=ACCENT_AMBER,
     )
 
