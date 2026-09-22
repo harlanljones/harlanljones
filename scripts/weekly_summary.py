@@ -55,6 +55,10 @@ PROJECT_DOMAINS = {
     "scheme-db": "NFL scheme engineering & route interpolation workstation",
     "herdr-outpost": "Secure remote agent gateway & mTLS WebSocket relays",
     "clify": "Metric-driven agent orchestration & TDD verification framework",
+    "statcast-lakehouse": "Statcast pitch telemetry ingestion, retention pipelines & scenario modeling",
+    "sabr-jev": "Sabermetric backtesting engine, player valuation & interactive cards",
+    "jev-roster-shapes": "Dynamic MLB roster rendering & player detail routing",
+    "ferrite-db": "Embedded approximate nearest-neighbor vector search in Rust",
 }
 
 
@@ -273,7 +277,7 @@ def synthesize_with_gemini(repos: Dict[str, List[str]], api_key: str, date_str: 
         }
     }
 
-    models = ["gemini-2.5-flash", "gemini-1.5-flash"]
+    models = ["gemini-2.0-flash", "gemini-1.5-flash"]
     for model in models:
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={api_key}"
         req = urllib.request.Request(
@@ -392,12 +396,52 @@ def synthesize_smart_heuristics(repos: Dict[str, List[str]], username: str) -> L
         elif repo == "dotfiles":
             desc = "Automated developer workspace tooling, added Linear agent tracking, and hardened systemd periodic usage scrapers."
 
-        else:
-            # General fallback synthesis
+        elif repo == "statcast-lakehouse":
+            top_features = [c for c in concepts if any(k in c.lower() for k in ["ingest", "pitch", "retention", "scenario", "load", "demo"])]
+            if len(top_features) >= 2:
+                desc = f"Engineered {top_features[0]} and built {top_features[1]} with 3-year data retention."
+            elif top_features:
+                desc = f"Implemented {top_features[0]} for Statcast pitch telemetry analysis."
+            else:
+                desc = "Hardened pitch telemetry ingestion pipelines and seeded 500-pitch game scenarios."
+
+        elif repo == "sabr-jev":
+            top_features = [c for c in concepts if any(k in c.lower() for k in ["backtest", "valuation", "card", "catalog", "latch", "mean"])]
+            if len(top_features) >= 2:
+                desc = f"Engineered {top_features[0]}, integrated {top_features[1]}, and enabled deep shareable links."
+            elif top_features:
+                desc = f"Built {top_features[0]} for sabermetric player valuation."
+            else:
+                desc = "Expanded sabermetric valuation models, interactive card catalogs, and historical backtests."
+
+        elif repo == "jev-roster-shapes":
             if len(concepts) >= 2:
-                desc = f"Engineered {concepts[0]} and implemented {concepts[1]}."
+                desc = f"Engineered {concepts[0]} and implemented {concepts[1]} for live roster tracking."
             elif concepts:
-                desc = f"Shipped {concepts[0]}."
+                desc = f"Shipped {concepts[0]} for dynamic roster rendering."
+            else:
+                desc = "Built dynamic roster rendering modules and player detail routes."
+
+        else:
+            # General fallback synthesis with natural verb rotation across bullets
+            verb_pairs = [
+                ("Architected", "implemented"),
+                ("Shipped", "benchmarked"),
+                ("Engineered", "integrated"),
+                ("Optimized", "hardened test coverage for"),
+                ("Refactored", "deployed"),
+                ("Built", "streamlined"),
+                ("Designed", "stabilized"),
+            ]
+            single_verbs = ["Shipped", "Engineered", "Architected", "Implemented", "Deployed", "Optimized"]
+            pair_idx = len(bullets) % len(verb_pairs)
+            v1, v2 = verb_pairs[pair_idx]
+            sv = single_verbs[len(bullets) % len(single_verbs)]
+
+            if len(concepts) >= 2:
+                desc = f"{v1} {concepts[0]} and {v2} {concepts[1]}."
+            elif concepts:
+                desc = f"{sv} {concepts[0]}."
             else:
                 desc = "Continuous integration, architectural improvements, and feature development."
 

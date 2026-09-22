@@ -36,12 +36,39 @@ from svg_cards import (  # noqa: E402
 NAME = "Harlan Jones"
 TAGLINE = "Software Developer @ PrimeIQ.ai • Baseball Analytics • Systems & Data"
 BYLINE = "San Francisco Bay Area · Boston University"
+CHIPS = [
+    ("B.S. Computer Engineering", "#3fb950"),
+    ("harlanljones.com", "#f778ba"),
+    ("in/harlanljones", "#58a6ff"),
+    ("Baseball & Sports Analytics", "#e3b341"),
+]
 
-W, H = 900, 320
+W, H = 900, 300
+
+
+def _chip(x: float, y: float, label: str, accent: str) -> Tuple[float, str]:
+    """Outlined chip with a colored dot. Returns (next_x, svg_fragment)."""
+    h = 28
+    dot_pad, text_pad = 12, 24
+    w = text_pad + text_width(label, 11.5, bold=True) + 14
+    svg = (
+        f'<g transform="translate({x:.1f},{y:.1f})">'
+        f'<rect width="{w:.1f}" height="{h}" rx="{h / 2:.1f}" fill="#ffffff" fill-opacity="0.04" '
+        f'stroke="{BORDER}" stroke-width="1"/>'
+        f'<circle cx="{dot_pad}" cy="{h / 2:.1f}" r="3.5" fill="{accent}"/>'
+        f'<text x="{text_pad}" y="{h / 2 + 4:.1f}" font-size="11.5" font-weight="600" '
+        f'fill="{TEXT}" font-family="{FONT_FAMILY}">{esc(label)}</text>'
+        f"</g>"
+    )
+    return x + w + 10, svg
 
 
 def render() -> str:
+    chips_x, chip_y = float(PAD_X), 216.0
     chip_frags: list[str] = []
+    for label, accent in CHIPS:
+        chips_x, frag = _chip(chips_x, chip_y, label, accent)
+        chip_frags.append(frag)
 
     edge = (
         '<linearGradient id="hbEdge" x1="0" y1="0" x2="1" y2="0.55">'

@@ -24,8 +24,46 @@ import sys
 import datetime as dt
 from typing import Dict, List, Optional, Tuple
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from svg_cards import (  # noqa: E402
+    ACCENT_AMBER,
+    ACCENT_BLUE,
+    ACCENT_GREEN,
+    ACCENT_ORANGE,
+    ACCENT_PURPLE,
+    BORDER,
+    CARD_WIDTH,
+    FONT_FAMILY,
+    MUTED,
+    PAD_X,
+    TEXT,
+    TITLE_COLOR,
+    card_shell,
+    esc,
+    truncate,
+    wrap_by_width,
+    write_theme_pair,
+)
+
+
 def parse_iso(ts: str) -> dt.datetime:
     return dt.datetime.fromisoformat(ts.replace("Z", "+00:00"))
+
+
+def get_section_accent(name: str) -> str:
+    n = name.lower()
+    if "top 5" in n or "starting" in n:
+        return ACCENT_AMBER
+    if "call-up" in n or "rookie" in n or "debut" in n:
+        return ACCENT_GREEN
+    if "live" in n or "production" in n:
+        return ACCENT_BLUE
+    if "streak" in n or "hitting" in n:
+        return ACCENT_ORANGE
+    if "gem" in n or "hidden" in n:
+        return ACCENT_PURPLE
+    return ACCENT_BLUE
 
 
 def format_section_stat(r: dict, section_name: str, now: Optional[dt.datetime] = None) -> str:
@@ -37,7 +75,7 @@ def format_section_stat(r: dict, section_name: str, now: Optional[dt.datetime] =
     pace = r.get("pace_plus", 100)
     stars = r.get("stargazers_count", 0)
 
-    if section_name.startswith("Top 5"):
+    if section_name.startswith("Top 5") or "starting" in section_name.lower():
         parts = [f"gWAR {gwar:.1f}", f"{commits_90} commits"]
         if active_days > 0:
             parts.append(f"{active_days}d active")
@@ -45,7 +83,7 @@ def format_section_stat(r: dict, section_name: str, now: Optional[dt.datetime] =
             parts.append(f"★ {stars}")
         return " · ".join(parts)
 
-    if section_name.startswith("September call-ups"):
+    if "call-up" in section_name.lower() or "rookie" in section_name.lower() or "debut" in section_name.lower():
         created = r.get("created_at")
         if created:
             c_date = parse_iso(created)
@@ -88,32 +126,6 @@ def format_section_stat(r: dict, section_name: str, now: Optional[dt.datetime] =
 
     return f"gWAR {gwar:.1f} · {commits_90} commits"
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-
-from svg_cards import (  # noqa: E402
-    ACCENT_AMBER,
-    ACCENT_BLUE,
-    ACCENT_GREEN,
-    ACCENT_ORANGE,
-    ACCENT_PURPLE,
-    BORDER,
-    CARD_WIDTH,
-    FONT_FAMILY,
-    MUTED,
-    PAD_X,
-    TEXT,
-    TITLE_COLOR,
-    card_shell,
-    esc,
-    truncate,
-    wrap_by_width,
-    write_theme_pair,
-)
-
-SECTION_ACCENTS = {"Top 5 · by gWAR": ACCENT_AMBER, "September call-ups": ACCENT_GREEN,
-                   "Live in production": ACCENT_BLUE, "Hitting streak": ACCENT_ORANGE,
-                   "Hidden gems": ACCENT_PURPLE}
-
 
 def build_sections(ranked: List[dict], now, featured: Dict[str, dict]) -> List[Tuple[str, List[dict]]]:
     """Section name -> repos, honoring the no-duplicates rule."""
@@ -132,13 +144,21 @@ def build_sections(ranked: List[dict], now, featured: Dict[str, dict]) -> List[T
     sections = [("Top 5 · by gWAR", take(ranked, 5))]
     fresh = sorted((r for r in ranked if r["gwar"] > 0),
                    key=lambda r: r.get("created_at") or "", reverse=True)
-    sections.append(("September call-ups", take(fresh, 3)))
+    if now.month == 9:
+        callups_label = "September call-ups"
+    elif now.month in (3, 4):
+        callups_label = "Opening Day call-ups"
+    elif now.month in (5, 6, 7, 8):
+        callups_label = f"{now.strftime('%B')} call-ups"
+    else:
+        callups_label = "Rookie call-ups & debuts"
+    sections.append((callups_label, take(fresh, 3)))
     live = sorted((r for r in ranked if r.get("homepage")), key=lambda r: -r["gwar"])
     sections.append(("Live in production", take(live, 3)))
     streak = sorted((r for r in ranked if r.get("commits_90", 0) > 0),
                     key=lambda r: (-r.get("pace_plus", 100), -r.get("commits_90", 0)))
     sections.append(("Hitting streak", take(streak, 3)))
-    gems = sorted((r for r in ranked if r["gwar"] > 0), key=lambda r: (r["stargazers_count"], -r["gwar"]))
+    gems = sorted((r for r in ranked if r["gwar"] > 0), key=lambda r: (r.get("stargazers_count", 0), -r["gwar"]))
     sections.append(("Hidden gems", take(gems, 3)))
     return [(name, rows) for name, rows in sections if rows]
 
@@ -207,7 +227,7 @@ def _section_block(name: str, rows: List[dict], width: float) -> Tuple[str, floa
     <g transform="translate(x,y)">. Returns (svg_fragment, height)."""
     frags = [
         f'<text x="0" y="12" font-size="13" font-weight="800" '
-        f'fill="{SECTION_ACCENTS.get(name, ACCENT_BLUE)}" font-family="{FONT_FAMILY}">{esc(name)}</text>'
+        f'fill="{get_section_accent(name)}" font-family="{FONT_FAMILY}">{esc(name)}</text>'
     ]
     cy = 24.0
     for r in rows:
