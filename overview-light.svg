@@ -10,7 +10,7 @@
 <text x="24" y="30" font-size="18" font-weight="700" fill="#1f2328" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Professional Overview</text>
 <text x="24" y="48" font-size="12.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">The short version</text>
 <g transform="translate(0,56)"><circle cx="24.0" cy="12.5" r="3" fill="#58a6ff"/><text x="35.0" y="16.0" font-size="10.5" font-weight="600" letter-spacing="2" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">CURRENTLY</text>
-<text x="35.0" y="39.0" font-size="14" fill="#1f2328" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Software Engineer @ PrimeIQ.ai</text>
+<text x="35.0" y="39.0" font-size="14" fill="#1f2328" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Software Developer @ PrimeIQ.ai</text>
 <circle cx="466.0" cy="12.5" r="3" fill="#f778ba"/><text x="477.0" y="16.0" font-size="10.5" font-weight="600" letter-spacing="2" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">WEBSITE</text>
 <text x="477.0" y="39.0" font-size="14" fill="#1f2328" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">harlanljones.com</text>
 <line x1="24" y1="51.0" x2="876" y2="51.0" stroke="#d0d7de" stroke-opacity="0.55" stroke-width="1"/>

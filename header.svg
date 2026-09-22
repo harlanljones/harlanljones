@@ -46,9 +46,7 @@
 </g>
 <text x="24" y="102" font-size="10.5" font-weight="600" letter-spacing="3" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">SAN FRANCISCO BAY AREA · BOSTON UNIVERSITY</text>
 <text x="24" y="152" font-size="44" font-weight="800" letter-spacing="0.3" fill="#f0f6fc" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Harlan Jones</text>
-<text x="24" y="184" font-size="15" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Software Engineer @ PrimeIQ.ai • Baseball Analytics • Systems &amp; Data</text>
-<g transform="translate(24.0,208.0)"><rect width="177.6" height="26" rx="13.0" fill="#ffffff" fill-opacity="0.04" stroke="#30363d" stroke-width="1"/><circle cx="11" cy="13.0" r="3" fill="#58a6ff"/><text x="21" y="17.0" font-size="11.5" font-weight="600" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Software Development</text></g>
-<g transform="translate(211.6,208.0)"><rect width="227.5" height="26" rx="13.0" fill="#ffffff" fill-opacity="0.04" stroke="#30363d" stroke-width="1"/><circle cx="11" cy="13.0" r="3" fill="#e3b341"/><text x="21" y="17.0" font-size="11.5" font-weight="600" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Baseball &amp; Sports Analytics</text></g>
-<g transform="translate(449.1,208.0)"><rect width="184.7" height="26" rx="13.0" fill="#ffffff" fill-opacity="0.04" stroke="#30363d" stroke-width="1"/><circle cx="11" cy="13.0" r="3" fill="#a371f7"/><text x="21" y="17.0" font-size="11.5" font-weight="600" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">ML &amp; Data Engineering</text></g>
+<text x="24" y="184" font-size="15" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Software Developer @ PrimeIQ.ai • Baseball Analytics • Systems &amp; Data</text>
+
 <rect x="0.5" y="0.5" width="899" height="319" rx="12" fill="none" stroke="url(#hbEdge)" stroke-width="1"/>
 </svg>
