@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="295" viewBox="0 0 900 295">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="276" viewBox="0 0 900 276">
 <defs>
 <linearGradient id="shellEdge" x1="0" y1="0" x2="1" y2="0.9">
 <stop offset="0" stop-color="#58a6ff" stop-opacity="0.85"/>
@@ -6,17 +6,16 @@
 <stop offset="0.65" stop-color="#30363d" stop-opacity="1"/>
 </linearGradient>
 </defs>
-<rect x="0.5" y="0.5" width="899" height="294" rx="12" fill="#0d1117" stroke="url(#shellEdge)"/>
+<rect x="0.5" y="0.5" width="899" height="275" rx="12" fill="#0d1117" stroke="url(#shellEdge)"/>
 <text x="24" y="30" font-size="18" font-weight="700" fill="#e6edf3" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">What I Did This Week</text>
-<text x="24" y="48" font-size="12.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Sep 14 – Sep 21, 2026</text>
-<g transform="translate(0,56)"><text x="24" y="24.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">harlanljones</text>
-<text x="24" y="44.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Engineered wDC + aERA on Season Stat Line; pipeline is a pure jobs table and implemented wDC and Actions ERA stats on the</text>
-<text x="24" y="63.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">pipeline card; exclude pure automations from reps.</text>
-<line x1="24" y1="78.0" x2="876" y2="78.0" stroke="#8b949e" stroke-opacity="0.25"/>
-<text x="24" y="100.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">jev-roster-shapes</text>
-<text x="24" y="120.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Engineered player detail routes and root live render and implemented live roster rendering module.</text>
-<line x1="24" y1="135.0" x2="876" y2="135.0" stroke="#8b949e" stroke-opacity="0.25"/>
-<text x="24" y="157.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">statcast-lakehouse</text>
-<text x="24" y="177.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Engineered six seeded 500-pitch demo scenarios and implemented static Cloudflare Pages build, scenario-state tests,</text>
-<text x="24" y="196.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">camera and tooltip fixes.</text></g>
+<text x="24" y="48" font-size="12.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Sep 15 – Sep 22, 2026</text>
+<g transform="translate(0,56)"><text x="24" y="24.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">statcast-lakehouse</text>
+<text x="24" y="44.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Engineered load-job ingestion path and 3-year retention and implemented six seeded 500-pitch demo scenarios.</text>
+<line x1="24" y1="59.0" x2="876" y2="59.0" stroke="#8b949e" stroke-opacity="0.25"/>
+<text x="24" y="81.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">jev-roster-shapes</text>
+<text x="24" y="101.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Engineered player detail routes and root live render and implemented live roster rendering module.</text>
+<line x1="24" y1="116.0" x2="876" y2="116.0" stroke="#8b949e" stroke-opacity="0.25"/>
+<text x="24" y="138.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">sabr-jev</text>
+<text x="24" y="158.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Engineered backtest view, latch v3 mean-aggregation, 50-card catalog and implemented browser navigation via live links;</text>
+<text x="24" y="177.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">card deep links shareable.</text></g>
 </svg>
