@@ -280,6 +280,126 @@ def render(sections: List[Tuple[str, List[dict]]], date_str: str, total_repos: i
 # every call: a one-element list the caller populates before render().
 FEATURED_REF: List[Dict[str, dict]] = [{}]
 
+FEATURED_REPOS_START = "<!-- FEATURED_REPOS_START -->"
+FEATURED_REPOS_END = "<!-- FEATURED_REPOS_END -->"
+
+SHORT_BADGES: Dict[str, str] = {
+    "Apache Kafka": "Kafka",
+    "Tailwind CSS": "Tailwind",
+    "Cloudflare Workers": "Cloudflare",
+    "Cloudflare Tunnel": "Cloudflare Tunnel",
+    "PyMC Bayesian Inference": "PyMC",
+    "TDD Test-Driven Development": "TDD",
+    "LLMs Deep Learning": "LLMs",
+    "Turborepo Monorepo": "Turborepo",
+    "Streaming Pipelines": "Streaming",
+}
+
+
+def distill_focus(summary: str, max_len: int = 85) -> str:
+    """Extract a concise single-line focus phrase from a longer summary."""
+    clean = re.sub(r"\[([^\]]+)\]\([^\)]+\)", r"\1", summary).strip()
+    first_sent = clean.split(". ")[0].rstrip(".")
+    if len(first_sent) <= max_len:
+        return first_sent
+    cut = first_sent[: max_len - 3].rsplit(" ", 1)[0]
+    return f"{cut}..."
+
+
+def format_tech_stack(badges: List[str]) -> str:
+    """Format tech stack badges into backticked markdown chips."""
+    chips = []
+    for b in badges[:4]:
+        name = SHORT_BADGES.get(b, b)
+        chips.append(f"`{name}`")
+    return " ".join(chips)
+
+
+def format_live_deployment(name: str, homepage: str, username: str = "harlanljones") -> str:
+    """Format live deployment URL or fallback to GitHub repository link."""
+    if homepage:
+        domain = re.sub(r"^https?://(www\.)?", "", homepage).rstrip("/")
+        domain = domain.split("/")[0] if domain else homepage
+        return f"[{domain} ↗]({homepage})"
+    return f"[GitHub Repository ↗](https://github.com/{username}/{name})"
+
+
+def generate_featured_repos_table(
+    entries: List[Dict],
+    username: str = "harlanljones",
+) -> str:
+    """
+    Build the markdown table for Featured Repositories & Live Demos,
+    wrapped in a collapsed <details> / <summary> block.
+    """
+    included = []
+    for e in entries:
+        is_live = bool(e.get("homepage"))
+        is_featured = e.get("featured", is_live)
+        if is_live or is_featured:
+            included.append(e)
+
+    # Sort: priority first, then live demos, then alphabetical by name
+    included.sort(key=lambda x: (x.get("priority", 99), not bool(x.get("homepage")), x.get("name", "").lower()))
+
+    rows = []
+    for e in included:
+        name = e["name"]
+        repo_link = f"[**{name}**](https://github.com/{username}/{name})"
+        focus = e.get("focus") or distill_focus(e.get("summary", ""))
+        tech_stack = format_tech_stack(e.get("badges", []))
+        deployment = format_live_deployment(name, e.get("homepage", ""), username)
+        rows.append(f"| {repo_link} | {focus} | {tech_stack} | {deployment} |")
+
+    table_lines = [
+        "<details>",
+        "  <summary><h3>🚀 Featured Repositories & Live Demos</h3></summary>",
+        "",
+        "| Project | Focus | Tech Stack | Live Deployment |",
+        "| :--- | :--- | :--- | :--- |",
+    ] + rows + [
+        "",
+        "</details>",
+    ]
+    return "\n".join(table_lines)
+
+
+def update_readme_featured_repos(
+    readme_path: str,
+    entries: List[Dict],
+    username: str = "harlanljones",
+) -> bool:
+    """Update or insert the collapsed Featured Repositories table in README.md."""
+    if not os.path.exists(readme_path):
+        return False
+
+    with open(readme_path, "r", encoding="utf-8") as f:
+        content = f.read()
+
+    table_md = generate_featured_repos_table(entries, username)
+    section = f"{FEATURED_REPOS_START}\n{table_md}\n{FEATURED_REPOS_END}"
+
+    pattern = re.escape(FEATURED_REPOS_START) + r".*?" + re.escape(FEATURED_REPOS_END)
+    if re.search(pattern, content, flags=re.DOTALL):
+        updated = re.sub(pattern, section, content, flags=re.DOTALL)
+    elif "<!-- PROJECTS_END -->" in content:
+        # Check if an unanchored old table exists right after PROJECTS_END
+        old_table_pattern = r"(<!-- PROJECTS_END -->\s*\n\s*)(?:### 🚀 Featured Repositories & Live Demos[\s\S]*?(?=\n<picture|\Z))"
+        if re.search(old_table_pattern, content):
+            updated = re.sub(old_table_pattern, rf"\1{section}\n\n", content)
+        else:
+            updated = content.replace("<!-- PROJECTS_END -->", f"<!-- PROJECTS_END -->\n\n{section}\n")
+    else:
+        updated = content + f"\n\n{section}\n"
+
+    if updated != content:
+        with open(readme_path, "w", encoding="utf-8") as f:
+            f.write(updated)
+        print(f"[OK] Updated Featured Repositories table in {readme_path}")
+        return True
+    print(f"[INFO] Featured Repositories table already up to date in {readme_path}")
+    return False
+
 
 def main() -> None:
     import argparse
@@ -294,6 +414,7 @@ def main() -> None:
     parser.add_argument("--out", default="projects.svg")
     parser.add_argument("--max-repos", type=int, default=40)
     parser.add_argument("--token", default=os.environ.get("GITHUB_TOKEN", ""))
+    parser.add_argument("--readme", default=None, help="Optional path to README.md to update featured repos table")
     args = parser.parse_args()
     if not args.token:
         parser.error("a GitHub token is required (--token or GITHUB_TOKEN)")
@@ -312,14 +433,19 @@ def main() -> None:
 
     try:
         with open(args.store, encoding="utf-8") as f:
-            featured = {e["name"]: e for e in json.load(f)}
+            raw_entries = json.load(f)
+            featured = {e["name"]: e for e in raw_entries}
     except (OSError, ValueError):
+        raw_entries = []
         featured = {}
     FEATURED_REF[0] = featured
 
     sections = build_sections(ranked, now, featured)
     for path in write_theme_pair(args.out, render(sections, now.strftime("%b %d, %Y"), len(repos))):
         print(f"[OK] Wrote {path}")
+
+    if args.readme:
+        update_readme_featured_repos(args.readme, raw_entries, args.username)
 
 
 if __name__ == "__main__":

@@ -590,6 +590,7 @@ def main() -> None:
     parser.add_argument("--out-dir", default=".")
     parser.add_argument("--max-repos", type=int, default=40)
     parser.add_argument("--token", default=os.environ.get("GITHUB_TOKEN", ""))
+    parser.add_argument("--readme", default=None, help="Optional path to README.md to update featured repos table")
     args = parser.parse_args()
 
     if not args.token:
@@ -647,6 +648,8 @@ def main() -> None:
     render_project_index.FEATURED_REF[0] = featured
     sections = render_project_index.build_sections(ranked, now, featured)
     cards["projects.svg"] = render_project_index.render(sections, date_str, len(repos))
+    if args.readme:
+        render_project_index.update_readme_featured_repos(args.readme, list(featured.values()), args.username)
 
     # Season Stat Line: API stats + the collector's FIX− from the skills store.
     import render_statline_svg  # noqa: E402

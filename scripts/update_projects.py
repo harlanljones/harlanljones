@@ -28,6 +28,7 @@ import urllib.request
 from typing import Dict, List, Optional, Set, Tuple
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from render_project_index import update_readme_featured_repos  # noqa: E402
 from svg_cards import ACCENT_ORANGE, CARD_WIDTH, FONT_FAMILY, MUTED, ON_ACCENT, PAD_X, TEXT, card_shell, esc, flow_pills, plain_text, truncate, wrap_by_width, write_theme_pair  # noqa: E402
 
 PROJECTS_ANCHOR = "<!-- PROJECTS_END -->"
@@ -664,6 +665,7 @@ def main():
     print(f"[OK] Wrote {args.svg_out}")
 
     ensure_readme_image(args.readme, args.svg_url)
+    update_readme_featured_repos(args.readme, entries, args.username)
 
 
 if __name__ == "__main__":

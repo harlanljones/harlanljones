@@ -61,3 +61,92 @@ def test_render_header_contains_identity_chips():
     from scripts.svg_cards import esc
     for label, _ in CHIPS:
         assert esc(label) in svg
+
+
+def test_generate_featured_repos_table_collapsed_by_default():
+    """Verify markdown directory is collapsed by default and contains live links."""
+    from scripts.render_project_index import generate_featured_repos_table
+
+    entries = [
+        {
+            "name": "urban-signal",
+            "priority": 1,
+            "featured": True,
+            "focus": "Real-time spatio-temporal property forecasting & telemetry",
+            "badges": ["Python", "Apache Kafka", "FastAPI"],
+            "homepage": "https://urban-signal.harlanljones.com",
+        },
+        {
+            "name": "statcast-lakehouse",
+            "priority": 2,
+            "featured": True,
+            "focus": "Statcast pitch telemetry ingestion",
+            "badges": ["Python", "TypeScript"],
+            "homepage": "",
+        },
+    ]
+
+    table_md = generate_featured_repos_table(entries, username="testuser")
+
+    # Collapsed by default check
+    assert "<details>" in table_md
+    assert "<details open>" not in table_md
+    assert "</details>" in table_md
+    assert "<summary><h3>🚀 Featured Repositories & Live Demos</h3></summary>" in table_md
+
+    # Header check
+    assert "| Project | Focus | Tech Stack | Live Deployment |" in table_md
+    assert "| :--- | :--- | :--- | :--- |" in table_md
+
+    # Row content checks
+    assert "[**urban-signal**](https://github.com/testuser/urban-signal)" in table_md
+    assert "Real-time spatio-temporal property forecasting & telemetry" in table_md
+    assert "`Python` `Kafka` `FastAPI`" in table_md
+    assert "[urban-signal.harlanljones.com ↗](https://urban-signal.harlanljones.com)" in table_md
+
+    assert "[**statcast-lakehouse**](https://github.com/testuser/statcast-lakehouse)" in table_md
+    assert "[GitHub Repository ↗](https://github.com/testuser/statcast-lakehouse)" in table_md
+
+
+def test_update_readme_featured_repos_idempotent(tmp_path):
+    """Verify update_readme_featured_repos inserts and updates cleanly without duplication."""
+    from scripts.render_project_index import update_readme_featured_repos, FEATURED_REPOS_START, FEATURED_REPOS_END
+
+    test_readme = tmp_path / "README.md"
+    initial_content = (
+        "# Profile\n\n"
+        "<!-- PROJECTS_END -->\n\n"
+        "<picture>\n<img src=\"skills.svg\" />\n</picture>\n"
+    )
+    test_readme.write_text(initial_content, encoding="utf-8")
+
+    entries = [
+        {
+            "name": "urban-signal",
+            "priority": 1,
+            "featured": True,
+            "focus": "Real-time forecasting",
+            "badges": ["Python"],
+            "homepage": "https://urban-signal.harlanljones.com",
+        }
+    ]
+
+    # First run should insert section
+    assert update_readme_featured_repos(str(test_readme), entries, "testuser") is True
+
+    content_after = test_readme.read_text(encoding="utf-8")
+    assert FEATURED_REPOS_START in content_after
+    assert FEATURED_REPOS_END in content_after
+    assert "<details>" in content_after
+    assert "[**urban-signal**]" in content_after
+
+    # Second run with same entries should be idempotent (return False)
+    assert update_readme_featured_repos(str(test_readme), entries, "testuser") is False
+
+    # Run with updated focus should update in-place
+    entries[0]["focus"] = "Next-gen forecasting"
+    assert update_readme_featured_repos(str(test_readme), entries, "testuser") is True
+    updated_content = test_readme.read_text(encoding="utf-8")
+    assert "Next-gen forecasting" in updated_content
+    assert content_after.count(FEATURED_REPOS_START) == 1
+    assert updated_content.count(FEATURED_REPOS_START) == 1

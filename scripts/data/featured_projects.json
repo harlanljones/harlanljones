@@ -8,7 +8,10 @@
       "FastAPI",
       "PostGIS"
     ],
-    "homepage": "https://urban-signal.harlanljones.com"
+    "homepage": "https://urban-signal.harlanljones.com",
+    "priority": 1,
+    "featured": true,
+    "focus": "Real-time spatio-temporal property forecasting & telemetry"
   },
   {
     "name": "herdr-outpost",
@@ -19,7 +22,10 @@
       "Cloudflare Tunnel",
       "WebSocket"
     ],
-    "homepage": ""
+    "homepage": "",
+    "priority": 13,
+    "featured": true,
+    "focus": "Remote mTLS dashboard & relay gateway for AI coding agent workspaces"
   },
   {
     "name": "scheme-db",
@@ -30,7 +36,10 @@
       "Tailwind CSS",
       "Vite"
     ],
-    "homepage": "https://schemedb.harlanljones.com/"
+    "homepage": "https://schemedb.harlanljones.com/",
+    "priority": 10,
+    "featured": true,
+    "focus": "Interactive NFL scheme engineering & 80-play animation workstation"
   },
   {
     "name": "omarchy-agents",
@@ -41,7 +50,10 @@
       "React",
       "QML"
     ],
-    "homepage": "https://agents.harlanljones.com"
+    "homepage": "https://agents.harlanljones.com",
+    "priority": 4,
+    "featured": true,
+    "focus": "AI coding-agent usage tracking, token correlation & desktop widgets"
   },
   {
     "name": "arbkit",
@@ -52,7 +64,10 @@
       "Architecture",
       "Markets"
     ],
-    "homepage": "https://arbkit.harlanljones.com/"
+    "homepage": "https://arbkit.harlanljones.com/",
+    "priority": 6,
+    "featured": true,
+    "focus": "Cross-venue sports & prediction market arbitrage engine (p99 < 250ns)"
   },
   {
     "name": "bayes-horizon",
@@ -63,7 +78,10 @@
       "FastAPI",
       "Cloudflare Workers"
     ],
-    "homepage": "https://sp500.harlanljones.com/"
+    "homepage": "https://sp500.harlanljones.com/",
+    "priority": 7,
+    "featured": true,
+    "focus": "S&P 500 Bayesian macroeconomic ML forecasting & walk-forward testing"
   },
   {
     "name": "baseball-dashboard",
@@ -74,7 +92,10 @@
       "React",
       "Tailwind CSS"
     ],
-    "homepage": "https://mlb.harlanljones.com/"
+    "homepage": "https://mlb.harlanljones.com/",
+    "priority": 5,
+    "featured": true,
+    "focus": "Live MLB scoreboard, sabermetric matchup splits & bullpen workload"
   },
   {
     "name": "seismic-ml",
@@ -85,7 +106,10 @@
       "CUDA",
       "USGS"
     ],
-    "homepage": ""
+    "homepage": "",
+    "priority": 12,
+    "featured": true,
+    "focus": "Spatiotemporal ML pipeline for short-term USGS earthquake forecasting"
   },
   {
     "name": "march-madness",
@@ -96,7 +120,10 @@
       "Monte Carlo",
       "Kaggle"
     ],
-    "homepage": ""
+    "homepage": "",
+    "priority": 14,
+    "featured": true,
+    "focus": "PyTorch deep learning tournament prediction & bracket simulation"
   },
   {
     "name": "dotfiles-showcase",
@@ -123,7 +150,10 @@
       "Go Templates",
       "Shell"
     ],
-    "homepage": ""
+    "homepage": "",
+    "priority": 8,
+    "featured": true,
+    "focus": "Automated developer workspace, Chezmoi configs & agent tooling"
   },
   {
     "name": "gan-enhanced-pneumonia-classifier",
@@ -140,7 +170,10 @@
       "Rust",
       "TypeScript"
     ],
-    "homepage": "https://ferritedb.harlanljones.com/"
+    "homepage": "https://ferritedb.harlanljones.com/",
+    "priority": 9,
+    "featured": true,
+    "focus": "Embedded Rust approximate nearest-neighbor vector search library"
   },
   {
     "name": "chacha20-avx2",
@@ -157,7 +190,10 @@
       "TypeScript",
       "JavaScript"
     ],
-    "homepage": "https://film-lab.harlanljones.com/"
+    "homepage": "https://film-lab.harlanljones.com/",
+    "priority": 11,
+    "featured": true,
+    "focus": "Automated darkroom simulation & photo-processing pipeline"
   },
   {
     "name": "web-backends",
@@ -175,7 +211,10 @@
       "Python",
       "Rust"
     ],
-    "homepage": ""
+    "homepage": "",
+    "priority": 15,
+    "featured": true,
+    "focus": "High-performance Rust sabermetric valuation & statistics engine"
   },
   {
     "name": "statcast-lakehouse",
@@ -184,7 +223,10 @@
       "Python",
       "TypeScript"
     ],
-    "homepage": ""
+    "homepage": "",
+    "priority": 2,
+    "featured": true,
+    "focus": "Statcast pitch telemetry ingestion, 3-yr retention & 500-pitch scenarios"
   },
   {
     "name": "wikipedia-worlds",
@@ -277,7 +319,10 @@
     "badges": [
       "Python"
     ],
-    "homepage": "https://sabr-jev.fly.dev/"
+    "homepage": "https://sabr.harlanljones.com",
+    "priority": 3,
+    "featured": true,
+    "focus": "Sabermetric valuation engine, historical backtests & interactive cards"
   },
   {
     "name": "ring-the-pen",
