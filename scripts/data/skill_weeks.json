@@ -1,17 +1,17 @@
 {
   "fix_minus": {
-    "commits_28": 1366,
-    "fix_28": 210,
-    "value": 123
+    "commits_28": 1281,
+    "fix_28": 213,
+    "value": 130
   },
   "season": {
-    "aera": 1.66,
-    "aera_sub": "173 of 954 runs failed \u00b7 public repos \u00b7 28d",
+    "aera": 1.7,
+    "aera_sub": "173 of 932 runs failed \u00b7 public repos \u00b7 28d",
     "wdc": 41.32,
-    "wdc_sub": "62 deployments created \u00b7 last 28d"
+    "wdc_sub": "60 deployments created \u00b7 last 28d"
   },
   "source": "mirrors",
-  "updated": "2026-09-22T21:10:39Z",
+  "updated": "2026-09-23T10:23:49Z",
   "weeks": {
     "2025-09-29": {
       "commits": 4,
@@ -610,37 +610,37 @@
       }
     },
     "2026-09-21": {
-      "commits": 128,
-      "diffs": 944,
+      "commits": 143,
+      "diffs": 1010,
       "repos": 14,
       "skills": {
-        "API Integration": 43.49,
-        "Agent Tooling": 26.56,
+        "API Integration": 45.49,
+        "Agent Tooling": 28.14,
         "Astro": 82.99,
         "Build Config": 10.99,
-        "CLI Design": 57.23,
+        "CLI Design": 64.35,
         "Cloudflare Workers": 2.24,
         "Concurrency": 44.32,
-        "Data Viz": 48.87,
+        "Data Viz": 51.7,
         "Docker": 11.34,
-        "Docs & Writing": 394.22,
-        "Dotfiles": 20.99,
-        "Error Handling": 121.65,
+        "Docs & Writing": 440.75,
+        "Dotfiles": 50.93,
+        "Error Handling": 126.12,
         "FastAPI": 7.74,
-        "GitHub Actions": 36.32,
+        "GitHub Actions": 44.07,
         "Lint & Format": 1.22,
         "Make & Just": 14.02,
         "Next.js": 2.0,
         "NumPy": 8.47,
-        "Performance": 139.02,
+        "Performance": 145.47,
         "Polars": 4.0,
         "Pydantic": 3.16,
         "React": 149.51,
-        "Regex & Parsing": 27.4,
+        "Regex & Parsing": 32.3,
         "SQL & Data Modeling": 23.4,
         "Tailwind CSS": 41.89,
         "Terraform": 4.23,
-        "Testing": 407.1,
+        "Testing": 451.26,
         "Type Design": 48.79,
         "pandas": 2.83,
         "systemd": 9.11
