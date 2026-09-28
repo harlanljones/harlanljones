@@ -1,26 +1,18 @@
 {
   "fix_minus": {
-    "commits_28": 966,
-    "fix_28": 198,
+    "commits_28": 959,
+    "fix_28": 196,
     "value": 153
   },
   "season": {
-    "aera": 1.39,
-    "aera_sub": "133 of 880 runs failed \u00b7 public repos \u00b7 28d",
-    "wdc": 49.96,
-    "wdc_sub": "62 deployments created \u00b7 last 28d"
+    "aera": 1.38,
+    "aera_sub": "127 of 851 runs failed \u00b7 public repos \u00b7 28d",
+    "wdc": 28.939999999999998,
+    "wdc_sub": "61 deployments created \u00b7 last 28d"
   },
   "source": "mirrors",
-  "updated": "2026-09-27T10:22:40Z",
+  "updated": "2026-09-28T10:21:37Z",
   "weeks": {
-    "2025-09-29": {
-      "commits": 4,
-      "diffs": 14,
-      "repos": 2,
-      "skills": {
-        "Docs & Writing": 18.16
-      }
-    },
     "2025-10-06": {
       "commits": 4,
       "diffs": 14,
@@ -610,25 +602,25 @@
       }
     },
     "2026-09-21": {
-      "commits": 311,
-      "diffs": 2636,
+      "commits": 325,
+      "diffs": 3024,
       "repos": 27,
       "skills": {
-        "API Integration": 131.47,
-        "Agent Tooling": 164.06,
+        "API Integration": 136.3,
+        "Agent Tooling": 184.06,
         "Astro": 103.21,
         "Axum": 6.32,
         "Build Config": 155.05,
         "CLI Design": 146.68,
-        "Clap": 15.38,
+        "Clap": 19.86,
         "Cloudflare Workers": 29.46,
-        "Concurrency": 457.43,
-        "Data Viz": 108.93,
+        "Concurrency": 484.7,
+        "Data Viz": 113.76,
         "Docker": 26.95,
-        "Docs & Writing": 1462.41,
+        "Docs & Writing": 1583.36,
         "Dotfiles": 50.93,
         "DuckDB": 7.46,
-        "Error Handling": 506.86,
+        "Error Handling": 524.89,
         "FastAPI": 10.57,
         "GitHub Actions": 223.28,
         "Hono": 13.79,
@@ -637,24 +629,30 @@
         "Make & Just": 22.7,
         "Next.js": 9.66,
         "NumPy": 40.62,
-        "Performance": 245.63,
+        "Performance": 251.29,
         "Polars": 38.04,
         "Pydantic": 6.63,
         "React": 475.48,
-        "Regex & Parsing": 76.17,
+        "Regex & Parsing": 79.63,
         "SQL & Data Modeling": 166.01,
-        "Serde": 61.6,
+        "Serde": 63.6,
         "Supabase": 3.46,
         "Tailwind CSS": 130.65,
         "Terraform": 4.23,
-        "Testing": 1154.08,
+        "Testing": 1174.08,
         "Tokio": 60.2,
-        "Type Design": 294.17,
+        "Type Design": 300.17,
         "Zod": 15.59,
         "pandas": 8.49,
         "scikit-learn": 2.83,
         "systemd": 14.31
       }
+    },
+    "2026-09-28": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
     }
   }
 }
