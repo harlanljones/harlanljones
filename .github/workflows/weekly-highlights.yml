@@ -1,12 +1,12 @@
 name: Weekly Git Highlights
 on:
   schedule:
-    # Runs weekly on Friday at 5:00 PM Pacific Time (00:00 UTC Saturday during PDT / 01:00 UTC during PST)
-    - cron: "0 0 * * 6"
+    # Runs daily at 5:00 PM Pacific Time (00:00 UTC during PDT / 01:00 UTC during PST) to refresh Friday rollover-present highlights
+    - cron: "0 0 * * *"
   workflow_dispatch:
     inputs:
       lookback_days:
-        description: "Lookback window in days (optional, defaults to work-week)"
+        description: "Lookback window in days (optional, defaults to Friday rollover-present)"
         required: false
         type: string
       dry_run:

@@ -1,6 +1,6 @@
 import datetime as dt
 import pytest
-from scripts.weekly_summary import synthesize_smart_heuristics
+from scripts.weekly_summary import synthesize_smart_heuristics, get_weekly_dates
 from scripts.render_project_index import get_section_accent, format_section_stat, build_sections
 from scripts.render_header_svg import render as render_header, CHIPS
 
@@ -150,3 +150,43 @@ def test_update_readme_featured_repos_idempotent(tmp_path):
     assert "Next-gen forecasting" in updated_content
     assert content_after.count(FEATURED_REPOS_START) == 1
     assert updated_content.count(FEATURED_REPOS_START) == 1
+
+
+def test_get_weekly_dates_friday_rollover_to_present():
+    """Verify weekly date window rolls over on Friday at 5pm PT and covers rollover-present."""
+    from zoneinfo import ZoneInfo
+    pac_tz = ZoneInfo("America/Los_Angeles")
+
+    # Tuesday Sep 29, 2026: should be Sep 25 – Sep 29, 2026
+    tue = dt.datetime(2026, 9, 29, 13, 30, tzinfo=pac_tz)
+    s, e, q, label = get_weekly_dates(tue)
+    assert label == "Sep 25 – Sep 29, 2026"
+    assert q == "2026-09-25"
+    assert s == dt.datetime(2026, 9, 25, 17, 0, tzinfo=pac_tz)
+    assert e == tue
+
+    # Saturday Sep 26, 2026: should be Sep 25 – Sep 26, 2026
+    sat = dt.datetime(2026, 9, 26, 10, 0, tzinfo=pac_tz)
+    s, e, q, label = get_weekly_dates(sat)
+    assert label == "Sep 25 – Sep 26, 2026"
+
+    # Sunday Sep 27, 2026: should be Sep 25 – Sep 27, 2026
+    sun = dt.datetime(2026, 9, 27, 12, 0, tzinfo=pac_tz)
+    s, e, q, label = get_weekly_dates(sun)
+    assert label == "Sep 25 – Sep 27, 2026"
+
+    # Friday Oct 2, 2026 at 16:30 PT (before 18:00 rollover): should conclude the week (Sep 25 – Oct 02, 2026)
+    fri_before = dt.datetime(2026, 10, 2, 16, 30, tzinfo=pac_tz)
+    s, e, q, label = get_weekly_dates(fri_before)
+    assert label == "Sep 25 – Oct 02, 2026"
+
+    # Friday Oct 2, 2026 at 18:30 PT (after 18:00 rollover): rolls over to Oct 02, 2026
+    fri_after = dt.datetime(2026, 10, 2, 18, 30, tzinfo=pac_tz)
+    s, e, q, label = get_weekly_dates(fri_after)
+    assert label == "Oct 02, 2026"
+    assert s == dt.datetime(2026, 10, 2, 17, 0, tzinfo=pac_tz)
+
+    # Explicit lookback override
+    s, e, q, label = get_weekly_dates(tue, explicit_lookback=3)
+    assert label == "Sep 26 – Sep 29, 2026"
+

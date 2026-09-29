@@ -56,6 +56,9 @@ htmlcov/
 /repo-leaderboard*.svg
 /repo-spotlight*.svg
 /dev-grid*.svg
+/statline*.svg
+/pipeline*.svg
+/glossary*.svg
 
 # Operating System Files
 .DS_Store
