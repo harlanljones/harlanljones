@@ -15,7 +15,7 @@ on:
 
 concurrency:
   group: mlb-birthdays-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   update-almanac:
@@ -68,6 +68,7 @@ jobs:
           if [ -n "${{ github.event.inputs.day }}" ]; then
             ARGS="$ARGS --day ${{ github.event.inputs.day }}"
           fi
+          # shellcheck disable=SC2086
           python3 scripts/mlb_birthdays.py $ARGS
 
       - name: Commit README image tag if changed

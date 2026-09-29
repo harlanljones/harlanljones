@@ -17,7 +17,7 @@ on:
 
 concurrency:
   group: weekly-highlights-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   update-highlights:
@@ -65,6 +65,7 @@ jobs:
             EXTRA_ARGS="$EXTRA_ARGS --dry-run"
           fi
 
+          # shellcheck disable=SC2086
           python3 scripts/weekly_summary.py \
             --username "harlanljones" \
             --readme "README.md" \

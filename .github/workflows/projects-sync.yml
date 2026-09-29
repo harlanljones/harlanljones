@@ -14,7 +14,7 @@ on:
 
 concurrency:
   group: projects-sync-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   update-projects:
@@ -58,6 +58,7 @@ jobs:
             EXTRA_ARGS="$EXTRA_ARGS --dry-run"
           fi
 
+          # shellcheck disable=SC2086
           python3 scripts/update_projects.py \
             --username "harlanljones" \
             --readme "README.md" \

@@ -2,9 +2,9 @@
 """
 Weekly Git Commit Summary Automation.
 
-Pulls public Git commits made over the past week across public GitHub repositories,
-filters noise/bot commits, and synthesizes 3 concise, high-impact bullet points
-summarizing key engineering accomplishments.
+Tracks public Git commits made during the current work-week (rolling over every
+Friday at 5:00 PM Pacific Time), synthesizing 3 concise, high-impact bullet points
+summarizing accomplishments from the Friday rollover to present.
 
 Updates the README.md between:
 <!-- WEEKLY_HIGHLIGHTS_START -->
@@ -74,7 +74,7 @@ def get_headers(token: Optional[str] = None) -> Dict[str, str]:
 
 def fetch_commits_search(username: str, start_date: str, token: Optional[str] = None) -> List[Dict]:
     """Fetch commits via GitHub Search Commits API."""
-    query = f"author:{username} committer-date:>{start_date}"
+    query = f"author:{username} committer-date:>={start_date}"
     url = f"https://api.github.com/search/commits?q={urllib.parse.quote(query)}&sort=committer-date&order=desc&per_page=100"
     req = urllib.request.Request(url, headers=get_headers(token))
     
@@ -470,8 +470,12 @@ def synthesize_smart_heuristics(repos: Dict[str, List[str]], username: str) -> L
 
 def get_weekly_dates(ref_dt: Optional[datetime] = None, explicit_lookback: Optional[int] = None) -> Tuple[datetime, datetime, str, str]:
     """
-    Compute weekly boundaries in Pacific Time (PT) covering all 7 days (including weekends):
-    - When executed (e.g. Friday 5pm PT), captures all commits across the past 7 days.
+    Compute weekly boundaries in Pacific Time (PT).
+    The weekly period rolls over on Friday at 5:00 PM Pacific Time (17:00 PT).
+    - If explicit_lookback is provided, looks back that many days from ref_dt.
+    - Otherwise, calculates from the most recent Friday rollover (at 17:00 PT) to present.
+    - On Friday before 18:00 PT, captures the concluding week (from previous Friday 17:00).
+    - On Friday at/after 18:00 PT (and Sat, Sun, Mon, Tue, Wed, Thu), captures from the latest Friday 17:00 rollover to present.
     Returns: (fetch_cutoff_dt, display_end_dt, start_date_query, date_range_label)
     """
     try:
@@ -481,13 +485,30 @@ def get_weekly_dates(ref_dt: Optional[datetime] = None, explicit_lookback: Optio
         pac_tz = timezone(timedelta(hours=-7))
 
     now_pac = (ref_dt or datetime.now(timezone.utc)).astimezone(pac_tz)
-    lookback_days = explicit_lookback if explicit_lookback is not None else 7
-
-    start_dt = now_pac - timedelta(days=lookback_days)
     end_dt = now_pac
 
+    if explicit_lookback is not None:
+        start_dt = now_pac - timedelta(days=explicit_lookback)
+    else:
+        weekday = now_pac.weekday()  # Monday=0, Tuesday=1, ..., Friday=4, Saturday=5, Sunday=6
+        if weekday == 4:  # Friday
+            if now_pac.hour < 18:
+                days_since_rollover = 7
+            else:
+                days_since_rollover = 0
+        else:
+            days_since_rollover = (weekday - 4) % 7
+
+        rollover_date = (now_pac - timedelta(days=days_since_rollover)).date()
+        start_dt = datetime(rollover_date.year, rollover_date.month, rollover_date.day, 17, 0, 0, tzinfo=pac_tz)
+        if start_dt > end_dt:
+            start_dt = end_dt - timedelta(days=7)
+
     start_date_query = start_dt.strftime("%Y-%m-%d")
-    date_range_label = f"{start_dt.strftime('%b %d')} – {end_dt.strftime('%b %d, %Y')}"
+    if start_dt.date() == end_dt.date():
+        date_range_label = f"{start_dt.strftime('%b %d, %Y')}"
+    else:
+        date_range_label = f"{start_dt.strftime('%b %d')} – {end_dt.strftime('%b %d, %Y')}"
     return start_dt, end_dt, start_date_query, date_range_label
 
 
@@ -597,7 +618,7 @@ def main():
 
     start_dt, end_dt, start_date_str, date_range_label = get_weekly_dates(explicit_lookback=args.lookback_days)
 
-    print(f"[INFO] Time window (7 days in Pacific Time, including weekends): {date_range_label}")
+    print(f"[INFO] Time window (rollover-present in Pacific Time): {date_range_label}")
     print(f"[INFO] Fetching public commits for {args.username} since {start_date_str}...")
 
     # 1. Fetch commits
