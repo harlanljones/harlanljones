@@ -19,7 +19,7 @@ concurrency:
 
 jobs:
   update-almanac:
-    name: Update MLB Birthday Dispatch
+    name: Update MLB Birthday Index
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -56,12 +56,12 @@ jobs:
             git checkout main
           fi
 
-      - name: Sync with remote and generate dispatch
+      - name: Sync with remote and generate MLB Birthday Index
         run: |
           git fetch origin main
           git checkout main
           git reset --hard origin/main
-          ARGS="--svg-out ${RUNNER_TEMP}/dugout-dispatch.svg"
+          ARGS="--svg-out ${RUNNER_TEMP}/mlb-birthday-index.svg"
           if [ -n "${{ github.event.inputs.month }}" ]; then
             ARGS="$ARGS --month ${{ github.event.inputs.month }}"
           fi
@@ -77,7 +77,7 @@ jobs:
             echo "No README changes to commit"
             exit 0
           fi
-          git commit -m "chore(almanac): point dugout dispatch at rendered SVG card [skip ci]"
+          git commit -m "chore(almanac): point MLB Birthday Index at rendered SVG card [skip ci]"
           git push origin HEAD:main || echo "README push deferred to next run"
 
       - name: Checkout output branch
@@ -85,18 +85,21 @@ jobs:
         with:
           ref: profile-cards
 
-      - name: Publish rendered dispatch to profile-cards branch
+      - name: Publish rendered cards to profile-cards branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          cp "${RUNNER_TEMP}/dugout-dispatch.svg" "${RUNNER_TEMP}/dugout-dispatch-light.svg" .
-          git add dugout-dispatch.svg dugout-dispatch-light.svg
+          cp "${RUNNER_TEMP}/mlb-birthday-index.svg" "${RUNNER_TEMP}/mlb-birthday-index-light.svg" .
+          # Backward compatibility for legacy dugout-dispatch paths
+          cp "${RUNNER_TEMP}/mlb-birthday-index.svg" dugout-dispatch.svg
+          cp "${RUNNER_TEMP}/mlb-birthday-index-light.svg" dugout-dispatch-light.svg
+          git add mlb-birthday-index.svg mlb-birthday-index-light.svg dugout-dispatch.svg dugout-dispatch-light.svg
           if git diff --staged --quiet; then
             echo "No card changes to publish"
             exit 0
           fi
-          git commit -m "chore(almanac): update rendered dugout dispatch card"
+          git commit -m "chore(almanac): update rendered MLB Birthday Index card"
           for attempt in 1 2 3 4 5; do
             git fetch origin profile-cards
             if git rebase origin/profile-cards; then

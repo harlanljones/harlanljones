@@ -5,8 +5,8 @@
 
 <!-- MLB_BIRTHDAY_START -->
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/dugout-dispatch.svg" />
-  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/dugout-dispatch-light.svg" alt="Daily Dugout Dispatch" width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/mlb-birthday-index.svg" />
+  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/mlb-birthday-index-light.svg" alt="MLB Birthday Index" width="100%" />
 </picture>
 <!-- MLB_BIRTHDAY_END -->
 

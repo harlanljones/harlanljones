@@ -60,7 +60,7 @@ ENTRIES = [
      "Borrowed from pitching: earned runs per 9 innings, here failed GitHub Actions runs per 9 runs "
      "across my public repos over the last 28 days. League average is about 4.50; green means the "
      "pipelines mostly stay up. Small samples are regressed toward 4.50 with 9 phantom league-average "
-     "runs. The lowercase-a prefix keeps it clear of the pitching ERA on the Dugout Dispatch card."),
+     "runs. The lowercase-a prefix keeps it clear of the pitching ERA on the MLB Birthday Index card."),
     ("Pace+", "commit pace, 100-neutral split",
      "100 × (recent daily rate, regressed) ÷ baseline daily rate",
      "Recent pace against the usual pace, regressed with 7 days at the baseline rate. Activity: the last 30 days "

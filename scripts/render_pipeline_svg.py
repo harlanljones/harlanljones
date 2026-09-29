@@ -48,7 +48,7 @@ JOBS: List[Tuple[str, str, str, str, str]] = [
      "GitHub Activity · footer stamp"),
     ("daily", "mlb-birthdays", ACTIONS,
      "MLB Stats API, Baseball-Reference birthdays, Wikipedia",
-     "Daily Dugout Dispatch"),
+     "MLB Birthday Index"),
     ("weekly · Fri", "weekly-highlights", ACTIONS,
      "commit search, filtered and summarized by Gemini",
      "What I Did This Week"),

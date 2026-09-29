@@ -37,10 +37,11 @@ from svg_cards import (  # noqa: E402
     write_theme_pair,
 )
 
-DUGOUT_SVG_URL = (
+BIRTHDAY_INDEX_SVG_URL = (
     "https://raw.githubusercontent.com/harlanljones/harlanljones"
-    "/profile-cards/dugout-dispatch.svg"
+    "/profile-cards/mlb-birthday-index.svg"
 )
+DUGOUT_SVG_URL = BIRTHDAY_INDEX_SVG_URL
 
 CATEGORY_ACCENTS = {
     "WARrior": "#58a6ff",
@@ -565,7 +566,7 @@ def build_daily_ledger(players: List[Dict[str, Any]], month: int, day: int, curr
     date_str = f"{month_name} {day}"
 
     if not players:
-        return f"### Daily Dugout Dispatch: {date_str}\n\n*No MLB player birth records indexed for this date.*\n"
+        return f"### MLB Birthday Index: {date_str}\n\n*No MLB player birth records indexed for this date.*\n"
 
     # 1. WARrior (career WAR leader)
     war_leader = max(players, key=lambda p: p["war"])
@@ -605,7 +606,7 @@ def build_daily_ledger(players: List[Dict[str, Any]], month: int, day: int, curr
 
     # Build markdown table
     lines = [
-        f"### Daily Dugout Dispatch: {date_str}",
+        f"### MLB Birthday Index: {date_str}",
         "",
         "| Category | Player | Active Span | Franchise(s) | Key Sabermetrics |",
         "| :--- | :--- | :--- | :--- | :--- |",
@@ -767,7 +768,7 @@ def _avatar_pills(x: float, y: float, entries: List[Dict[str, str]], max_x: floa
 
 
 def render_dugout_svg(model: Dict[str, Any]) -> str:
-    """Single house-style SVG card for the Daily Dugout Dispatch.
+    """Single house-style SVG card for the MLB Birthday Index.
 
     Same card_shell / fonts / colors as the skills, projects, weekly and
     activity graphics; embedded in README via an <img> on profile-cards.
@@ -781,7 +782,7 @@ def render_dugout_svg(model: Dict[str, Any]) -> str:
             f'<text x="{PAD_X}" y="{cy + 14:.1f}" font-size="13" fill="{MUTED}" '
             f'font-family="{FONT_FAMILY}">No MLB player birth records indexed for this date.</text>'
         )
-        return card_shell("Daily Dugout Dispatch", model.get("date_str", ""), "\n".join(frags), cy + 28, accent=ACCENT_GREEN)
+        return card_shell("MLB Birthday Index", model.get("date_str", ""), "\n".join(frags), cy + 28, accent=ACCENT_GREEN)
 
     for i, feat in enumerate(model["featured"]):
         accent = CATEGORY_ACCENTS.get(feat["category"], "#58a6ff")
@@ -861,11 +862,14 @@ def render_dugout_svg(model: Dict[str, Any]) -> str:
             frags.append(pills)
             cy += pills_h + 4
 
-    subtitle = f"{model['date_str']} · {model['total']} players in the historical index"
-    return card_shell("Daily Dugout Dispatch", subtitle, "\n".join(frags), cy, accent=ACCENT_GREEN)
+    subtitle = f"{model['date_str']} · historical birth index & active roster tracker ({model['total']} players)"
+    return card_shell("MLB Birthday Index", subtitle, "\n".join(frags), cy, accent=ACCENT_GREEN)
 
 
-def ensure_dugout_image(readme_path: str, svg_url: str = DUGOUT_SVG_URL) -> bool:
+render_birthday_index_svg = render_dugout_svg
+
+
+def ensure_birthday_index_image(readme_path: str, svg_url: str = BIRTHDAY_INDEX_SVG_URL) -> bool:
     """Point the MLB birthday README block at the rendered SVG card.
 
     After the first swap the README markup stays static; only the SVG on
@@ -878,12 +882,18 @@ def ensure_dugout_image(readme_path: str, svg_url: str = DUGOUT_SVG_URL) -> bool
         return False
     with open(readme_path, "r", encoding="utf-8") as f:
         existing = f.read()
-    img_tag = f'<img src="{svg_url}" alt="Daily Dugout Dispatch" width="100%" />'
-    section = f"{start_tag}\n{img_tag}\n{end_tag}"
+    light_url = svg_url.replace(".svg", "-light.svg")
+    img_block = (
+        f'<picture>\n'
+        f'  <source media="(prefers-color-scheme: dark)" srcset="{svg_url}" />\n'
+        f'  <img src="{light_url}" alt="MLB Birthday Index" width="100%" />\n'
+        f'</picture>'
+    )
+    section = f"{start_tag}\n{img_block}\n{end_tag}"
     pattern = re.escape(start_tag) + r".*?" + re.escape(end_tag)
     if re.search(pattern, existing, flags=re.DOTALL):
-        if svg_url in existing:
-            print("[INFO] README.md already embeds the Dugout Dispatch image.")
+        if svg_url in existing and "MLB Birthday Index" in existing:
+            print("[INFO] README.md already embeds the MLB Birthday Index image.")
             return False
         updated = re.sub(pattern, section, existing, flags=re.DOTALL)
     else:
@@ -895,19 +905,22 @@ def ensure_dugout_image(readme_path: str, svg_url: str = DUGOUT_SVG_URL) -> bool
     if updated != existing:
         with open(readme_path, "w", encoding="utf-8") as f:
             f.write(updated)
-        print(f"[OK] Inserted Dugout Dispatch image tag into {readme_path}")
+        print(f"[OK] Inserted MLB Birthday Index image tag into {readme_path}")
         return True
     print("[INFO] No changes needed in README.md")
     return False
 
 
+ensure_dugout_image = ensure_birthday_index_image
+
+
 def main():
-    parser = argparse.ArgumentParser(description="MLB Birthday Almanac Dispatch Generator")
+    parser = argparse.ArgumentParser(description="MLB Birthday Index Generator")
     parser.add_argument("--month", type=int, default=None, help="Month (1-12). Defaults to today.")
     parser.add_argument("--day", type=int, default=None, help="Day (1-31). Defaults to today.")
     parser.add_argument("--target-file", type=str, default="README.md", help="Path to README.md")
-    parser.add_argument("--svg-out", type=str, default="dugout-dispatch.svg", help="Path to write the rendered SVG card")
-    parser.add_argument("--svg-url", type=str, default=DUGOUT_SVG_URL, help="URL the README <img> tag should point at")
+    parser.add_argument("--svg-out", type=str, default="mlb-birthday-index.svg", help="Path to write the rendered SVG card")
+    parser.add_argument("--svg-url", type=str, default=BIRTHDAY_INDEX_SVG_URL, help="URL the README <img> tag should point at")
     parser.add_argument("--dry-run", action="store_true", help="Print output without updating file")
     args = parser.parse_args()
 
@@ -939,7 +952,7 @@ def main():
     for path in write_theme_pair(args.svg_out, svg):
         print(f"[OK] Wrote {path}")
 
-    ensure_dugout_image(args.target_file, args.svg_url)
+    ensure_birthday_index_image(args.target_file, args.svg_url)
 
     # Write to GitHub Step Summary if available
     summary_path = os.getenv("GITHUB_STEP_SUMMARY")
@@ -947,7 +960,7 @@ def main():
         try:
             with open(summary_path, "a", encoding="utf-8") as sf:
                 sf.write(f"\n{dispatch_md}\n")
-            print("Wrote dispatch to GITHUB_STEP_SUMMARY.")
+            print("Wrote MLB Birthday Index to GITHUB_STEP_SUMMARY.")
         except Exception as e:
             print(f"Notice: could not write to GITHUB_STEP_SUMMARY: {e}")
 
