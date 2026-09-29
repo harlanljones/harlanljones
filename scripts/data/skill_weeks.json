@@ -1,17 +1,17 @@
 {
   "fix_minus": {
-    "commits_28": 959,
-    "fix_28": 196,
-    "value": 153
+    "commits_28": 972,
+    "fix_28": 200,
+    "value": 152
   },
   "season": {
-    "aera": 1.38,
-    "aera_sub": "127 of 851 runs failed \u00b7 public repos \u00b7 28d",
-    "wdc": 28.939999999999998,
-    "wdc_sub": "61 deployments created \u00b7 last 28d"
+    "aera": 1.33,
+    "aera_sub": "125 of 866 runs failed \u00b7 public repos \u00b7 28d",
+    "wdc": 33.94,
+    "wdc_sub": "60 deployments created \u00b7 last 28d"
   },
   "source": "mirrors",
-  "updated": "2026-09-28T10:21:37Z",
+  "updated": "2026-09-29T10:22:24Z",
   "weeks": {
     "2025-10-06": {
       "commits": 4,
@@ -649,10 +649,39 @@
       }
     },
     "2026-09-28": {
-      "commits": 0,
-      "diffs": 0,
-      "repos": 0,
-      "skills": {}
+      "commits": 51,
+      "diffs": 440,
+      "repos": 13,
+      "skills": {
+        "API Integration": 20.24,
+        "Agent Tooling": 20.75,
+        "Axum": 2.83,
+        "Build Config": 28.58,
+        "CLI Design": 38.37,
+        "Clap": 5.29,
+        "Concurrency": 74.51,
+        "Data Viz": 9.1,
+        "Docs & Writing": 330.65,
+        "Error Handling": 91.66,
+        "FastAPI": 2.45,
+        "GitHub Actions": 26.95,
+        "LLM APIs": 7.3,
+        "Lint & Format": 2.0,
+        "Make & Just": 2.0,
+        "Next.js": 11.52,
+        "NumPy": 9.8,
+        "Performance": 10.9,
+        "React": 133.12,
+        "Regex & Parsing": 14.95,
+        "SQL & Data Modeling": 13.9,
+        "Serde": 11.38,
+        "Tailwind CSS": 30.93,
+        "Testing": 292.44,
+        "Tokio": 11.21,
+        "Type Design": 37.81,
+        "Zod": 13.34,
+        "pandas": 33.08
+      }
     }
   }
 }
