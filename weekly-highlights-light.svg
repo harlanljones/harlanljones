@@ -8,7 +8,7 @@
 </defs>
 <rect x="0.5" y="0.5" width="899" height="275" rx="12" fill="#ffffff" stroke="url(#shellEdge)"/>
 <text x="24" y="30" font-size="18" font-weight="700" fill="#1f2328" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">What I Did This Week</text>
-<text x="24" y="48" font-size="12.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Sep 25 – Sep 29, 2026</text>
+<text x="24" y="48" font-size="12.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Sep 25 – Sep 30, 2026</text>
 <g transform="translate(0,56)"><text x="24" y="24.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">rosetta</text>
 <text x="24" y="44.0" font-size="13" fill="#1f2328" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Architected rosetta roadmap (KBO links, calibration, CPBL, intl backtest) and implemented p4, M2 complete.</text>
 <line x1="24" y1="59.0" x2="876" y2="59.0" stroke="#59636e" stroke-opacity="0.25"/>
