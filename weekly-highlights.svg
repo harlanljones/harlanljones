@@ -8,14 +8,14 @@
 </defs>
 <rect x="0.5" y="0.5" width="899" height="275" rx="12" fill="#0d1117" stroke="url(#shellEdge)"/>
 <text x="24" y="30" font-size="18" font-weight="700" fill="#e6edf3" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">What I Did This Week</text>
-<text x="24" y="48" font-size="12.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Sep 25 – Sep 30, 2026</text>
-<g transform="translate(0,56)"><text x="24" y="24.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">rosetta</text>
-<text x="24" y="44.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Architected rosetta roadmap (KBO links, calibration, CPBL, intl backtest) and implemented p4, M2 complete.</text>
-<line x1="24" y1="59.0" x2="876" y2="59.0" stroke="#8b949e" stroke-opacity="0.25"/>
-<text x="24" y="81.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">ring-the-pen</text>
-<text x="24" y="101.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Shipped complete implementations through RTP-10 and benchmarked rTP-06 implementation.</text>
-<line x1="24" y1="116.0" x2="876" y2="116.0" stroke="#8b949e" stroke-opacity="0.25"/>
-<text x="24" y="138.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">springboard</text>
-<text x="24" y="158.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Engineered quiet the trust notice and report both prune counts and integrated document repo plumbing and the enforced</text>
-<text x="24" y="177.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">commit convention.</text></g>
+<text x="24" y="48" font-size="12.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Sep 25 – Oct 01, 2026</text>
+<g transform="translate(0,56)"><text x="24" y="24.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">jev-roster-shapes</text>
+<text x="24" y="44.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Engineered anchor winter pins to distinct offseason milestones and implemented three winter decision pins and extend</text>
+<text x="24" y="63.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">timeline to 2027 for live roster tracking.</text>
+<line x1="24" y1="78.0" x2="876" y2="78.0" stroke="#8b949e" stroke-opacity="0.25"/>
+<text x="24" y="100.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">rosetta</text>
+<text x="24" y="120.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Shipped rosetta roadmap (KBO links, calibration, CPBL, intl backtest) and benchmarked p4, M2 complete.</text>
+<line x1="24" y1="135.0" x2="876" y2="135.0" stroke="#8b949e" stroke-opacity="0.25"/>
+<text x="24" y="157.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">ring-the-pen</text>
+<text x="24" y="177.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Engineered complete implementations through RTP-10 and integrated rTP-06 implementation.</text></g>
 </svg>
