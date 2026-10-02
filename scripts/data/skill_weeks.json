@@ -1,17 +1,17 @@
 {
   "fix_minus": {
-    "commits_28": 979,
-    "fix_28": 214,
+    "commits_28": 1003,
+    "fix_28": 221,
     "value": 158
   },
   "season": {
-    "aera": 1.22,
-    "aera_sub": "121 of 919 runs failed \u00b7 public repos \u00b7 28d",
-    "wdc": 35.34,
-    "wdc_sub": "61 deployments created \u00b7 last 28d"
+    "aera": 1.2,
+    "aera_sub": "119 of 918 runs failed \u00b7 public repos \u00b7 28d",
+    "wdc": 36.14,
+    "wdc_sub": "57 deployments created \u00b7 last 28d"
   },
   "source": "mirrors",
-  "updated": "2026-10-01T10:24:28Z",
+  "updated": "2026-10-02T10:20:47Z",
   "weeks": {
     "2025-10-06": {
       "commits": 4,
@@ -649,22 +649,24 @@
       }
     },
     "2026-09-28": {
-      "commits": 171,
-      "diffs": 1905,
-      "repos": 23,
+      "commits": 200,
+      "diffs": 2162,
+      "repos": 25,
       "skills": {
-        "API Integration": 88.03,
-        "Agent Tooling": 60.61,
-        "Astro": 104.95,
+        "API Integration": 116.28,
+        "Agent Tooling": 64.61,
+        "Astro": 115.89,
         "Axum": 6.57,
-        "Build Config": 73.46,
+        "Build Config": 77.29,
         "CLI Design": 82.48,
         "Clap": 12.5,
-        "Concurrency": 218.21,
-        "Data Viz": 33.32,
-        "Docs & Writing": 1157.83,
-        "Dotfiles": 39.45,
-        "Error Handling": 258.07,
+        "Cloudflare Workers": 4.45,
+        "Concurrency": 289.05,
+        "Data Viz": 41.32,
+        "Docker": 5.0,
+        "Docs & Writing": 1321.41,
+        "Dotfiles": 55.0,
+        "Error Handling": 284.01,
         "FastAPI": 2.45,
         "GitHub Actions": 82.14,
         "Kubernetes": 50.6,
@@ -673,17 +675,18 @@
         "Make & Just": 2.0,
         "Next.js": 11.52,
         "NumPy": 9.8,
-        "Performance": 140.29,
-        "React": 341.52,
+        "Performance": 156.15,
+        "React": 364.82,
         "Regex & Parsing": 58.45,
         "SQL & Data Modeling": 46.61,
         "Serde": 17.85,
         "Tailwind CSS": 124.46,
-        "Testing": 1044.57,
+        "Testing": 1241.93,
         "Tokio": 21.21,
-        "Type Design": 148.12,
+        "Type Design": 156.44,
         "Zod": 42.55,
-        "pandas": 35.53
+        "pandas": 35.53,
+        "scikit-learn": 4.47
       }
     }
   }
