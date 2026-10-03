@@ -331,5 +331,31 @@
       "Python"
     ],
     "homepage": ""
+  },
+  {
+    "name": "cloudflare-agent-boxes",
+    "summary": "Recently published JavaScript project.",
+    "badges": [
+      "JavaScript"
+    ],
+    "homepage": ""
+  },
+  {
+    "name": "springboard",
+    "summary": "Active development focused on quiet the trust notice and report both prune counts and document repo plumbing and the enforced commit convention, built with Shell and Java.",
+    "badges": [
+      "Shell",
+      "Java"
+    ],
+    "homepage": ""
+  },
+  {
+    "name": "baseball-sabermetrics-mcp",
+    "summary": "Read-only MCP server for importing and querying public baseball sabermetric datasets. Recent work includes integrate OpenBiomechanics and harden MCP protocol, built with Python.",
+    "badges": [
+      "Python",
+      "SQLite"
+    ],
+    "homepage": ""
   }
 ]
