@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
 Profile collector: keeps bare mirrors of every repository I own (public and
-private) and computes weekly skill reps from full local diffs — no search API,
-no per-commit REST calls, all branches, full history.
+private) and mines full local diffs — no search API, no per-commit REST calls,
+all branches, full history.
 
 Runs as a nightly GCP Cloud Run Job (collector/setup.sh):
 
@@ -15,11 +15,13 @@ Runs as a nightly GCP Cloud Run Job (collector/setup.sh):
      retroactively and there is no incremental state to drift.
      The same pass tallies languages (by file extension) and commit hours
      for the Languages & Commit Rhythm card.
-  4. Render skills, commit-rhythm, pipeline, and glossary SVGs; push the
-     store to main and the SVGs to profile-cards.
+  4. Store weekly project diff evidence from public repos, render skills,
+     commit-rhythm, pipeline, and glossary SVGs; publish stores to main and
+     SVGs to profile-cards.
 
-Privacy: private repos contribute to aggregate counts only. The published
-store carries skill names and counts, never repository names.
+Privacy: private repos contribute to aggregate counts only. The public
+project-diff store includes names and bounded code excerpts from public repos
+only; the skill store remains aggregate and contains no repository names.
 
 Environment:
   GH_READ_TOKEN    fine-grained PAT, all my repos, Contents + Metadata read
@@ -41,7 +43,7 @@ import tempfile
 import time
 import urllib.request
 from datetime import datetime, timedelta, timezone
-from typing import Dict, Iterator, List, Optional, Tuple
+from typing import Dict, Iterator, List, Optional, Set, Tuple
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -50,7 +52,9 @@ from render_activity_svg import lang_plus, render_rhythm_card  # noqa: E402
 import render_pipeline_svg  # noqa: E402
 from render_skills_svg import KEEP_WEEKS, PACIFIC, render, skill_board, week_record, week_start  # noqa: E402
 from sabermetrics import aera, plus_stat, weighted_recent, wrp_reps  # noqa: E402
+from weekly_summary import get_weekly_dates  # noqa: E402
 from skill_signals import (  # noqa: E402
+    NOISE_PATH,
     commit_skill_lines,
     file_language,
     is_automation,
@@ -60,6 +64,7 @@ from svg_cards import write_theme_pair  # noqa: E402
 
 PROFILE_REPO = "harlanljones/harlanljones"
 STORE_PATH = "scripts/data/skill_weeks.json"
+WEEKLY_DIFF_STORE_PATH = "scripts/data/weekly_diff_store.json"
 MAX_REPO_MB = 1500
 # Changed lines examined per file; credit is capped far below this anyway.
 MAX_PATCH_LINES = 4000
@@ -69,6 +74,12 @@ RHYTHM_DAYS = 365
 LANE_DAYS = 30
 # FIX− window: corrective-share split vs the full-season baseline.
 FIX_DAYS = 28
+WEEKLY_PROJECT_LIMIT = 10
+WEEKLY_COMMIT_LIMIT = 4
+WEEKLY_FILE_LIMIT = 3
+WEEKLY_ADDED_LINE_LIMIT = 2
+WEEKLY_REMOVED_LINE_LIMIT = 1
+WEEKLY_DIFF_LINE_CHARS = 160
 FIX_SUBJECT = re.compile(r"\b(hotfix|bugfix|revert|fix(?:es|ed)?)\b", re.I)
 # Scheduled bot commits land at cron times, not when I work: keep them out of
 # the hour histogram (they still count for skills and languages).
@@ -305,6 +316,83 @@ def iter_commits(git_dir: str, since: datetime, author_pattern: str, env: Dict[s
     proc.wait()
 
 
+def diff_file_evidence(files: List[dict]) -> Tuple[List[Dict], int]:
+    """Keep bounded added/removed code excerpts for non-generated files."""
+    candidates = []
+    total_changed = 0
+    for f in files:
+        filename = f.get("filename", "")
+        if not filename or NOISE_PATH.search(filename):
+            continue
+        additions = int(f.get("additions") or 0)
+        deletions = int(f.get("deletions") or 0)
+        patch = f.get("patch") or ""
+        added, removed = [], []
+        for line in patch.splitlines():
+            if line.startswith("+") and not line.startswith("+++") and line[1:].strip():
+                added.append(line[1:].strip()[:WEEKLY_DIFF_LINE_CHARS])
+            elif line.startswith("-") and not line.startswith("---") and line[1:].strip():
+                removed.append(line[1:].strip()[:WEEKLY_DIFF_LINE_CHARS])
+        if not added and not removed:
+            continue
+        total_changed += additions + deletions
+        candidates.append({
+            "path": filename,
+            "additions": additions,
+            "deletions": deletions,
+            "added": added[:WEEKLY_ADDED_LINE_LIMIT],
+            "removed": removed[:WEEKLY_REMOVED_LINE_LIMIT],
+        })
+    candidates.sort(key=lambda f: f["additions"] + f["deletions"], reverse=True)
+    return candidates[:WEEKLY_FILE_LIMIT], total_changed
+
+
+def weekly_diff_store(
+    mirrors: List[str],
+    public_repo_names: Set[str],
+    start: datetime,
+    end: datetime,
+    author_pattern: str,
+    env: Dict[str, str],
+) -> Dict:
+    """Build a bounded, public-only store from actual code diffs in the window."""
+    projects: Dict[str, Dict] = {}
+    seen = set()
+    for git_dir in mirrors:
+        repo_name = os.path.basename(git_dir).removesuffix(".git")
+        if repo_name not in public_repo_names:
+            continue
+        for sha, authored, author, subject, files in iter_commits(git_dir, start, author_pattern, env):
+            if (repo_name, sha) in seen or authored < start or authored > end:
+                continue
+            seen.add((repo_name, sha))
+            if is_noise_commit(subject) or is_automation(author, subject):
+                continue
+            evidence, changed = diff_file_evidence(files)
+            if not evidence:
+                continue
+            project = projects.setdefault(repo_name, {"name": repo_name, "changed_lines": 0, "commits": []})
+            project["changed_lines"] += changed
+            project["commits"].append({
+                "sha": sha,
+                "authored_at": authored.astimezone(timezone.utc).isoformat(),
+                "subject": subject.splitlines()[0],
+                "changed_lines": changed,
+                "files": evidence,
+            })
+
+    ranked = sorted(projects.values(), key=lambda p: p["changed_lines"], reverse=True)[:WEEKLY_PROJECT_LIMIT]
+    for project in ranked:
+        project["commits"].sort(key=lambda c: (c["changed_lines"], c["authored_at"]), reverse=True)
+        project["commits"] = project["commits"][:WEEKLY_COMMIT_LIMIT]
+    return {
+        "window_start": start.isoformat(),
+        "window_end": end.isoformat(),
+        "updated": datetime.now(timezone.utc).isoformat(),
+        "projects": ranked,
+    }
+
+
 def mine(mirrors: List[str], author_pattern: str, env: Dict[str, str]) -> Tuple[Dict[str, Dict], Dict, Dict]:
     """One pass over every mirror: weekly skill records for the store, plus
     the rhythm tallies (language commits, 30-day language lanes, hours) and
@@ -463,6 +551,11 @@ def main() -> None:
         save_state(state_dir, mirror_dir)
 
     weeks, rhythm, fix = mine(mirrors, author_pattern, read_env)
+    window_start, window_end, _, _ = get_weekly_dates()
+    public_repo_names = {r["name"] for r in repos if not r.get("private")}
+    diff_store = weekly_diff_store(
+        mirrors, public_repo_names, window_start, window_end, author_pattern, read_env,
+    )
     cf_token, cf_account = load_cf_env()
     season = deployment_stats(cf_token, cf_account, read_token, repos)
     log(f"[INFO] wDC {season['wdc']:.0f} · aERA {season['aera']:.2f}")
@@ -476,6 +569,10 @@ def main() -> None:
     store_file = os.path.join(out, "skill_weeks.json")
     with open(store_file, "w", encoding="utf-8") as f:
         json.dump(store, f, indent=2, sort_keys=True)
+        f.write("\n")
+    diff_store_file = os.path.join(out, "weekly_diff_store.json")
+    with open(diff_store_file, "w", encoding="utf-8") as f:
+        json.dump(diff_store, f, indent=2, sort_keys=True)
         f.write("\n")
 
     current = week_start(datetime.now(PACIFIC).date())
@@ -491,7 +588,13 @@ def main() -> None:
         return
 
     write_env = git_env(write_token)
-    publish({STORE_PATH: store_file}, "main", "chore(skills): nightly skill reps snapshot [skip ci]", write_env, work)
+    publish(
+        {STORE_PATH: store_file, WEEKLY_DIFF_STORE_PATH: diff_store_file},
+        "main",
+        "chore(collector): update skill and public diff stores [skip ci]",
+        write_env,
+        work,
+    )
     publish({name: os.path.join(out, name) for name in
              ("skills.svg", "skills-light.svg", "commit-rhythm.svg", "commit-rhythm-light.svg",
               "glossary.svg", "glossary-light.svg", "pipeline.svg", "pipeline-light.svg")},

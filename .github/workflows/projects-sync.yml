@@ -2,7 +2,7 @@ name: Projects Sync
 on:
   schedule:
     # Runs weekly on Saturday at 5:30 PM Pacific Time (00:30 UTC during PDT / 01:30 UTC during PST),
-    # right after the Weekly Git Highlights run.
+    # after the daily Week in Review run.
     - cron: "30 0 * * 6"
   workflow_dispatch:
     inputs:

@@ -1,14 +1,10 @@
-name: Weekly Git Highlights
+name: Week in Review
 on:
   schedule:
-    # Runs daily at 5:00 PM Pacific Time (00:00 UTC during PDT / 01:00 UTC during PST) to refresh Friday rollover-present highlights
+    # 00:00 UTC daily: 5 PM PDT / 4 PM PST. Reads the latest collector diff store.
     - cron: "0 0 * * *"
   workflow_dispatch:
     inputs:
-      lookback_days:
-        description: "Lookback window in days (optional, defaults to Friday rollover-present)"
-        required: false
-        type: string
       dry_run:
         description: "Perform dry run without committing"
         required: false
@@ -21,7 +17,7 @@ concurrency:
 
 jobs:
   update-highlights:
-    name: Update Work Week Highlights
+    name: Update Week in Review
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -46,9 +42,8 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Sync with remote and render work-week summary card
+      - name: Sync with remote and render Week in Review
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           TZ: "America/Los_Angeles"
         run: |
@@ -57,10 +52,6 @@ jobs:
           git reset --hard origin/main
 
           EXTRA_ARGS=""
-          if [ -n "${{ github.event.inputs.lookback_days }}" ]; then
-            EXTRA_ARGS="$EXTRA_ARGS --lookback-days ${{ github.event.inputs.lookback_days }}"
-          fi
-
           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
             EXTRA_ARGS="$EXTRA_ARGS --dry-run"
           fi
@@ -109,7 +100,7 @@ jobs:
             echo "No card changes to publish"
             exit 0
           fi
-          git commit -m "chore(highlights): update rendered weekly highlights card"
+          git commit -m "chore(week-in-review): update rendered card"
           for attempt in 1 2 3 4 5; do
             git fetch origin profile-cards
             if git rebase origin/profile-cards; then

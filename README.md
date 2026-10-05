@@ -13,7 +13,7 @@
 <!-- WEEKLY_HIGHLIGHTS_START -->
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/weekly-highlights.svg" />
-  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/weekly-highlights-light.svg" alt="What I Did This Week" width="100%" />
+  <img src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/weekly-highlights-light.svg" alt="Week in Review" width="100%" />
 </picture>
 <!-- WEEKLY_HIGHLIGHTS_END -->
 

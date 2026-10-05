@@ -1,29 +1,29 @@
 import datetime as dt
 import pytest
-from scripts.weekly_summary import synthesize_smart_heuristics, get_weekly_dates
+from scripts.weekly_summary import (
+    filter_weekly_projects,
+    generate_diff_heuristics,
+    get_weekly_dates,
+    generate_markdown,
+    render_weekly_svg,
+)
 from scripts.render_project_index import get_section_accent, format_section_stat, build_sections
 from scripts.render_header_svg import render as render_header, CHIPS
 
 
-def test_synthesize_smart_heuristics_verb_rotation():
-    """Verify that fallback bullets do not repeat identical verb pairs."""
-    repos = {
-        "repo-alpha": ["add data pipeline ingestion", "implement kafka streaming consumer"],
-        "repo-beta": ["optimize query planner", "add unit tests and fixtures"],
-        "repo-gamma": ["refactor database connection pool", "implement health check endpoints"],
-    }
-    bullets = synthesize_smart_heuristics(repos, "testuser")
+def test_weekly_summary_fallback_uses_diff_evidence():
+    """Summaries use changed lines from the three projects, not their titles."""
+    projects = [
+        {"name": "repo-alpha", "changed_lines": 4, "commits": [{"subject": "title alpha", "changed_lines": 4, "files": [{"path": "src/alpha.py", "additions": 3, "deletions": 1, "added": ["def build_alpha():"], "removed": []}]}]},
+        {"name": "repo-beta", "changed_lines": 3, "commits": [{"subject": "title beta", "changed_lines": 3, "files": [{"path": "src/beta.ts", "additions": 3, "deletions": 0, "added": ["export function buildBeta() {}"], "removed": []}]}]},
+        {"name": "repo-gamma", "changed_lines": 2, "commits": [{"subject": "title gamma", "changed_lines": 2, "files": [{"path": "src/gamma.rs", "additions": 2, "deletions": 0, "added": ["pub fn build_gamma() {}"], "removed": []}]}]},
+    ]
+    bullets = generate_diff_heuristics(projects, "testuser")
     assert len(bullets) == 3
-
-    # Ensure each bullet starts with distinct verbs
-    verbs = []
-    for b in bullets:
-        # Extract text after '* **[repo](url):** '
-        text = b.split(":** ")[1]
-        first_word = text.split(" ")[0]
-        verbs.append(first_word)
-
-    assert len(set(verbs)) == 3, f"Expected 3 distinct verbs, got: {verbs}"
+    assert "build_alpha" in bullets[0] and "title alpha" not in bullets[0]
+    assert "buildBeta" in bullets[1] and "title beta" not in bullets[1]
+    assert "build_gamma" in bullets[2] and "title gamma" not in bullets[2]
+    assert "build_alpha" in render_weekly_svg(bullets, "Oct 02, 2026")
 
 
 def test_section_accent_and_dynamic_callups():
@@ -175,18 +175,72 @@ def test_get_weekly_dates_friday_rollover_to_present():
     s, e, q, label = get_weekly_dates(sun)
     assert label == "Sep 25 – Sep 27, 2026"
 
-    # Friday Oct 2, 2026 at 16:30 PT (before 18:00 rollover): should conclude the week (Sep 25 – Oct 02, 2026)
+    # Friday Oct 2, 2026 at 16:30 PT (before 17:00 rollover): conclude the week.
     fri_before = dt.datetime(2026, 10, 2, 16, 30, tzinfo=pac_tz)
     s, e, q, label = get_weekly_dates(fri_before)
     assert label == "Sep 25 – Oct 02, 2026"
 
-    # Friday Oct 2, 2026 at 18:30 PT (after 18:00 rollover): rolls over to Oct 02, 2026
-    fri_after = dt.datetime(2026, 10, 2, 18, 30, tzinfo=pac_tz)
-    s, e, q, label = get_weekly_dates(fri_after)
+    # The rollover is inclusive at exactly 17:00, not 18:00.
+    fri_at_rollover = dt.datetime(2026, 10, 2, 17, 0, tzinfo=pac_tz)
+    s, e, q, label = get_weekly_dates(fri_at_rollover)
     assert label == "Oct 02, 2026"
     assert s == dt.datetime(2026, 10, 2, 17, 0, tzinfo=pac_tz)
+
+    fri_after = dt.datetime(2026, 10, 2, 17, 1, tzinfo=pac_tz)
+    s, e, q, label = get_weekly_dates(fri_after)
+    assert label == "Oct 02, 2026"
+
+    # The same local rollover holds during standard time (UTC-8).
+    winter_rollover = dt.datetime(2026, 12, 4, 17, 0, tzinfo=pac_tz)
+    s, e, q, label = get_weekly_dates(winter_rollover)
+    assert s == winter_rollover
+    assert s.utcoffset() == dt.timedelta(hours=-8)
+    assert label == "Dec 04, 2026"
 
     # Explicit lookback override
     s, e, q, label = get_weekly_dates(tue, explicit_lookback=3)
     assert label == "Sep 26 – Sep 29, 2026"
+
+
+def test_weekly_summary_uses_deliverables_from_active_projects_only():
+    store = {
+        "projects": [{
+            "name": "baseball-dashboard",
+            "changed_lines": 2,
+            "commits": [{
+                "authored_at": "2026-10-03T00:00:00+00:00",
+                "changed_lines": 2,
+                "subject": "title without evidence",
+                "files": [{"path": "src/alerts.py", "additions": 2, "deletions": 0,
+                           "added": ["def build_player_injury_alert():"], "removed": []}],
+            }],
+        }],
+    }
+    start = dt.datetime(2026, 10, 2, 17, 0, tzinfo=dt.timezone(dt.timedelta(hours=-7)))
+    end = dt.datetime(2026, 10, 3, 0, 0, tzinfo=dt.timezone(dt.timedelta(hours=-7)))
+    projects = filter_weekly_projects(store, start, end)
+    bullets = generate_diff_heuristics(projects, "testuser")
+
+    assert len(bullets) == 1
+    assert "build_player_injury_alert" in bullets[0]
+    assert "title without evidence" not in bullets[0]
+    markdown = generate_markdown(bullets, "Oct 02, 2026")
+    assert markdown.count("* **[") == 1
+    assert "Week in Review" in markdown
+    assert "Week in Review" in render_weekly_svg(bullets, "Oct 02, 2026")
+
+
+def test_filter_weekly_projects_keeps_only_commits_in_window():
+    store = {"projects": [{"name": "alpha", "commits": [
+        {"authored_at": "2026-10-02T23:59:00+00:00", "changed_lines": 2, "files": [{"path": "a.py"}]},
+        {"authored_at": "2026-10-03T00:00:00+00:00", "changed_lines": 3, "files": [{"path": "b.py"}]},
+        {"authored_at": "2026-10-03T08:00:00+00:00", "changed_lines": 4, "files": [{"path": "c.py"}]},
+    ]}]}
+    start = dt.datetime(2026, 10, 2, 17, 0, tzinfo=dt.timezone(dt.timedelta(hours=-7)))
+    end = dt.datetime(2026, 10, 3, 0, 30, tzinfo=dt.timezone(dt.timedelta(hours=-7)))
+
+    projects = filter_weekly_projects(store, start, end)
+
+    assert len(projects) == 1
+    assert [commit["changed_lines"] for commit in projects[0]["commits"]] == [3]
 

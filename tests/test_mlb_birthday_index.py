@@ -49,6 +49,7 @@ def test_pipeline_and_glossary_use_mlb_birthday_index():
     pipeline_svg = render_pipeline()
     assert "MLB Birthday Index" in pipeline_svg
     assert "Daily Dugout Dispatch" not in pipeline_svg
+    assert "Week in Review" in pipeline_svg
 
     glossary_svg = render_glossary()
     assert any("MLB Birthday Index" in e[3] for e in ENTRIES)
