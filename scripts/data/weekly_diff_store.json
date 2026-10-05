@@ -1,0 +1,267 @@
+{
+  "projects": [
+    {
+      "changed_lines": 59992,
+      "commits": [
+        {
+          "authored_at": "2026-10-03T04:06:45+00:00",
+          "changed_lines": 41926,
+          "files": [
+            {
+              "added": [
+                "# Two-family depth pass \u2014 2026-09-30",
+                "`docs/signal-roadmap.md` gate E3 splits results by metro tier (all four signal"
+              ],
+              "additions": 1528,
+              "deletions": 0,
+              "path": "docs/research/two-family-depth-2026-09-30.md",
+              "removed": []
+            },
+            {
+              "added": [
+                "| city-des-moines | `.streams/city-des-moines.md` | `config.py`, `city_registry.py` (follow-up: `config.py` only) | 2026-09-29 | done (registered, `sla` in PR #",
+                "**Follow-up, same day and same stream: Code Case registered as `violations`.** The"
+              ],
+              "additions": 966,
+              "deletions": 1,
+              "path": ".streams/dispatch-log.md",
+              "removed": [
+                "| city-des-moines | `.streams/city-des-moines.md` | `config.py`, `city_registry.py` | 2026-09-29 | done (registered, `sla` only; PR #66) | `cities/des_moines.py"
+              ]
+            },
+            {
+              "added": [
+                "true,",
+                "{"
+              ],
+              "additions": 643,
+              "deletions": 278,
+              "path": "apps/product/public/facts.json",
+              "removed": [
+                "false,"
+              ]
+            }
+          ],
+          "sha": "ecc60413779baf48022a8598a66df03c36203aba",
+          "subject": "Metro coverage: land the stacked PRs #67\u2013#120 on main (#121)"
+        },
+        {
+          "authored_at": "2026-10-03T22:48:28+00:00",
+          "changed_lines": 4406,
+          "files": [
+            {
+              "added": [
+                "{",
+                "\"cache_mode\": \"compare\","
+              ],
+              "additions": 2201,
+              "deletions": 0,
+              "path": "docs/research/gh-actions-backend-benchmark-2026-10-03.json",
+              "removed": []
+            },
+            {
+              "added": [
+                "#!/usr/bin/env python3",
+                "\"\"\"Measure snapshot builds and compare their serialized semantic outputs.\"\"\""
+              ],
+              "additions": 271,
+              "deletions": 0,
+              "path": "scripts/benchmark_snapshot.py",
+              "removed": []
+            },
+            {
+              "added": [
+                "\"\"\"Regression coverage for per-engine prediction and SHAP vector reuse.\"\"\"",
+                "from collections import OrderedDict"
+              ],
+              "additions": 235,
+              "deletions": 0,
+              "path": "apps/api/tests/unit/test_engine_prediction_cache.py",
+              "removed": []
+            }
+          ],
+          "sha": "b9458923349a9ad36e251c8433e1c0416034393f",
+          "subject": "perf: optimize daily GitHub Actions snapshot builds"
+        },
+        {
+          "authored_at": "2026-10-04T04:31:16+00:00",
+          "changed_lines": 3933,
+          "files": [
+            {
+              "added": [
+                "\"\"\"Crash-safe commit, replay, normalization and permit-only feature aggregation.\"\"\"",
+                "from __future__ import annotations"
+              ],
+              "additions": 610,
+              "deletions": 0,
+              "path": "apps/api/src/ingestion/runner.py",
+              "removed": []
+            },
+            {
+              "added": [
+                "import hashlib",
+                "import json"
+              ],
+              "additions": 390,
+              "deletions": 0,
+              "path": "apps/api/tests/unit/test_ingestion_runner.py",
+              "removed": []
+            },
+            {
+              "added": [
+                "#!/usr/bin/env python3",
+                "\"\"\"Run a local fixture or gated shadow acquisition against durable storage.\"\"\""
+              ],
+              "additions": 384,
+              "deletions": 0,
+              "path": "scripts/run_shadow_ingestion.py",
+              "removed": []
+            }
+          ],
+          "sha": "159c736398a789de2631ffc086e5de56be1f8c49",
+          "subject": "feat: add gated durable shadow ingestion foundation"
+        },
+        {
+          "authored_at": "2026-10-03T02:01:55+00:00",
+          "changed_lines": 2504,
+          "files": [
+            {
+              "added": [
+                "\"\"\"Unit tests for the Des Moines, IA leaf: spatial geometry + the Rental License (SLA) feed.",
+                "Des Moines registers ONE feed: SLA = the City of Des Moines \"Rental License\""
+              ],
+              "additions": 680,
+              "deletions": 0,
+              "path": "apps/api/tests/unit/test_producers_des_moines.py",
+              "removed": []
+            },
+            {
+              "added": [
+                "\"\"\"Des Moines, IA \u2014 Urban Signal spatial registration (metro bbox, divisions, submarkets).",
+                "Leaf module: geometry only. Feed specs live in the corpus YAML beside this"
+              ],
+              "additions": 426,
+              "deletions": 0,
+              "path": "apps/api/src/spatial/cities/des_moines.py",
+              "removed": []
+            },
+            {
+              "added": [
+                "# Wave 3 Phase-0 probe \u2014 Des Moines, IA",
+                "**Date of probe: 2026-09-29** (reads made about 02:55\u201307:50Z; Des Moines is on"
+              ],
+              "additions": 423,
+              "deletions": 0,
+              "path": "docs/research/probe-des_moines.md",
+              "removed": []
+            }
+          ],
+          "sha": "d824e718bba4895b02ef9c9acd82e873961a8b3e",
+          "subject": "Metro coverage: register Des Moines, IA and fix Huntsville's staleness window (#66)"
+        }
+      ],
+      "name": "urban-signal"
+    },
+    {
+      "changed_lines": 1021,
+      "commits": [
+        {
+          "authored_at": "2026-10-05T19:26:33+00:00",
+          "changed_lines": 1021,
+          "files": [
+            {
+              "added": [
+                "Weekly Project Summary Automation.",
+                "Summarizes actual public-repository code diffs mined by the nightly collector,"
+              ],
+              "additions": 184,
+              "deletions": 480,
+              "path": "scripts/weekly_summary.py",
+              "removed": [
+                "Weekly Git Commit Summary Automation."
+              ]
+            },
+            {
+              "added": [
+                "private) and mines full local diffs \u2014 no search API, no per-commit REST calls,",
+                "all branches, full history."
+              ],
+              "additions": 111,
+              "deletions": 8,
+              "path": "scripts/collect_mirrors.py",
+              "removed": [
+                "private) and computes weekly skill reps from full local diffs \u2014 no search API,"
+              ]
+            },
+            {
+              "added": [
+                "import datetime as dt",
+                "import io"
+              ],
+              "additions": 108,
+              "deletions": 0,
+              "path": "tests/test_weekly_diff_summary.py",
+              "removed": []
+            }
+          ],
+          "sha": "4bf30f8c01eaf950d3b6062bc2bcddbf1908e845",
+          "subject": "feat(highlights): summarize weekly project diffs"
+        }
+      ],
+      "name": "harlanljones"
+    },
+    {
+      "changed_lines": 554,
+      "commits": [
+        {
+          "authored_at": "2026-10-05T16:08:38+00:00",
+          "changed_lines": 554,
+          "files": [
+            {
+              "added": [
+                "\"asOf\": \"2026-10-05\",",
+                "\"fetchedAt\": \"2026-10-05T16:08:14Z\","
+              ],
+              "additions": 490,
+              "deletions": 12,
+              "path": "spikes/mlb-2026/timeline-snapshot.json",
+              "removed": [
+                "\"asOf\": \"2026-09-27\","
+              ]
+            },
+            {
+              "added": [
+                "'offseason-infield': '3b0b69932d910fefa8a63273be94506d496add79dc8314c09d38d17cf9666ab8',",
+                "'opening-day-outfield': '7e96e96954a35388a20ca7640e1948c96b3db96b47b4a0d5de140e66101e58f8',"
+              ],
+              "additions": 8,
+              "deletions": 8,
+              "path": "src/lib/storylines/registry.ts",
+              "removed": [
+                "'offseason-infield': '32e8dce45c5f977a338461ad4fbfb4a5e60409e988d0f50898b766bee4a68b88',"
+              ]
+            },
+            {
+              "added": [
+                "\"createdAt\": \"2026-10-05T16:08:14Z\",",
+                "\"note\": \"Free public endpoints, fetched 2026-10-05T16:08:14Z into spikes/mlb-2026/timeline-snapshot.json. Rates are observed 2026 regular-season totals from 202"
+              ],
+              "additions": 2,
+              "deletions": 2,
+              "path": "src/lib/storylines/deadline.json",
+              "removed": [
+                "\"createdAt\": \"2026-10-01T21:32:15Z\","
+              ]
+            }
+          ],
+          "sha": "71141fde7c9ab0a801b2c4c84a9d8f572ae8d76b",
+          "subject": "data: refresh public roster snapshot"
+        }
+      ],
+      "name": "jev-roster-shapes"
+    }
+  ],
+  "updated": "2026-10-05T19:34:45.568157+00:00",
+  "window_end": "2026-10-05T12:34:45.114277-07:00",
+  "window_start": "2026-10-02T17:00:00-07:00"
+}

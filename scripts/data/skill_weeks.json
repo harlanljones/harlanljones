@@ -1,17 +1,17 @@
 {
   "fix_minus": {
-    "commits_28": 1021,
+    "commits_28": 1022,
     "fix_28": 239,
     "value": 163
   },
   "season": {
-    "aera": 1.06,
-    "aera_sub": "104 of 915 runs failed \u00b7 public repos \u00b7 28d",
+    "aera": 1.07,
+    "aera_sub": "106 of 918 runs failed \u00b7 public repos \u00b7 28d",
     "wdc": 21.04,
-    "wdc_sub": "55 deployments created \u00b7 last 28d"
+    "wdc_sub": "53 deployments created \u00b7 last 28d"
   },
   "source": "mirrors",
-  "updated": "2026-10-05T10:22:49Z",
+  "updated": "2026-10-05T19:35:26Z",
   "weeks": {
     "2025-10-13": {
       "commits": 15,
@@ -639,8 +639,8 @@
       }
     },
     "2026-09-28": {
-      "commits": 293,
-      "diffs": 4291,
+      "commits": 292,
+      "diffs": 4280,
       "repos": 26,
       "skills": {
         "API Integration": 203.64,
@@ -680,10 +680,19 @@
       }
     },
     "2026-10-05": {
-      "commits": 0,
-      "diffs": 0,
-      "repos": 0,
-      "skills": {}
+      "commits": 2,
+      "diffs": 20,
+      "repos": 2,
+      "skills": {
+        "API Integration": 4.69,
+        "CLI Design": 3.74,
+        "Docs & Writing": 7.04,
+        "Error Handling": 7.48,
+        "GitHub Actions": 3.67,
+        "Performance": 4.9,
+        "Regex & Parsing": 6.32,
+        "Testing": 14.05
+      }
     }
   }
 }
