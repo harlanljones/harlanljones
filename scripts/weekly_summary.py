@@ -26,6 +26,63 @@ WEEKLY_START = "<!-- WEEKLY_HIGHLIGHTS_START -->"
 WEEKLY_END = "<!-- WEEKLY_HIGHLIGHTS_END -->"
 BULLET_RE = re.compile(r"^\*\s+\*\*\[([^\]]+)\]\(([^)]+)\):\*\*\s+(.+)$")
 
+# The collector keeps only the first bounded added/removed lines per file, so
+# the no-LLM fallback reads raw excerpts and must phrase them in English
+# instead of echoing them (a JSON file's first added line is often just "{").
+CODE_PATH_RE = re.compile(
+    r"\.(?:py|ts|tsx|js|jsx|mjs|cjs|rs|go|java|kt|kts|swift|rb|php|cs|cpp|cc|cxx|c|h|hpp|"
+    r"m|mm|sh|bash|zsh|fish|sql|qml|lua|dart|scala|ex|exs|erl|hs|jl|r|nix|tf|vue|svelte|astro)$",
+    re.I,
+)
+DOC_PATH_RE = re.compile(r"\.(?:md|markdown|rst|txt|adoc)$", re.I)
+TEST_PATH_RE = re.compile(
+    r"(?:^|/)(?:tests?|__tests__|spec|specs)(?:/|$)|(?:^|[/_.-])tests?[_./-]|_test\.|\.test\.|\.spec\.",
+    re.I,
+)
+HEX_BLOB_RE = re.compile(r"\b[0-9a-f]{16,}\b", re.I)
+DECL_LINE_RE = re.compile(
+    r"^(?:async\s+def|def|class)\s+\w+"
+    r"|^(?:export\s+)?(?:default\s+)?(?:async\s+)?function\s+\w+"
+    r"|^(?:pub(?:\([^)]*\))?\s+)?(?:async\s+)?fn\s+\w+"
+    r"|^func\s+\w+"
+    r"|^(?:export\s+)?(?:const|let|var)\s+\w+\s*="
+    r"|^(?:export\s+)?(?:interface|type|struct|enum|trait|impl)\s+\w+"
+)
+# Base verbs commonly opening docstring summaries. Third-person docstrings
+# ("Summarizes ...") compose as "Added `file` to summarize ..." so the
+# description stays a grammatical sentence.
+VERB_PAST = {
+    "add": "added", "aggregate": "aggregated", "benchmark": "benchmarked",
+    "build": "built", "capture": "captured", "check": "checked",
+    "collect": "collected", "commit": "committed", "compile": "compiled",
+    "compute": "computed", "configure": "configured", "convert": "converted",
+    "create": "created", "deploy": "deployed", "dispatch": "dispatched",
+    "document": "documented", "enable": "enabled", "evaluate": "evaluated",
+    "expand": "expanded", "export": "exported", "expose": "exposed",
+    "extend": "extended", "fetch": "fetched", "generate": "generated",
+    "handle": "handled", "implement": "implemented", "import": "imported",
+    "ingest": "ingested", "introduce": "introduced", "land": "landed",
+    "load": "loaded", "maintain": "maintained", "manage": "managed",
+    "measure": "measured", "migrate": "migrated", "monitor": "monitored",
+    "normalize": "normalized", "optimize": "optimized", "orchestrate": "orchestrated",
+    "parse": "parsed", "probe": "probed", "process": "processed",
+    "produce": "produced", "provide": "provided", "publish": "published",
+    "read": "read", "refactor": "refactored", "refresh": "refreshed",
+    "register": "registered", "remove": "removed", "render": "rendered",
+    "replay": "replayed", "run": "ran", "scan": "scanned",
+    "schedule": "scheduled", "send": "sent", "serve": "served",
+    "ship": "shipped", "store": "stored", "summarize": "summarized",
+    "support": "supported", "test": "tested", "track": "tracked",
+    "train": "trained", "update": "updated", "validate": "validated",
+    "verify": "verified", "wire": "wired", "wrap": "wrapped",
+    "write": "wrote",
+}
+TRAILING_STOPWORDS = frozenset(
+    "the a an of and or to with for in on by as at from that this is are was were be it its".split()
+)
+MAX_EVIDENCE_PHRASE = 130
+MAX_DECLARATION_PHRASE = 100
+
 
 def filter_weekly_projects(store: Dict, start_dt: datetime, end_dt: datetime) -> List[Dict]:
     """Select diff-backed commits inside the requested rollover window."""
@@ -104,35 +161,169 @@ def synthesize_with_gemini(projects: List[Dict], api_key: str, date_str: str) ->
     return None
 
 
+def _strip_markdown(text: str) -> str:
+    """Drop the decoration characters a stored diff line may carry."""
+    text = re.sub(r"^(?:#+\s*|//+/?\s*|<!--\s*|>\s*|\*{1,2}|_{1,2}|\"\"\"|''')", "", text)
+    text = re.sub(r"(?:\*{1,2}|_{1,2}|\"\"\"|'''|-->)\s*$", "", text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def _truncate_phrase(phrase: str, limit: int) -> str:
+    if len(phrase) <= limit:
+        return phrase
+    cut = phrase[: limit - 3].rsplit(" ", 1)[0].rstrip(" ,;:")
+    return f"{cut}..."
+
+
+def _prose_phrase(line: str) -> Optional[str]:
+    """Extract a standalone English phrase from one raw diff line, or None
+    when the line is code, JSON, a hash, or a mid-sentence fragment."""
+    s = line.strip()
+    if len(s) < 10 or HEX_BLOB_RE.search(s):
+        return None
+    s = _strip_markdown(s)
+    if not s or s[0] in "{}[]()|<>\"'`*\\=@+!#~-;,$%^&":
+        return None
+    if re.match(r"^[\w.$-]+\s*[:=]\s", s):
+        return None
+    if any(token in s for token in ('"', "=>", "->", "();", "':", '":', ";", "=", "`")):
+        return None
+    if not s[0].isupper():
+        return None
+    words = s.split()
+    if len(words) < 5:
+        return None
+    if words[-1].lower().strip(" .,;:!?") in TRAILING_STOPWORDS:
+        return None
+    if sum(1 for w in words if re.search(r"[A-Za-z]{2}", w)) < len(words) * 0.6:
+        return None
+    return _truncate_phrase(s.rstrip(" .,;:!?"), MAX_EVIDENCE_PHRASE)
+
+
+def _verb_base(phrase: str) -> Optional[str]:
+    """Base form of the verb opening a docstring summary, else None."""
+    word = phrase.split(" ", 1)[0].strip("`\"'()[]:,.").lower()
+    if word in VERB_PAST:
+        return word
+    if word.endswith("s") and word[:-1] in VERB_PAST:
+        return word[:-1]
+    return None
+
+
+def _lower_first(phrase: str) -> str:
+    """Lowercase a sentence-leading word unless it opens a proper noun."""
+    words = phrase.split(" ")
+    if words and words[0][:1].isupper() and (len(words) == 1 or not words[1][:1].isupper()):
+        words[0] = words[0][0].lower() + words[0][1:]
+    return " ".join(words)
+
+
+def _evidence_for_file(file: Dict) -> Optional[Tuple[str, str]]:
+    """(kind, phrase) for the most description-worthy stored diff line."""
+    prose = decl = None
+    for line in (file.get("added") or []) + (file.get("removed") or []):
+        if decl is None and DECL_LINE_RE.match(line.strip()):
+            decl = ("decl", _truncate_phrase(line.strip(), MAX_DECLARATION_PHRASE))
+        if prose is None:
+            phrase = _prose_phrase(line)
+            if phrase:
+                prose = ("prose", phrase)
+        if prose and decl:
+            break
+    return prose or decl
+
+
+def _file_category(path: str) -> int:
+    """Source first, then tests, docs, and finally data/other."""
+    if TEST_PATH_RE.search(path):
+        return 1
+    if CODE_PATH_RE.search(path):
+        return 0
+    if DOC_PATH_RE.search(path):
+        return 2
+    return 3
+
+
+def _best_evidence(project: Dict) -> Optional[Tuple[Dict, Tuple[str, str]]]:
+    """Largest source file (then test, docs, data) with readable evidence."""
+    ranked = []
+    for commit in project.get("commits", []):
+        for file in commit.get("files", []):
+            evidence = _evidence_for_file(file)
+            if evidence:
+                size = int(file.get("additions") or 0) + int(file.get("deletions") or 0)
+                ranked.append((_file_category(file.get("path", "")), -size, file, evidence))
+    if not ranked:
+        return None
+    ranked.sort(key=lambda item: (item[0], item[1]))
+    return ranked[0][2], ranked[0][3]
+
+
+def _describe_evidence(file: Dict, evidence: Tuple[str, str]) -> str:
+    kind, phrase = evidence
+    path = file.get("path", "")
+    adds = int(file.get("additions") or 0)
+    dels = int(file.get("deletions") or 0)
+    if adds and dels:
+        verb = "Updated"
+    elif adds:
+        verb = "Added"
+    else:
+        verb = "Removed"
+    if kind == "decl":
+        return f"{verb} `{phrase}` in `{path}`."
+    if _file_category(path) == 2 and adds and not dels:
+        verb = "Documented"
+    base = _verb_base(phrase)
+    if base:
+        rest = phrase.partition(" ")[2]
+        return f"{verb} `{path}` to {base} {rest}."
+    return f"{verb} {_lower_first(phrase)} in `{path}`."
+
+
+def _describe_subject(project: Dict) -> Optional[str]:
+    """Last resort for data-only diffs: the top commit subject as a sentence."""
+    commits = project.get("commits") or []
+    if not commits:
+        return None
+    top = max(commits, key=lambda c: int(c.get("changed_lines") or 0))
+    subject = (top.get("subject") or "").strip()
+    if not subject:
+        return None
+    clean = re.sub(r"^[A-Za-z][\w.-]*(?:\([^)]*\))?!?:\s+", "", subject)
+    clean = re.sub(r"\s*\(#\d+\)\s*$", "", clean).strip()
+    if not clean:
+        return None
+    base = _verb_base(clean)
+    files = top.get("files") or []
+    path = ""
+    if files:
+        biggest = max(files, key=lambda f: int(f.get("additions") or 0) + int(f.get("deletions") or 0))
+        path = biggest.get("path", "")
+    if base:
+        rest = clean.partition(" ")[2]
+        sentence = f"{VERB_PAST[base].capitalize()} {rest}".strip()
+        if path:
+            sentence += f" in `{path}`"
+        return sentence.rstrip(" .,;:") + "."
+    return clean[0].upper() + clean[1:]
+
+
 def generate_diff_heuristics(projects: List[Dict], username: str) -> List[str]:
-    """Describe each project's changed code using a concrete added/removed line."""
+    """Describe each project's week from its most readable diff evidence.
+
+    The collector keeps bounded added/removed excerpts, so pick the largest
+    source (then test, docs, data) file per project and phrase its most
+    descriptive line as a sentence; JSON values, hashes, and mid-sentence
+    fragments are never echoed. Projects whose diffs carry only data fall
+    back to the most substantial commit subject.
+    """
     bullets = []
     for project in sorted(projects, key=lambda p: p.get("changed_lines", 0), reverse=True)[:3]:
-        changed_files = [
-            file
-            for commit in project.get("commits", [])
-            for file in commit.get("files", [])
-            if file.get("added") or file.get("removed")
-        ]
-        if not changed_files:
+        evidence = _best_evidence(project)
+        desc = _describe_evidence(*evidence) if evidence else _describe_subject(project)
+        if not desc:
             continue
-        changed_files.sort(key=lambda f: f.get("additions", 0) + f.get("deletions", 0), reverse=True)
-        file = changed_files[0]
-        code_line = (
-            (file.get("added") or file.get("removed") or [""])[0]
-            .strip()
-            .replace("`", "'")
-        )
-        code_line = code_line[:100]
-        if not code_line:
-            continue
-        if file.get("additions") and file.get("deletions"):
-            verb = "Updated"
-        elif file.get("additions"):
-            verb = "Added"
-        else:
-            verb = "Removed"
-        desc = f"{verb} `{code_line}` in `{file['path']}`."
         repo = project["name"]
         bullets.append(f"* **[{repo}](https://github.com/{username}/{repo}):** {desc}")
     return bullets

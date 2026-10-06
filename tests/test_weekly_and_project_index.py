@@ -26,6 +26,83 @@ def test_weekly_summary_fallback_uses_diff_evidence():
     assert "build_alpha" in render_weekly_svg(bullets, "Oct 02, 2026")
 
 
+def test_weekly_fallback_phrases_docstrings_and_skips_machine_data():
+    """Docstring evidence becomes a sentence; JSON fragments never leak."""
+    projects = [{
+        "name": "signal",
+        "changed_lines": 30,
+        "commits": [{
+            "subject": "data: refresh snapshot",
+            "changed_lines": 30,
+            "files": [
+                {"path": "data/snapshot.json", "additions": 20, "deletions": 10,
+                 "added": ["{", '"asOf": "2026-10-05",'], "removed": []},
+                {"path": "src/runner.py", "additions": 5, "deletions": 0,
+                 "added": ['"""Crash-safe commit, replay, normalization and permit-only feature aggregation."""'],
+                 "removed": []},
+            ],
+        }],
+    }]
+    bullets = generate_diff_heuristics(projects, "testuser")
+    assert len(bullets) == 1
+    assert "crash-safe commit, replay, normalization and permit-only feature aggregation" in bullets[0]
+    assert "src/runner.py" in bullets[0]
+    assert '"asOf"' not in bullets[0]
+    assert "Added {" not in bullets[0]
+
+
+def test_weekly_fallback_phrases_verb_docstrings_as_tooling_sentences():
+    """Third-person docstrings compose as 'Updated `file` to ...'."""
+    projects = [{
+        "name": "collector",
+        "changed_lines": 10,
+        "commits": [{
+            "subject": "chore: rework summary script",
+            "changed_lines": 10,
+            "files": [{
+                "path": "scripts/weekly_summary.py",
+                "additions": 8,
+                "deletions": 0,
+                "added": [
+                    '"""Weekly Project Summary Automation.',
+                    "Summarizes actual public-repository code diffs mined by the nightly collector,",
+                ],
+                "removed": [],
+            }],
+        }],
+    }]
+    bullets = generate_diff_heuristics(projects, "testuser")
+    assert bullets == [
+        "* **[collector](https://github.com/testuser/collector):** "
+        "Added `scripts/weekly_summary.py` to summarize actual public-repository code diffs "
+        "mined by the nightly collector."
+    ]
+
+
+def test_weekly_fallback_uses_subject_when_diff_is_data_only():
+    """Data-only evidence (JSON keys, hashes) falls back to the commit subject."""
+    projects = [{
+        "name": "roster",
+        "changed_lines": 500,
+        "commits": [{
+            "subject": "data: refresh public roster snapshot",
+            "changed_lines": 500,
+            "files": [{
+                "path": "spikes/mlb-2026/timeline-snapshot.json",
+                "additions": 490,
+                "deletions": 10,
+                "added": ['"asOf": "2026-10-05",', '"fetchedAt": "2026-10-05T16:08:14Z",'],
+                "removed": [],
+            }],
+        }],
+    }]
+    bullets = generate_diff_heuristics(projects, "testuser")
+    assert bullets == [
+        "* **[roster](https://github.com/testuser/roster):** "
+        "Refreshed public roster snapshot in `spikes/mlb-2026/timeline-snapshot.json`."
+    ]
+
+
 def test_section_accent_and_dynamic_callups():
     """Verify dynamic call-up detection and accent assignment."""
     assert get_section_accent("September call-ups") == "#3fb950"
