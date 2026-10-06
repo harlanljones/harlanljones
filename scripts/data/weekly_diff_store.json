@@ -163,7 +163,7 @@
       "judgments": {
         "change_kind": {
           "choice": "feature",
-          "confidence": 0.71
+          "confidence": 0.67
         },
         "magnitude": {
           "confidence": 1.0,
@@ -174,6 +174,15 @@
         "model": "jev-latest",
         "notable": {
           "noul": 0.79
+        },
+        "regression_risk": {
+          "noul": 0.74
+        },
+        "severity": {
+          "confidence": 0.32,
+          "label": "severe",
+          "level": 2,
+          "score": 1.55
         }
       },
       "name": "urban-signal"
@@ -353,7 +362,7 @@
       "judgments": {
         "change_kind": {
           "choice": "feature",
-          "confidence": 0.89
+          "confidence": 0.86
         },
         "magnitude": {
           "confidence": 0.97,
@@ -364,6 +373,15 @@
         "model": "jev-latest",
         "notable": {
           "noul": 0.86
+        },
+        "regression_risk": {
+          "noul": 0.64
+        },
+        "severity": {
+          "confidence": 0.58,
+          "label": "moderate",
+          "level": 1,
+          "score": 0.84
         }
       },
       "name": "jev-roster-shapes"
@@ -447,23 +465,32 @@
       "judgments": {
         "change_kind": {
           "choice": "feature",
-          "confidence": 0.88
+          "confidence": 0.85
         },
         "magnitude": {
-          "confidence": 0.98,
+          "confidence": 0.96,
           "label": "large",
           "level": 2,
-          "score": 1.99
+          "score": 1.98
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.73
+          "noul": 0.74
+        },
+        "regression_risk": {
+          "noul": 0.69
+        },
+        "severity": {
+          "confidence": 0.23,
+          "label": "moderate",
+          "level": 1,
+          "score": 0.55
         }
       },
       "name": "harlanljones"
     }
   ],
-  "updated": "2026-10-06T17:14:36.382175+00:00",
-  "window_end": "2026-10-06T10:14:35.737118-07:00",
+  "updated": "2026-10-06T17:31:57.407885+00:00",
+  "window_end": "2026-10-06T10:31:56.928461-07:00",
   "window_start": "2026-10-02T17:00:00-07:00"
 }
