@@ -1,7 +1,7 @@
 {
   "projects": [
     {
-      "changed_lines": 59992,
+      "changed_lines": 60431,
       "commits": [
         {
           "authored_at": "2026-10-03T04:06:45+00:00",
@@ -163,56 +163,92 @@
       "name": "urban-signal"
     },
     {
-      "changed_lines": 1021,
+      "changed_lines": 3091,
       "commits": [
         {
-          "authored_at": "2026-10-05T19:26:33+00:00",
-          "changed_lines": 1021,
+          "authored_at": "2026-10-06T03:25:02+00:00",
+          "changed_lines": 1429,
           "files": [
             {
               "added": [
-                "Weekly Project Summary Automation.",
-                "Summarizes actual public-repository code diffs mined by the nightly collector,"
+                "]",
+                "},"
               ],
-              "additions": 184,
-              "deletions": 480,
-              "path": "scripts/weekly_summary.py",
+              "additions": 43,
+              "deletions": 1336,
+              "path": "spikes/mlb-2026/timeline-snapshot.json",
               "removed": [
-                "Weekly Git Commit Summary Automation."
+                "\"asOf\": \"2026-10-05\","
               ]
             },
             {
               "added": [
-                "private) and mines full local diffs \u2014 no search API, no per-commit REST calls,",
-                "all branches, full history."
+                "'offseason-infield': '74e18f82c56de781204f0c6db7edd922c71e413725d44321d64d24040bbfe07a',",
+                "'opening-day-outfield': '46d5da5f741e4823b61c95b73a2468804a393b775a250454a336b6a80b032436',"
               ],
-              "additions": 111,
+              "additions": 8,
               "deletions": 8,
-              "path": "scripts/collect_mirrors.py",
+              "path": "src/lib/storylines/registry.ts",
               "removed": [
-                "private) and computes weekly skill reps from full local diffs \u2014 no search API,"
+                "'offseason-infield': '3b0b69932d910fefa8a63273be94506d496add79dc8314c09d38d17cf9666ab8',"
               ]
             },
             {
               "added": [
-                "import datetime as dt",
-                "import io"
+                "\"createdAt\": \"2026-10-06T03:24:21Z\",",
+                "\"note\": \"Free public endpoints, fetched 2026-10-06T03:24:21Z into spikes/mlb-2026/timeline-snapshot.json. Rates are observed 2026 regular-season totals from 202"
               ],
-              "additions": 108,
-              "deletions": 0,
-              "path": "tests/test_weekly_diff_summary.py",
-              "removed": []
+              "additions": 2,
+              "deletions": 2,
+              "path": "src/lib/storylines/deadline.json",
+              "removed": [
+                "\"createdAt\": \"2026-10-05T16:08:14Z\","
+              ]
             }
           ],
-          "sha": "4bf30f8c01eaf950d3b6062bc2bcddbf1908e845",
-          "subject": "feat(highlights): summarize weekly project diffs"
-        }
-      ],
-      "name": "harlanljones"
-    },
-    {
-      "changed_lines": 554,
-      "commits": [
+          "sha": "5e2668bdd57435acb1dd6d759995c549de2a01bc",
+          "subject": "data: refresh public roster snapshot"
+        },
+        {
+          "authored_at": "2026-10-06T03:22:26+00:00",
+          "changed_lines": 710,
+          "files": [
+            {
+              "added": [
+                "// The transparent rule-based baseline SPEC \u00a77 requires as the comparison",
+                "// point beside the analyst labels and Jev (D-55). It applies the frozen"
+              ],
+              "additions": 314,
+              "deletions": 0,
+              "path": "src/lib/classification/baseline.ts",
+              "removed": []
+            },
+            {
+              "added": [
+                "import { describe, expect, it } from 'vitest';",
+                "import type { ProfileEvidence } from '../../src/lib/classification/prompt';"
+              ],
+              "additions": 184,
+              "deletions": 0,
+              "path": "tests/classification/baseline.test.ts",
+              "removed": []
+            },
+            {
+              "added": [
+                "import { PLAYER_SHAPES, shapeOf, type ShapeLabel } from '$lib/shapes/taxonomy';",
+                "RULE_BASELINE_VERSION,"
+              ],
+              "additions": 123,
+              "deletions": 11,
+              "path": "src/lib/app/SnapshotsPage.svelte",
+              "removed": [
+                "import { shapeOf } from '$lib/shapes/taxonomy';"
+              ]
+            }
+          ],
+          "sha": "d210bac0d6992c74cdccfd33e5092cce05a230a5",
+          "subject": "feat(classification): add transparent rule-based baseline beside Jev prompt (D-55)"
+        },
         {
           "authored_at": "2026-10-05T16:08:38+00:00",
           "changed_lines": 554,
@@ -256,12 +292,130 @@
           ],
           "sha": "71141fde7c9ab0a801b2c4c84a9d8f572ae8d76b",
           "subject": "data: refresh public roster snapshot"
+        },
+        {
+          "authored_at": "2026-10-05T22:07:12+00:00",
+          "changed_lines": 384,
+          "files": [
+            {
+              "added": [
+                "import { describe, expect, it } from 'vitest';",
+                "import {"
+              ],
+              "additions": 122,
+              "deletions": 0,
+              "path": "tests/spikes/timeline-plan.test.ts",
+              "removed": []
+            },
+            {
+              "added": [
+                "// Shared planning facts for the 2026 timeline snapshot pipeline (D-54).",
+                "// The fetcher and the builder must agree on the regular-season close so the"
+              ],
+              "additions": 118,
+              "deletions": 0,
+              "path": "spikes/mlb-2026/lib/timeline-plan.mjs",
+              "removed": []
+            },
+            {
+              "added": [
+                "import { writeFileSync, readFileSync } from 'node:fs';",
+                "import { rosterPlan, shouldWrite, windowPlan } from './lib/timeline-plan.mjs';"
+              ],
+              "additions": 29,
+              "deletions": 38,
+              "path": "spikes/mlb-2026/timeline-fetch.mjs",
+              "removed": [
+                "import { writeFileSync } from 'node:fs';"
+              ]
+            }
+          ],
+          "sha": "4cb0a5538bea2ef3f920d678ddcabaea46735920",
+          "subject": "fix(spikes): write the snapshot only on material change (D-54)"
         }
       ],
       "name": "jev-roster-shapes"
+    },
+    {
+      "changed_lines": 1339,
+      "commits": [
+        {
+          "authored_at": "2026-10-05T19:26:33+00:00",
+          "changed_lines": 1021,
+          "files": [
+            {
+              "added": [
+                "Weekly Project Summary Automation.",
+                "Summarizes actual public-repository code diffs mined by the nightly collector,"
+              ],
+              "additions": 184,
+              "deletions": 480,
+              "path": "scripts/weekly_summary.py",
+              "removed": [
+                "Weekly Git Commit Summary Automation."
+              ]
+            },
+            {
+              "added": [
+                "private) and mines full local diffs \u2014 no search API, no per-commit REST calls,",
+                "all branches, full history."
+              ],
+              "additions": 111,
+              "deletions": 8,
+              "path": "scripts/collect_mirrors.py",
+              "removed": [
+                "private) and computes weekly skill reps from full local diffs \u2014 no search API,"
+              ]
+            },
+            {
+              "added": [
+                "import datetime as dt",
+                "import io"
+              ],
+              "additions": 108,
+              "deletions": 0,
+              "path": "tests/test_weekly_diff_summary.py",
+              "removed": []
+            }
+          ],
+          "sha": "4bf30f8c01eaf950d3b6062bc2bcddbf1908e845",
+          "subject": "feat(highlights): summarize weekly project diffs"
+        },
+        {
+          "authored_at": "2026-10-06T08:37:43+00:00",
+          "changed_lines": 318,
+          "files": [
+            {
+              "added": [
+                "# The collector keeps only the first bounded added/removed lines per file, so",
+                "# the no-LLM fallback reads raw excerpts and must phrase them in English"
+              ],
+              "additions": 216,
+              "deletions": 25,
+              "path": "scripts/weekly_summary.py",
+              "removed": [
+                "\"\"\"Describe each project's changed code using a concrete added/removed line.\"\"\""
+              ]
+            },
+            {
+              "added": [
+                "def test_weekly_fallback_phrases_docstrings_and_skips_machine_data():",
+                "\"\"\"Docstring evidence becomes a sentence; JSON fragments never leak.\"\"\""
+              ],
+              "additions": 77,
+              "deletions": 0,
+              "path": "tests/test_weekly_and_project_index.py",
+              "removed": []
+            }
+          ],
+          "sha": "1b698fcf7bae8dbd37cd2dad0191cf37e197d1ea",
+          "subject": "fix(highlights): phrase weekly diff evidence into readable descriptions"
+        }
+      ],
+      "name": "harlanljones"
     }
   ],
-  "updated": "2026-10-05T19:34:45.568157+00:00",
-  "window_end": "2026-10-05T12:34:45.114277-07:00",
+  "updated": "2026-10-06T10:20:33.975604+00:00",
+  "window_end": "2026-10-06T03:20:33.414964-07:00",
   "window_start": "2026-10-02T17:00:00-07:00"
 }

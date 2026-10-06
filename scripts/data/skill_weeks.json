@@ -1,17 +1,17 @@
 {
   "fix_minus": {
-    "commits_28": 1022,
+    "commits_28": 1025,
     "fix_28": 239,
-    "value": 163
+    "value": 161
   },
   "season": {
-    "aera": 1.07,
-    "aera_sub": "106 of 918 runs failed \u00b7 public repos \u00b7 28d",
-    "wdc": 21.04,
+    "aera": 1.14,
+    "aera_sub": "115 of 931 runs failed \u00b7 public repos \u00b7 28d",
+    "wdc": 23.76,
     "wdc_sub": "53 deployments created \u00b7 last 28d"
   },
   "source": "mirrors",
-  "updated": "2026-10-05T19:35:26Z",
+  "updated": "2026-10-06T10:21:16Z",
   "weeks": {
     "2025-10-13": {
       "commits": 15,
@@ -680,18 +680,27 @@
       }
     },
     "2026-10-05": {
-      "commits": 2,
-      "diffs": 20,
-      "repos": 2,
+      "commits": 15,
+      "diffs": 155,
+      "repos": 4,
       "skills": {
         "API Integration": 4.69,
+        "Build Config": 8.72,
         "CLI Design": 3.74,
-        "Docs & Writing": 7.04,
-        "Error Handling": 7.48,
-        "GitHub Actions": 3.67,
-        "Performance": 4.9,
-        "Regex & Parsing": 6.32,
-        "Testing": 14.05
+        "Cloudflare Workers": 3.32,
+        "Concurrency": 26.34,
+        "Data Viz": 13.27,
+        "Docs & Writing": 80.48,
+        "Error Handling": 16.12,
+        "GitHub Actions": 13.79,
+        "Lint & Format": 12.4,
+        "Next.js": 9.0,
+        "Performance": 16.1,
+        "React": 26.32,
+        "Regex & Parsing": 15.25,
+        "Tailwind CSS": 16.52,
+        "Testing": 78.39,
+        "Type Design": 10.19
       }
     }
   }
