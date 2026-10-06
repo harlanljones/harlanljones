@@ -6,12 +6,12 @@
   },
   "season": {
     "aera": 1.14,
-    "aera_sub": "115 of 931 runs failed \u00b7 public repos \u00b7 28d",
+    "aera_sub": "115 of 934 runs failed \u00b7 public repos \u00b7 28d",
     "wdc": 23.76,
     "wdc_sub": "53 deployments created \u00b7 last 28d"
   },
   "source": "mirrors",
-  "updated": "2026-10-06T10:21:16Z",
+  "updated": "2026-10-06T17:15:25Z",
   "weeks": {
     "2025-10-13": {
       "commits": 15,

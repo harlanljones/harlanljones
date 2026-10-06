@@ -160,6 +160,22 @@
           "subject": "Metro coverage: register Des Moines, IA and fix Huntsville's staleness window (#66)"
         }
       ],
+      "judgments": {
+        "change_kind": {
+          "choice": "feature",
+          "confidence": 0.71
+        },
+        "magnitude": {
+          "confidence": 1.0,
+          "label": "large",
+          "level": 2,
+          "score": 2.0
+        },
+        "model": "jev-latest",
+        "notable": {
+          "noul": 0.79
+        }
+      },
       "name": "urban-signal"
     },
     {
@@ -334,6 +350,22 @@
           "subject": "fix(spikes): write the snapshot only on material change (D-54)"
         }
       ],
+      "judgments": {
+        "change_kind": {
+          "choice": "feature",
+          "confidence": 0.89
+        },
+        "magnitude": {
+          "confidence": 0.97,
+          "label": "large",
+          "level": 2,
+          "score": 1.98
+        },
+        "model": "jev-latest",
+        "notable": {
+          "noul": 0.86
+        }
+      },
       "name": "jev-roster-shapes"
     },
     {
@@ -412,10 +444,26 @@
           "subject": "fix(highlights): phrase weekly diff evidence into readable descriptions"
         }
       ],
+      "judgments": {
+        "change_kind": {
+          "choice": "feature",
+          "confidence": 0.88
+        },
+        "magnitude": {
+          "confidence": 0.98,
+          "label": "large",
+          "level": 2,
+          "score": 1.99
+        },
+        "model": "jev-latest",
+        "notable": {
+          "noul": 0.73
+        }
+      },
       "name": "harlanljones"
     }
   ],
-  "updated": "2026-10-06T10:20:33.975604+00:00",
-  "window_end": "2026-10-06T03:20:33.414964-07:00",
+  "updated": "2026-10-06T17:14:36.382175+00:00",
+  "window_end": "2026-10-06T10:14:35.737118-07:00",
   "window_start": "2026-10-02T17:00:00-07:00"
 }
