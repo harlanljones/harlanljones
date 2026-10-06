@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="295" viewBox="0 0 900 295">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="257" viewBox="0 0 900 257">
 <defs>
 <linearGradient id="shellEdge" x1="0" y1="0" x2="1" y2="0.9">
 <stop offset="0" stop-color="#58a6ff" stop-opacity="0.85"/>
@@ -6,17 +6,15 @@
 <stop offset="0.65" stop-color="#30363d" stop-opacity="1"/>
 </linearGradient>
 </defs>
-<rect x="0.5" y="0.5" width="899" height="294" rx="12" fill="#0d1117" stroke="url(#shellEdge)"/>
+<rect x="0.5" y="0.5" width="899" height="256" rx="12" fill="#0d1117" stroke="url(#shellEdge)"/>
 <text x="24" y="30" font-size="18" font-weight="700" fill="#e6edf3" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Week in Review</text>
 <text x="24" y="48" font-size="12.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Oct 02 – Oct 05, 2026</text>
 <g transform="translate(0,56)"><text x="24" y="24.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">urban-signal</text>
-<text x="24" y="44.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Expanded city coverage with Des Moines spatial registration and rental-license feed support, and added crash-safe</text>
-<text x="24" y="63.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">shadow-ingestion processing.</text>
-<line x1="24" y1="78.0" x2="876" y2="78.0" stroke="#8b949e" stroke-opacity="0.25"/>
-<text x="24" y="100.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">harlanljones</text>
-<text x="24" y="120.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Rebuilt the weekly highlights pipeline to mine public code diffs, use a Friday 5 PM Pacific rollover, and publish the</text>
-<text x="24" y="139.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Week in Review card.</text>
-<line x1="24" y1="154.0" x2="876" y2="154.0" stroke="#8b949e" stroke-opacity="0.25"/>
-<text x="24" y="176.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">jev-roster-shapes</text>
-<text x="24" y="196.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Refreshed the 2026 MLB timeline snapshot and storyline registry with public roster and statistics data.</text></g>
+<text x="24" y="44.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Added { in docs/research/gh-actions-backend-benchmark-2026-10-03.json.</text>
+<line x1="24" y1="59.0" x2="876" y2="59.0" stroke="#8b949e" stroke-opacity="0.25"/>
+<text x="24" y="81.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">harlanljones</text>
+<text x="24" y="101.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Updated Weekly Project Summary Automation. in scripts/weekly_summary.py.</text>
+<line x1="24" y1="116.0" x2="876" y2="116.0" stroke="#8b949e" stroke-opacity="0.25"/>
+<text x="24" y="138.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">jev-roster-shapes</text>
+<text x="24" y="158.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Updated &quot;asOf&quot;: &quot;2026-10-05&quot;, in spikes/mlb-2026/timeline-snapshot.json.</text></g>
 </svg>
