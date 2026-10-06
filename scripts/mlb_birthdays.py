@@ -16,7 +16,8 @@ import sys
 import time
 import urllib.parse
 import urllib.request
-from typing import Dict, List, Optional, Any, Tuple
+from pathlib import Path
+from typing import Dict, List, Mapping, Optional, Any, Tuple
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from svg_cards import (  # noqa: E402
@@ -914,6 +915,27 @@ def ensure_birthday_index_image(readme_path: str, svg_url: str = BIRTHDAY_INDEX_
 ensure_dugout_image = ensure_birthday_index_image
 
 
+def step_summary_path(env: Optional[Mapping[str, str]] = None) -> Optional[Path]:
+    """GITHUB_STEP_SUMMARY as a typed path. Only trusted when it lives under
+    the runner's temp directory (and its parent exists), so a stray or hostile
+    value cannot make this script append to an arbitrary file."""
+    source = os.environ if env is None else env
+    raw = source.get("GITHUB_STEP_SUMMARY") or ""
+    if not raw:
+        return None
+    path = Path(raw)
+    runner_temp = source.get("RUNNER_TEMP")
+    if runner_temp:
+        try:
+            path.resolve().relative_to(Path(runner_temp).resolve())
+        except ValueError:
+            print(f"Notice: ignoring GITHUB_STEP_SUMMARY outside RUNNER_TEMP: {path}", file=sys.stderr)
+            return None
+    if not path.parent.is_dir():
+        return None
+    return path
+
+
 def main():
     parser = argparse.ArgumentParser(description="MLB Birthday Index Generator")
     parser.add_argument("--month", type=int, default=None, help="Month (1-12). Defaults to today.")
@@ -955,13 +977,13 @@ def main():
     ensure_birthday_index_image(args.target_file, args.svg_url)
 
     # Write to GitHub Step Summary if available
-    summary_path = os.getenv("GITHUB_STEP_SUMMARY")
-    if summary_path and os.path.exists(os.path.dirname(summary_path)):
+    summary_path = step_summary_path()
+    if summary_path:
         try:
-            with open(summary_path, "a", encoding="utf-8") as sf:
+            with summary_path.open("a", encoding="utf-8") as sf:
                 sf.write(f"\n{dispatch_md}\n")
             print("Wrote MLB Birthday Index to GITHUB_STEP_SUMMARY.")
-        except Exception as e:
+        except OSError as e:
             print(f"Notice: could not write to GITHUB_STEP_SUMMARY: {e}")
 
 

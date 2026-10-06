@@ -5,6 +5,11 @@ Weekly Project Summary Automation.
 Summarizes actual public-repository code diffs mined by the nightly collector,
 from the most recent Friday at 5:00 PM San Francisco time through its last run.
 
+Bullets prefer the collector's typed Jev judgments (change_kind, notable,
+magnitude) for ranking and selection while the existing evidence phraser writes
+the sentence, so nothing is generated free-form. Gemini is an optional
+fallback; the no-key code-diff heuristics are the last resort.
+
 Updates the README.md between:
 <!-- WEEKLY_HIGHLIGHTS_START -->
 <!-- WEEKLY_HIGHLIGHTS_END -->
@@ -20,11 +25,14 @@ from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Optional, Tuple
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from svg_cards import PAD_X, TEXT, card_shell, esc, plain_text, wrap_by_width, write_theme_pair  # noqa: E402
+from svg_cards import PAD_X, TEXT, card_shell, esc, plain_text, text_width, wrap_by_width, write_theme_pair  # noqa: E402
+from jev_client import REGRESSION_WARN_THRESHOLD, regression_risk  # noqa: E402
 
 WEEKLY_START = "<!-- WEEKLY_HIGHLIGHTS_START -->"
 WEEKLY_END = "<!-- WEEKLY_HIGHLIGHTS_END -->"
 BULLET_RE = re.compile(r"^\*\s+\*\*\[([^\]]+)\]\(([^)]+)\):\*\*\s+(.+)$")
+RISK_BADGE_RE = re.compile(r"\s*\[risk: ([a-z]+)\]\s*$")
+RISK_COLORS = {"severe": "#f85149", "moderate": "#d29922", "minor": "#8b949e"}
 
 # The collector keeps only the first bounded added/removed lines per file, so
 # the no-LLM fallback reads raw excerpts and must phrase them in English
@@ -98,11 +106,14 @@ def filter_weekly_projects(store: Dict, start_dt: datetime, end_dt: datetime) ->
                 commits.append(commit)
         if not commits:
             continue
-        projects.append({
+        project = {
             "name": entry["name"],
             "changed_lines": sum(int(c.get("changed_lines", 0)) for c in commits),
             "commits": commits,
-        })
+        }
+        if isinstance(entry.get("judgments"), dict):
+            project["judgments"] = entry["judgments"]
+        projects.append(project)
     return sorted(projects, key=lambda p: p["changed_lines"], reverse=True)
 
 
@@ -159,6 +170,47 @@ def synthesize_with_gemini(projects: List[Dict], api_key: str, date_str: str) ->
         except Exception as exc:
             print(f"[WARN] Gemini API call ({model}) failed: {exc}", file=sys.stderr)
     return None
+
+
+def synthesize_with_jev(projects: List[Dict], username: str) -> Optional[List[str]]:
+    """Rank and select from the collector's typed Jev judgments, then phrase
+    each bullet from stored diff evidence with the deterministic phraser.
+
+    The collector annotates public project diffs nightly (`judgments` in the
+    diff store), so this path needs no API key and produces no generated prose:
+    Jev decides which projects stand out, the evidence phraser writes the
+    sentence. Returns None when no project carries judgments.
+    """
+    judged = [p for p in projects if isinstance(p.get("judgments"), dict)]
+    if not judged:
+        return None
+
+    def rank(project: Dict) -> Tuple[int, float, int]:
+        judgments = project["judgments"]
+        magnitude = judgments.get("magnitude") or {}
+        notable = judgments.get("notable") or {}
+        return (
+            int(magnitude.get("level") or 0),
+            float(notable.get("noul") or 0.0),
+            int(project.get("changed_lines") or 0),
+        )
+
+    ranked = sorted(judged, key=rank, reverse=True)
+    notable = [p for p in ranked if float((p["judgments"].get("notable") or {}).get("noul") or 0.0) >= 0.5]
+    notable_ids = {id(p) for p in notable}
+    chosen = (notable + [p for p in ranked if id(p) not in notable_ids])[:3]
+
+    bullets = []
+    for project in chosen:
+        evidence = _best_evidence(project)
+        desc = _describe_evidence(*evidence) if evidence else _describe_subject(project)
+        if not desc:
+            continue
+        repo = project["name"]
+        risk = regression_risk(project)
+        badge = f" [risk: {risk[1]}]" if risk and risk[0] >= REGRESSION_WARN_THRESHOLD else ""
+        bullets.append(f"* **[{repo}](https://github.com/{username}/{repo}):** {desc}{badge}")
+    return bullets or None
 
 
 def _strip_markdown(text: str) -> str:
@@ -403,10 +455,27 @@ def render_weekly_svg(bullets: List[str], date_range_label: str) -> str:
         if not m:
             continue
         name, _url, desc = m.groups()
+        badge_match = RISK_BADGE_RE.search(desc)
+        badge = badge_match.group(1) if badge_match else ""
+        if badge_match:
+            desc = desc[: badge_match.start()].rstrip()
         frags.append(
             f'<text x="{PAD_X}" y="{cy + 14:.1f}" font-size="14" font-weight="700" '
             f'fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,\'Segoe UI\',Helvetica,Arial,sans-serif">{esc(name)}</text>'
         )
+        if badge:
+            color = RISK_COLORS.get(badge, "#8b949e")
+            label = f"risk: {badge}"
+            badge_width = text_width(label, 11) + 12
+            badge_x = PAD_X + text_width(name, 14, bold=True) + 8
+            frags.append(
+                f'<rect x="{badge_x:.1f}" y="{cy - 2:.1f}" width="{badge_width:.1f}" height="16" rx="8" '
+                f'fill="{color}" fill-opacity="0.15" stroke="{color}" stroke-opacity="0.6"/>'
+            )
+            frags.append(
+                f'<text x="{badge_x + 6:.1f}" y="{cy + 11:.1f}" font-size="11" fill="{color}" '
+                f'font-family="-apple-system,BlinkMacSystemFont,\'Segoe UI\',Helvetica,Arial,sans-serif">{esc(label)}</text>'
+            )
         cy += 22
         for line in wrap_by_width(svg_plain_text(desc), 13, max_x - PAD_X, max_lines=2):
             frags.append(
@@ -540,7 +609,11 @@ def main():
     print(f"[INFO] {len(projects)} public projects have code changes in the window.")
 
     bullets = None
-    if args.gemini_api_key and projects:
+    if projects:
+        bullets = synthesize_with_jev(projects, args.username)
+        if bullets:
+            print(f"[INFO] Using typed Jev judgments for {len(bullets)} project(s).")
+    if not bullets and args.gemini_api_key and projects:
         print("[INFO] Summarizing collected code diffs with Gemini...")
         bullets = synthesize_with_gemini(projects, args.gemini_api_key, date_range_label)
     if not bullets:

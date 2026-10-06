@@ -29,6 +29,8 @@ Environment:
   STATE_DIR        mounted state volume (default /mnt/state)
   AUTHOR_PATTERN   git --author regex (default: my identities + every agent/bot identity)
   DRY_RUN=1        compute + render into WORK_DIR/out, skip pushes
+  TYPESAFE_API_KEY optional TypeSafe key; adds typed Jev judgments to public
+                   project diffs in the weekly store
 """
 
 import base64
@@ -61,6 +63,13 @@ from skill_signals import (  # noqa: E402
     is_noise_commit,
 )
 from svg_cards import write_theme_pair  # noqa: E402
+from collector_config import (  # noqa: E402
+    CloudflareCreds,
+    CollectorSettings,
+    ConfigError,
+    Secret,
+)
+from jev_client import annotate_diff_store, regression_warnings  # noqa: E402
 
 PROFILE_REPO = "harlanljones/harlanljones"
 STORE_PATH = "scripts/data/skill_weeks.json"
@@ -86,7 +95,6 @@ FIX_SUBJECT = re.compile(r"\b(hotfix|bugfix|revert|fix(?:es|ed)?)\b", re.I)
 BOT_AUTHOR = re.compile(r"\[bot\]|bot@", re.I)
 # Seasons for the two pipeline stats.
 STAT_DAYS = 28
-CF_ENV_FILE = os.path.expanduser("~/.config/dots/cloudflare.env")
 
 
 def cf_get(path: str, token: str) -> Optional[dict]:
@@ -103,7 +111,7 @@ def cf_get(path: str, token: str) -> Optional[dict]:
         return None
 
 
-def deployment_stats(cf_token: str, cf_account: str, gh_token: str, repos: List[dict]) -> Dict:
+def deployment_stats(cloudflare: Optional[CloudflareCreds], gh_token: Secret, repos: List[dict]) -> Dict:
     """wDC: recency-weighted Deployments Created over the last 4 weeks
     (Cloudflare Pages deployments + Workers last-deploys). aERA: failed
     GitHub Actions runs per 9, public repos only (the read token cannot list
@@ -113,8 +121,9 @@ def deployment_stats(cf_token: str, cf_account: str, gh_token: str, repos: List[
     cutoff = now - timedelta(days=STAT_DAYS)
 
     deploys: List[datetime] = []
-    if cf_token and cf_account:
-        base = f"/accounts/{cf_account}"
+    if cloudflare:
+        cf_token = cloudflare.token.reveal()
+        base = f"/accounts/{cloudflare.account_id}"
         for proj in (cf_get(f"{base}/pages/projects", cf_token) or {}).get("result") or []:
             body = cf_get(f"{base}/pages/projects/{proj['name']}/deployments?per_page=25", cf_token) or {}
             for d in (body.get("result") or []):
@@ -156,24 +165,6 @@ def deployment_stats(cf_token: str, cf_account: str, gh_token: str, repos: List[
     }
 
 
-def load_cf_env() -> Tuple[str, str]:
-    """CLOUDFLARE_API_TOKEN + ACCOUNT_ID from the environment or the dots env
-    file (the same file the splash refresher uses)."""
-    if os.environ.get("CLOUDFLARE_API_TOKEN"):
-        return os.environ["CLOUDFLARE_API_TOKEN"], os.environ.get("CLOUDFLARE_ACCOUNT_ID", "")
-    try:
-        with open(CF_ENV_FILE, encoding="utf-8") as f:
-            for line in f:
-                k, _, v = line.strip().partition("=")
-                if k == "CLOUDFLARE_API_TOKEN":
-                    os.environ.setdefault("CLOUDFLARE_API_TOKEN", v)
-                if k == "CLOUDFLARE_ACCOUNT_ID":
-                    os.environ.setdefault("CLOUDFLARE_ACCOUNT_ID", v)
-    except OSError:
-        pass
-    return os.environ.get("CLOUDFLARE_API_TOKEN", ""), os.environ.get("CLOUDFLARE_ACCOUNT_ID", "")
-
-
 def log(msg: str) -> None:
     print(msg, flush=True)
 
@@ -182,11 +173,11 @@ def log(msg: str) -> None:
 # GitHub + git plumbing
 # ---------------------------------------------------------------------------
 
-def gh_get(path: str, token: str) -> Optional[object]:
+def gh_get(path: str, token: Secret) -> Optional[object]:
     req = urllib.request.Request(
         f"https://api.github.com{path}",
         headers={
-            "Authorization": f"Bearer {token}",
+            "Authorization": f"Bearer {token.reveal()}",
             "Accept": "application/vnd.github+json",
             "User-Agent": "ProfileCollector/1.0",
             "X-GitHub-Api-Version": "2022-11-28",
@@ -200,10 +191,10 @@ def gh_get(path: str, token: str) -> Optional[object]:
         return None
 
 
-def git_env(token: str) -> Dict[str, str]:
+def git_env(token: Secret) -> Dict[str, str]:
     """Auth via GIT_CONFIG_* env vars: the token never lands in a remote URL,
     a config file, or the process list."""
-    basic = base64.b64encode(f"x-access-token:{token}".encode()).decode()
+    basic = base64.b64encode(f"x-access-token:{token.reveal()}".encode()).decode()
     env = dict(os.environ)
     env.update({
         "GIT_TERMINAL_PROMPT": "0",
@@ -218,7 +209,7 @@ def git(args: List[str], env: Dict[str, str], cwd: Optional[str] = None) -> subp
     return subprocess.run(["git", *args], env=env, cwd=cwd, capture_output=True, text=True)
 
 
-def owned_repos(token: str) -> List[dict]:
+def owned_repos(token: Secret) -> List[dict]:
     repos: List[dict] = []
     for page in range(1, 6):
         batch = gh_get(f"/user/repos?affiliation=owner&per_page=100&page={page}", token)
@@ -527,37 +518,43 @@ def publish(files: Dict[str, str], branch: str, message: str, env: Dict[str, str
     raise RuntimeError(f"push {branch} failed after retries")
 
 
-def main() -> None:
-    read_token = os.environ.get("GH_READ_TOKEN", "")
-    write_token = os.environ.get("GH_WRITE_TOKEN", "")
-    dry_run = os.environ.get("DRY_RUN") == "1"
-    if not read_token or (not write_token and not dry_run):
-        sys.exit("[ERROR] GH_READ_TOKEN and GH_WRITE_TOKEN are required (or DRY_RUN=1)")
-    state_dir = os.environ.get("STATE_DIR", "/mnt/state")
-    author_pattern = os.environ.get("AUTHOR_PATTERN", r"harlanljones|Harlan Jones|harlan@jolai\.com|harlan@local|agent|claude|copilot|cursor")
-    work = os.environ.get("WORK_DIR") or tempfile.mkdtemp(prefix="collector-")
+def main(settings: Optional[CollectorSettings] = None) -> None:
+    if settings is None:
+        try:
+            settings = CollectorSettings.from_environ()
+        except ConfigError as exc:
+            sys.exit(f"[ERROR] {exc}")
+    state_dir = str(settings.state_dir)
+    work = str(settings.work_dir)
     mirror_dir = os.path.join(work, "mirrors")
     out = os.path.join(work, "out")
     os.makedirs(mirror_dir, exist_ok=True)
     os.makedirs(out, exist_ok=True)
 
-    read_env = git_env(read_token)
+    read_env = git_env(settings.gh_read_token)
     if os.path.isdir(state_dir):
         restore_state(state_dir, mirror_dir)
-    repos = owned_repos(read_token)
+    repos = owned_repos(settings.gh_read_token)
     log(f"[INFO] {len(repos)} owned repositories")
     mirrors = sync_mirrors(mirror_dir, repos, read_env)
     if os.path.isdir(state_dir):
         save_state(state_dir, mirror_dir)
 
-    weeks, rhythm, fix = mine(mirrors, author_pattern, read_env)
+    weeks, rhythm, fix = mine(mirrors, settings.author_pattern, read_env)
     window_start, window_end, _, _ = get_weekly_dates()
     public_repo_names = {r["name"] for r in repos if not r.get("private")}
     diff_store = weekly_diff_store(
-        mirrors, public_repo_names, window_start, window_end, author_pattern, read_env,
+        mirrors, public_repo_names, window_start, window_end, settings.author_pattern, read_env,
     )
-    cf_token, cf_account = load_cf_env()
-    season = deployment_stats(cf_token, cf_account, read_token, repos)
+    if settings.typesafe_api_key:
+        try:
+            judged = annotate_diff_store(diff_store, settings.typesafe_api_key, log=log)
+            log(f"[INFO] Jev judged {judged} project diffs")
+            for name, risk, level in regression_warnings(diff_store):
+                log(f"[WARN] Jev regression risk {risk:.2f} ({level}) in {name}")
+        except Exception as exc:  # noqa: BLE001 - judgments must not sink the run
+            log(f"[WARN] Jev annotations skipped: {exc}")
+    season = deployment_stats(settings.cloudflare, settings.gh_read_token, repos)
     log(f"[INFO] wDC {season['wdc']:.0f} · aERA {season['aera']:.2f}")
     store = {
         "weeks": weeks,
@@ -584,10 +581,10 @@ def main() -> None:
     # card is a pure jobs table again.
     write_theme_pair(os.path.join(out, "pipeline.svg"), render_pipeline_svg.render())
     log(f"[OK] rendered into {out}")
-    if dry_run:
+    if settings.dry_run:
         return
 
-    write_env = git_env(write_token)
+    write_env = git_env(settings.require_write_token())
     publish(
         {STORE_PATH: store_file, WEEKLY_DIFF_STORE_PATH: diff_store_file},
         "main",

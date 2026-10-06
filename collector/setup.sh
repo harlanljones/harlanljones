@@ -165,18 +165,44 @@ for secret in cloudflare-token cloudflare-account; do
 		--role=roles/secretmanager.secretAccessor >/dev/null
 done
 
+step "TypeSafe Jev key (optional: typed judgments for public project diffs)"
+# typesafe-api-key: TypeSafe API key granting Jev (https://api.typesafe.ai)
+if ! g secrets describe typesafe-api-key >/dev/null 2>&1; then
+	key=""
+	if [[ -f "$HOME/.hermes/jev/key" ]]; then
+		key=$(tr -d '\r\n' <"$HOME/.hermes/jev/key")
+	fi
+	if [[ -z "$key" ]]; then
+		read -rsp "Paste value for typesafe-api-key (empty to skip): " key; echo
+	fi
+	if [[ -n "$key" ]]; then
+		printf '%s' "$key" | g secrets create typesafe-api-key --replication-policy=automatic --data-file=-
+	fi
+	unset key
+fi
+if g secrets describe typesafe-api-key >/dev/null 2>&1; then
+	g secrets add-iam-policy-binding typesafe-api-key --member="serviceAccount:$JOB_SA" \
+		--role=roles/secretmanager.secretAccessor >/dev/null
+fi
+
 step "Build image"
 (cd "$ROOT" && g builds submit --config=collector/cloudbuild.yaml --substitutions="_IMAGE=$IMAGE" \
 	--gcs-source-staging-dir="gs://$SRC_BUCKET/source" --service-account="projects/$PROJECT_ID/serviceAccounts/$BUILD_SA" --region="$REGION" .)
 
 step "Cloud Run Job"
+secrets="GH_READ_TOKEN=gh-read-token:latest,GH_WRITE_TOKEN=gh-write-token:latest"
+if g secrets describe cloudflare-token >/dev/null 2>&1; then
+	secrets+=",CLOUDFLARE_API_TOKEN=cloudflare-token:latest"
+	if g secrets describe cloudflare-account >/dev/null 2>&1; then
+		secrets+=",CLOUDFLARE_ACCOUNT_ID=cloudflare-account:latest"
+	fi
+fi
+if g secrets describe typesafe-api-key >/dev/null 2>&1; then
+	secrets+=",TYPESAFE_API_KEY=typesafe-api-key:latest"
+fi
 g run jobs deploy "$JOB" --image="$IMAGE" --region="$REGION" --service-account="$JOB_SA" \
 	--cpu=2 --memory=4Gi --task-timeout=3600 --max-retries=1 \
-	--set-secrets="$(printf 'GH_READ_TOKEN=gh-read-token:latest,GH_WRITE_TOKEN=gh-write-token:latest'
-	if g secrets describe cloudflare-token >/dev/null 2>&1; then
-		printf ',CLOUDFLARE_API_TOKEN=cloudflare-token:latest'
-		g secrets describe cloudflare-account >/dev/null 2>&1 && printf ',CLOUDFLARE_ACCOUNT_ID=cloudflare-account:latest'
-	fi)" \
+	--set-secrets="$secrets" \
 	--add-volume="name=state,type=cloud-storage,bucket=$BUCKET" \
 	--add-volume-mount="volume=state,mount-path=/mnt/state"
 g run jobs add-iam-policy-binding "$JOB" --region="$REGION" --member="serviceAccount:$SCHED_SA" \

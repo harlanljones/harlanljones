@@ -4,6 +4,7 @@ from scripts.mlb_birthdays import (
     render_birthday_index_svg,
     build_daily_ledger,
     ensure_birthday_index_image,
+    step_summary_path,
     BIRTHDAY_INDEX_SVG_URL,
 )
 from scripts.render_pipeline_svg import JOBS, render as render_pipeline
@@ -70,3 +71,30 @@ def test_ensure_birthday_index_image(tmp_path):
     assert "MLB Birthday Index" in content
     assert "mlb-birthday-index.svg" in content
     assert "mlb-birthday-index-light.svg" in content
+
+
+def test_step_summary_path_accepts_runner_temp_paths(tmp_path):
+    """GITHUB_STEP_SUMMARY is trusted only inside RUNNER_TEMP."""
+    runner = tmp_path / "runner"
+    summary = runner / "step_summary"
+    summary.parent.mkdir(parents=True)
+
+    env = {"GITHUB_STEP_SUMMARY": str(summary), "RUNNER_TEMP": str(runner)}
+
+    assert step_summary_path(env) == summary
+
+
+def test_step_summary_path_rejects_paths_outside_runner_temp(tmp_path):
+    outside = tmp_path / "outside"
+    outside.mkdir()
+    env = {
+        "GITHUB_STEP_SUMMARY": str(outside / "summary"),
+        "RUNNER_TEMP": str(tmp_path / "runner"),
+    }
+
+    assert step_summary_path(env) is None
+
+
+def test_step_summary_path_ignores_unset_and_missing_parent(tmp_path):
+    assert step_summary_path({}) is None
+    assert step_summary_path({"GITHUB_STEP_SUMMARY": str(tmp_path / "nope" / "summary")}) is None
