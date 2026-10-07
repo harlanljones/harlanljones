@@ -1,17 +1,17 @@
 {
   "fix_minus": {
-    "commits_28": 1026,
-    "fix_28": 239,
-    "value": 161
+    "commits_28": 1032,
+    "fix_28": 238,
+    "value": 160
   },
   "season": {
-    "aera": 1.14,
-    "aera_sub": "115 of 934 runs failed \u00b7 public repos \u00b7 28d",
-    "wdc": 23.76,
-    "wdc_sub": "53 deployments created \u00b7 last 28d"
+    "aera": 1.13,
+    "aera_sub": "116 of 951 runs failed \u00b7 public repos \u00b7 28d",
+    "wdc": 34.32,
+    "wdc_sub": "52 deployments created \u00b7 last 28d"
   },
   "source": "mirrors",
-  "updated": "2026-10-06T17:32:33Z",
+  "updated": "2026-10-07T10:23:07Z",
   "weeks": {
     "2025-10-13": {
       "commits": 15,
@@ -680,27 +680,30 @@
       }
     },
     "2026-10-05": {
-      "commits": 16,
-      "diffs": 156,
-      "repos": 5,
+      "commits": 41,
+      "diffs": 490,
+      "repos": 6,
       "skills": {
-        "API Integration": 4.69,
-        "Build Config": 8.72,
-        "CLI Design": 3.74,
-        "Cloudflare Workers": 3.32,
-        "Concurrency": 26.34,
-        "Data Viz": 13.27,
-        "Docs & Writing": 81.9,
-        "Error Handling": 16.12,
-        "GitHub Actions": 13.79,
-        "Lint & Format": 12.4,
-        "Next.js": 9.0,
-        "Performance": 16.1,
-        "React": 26.32,
-        "Regex & Parsing": 15.25,
-        "Tailwind CSS": 16.52,
-        "Testing": 78.39,
-        "Type Design": 10.19
+        "API Integration": 20.77,
+        "Build Config": 32.34,
+        "CLI Design": 9.03,
+        "Cloudflare Workers": 7.32,
+        "Concurrency": 116.12,
+        "Data Viz": 47.25,
+        "Docs & Writing": 194.09,
+        "Error Handling": 61.92,
+        "GitHub Actions": 27.66,
+        "LLM APIs": 2.83,
+        "Lint & Format": 19.69,
+        "Next.js": 25.25,
+        "Performance": 72.28,
+        "React": 91.0,
+        "Regex & Parsing": 28.01,
+        "SQL & Data Modeling": 3.74,
+        "Tailwind CSS": 34.43,
+        "Testing": 213.69,
+        "Type Design": 36.67,
+        "Zod": 16.58
       }
     }
   }

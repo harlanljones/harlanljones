@@ -163,7 +163,7 @@
       "judgments": {
         "change_kind": {
           "choice": "feature",
-          "confidence": 0.67
+          "confidence": 0.77
         },
         "magnitude": {
           "confidence": 1.0,
@@ -179,17 +179,129 @@
           "noul": 0.74
         },
         "severity": {
-          "confidence": 0.32,
+          "confidence": 0.28,
           "label": "severe",
           "level": 2,
-          "score": 1.55
+          "score": 1.52
         }
       },
       "name": "urban-signal"
     },
     {
-      "changed_lines": 3091,
+      "changed_lines": 12949,
       "commits": [
+        {
+          "authored_at": "2026-10-06T20:15:26+00:00",
+          "changed_lines": 1972,
+          "files": [
+            {
+              "added": [
+                "<!doctype html>",
+                "<html lang=\"en\">"
+              ],
+              "additions": 1951,
+              "deletions": 0,
+              "path": "spikes/jev-call-ui/mockups.html",
+              "removed": []
+            },
+            {
+              "added": [
+                "# Jev call UI directions (mockups)",
+                "Throwaway mockups, before any app code, for one screen that shows both the"
+              ],
+              "additions": 21,
+              "deletions": 0,
+              "path": "spikes/jev-call-ui/README.md",
+              "removed": []
+            }
+          ],
+          "sha": "9b0a5a82a605c6dde4c97c45f1fe0a2c1583d655",
+          "subject": "docs(spikes): add Jev call UI direction mockups"
+        },
+        {
+          "authored_at": "2026-10-06T17:43:36+00:00",
+          "changed_lines": 1841,
+          "files": [
+            {
+              "added": [
+                "\"note\": \"PA demand is scaled from one observed nine-inning Boston\u2013Pittsburgh game on 2026-08-14: 39 PA across the nine starting slots (5 each for batting orders",
+                "},"
+              ],
+              "additions": 200,
+              "deletions": 131,
+              "path": "src/lib/storylines/winter-infield.json",
+              "removed": [
+                "\"note\": \"PA demand is scaled from one observed nine-inning Boston\u2013Pittsburgh game on 2026-08-14: 39 PA across the nine starting slots (5 each for batting orders"
+              ]
+            },
+            {
+              "added": [
+                "\"note\": \"PA demand is scaled from one observed nine-inning Boston\u2013Pittsburgh game on 2026-08-14: 39 PA across the nine starting slots (5 each for batting orders",
+                "},"
+              ],
+              "additions": 212,
+              "deletions": 118,
+              "path": "src/lib/storylines/winter-duran.json",
+              "removed": [
+                "\"note\": \"PA demand is scaled from one observed nine-inning Boston\u2013Pittsburgh game on 2026-08-14: 39 PA across the nine starting slots (5 each for batting orders"
+              ]
+            },
+            {
+              "added": [
+                "\"note\": \"PA demand is scaled from one observed nine-inning Boston\u2013Pittsburgh game on 2026-08-14: 39 PA across the nine starting slots (5 each for batting orders",
+                "},"
+              ],
+              "additions": 212,
+              "deletions": 113,
+              "path": "src/lib/storylines/winter-bat.json",
+              "removed": [
+                "\"note\": \"PA demand is scaled from one observed nine-inning Boston\u2013Pittsburgh game on 2026-08-14: 39 PA across the nine starting slots (5 each for batting orders"
+              ]
+            }
+          ],
+          "sha": "175cfd9785fca39a42d7c8f03bd7e0f02bf8292d",
+          "subject": "feat(storylines): ground the winter pins in the projected 2027 roster (D-56)"
+        },
+        {
+          "authored_at": "2026-10-06T20:44:28+00:00",
+          "changed_lines": 1837,
+          "files": [
+            {
+              "added": [
+                "<script lang=\"ts\">",
+                "import { isProfileLabel, type JevRecord, type JevSystemOneRequest } from '$lib/classification';"
+              ],
+              "additions": 393,
+              "deletions": 0,
+              "path": "src/lib/app/diagrams/JevCall.svelte",
+              "removed": []
+            },
+            {
+              "added": [
+                "import { LABELED_MEDIAN_RATE, evidenceFor, provenanceNote } from './classification-evidence';",
+                "import JevCall from './diagrams/JevCall.svelte';"
+              ],
+              "additions": 169,
+              "deletions": 107,
+              "path": "src/lib/app/SnapshotsPage.svelte",
+              "removed": [
+                "medianRateOf,"
+              ]
+            },
+            {
+              "added": [
+                "<script lang=\"ts\">",
+                "import { RULE_SUMMARIES } from '$lib/classification';"
+              ],
+              "additions": 264,
+              "deletions": 0,
+              "path": "src/lib/app/diagrams/CriteriaLanes.svelte",
+              "removed": []
+            }
+          ],
+          "sha": "a1ffcbdfd75f7fbb1d83d67bfa1936a29b99300b",
+          "subject": "feat(app): RosterDiagram and JevCall components on the board and Snapshots (D-57)"
+        },
         {
           "authored_at": "2026-10-06T03:25:02+00:00",
           "changed_lines": 1429,
@@ -233,162 +345,76 @@
           ],
           "sha": "5e2668bdd57435acb1dd6d759995c549de2a01bc",
           "subject": "data: refresh public roster snapshot"
-        },
-        {
-          "authored_at": "2026-10-06T03:22:26+00:00",
-          "changed_lines": 710,
-          "files": [
-            {
-              "added": [
-                "// The transparent rule-based baseline SPEC \u00a77 requires as the comparison",
-                "// point beside the analyst labels and Jev (D-55). It applies the frozen"
-              ],
-              "additions": 314,
-              "deletions": 0,
-              "path": "src/lib/classification/baseline.ts",
-              "removed": []
-            },
-            {
-              "added": [
-                "import { describe, expect, it } from 'vitest';",
-                "import type { ProfileEvidence } from '../../src/lib/classification/prompt';"
-              ],
-              "additions": 184,
-              "deletions": 0,
-              "path": "tests/classification/baseline.test.ts",
-              "removed": []
-            },
-            {
-              "added": [
-                "import { PLAYER_SHAPES, shapeOf, type ShapeLabel } from '$lib/shapes/taxonomy';",
-                "RULE_BASELINE_VERSION,"
-              ],
-              "additions": 123,
-              "deletions": 11,
-              "path": "src/lib/app/SnapshotsPage.svelte",
-              "removed": [
-                "import { shapeOf } from '$lib/shapes/taxonomy';"
-              ]
-            }
-          ],
-          "sha": "d210bac0d6992c74cdccfd33e5092cce05a230a5",
-          "subject": "feat(classification): add transparent rule-based baseline beside Jev prompt (D-55)"
-        },
-        {
-          "authored_at": "2026-10-05T16:08:38+00:00",
-          "changed_lines": 554,
-          "files": [
-            {
-              "added": [
-                "\"asOf\": \"2026-10-05\",",
-                "\"fetchedAt\": \"2026-10-05T16:08:14Z\","
-              ],
-              "additions": 490,
-              "deletions": 12,
-              "path": "spikes/mlb-2026/timeline-snapshot.json",
-              "removed": [
-                "\"asOf\": \"2026-09-27\","
-              ]
-            },
-            {
-              "added": [
-                "'offseason-infield': '3b0b69932d910fefa8a63273be94506d496add79dc8314c09d38d17cf9666ab8',",
-                "'opening-day-outfield': '7e96e96954a35388a20ca7640e1948c96b3db96b47b4a0d5de140e66101e58f8',"
-              ],
-              "additions": 8,
-              "deletions": 8,
-              "path": "src/lib/storylines/registry.ts",
-              "removed": [
-                "'offseason-infield': '32e8dce45c5f977a338461ad4fbfb4a5e60409e988d0f50898b766bee4a68b88',"
-              ]
-            },
-            {
-              "added": [
-                "\"createdAt\": \"2026-10-05T16:08:14Z\",",
-                "\"note\": \"Free public endpoints, fetched 2026-10-05T16:08:14Z into spikes/mlb-2026/timeline-snapshot.json. Rates are observed 2026 regular-season totals from 202"
-              ],
-              "additions": 2,
-              "deletions": 2,
-              "path": "src/lib/storylines/deadline.json",
-              "removed": [
-                "\"createdAt\": \"2026-10-01T21:32:15Z\","
-              ]
-            }
-          ],
-          "sha": "71141fde7c9ab0a801b2c4c84a9d8f572ae8d76b",
-          "subject": "data: refresh public roster snapshot"
-        },
-        {
-          "authored_at": "2026-10-05T22:07:12+00:00",
-          "changed_lines": 384,
-          "files": [
-            {
-              "added": [
-                "import { describe, expect, it } from 'vitest';",
-                "import {"
-              ],
-              "additions": 122,
-              "deletions": 0,
-              "path": "tests/spikes/timeline-plan.test.ts",
-              "removed": []
-            },
-            {
-              "added": [
-                "// Shared planning facts for the 2026 timeline snapshot pipeline (D-54).",
-                "// The fetcher and the builder must agree on the regular-season close so the"
-              ],
-              "additions": 118,
-              "deletions": 0,
-              "path": "spikes/mlb-2026/lib/timeline-plan.mjs",
-              "removed": []
-            },
-            {
-              "added": [
-                "import { writeFileSync, readFileSync } from 'node:fs';",
-                "import { rosterPlan, shouldWrite, windowPlan } from './lib/timeline-plan.mjs';"
-              ],
-              "additions": 29,
-              "deletions": 38,
-              "path": "spikes/mlb-2026/timeline-fetch.mjs",
-              "removed": [
-                "import { writeFileSync } from 'node:fs';"
-              ]
-            }
-          ],
-          "sha": "4cb0a5538bea2ef3f920d678ddcabaea46735920",
-          "subject": "fix(spikes): write the snapshot only on material change (D-54)"
         }
       ],
       "judgments": {
         "change_kind": {
           "choice": "feature",
-          "confidence": 0.86
+          "confidence": 0.99
         },
         "magnitude": {
-          "confidence": 0.97,
+          "confidence": 1.0,
           "label": "large",
           "level": 2,
-          "score": 1.98
+          "score": 1.99
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.86
+          "noul": 0.87
         },
         "regression_risk": {
-          "noul": 0.64
+          "noul": 0.67
         },
         "severity": {
-          "confidence": 0.58,
+          "confidence": 0.56,
           "label": "moderate",
           "level": 1,
-          "score": 0.84
+          "score": 1.04
         }
       },
       "name": "jev-roster-shapes"
     },
     {
-      "changed_lines": 1339,
+      "changed_lines": 2935,
       "commits": [
+        {
+          "authored_at": "2026-10-06T17:35:57+00:00",
+          "changed_lines": 1596,
+          "files": [
+            {
+              "added": [
+                "#!/usr/bin/env python3",
+                "\"\"\"Typed environment configuration for the profile collector."
+              ],
+              "additions": 243,
+              "deletions": 0,
+              "path": "scripts/collector_config.py",
+              "removed": []
+            },
+            {
+              "added": [
+                "#!/usr/bin/env python3",
+                "\"\"\"Typed judgments for public project diffs via the TypeSafe Jev API."
+              ],
+              "additions": 239,
+              "deletions": 0,
+              "path": "scripts/jev_client.py",
+              "removed": []
+            },
+            {
+              "added": [
+                "#!/usr/bin/env python3",
+                "\"\"\"Read-only drift check for the collector's environment contract."
+              ],
+              "additions": 218,
+              "deletions": 0,
+              "path": "scripts/check_collector_env.py",
+              "removed": []
+            }
+          ],
+          "sha": "8f56a4ba9f76d452f6a3a904d33382a2194a7af8",
+          "subject": "feat(collector): typed env settings and TypeSafe Jev project judgments"
+        },
         {
           "authored_at": "2026-10-05T19:26:33+00:00",
           "changed_lines": 1021,
@@ -465,32 +491,32 @@
       "judgments": {
         "change_kind": {
           "choice": "feature",
-          "confidence": 0.85
+          "confidence": 1.0
         },
         "magnitude": {
-          "confidence": 0.96,
+          "confidence": 1.0,
           "label": "large",
           "level": 2,
-          "score": 1.98
+          "score": 2.0
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.74
+          "noul": 0.81
         },
         "regression_risk": {
-          "noul": 0.69
+          "noul": 0.74
         },
         "severity": {
-          "confidence": 0.23,
+          "confidence": 0.5,
           "label": "moderate",
           "level": 1,
-          "score": 0.55
+          "score": 0.77
         }
       },
       "name": "harlanljones"
     }
   ],
-  "updated": "2026-10-06T17:31:57.407885+00:00",
-  "window_end": "2026-10-06T10:31:56.928461-07:00",
+  "updated": "2026-10-07T10:22:24.023676+00:00",
+  "window_end": "2026-10-07T03:22:23.387956-07:00",
   "window_start": "2026-10-02T17:00:00-07:00"
 }
