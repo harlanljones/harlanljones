@@ -1,7 +1,7 @@
 {
   "projects": [
     {
-      "changed_lines": 60431,
+      "changed_lines": 64471,
       "commits": [
         {
           "authored_at": "2026-10-03T04:06:45+00:00",
@@ -122,48 +122,52 @@
           "subject": "feat: add gated durable shadow ingestion foundation"
         },
         {
-          "authored_at": "2026-10-03T02:01:55+00:00",
-          "changed_lines": 2504,
+          "authored_at": "2026-10-08T01:38:46+00:00",
+          "changed_lines": 2714,
           "files": [
             {
               "added": [
-                "\"\"\"Unit tests for the Des Moines, IA leaf: spatial geometry + the Rental License (SLA) feed.",
-                "Des Moines registers ONE feed: SLA = the City of Des Moines \"Rental License\""
+                ".parcel-coverage-note {",
+                "font-size: 11px;"
               ],
-              "additions": 680,
-              "deletions": 0,
-              "path": "apps/api/tests/unit/test_producers_des_moines.py",
-              "removed": []
+              "additions": 345,
+              "deletions": 35,
+              "path": "apps/api/src/serving/dashboard.py",
+              "removed": [
+                "if (z >= ZOOM_FLOOR) return; // metro LOD owns every zoom at/above the floor"
+              ]
             },
             {
               "added": [
-                "\"\"\"Des Moines, IA \u2014 Urban Signal spatial registration (metro bbox, divisions, submarkets).",
-                "Leaf module: geometry only. Feed specs live in the corpus YAML beside this"
+                ".parcel-coverage-note {",
+                "font-size: 11px;"
               ],
-              "additions": 426,
-              "deletions": 0,
-              "path": "apps/api/src/spatial/cities/des_moines.py",
-              "removed": []
+              "additions": 345,
+              "deletions": 35,
+              "path": "apps/dashboard/public/index.html",
+              "removed": [
+                "if (z >= ZOOM_FLOOR) return; // metro LOD owns every zoom at/above the floor"
+              ]
             },
             {
               "added": [
-                "# Wave 3 Phase-0 probe \u2014 Des Moines, IA",
-                "**Date of probe: 2026-09-29** (reads made about 02:55\u201307:50Z; Des Moines is on"
+                "\"\"\"Validate a national LODES artifact before the daily snapshot consumes it.",
+                "The daily snapshot runs in require-national production mode (US-435 \u00a724): it"
               ],
-              "additions": 423,
+              "additions": 294,
               "deletions": 0,
-              "path": "docs/research/probe-des_moines.md",
+              "path": "scripts/validate_national_artifact.py",
               "removed": []
             }
           ],
-          "sha": "d824e718bba4895b02ef9c9acd82e873961a8b3e",
-          "subject": "Metro coverage: register Des Moines, IA and fix Huntsville's staleness window (#66)"
+          "sha": "0b8abf419dbb9bc9108baec72c014d058b83df9f",
+          "subject": "chore: Fix batch push and kv stores"
         }
       ],
       "judgments": {
         "change_kind": {
           "choice": "feature",
-          "confidence": 0.77
+          "confidence": 0.69
         },
         "magnitude": {
           "confidence": 1.0,
@@ -173,22 +177,22 @@
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.79
+          "noul": 0.78
         },
         "regression_risk": {
-          "noul": 0.74
+          "noul": 0.79
         },
         "severity": {
-          "confidence": 0.28,
+          "confidence": 0.46,
           "label": "severe",
           "level": 2,
-          "score": 1.52
+          "score": 1.65
         }
       },
       "name": "urban-signal"
     },
     {
-      "changed_lines": 12949,
+      "changed_lines": 13015,
       "commits": [
         {
           "authored_at": "2026-10-06T20:15:26+00:00",
@@ -350,10 +354,10 @@
       "judgments": {
         "change_kind": {
           "choice": "feature",
-          "confidence": 0.99
+          "confidence": 1.0
         },
         "magnitude": {
-          "confidence": 1.0,
+          "confidence": 0.98,
           "label": "large",
           "level": 2,
           "score": 1.99
@@ -363,13 +367,13 @@
           "noul": 0.87
         },
         "regression_risk": {
-          "noul": 0.67
+          "noul": 0.65
         },
         "severity": {
-          "confidence": 0.56,
+          "confidence": 0.58,
           "label": "moderate",
           "level": 1,
-          "score": 1.04
+          "score": 0.99
         }
       },
       "name": "jev-roster-shapes"
@@ -501,22 +505,22 @@
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.81
+          "noul": 0.8
         },
         "regression_risk": {
-          "noul": 0.74
+          "noul": 0.75
         },
         "severity": {
-          "confidence": 0.5,
+          "confidence": 0.52,
           "label": "moderate",
           "level": 1,
-          "score": 0.77
+          "score": 0.8
         }
       },
       "name": "harlanljones"
     }
   ],
-  "updated": "2026-10-07T10:22:24.023676+00:00",
-  "window_end": "2026-10-07T03:22:23.387956-07:00",
+  "updated": "2026-10-08T10:21:49.717971+00:00",
+  "window_end": "2026-10-08T03:21:49.151114-07:00",
   "window_start": "2026-10-02T17:00:00-07:00"
 }
