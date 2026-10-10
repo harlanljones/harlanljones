@@ -1,8 +1,8 @@
 {
   "fix_minus": {
-    "commits_28": 1062,
+    "commits_28": 1055,
     "fix_28": 244,
-    "value": 158
+    "value": 159
   },
   "season": {
     "aera": 1.16,
@@ -11,7 +11,7 @@
     "wdc_sub": "53 deployments created \u00b7 last 28d"
   },
   "source": "mirrors",
-  "updated": "2026-10-09T10:22:35Z",
+  "updated": "2026-10-10T10:22:35Z",
   "weeks": {
     "2025-10-13": {
       "commits": 15,
