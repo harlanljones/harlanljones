@@ -1,17 +1,17 @@
 {
   "fix_minus": {
-    "commits_28": 1055,
-    "fix_28": 244,
-    "value": 159
+    "commits_28": 991,
+    "fix_28": 236,
+    "value": 161
   },
   "season": {
-    "aera": 1.16,
-    "aera_sub": "120 of 953 runs failed \u00b7 public repos \u00b7 28d",
+    "aera": 1.18,
+    "aera_sub": "122 of 953 runs failed \u00b7 public repos \u00b7 28d",
     "wdc": 35.32,
-    "wdc_sub": "53 deployments created \u00b7 last 28d"
+    "wdc_sub": "51 deployments created \u00b7 last 28d"
   },
   "source": "mirrors",
-  "updated": "2026-10-10T10:22:35Z",
+  "updated": "2026-10-11T10:22:26Z",
   "weeks": {
     "2025-10-13": {
       "commits": 15,
@@ -680,33 +680,39 @@
       }
     },
     "2026-10-05": {
-      "commits": 72,
-      "diffs": 665,
-      "repos": 9,
+      "commits": 86,
+      "diffs": 765,
+      "repos": 10,
       "skills": {
-        "API Integration": 43.2,
-        "Agent Tooling": 4.5,
-        "Build Config": 42.94,
-        "CLI Design": 27.45,
-        "Cloudflare Workers": 9.77,
-        "Concurrency": 237.22,
-        "Data Viz": 55.0,
+        "API Integration": 48.03,
+        "Agent Tooling": 17.06,
+        "Astro": 13.25,
+        "Build Config": 48.38,
+        "CLI Design": 51.68,
+        "Cloudflare Workers": 15.24,
+        "Concurrency": 275.54,
+        "Data Viz": 57.82,
         "Docker": 3.87,
-        "Docs & Writing": 332.37,
-        "Error Handling": 130.67,
-        "GitHub Actions": 41.37,
-        "LLM APIs": 7.73,
+        "Docs & Writing": 411.86,
+        "Error Handling": 181.82,
+        "GitHub Actions": 47.37,
+        "Gradient Boosting": 4.0,
+        "LLM APIs": 16.09,
         "Lint & Format": 22.69,
         "Next.js": 32.2,
-        "Performance": 78.28,
-        "Polars": 8.29,
-        "React": 130.48,
-        "Regex & Parsing": 43.22,
-        "SQL & Data Modeling": 9.21,
-        "Tailwind CSS": 36.43,
-        "Testing": 426.37,
-        "Type Design": 59.84,
-        "Zod": 16.58
+        "NumPy": 8.32,
+        "Performance": 81.11,
+        "Polars": 22.85,
+        "PyTorch": 4.0,
+        "React": 169.46,
+        "Regex & Parsing": 47.67,
+        "SQL & Data Modeling": 19.97,
+        "Tailwind CSS": 54.84,
+        "Testing": 577.67,
+        "Type Design": 84.96,
+        "Zod": 16.58,
+        "pandas": 7.74,
+        "scikit-learn": 5.66
       }
     }
   }

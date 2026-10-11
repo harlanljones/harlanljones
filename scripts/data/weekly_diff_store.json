@@ -1,6 +1,242 @@
 {
-  "projects": [],
-  "updated": "2026-10-10T10:21:57.563824+00:00",
-  "window_end": "2026-10-10T03:21:57.443159-07:00",
+  "projects": [
+    {
+      "changed_lines": 1954,
+      "commits": [
+        {
+          "authored_at": "2026-10-10T23:16:23+00:00",
+          "changed_lines": 1866,
+          "files": [
+            {
+              "added": [
+                "\"\"\"Deterministic synthetic model bundles for snapshot inference.",
+                "A bundle is the provenance authority for one seeded construction: three LightGBM"
+              ],
+              "additions": 315,
+              "deletions": 0,
+              "path": "apps/api/src/models/bundle.py",
+              "removed": []
+            },
+            {
+              "added": [
+                "\"\"\"Publish a content-addressed snapshot plan.",
+                "Objects are immutable ``objects/<sha256>`` values. The release manifest is"
+              ],
+              "additions": 212,
+              "deletions": 0,
+              "path": "apps/api/src/export/publish.py",
+              "removed": []
+            },
+            {
+              "added": [
+                "/**",
+                "* Content-addressed snapshot releases."
+              ],
+              "additions": 207,
+              "deletions": 0,
+              "path": "apps/dashboard/src/release.ts",
+              "removed": []
+            }
+          ],
+          "sha": "59d07297a1afa5f3c09d3565e26f5f8bad3c4085",
+          "subject": "feat: publish seeded model bundles and content-addressed snapshots"
+        },
+        {
+          "authored_at": "2026-10-10T23:57:35+00:00",
+          "changed_lines": 61,
+          "files": [
+            {
+              "added": [
+                "test(\"a content-addressed manifest does not stick for the next legacy request\", async () => {",
+                "const product = {"
+              ],
+              "additions": 50,
+              "deletions": 0,
+              "path": "apps/dashboard/tests/release.test.ts",
+              "removed": []
+            },
+            {
+              "added": [
+                "/** True when the cached document came from a content-addressed release. */",
+                "addressed: boolean;"
+              ],
+              "additions": 9,
+              "deletions": 2,
+              "path": "apps/dashboard/src/index.ts",
+              "removed": [
+                "manifestCache = { value: null, etag: null, expires: 0, snapshotId: null };"
+              ]
+            }
+          ],
+          "sha": "586a4bf4a1159f5fba3a26c0a2874b51efa4392b",
+          "subject": "fix: keep content-addressed manifests out of the legacy cache"
+        },
+        {
+          "authored_at": "2026-10-10T23:25:27+00:00",
+          "changed_lines": 26,
+          "files": [
+            {
+              "added": [
+                "from datetime import UTC, datetime, timedelta",
+                "parsed = datetime.fromisoformat(value)"
+              ],
+              "additions": 7,
+              "deletions": 7,
+              "path": "scripts/run_shadow_ingestion.py",
+              "removed": [
+                "from datetime import datetime, timedelta, timezone"
+              ]
+            },
+            {
+              "added": [
+                "from datetime import UTC, datetime, timedelta",
+                "parsed = datetime.fromisoformat(value)"
+              ],
+              "additions": 4,
+              "deletions": 4,
+              "path": "scripts/validate_shadow_cycles.py",
+              "removed": [
+                "from datetime import datetime, timedelta, timezone"
+              ]
+            },
+            {
+              "added": [
+                "from datetime import UTC, datetime",
+                "\"created_at\": datetime.now(UTC).isoformat().replace(\"+00:00\", \"Z\"),"
+              ],
+              "additions": 2,
+              "deletions": 2,
+              "path": "scripts/probe_ingestion_store.py",
+              "removed": [
+                "from datetime import datetime, timezone"
+              ]
+            }
+          ],
+          "sha": "47c147a8b8a88dc16cc03896cbf13994f38bce90",
+          "subject": "fix: satisfy ruff 0.17 on shadow ingestion scripts"
+        },
+        {
+          "authored_at": "2026-10-10T23:38:14+00:00",
+          "changed_lines": 1,
+          "files": [
+            {
+              "added": [
+                "\"compatibility_flags\": [\"nodejs_compat\"],"
+              ],
+              "additions": 1,
+              "deletions": 0,
+              "path": "apps/dashboard/wrangler.jsonc",
+              "removed": []
+            }
+          ],
+          "sha": "d14174de25f976ea7f40f30ef7ba9100365f0f33",
+          "subject": "fix: enable nodejs_compat for snapshot release context"
+        }
+      ],
+      "judgments": {
+        "change_kind": {
+          "choice": "feature",
+          "confidence": 1.0
+        },
+        "magnitude": {
+          "confidence": 1.0,
+          "label": "large",
+          "level": 2,
+          "score": 2.0
+        },
+        "model": "jev-latest",
+        "notable": {
+          "noul": 0.87
+        },
+        "regression_risk": {
+          "noul": 0.67
+        },
+        "severity": {
+          "confidence": 0.32,
+          "label": "moderate",
+          "level": 1,
+          "score": 1.33
+        }
+      },
+      "name": "urban-signal"
+    },
+    {
+      "changed_lines": 66,
+      "commits": [
+        {
+          "authored_at": "2026-10-10T13:49:31+00:00",
+          "changed_lines": 66,
+          "files": [
+            {
+              "added": [
+                "{",
+                "\"code\": \"vl\","
+              ],
+              "additions": 8,
+              "deletions": 8,
+              "path": "spikes/mlb-2026/timeline-snapshot.json",
+              "removed": [
+                "{"
+              ]
+            },
+            {
+              "added": [
+                "'offseason-infield': 'a5882d8a356407cf1a878a70f456a242bdb73d4d0974b8b737934890c4f98f4c',",
+                "'opening-day-outfield': '5a6286d7f9804bfb1c9d74079780c041fb43c305c2a3de39c98bf478b605f32f',"
+              ],
+              "additions": 8,
+              "deletions": 8,
+              "path": "src/lib/storylines/registry.ts",
+              "removed": [
+                "'offseason-infield': '74e18f82c56de781204f0c6db7edd922c71e413725d44321d64d24040bbfe07a',"
+              ]
+            },
+            {
+              "added": [
+                "\"createdAt\": \"2026-10-10T13:48:53Z\",",
+                "\"note\": \"Free public endpoints, fetched 2026-10-10T13:48:53Z into spikes/mlb-2026/timeline-snapshot.json. Rates are observed 2026 regular-season totals from 202"
+              ],
+              "additions": 2,
+              "deletions": 2,
+              "path": "src/lib/storylines/deadline.json",
+              "removed": [
+                "\"createdAt\": \"2026-10-06T03:24:21Z\","
+              ]
+            }
+          ],
+          "sha": "2897350b172eb4d5c0e8266930f7b908449e1f9a",
+          "subject": "data: refresh public roster snapshot"
+        }
+      ],
+      "judgments": {
+        "change_kind": {
+          "choice": "other",
+          "confidence": 0.98
+        },
+        "magnitude": {
+          "confidence": 0.82,
+          "label": "small",
+          "level": 0,
+          "score": 0.12
+        },
+        "model": "jev-latest",
+        "notable": {
+          "noul": 0.44
+        },
+        "regression_risk": {
+          "noul": 0.52
+        },
+        "severity": {
+          "confidence": 0.41,
+          "label": "minor",
+          "level": 0,
+          "score": 0.39
+        }
+      },
+      "name": "jev-roster-shapes"
+    }
+  ],
+  "updated": "2026-10-11T10:21:47.295386+00:00",
+  "window_end": "2026-10-11T03:21:47.133678-07:00",
   "window_start": "2026-10-09T17:00:00-07:00"
 }
