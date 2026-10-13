@@ -1,17 +1,17 @@
 {
   "fix_minus": {
-    "commits_28": 989,
-    "fix_28": 233,
-    "value": 159
+    "commits_28": 1011,
+    "fix_28": 227,
+    "value": 156
   },
   "season": {
-    "aera": 1.18,
-    "aera_sub": "120 of 943 runs failed \u00b7 public repos \u00b7 28d",
-    "wdc": 20.72,
+    "aera": 1.2,
+    "aera_sub": "121 of 935 runs failed \u00b7 public repos \u00b7 28d",
+    "wdc": 22.16,
     "wdc_sub": "51 deployments created \u00b7 last 28d"
   },
   "source": "mirrors",
-  "updated": "2026-10-12T10:23:21Z",
+  "updated": "2026-10-13T10:22:14Z",
   "weeks": {
     "2025-10-20": {
       "commits": 4,
@@ -667,47 +667,70 @@
       }
     },
     "2026-10-05": {
-      "commits": 108,
-      "diffs": 865,
-      "repos": 11,
+      "commits": 140,
+      "diffs": 989,
+      "repos": 13,
       "skills": {
-        "API Integration": 50.03,
+        "API Integration": 54.03,
         "Agent Tooling": 17.06,
         "Astro": 31.98,
         "Build Config": 55.92,
-        "CLI Design": 59.61,
+        "CLI Design": 64.51,
         "Cloudflare Workers": 15.24,
-        "Concurrency": 303.54,
+        "Concurrency": 348.32,
         "Data Viz": 67.2,
         "Docker": 3.87,
-        "Docs & Writing": 466.76,
-        "Error Handling": 197.93,
+        "Docs & Writing": 561.59,
+        "Error Handling": 218.3,
         "GitHub Actions": 50.97,
         "Gradient Boosting": 4.0,
         "LLM APIs": 16.09,
         "Lint & Format": 22.69,
         "Next.js": 32.2,
         "NumPy": 20.68,
-        "Performance": 95.75,
+        "Performance": 124.19,
         "Polars": 22.85,
         "PyTorch": 8.0,
-        "React": 169.46,
-        "Regex & Parsing": 47.67,
+        "React": 228.79,
+        "Regex & Parsing": 49.67,
         "SQL & Data Modeling": 19.97,
-        "Tailwind CSS": 56.84,
-        "Testing": 604.95,
-        "Type Design": 96.17,
+        "Tailwind CSS": 67.63,
+        "Testing": 649.11,
+        "Type Design": 108.41,
         "Zod": 20.58,
         "pandas": 7.74,
         "scikit-learn": 5.66
       }
     },
     "2026-10-12": {
-      "commits": 1,
-      "diffs": 2,
-      "repos": 1,
+      "commits": 73,
+      "diffs": 398,
+      "repos": 6,
       "skills": {
-        "Docs & Writing": 18.63
+        "API Integration": 19.97,
+        "Agent Tooling": 3.32,
+        "Astro": 26.63,
+        "Build Config": 8.3,
+        "CLI Design": 15.83,
+        "Cloudflare Workers": 9.0,
+        "Concurrency": 87.09,
+        "Data Viz": 20.07,
+        "Docs & Writing": 313.26,
+        "Dotfiles": 20.0,
+        "DuckDB": 2.83,
+        "Error Handling": 83.31,
+        "GitHub Actions": 13.17,
+        "LLM APIs": 8.0,
+        "NumPy": 2.83,
+        "Performance": 37.78,
+        "Polars": 3.46,
+        "React": 18.15,
+        "Regex & Parsing": 10.0,
+        "SQL & Data Modeling": 7.29,
+        "Tailwind CSS": 4.9,
+        "Testing": 244.16,
+        "Type Design": 35.22,
+        "Zod": 9.59
       }
     }
   }
