@@ -167,7 +167,7 @@
       "judgments": {
         "change_kind": {
           "choice": "feature",
-          "confidence": 0.89
+          "confidence": 0.88
         },
         "magnitude": {
           "confidence": 0.98,
@@ -177,22 +177,22 @@
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.89
+          "noul": 0.88
         },
         "regression_risk": {
-          "noul": 0.37
+          "noul": 0.4
         },
         "severity": {
-          "confidence": 0.25,
+          "confidence": 0.35,
           "label": "minor",
           "level": 0,
-          "score": 0.5
+          "score": 0.44
         }
       },
       "name": "statcast-lakehouse"
     },
     {
-      "changed_lines": 10841,
+      "changed_lines": 10927,
       "commits": [
         {
           "authored_at": "2026-10-10T23:16:23+00:00",
@@ -362,16 +362,16 @@
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.87
+          "noul": 0.89
         },
         "regression_risk": {
-          "noul": 0.65
+          "noul": 0.64
         },
         "severity": {
-          "confidence": 0.47,
+          "confidence": 0.43,
           "label": "severe",
           "level": 2,
-          "score": 1.66
+          "score": 1.62
         }
       },
       "name": "urban-signal"
@@ -524,7 +524,7 @@
       "judgments": {
         "change_kind": {
           "choice": "refactor",
-          "confidence": 0.43
+          "confidence": 0.37
         },
         "magnitude": {
           "confidence": 0.98,
@@ -537,31 +537,31 @@
           "noul": 0.52
         },
         "regression_risk": {
-          "noul": 0.67
+          "noul": 0.65
         },
         "severity": {
-          "confidence": 0.43,
+          "confidence": 0.5,
           "label": "moderate",
           "level": 1,
-          "score": 0.87
+          "score": 0.89
         }
       },
       "name": "baseball-dashboard"
     },
     {
-      "changed_lines": 102,
+      "changed_lines": 150,
       "commits": [
         {
-          "authored_at": "2026-10-13T15:07:27+00:00",
-          "changed_lines": 102,
+          "authored_at": "2026-10-14T12:55:40+00:00",
+          "changed_lines": 150,
           "files": [
             {
               "added": [
                 "{",
                 "\"code\": \"vl\","
               ],
-              "additions": 26,
-              "deletions": 26,
+              "additions": 50,
+              "deletions": 50,
               "path": "spikes/mlb-2026/timeline-snapshot.json",
               "removed": [
                 "{"
@@ -569,8 +569,8 @@
             },
             {
               "added": [
-                "'offseason-infield': 'ffd13fcbbdff240302e50a12a69a079b67ce99f6b0a712c89fa894bfd412045e',",
-                "'opening-day-outfield': '405bc60429441ca1d328593218412a7f42e61bfceb23b012387df1b5977b2a6d',"
+                "'offseason-infield': 'f6849c8a76fa7822e3387322eec86f3e5f5ac9a740242f7d5207c81f844f762a',",
+                "'opening-day-outfield': 'c686ae6b1d7a3d071c01908dc42ebb4953ad6f046d70eacaac59ca03df8d8a1e',"
               ],
               "additions": 8,
               "deletions": 8,
@@ -581,8 +581,8 @@
             },
             {
               "added": [
-                "\"createdAt\": \"2026-10-13T15:06:49Z\",",
-                "\"note\": \"Free public endpoints, fetched 2026-10-13T15:06:49Z into spikes/mlb-2026/timeline-snapshot.json. Rates are observed 2026 regular-season totals from 202"
+                "\"createdAt\": \"2026-10-14T12:55:02Z\",",
+                "\"note\": \"Free public endpoints, fetched 2026-10-14T12:55:02Z into spikes/mlb-2026/timeline-snapshot.json. Rates are observed 2026 regular-season totals from 202"
               ],
               "additions": 2,
               "deletions": 2,
@@ -592,7 +592,7 @@
               ]
             }
           ],
-          "sha": "0af3abfd23d20e9624096d26087e3bde2106d770",
+          "sha": "95eb7f2a4a3103882626bd81ea6493a2d9f06122",
           "subject": "data: refresh public roster snapshot"
         }
       ],
@@ -602,29 +602,29 @@
           "confidence": 0.98
         },
         "magnitude": {
-          "confidence": 0.61,
+          "confidence": 0.22,
           "label": "small",
           "level": 0,
-          "score": 0.26
+          "score": 0.52
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.45
+          "noul": 0.42
         },
         "regression_risk": {
-          "noul": 0.53
+          "noul": 0.52
         },
         "severity": {
-          "confidence": 0.35,
+          "confidence": 0.34,
           "label": "minor",
           "level": 0,
-          "score": 0.43
+          "score": 0.45
         }
       },
       "name": "jev-roster-shapes"
     }
   ],
-  "updated": "2026-10-14T10:23:24.355042+00:00",
-  "window_end": "2026-10-14T03:23:21.649765-07:00",
+  "updated": "2026-10-15T10:22:47.478629+00:00",
+  "window_end": "2026-10-15T03:22:44.529802-07:00",
   "window_start": "2026-10-09T17:00:00-07:00"
 }

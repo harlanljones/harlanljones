@@ -1,17 +1,17 @@
 {
   "fix_minus": {
-    "commits_28": 1124,
-    "fix_28": 253,
-    "value": 153
+    "commits_28": 1094,
+    "fix_28": 244,
+    "value": 151
   },
   "season": {
-    "aera": 1.09,
-    "aera_sub": "107 of 915 runs failed \u00b7 public repos \u00b7 28d",
+    "aera": 1.02,
+    "aera_sub": "100 of 911 runs failed \u00b7 public repos \u00b7 28d",
     "wdc": 28.16,
     "wdc_sub": "54 deployments created \u00b7 last 28d"
   },
   "source": "mirrors",
-  "updated": "2026-10-14T10:24:06Z",
+  "updated": "2026-10-15T10:23:33Z",
   "weeks": {
     "2025-10-20": {
       "commits": 4,
@@ -703,24 +703,24 @@
       }
     },
     "2026-10-12": {
-      "commits": 171,
-      "diffs": 1315,
+      "commits": 173,
+      "diffs": 1320,
       "repos": 10,
       "skills": {
         "API Integration": 40.39,
-        "Agent Tooling": 28.46,
+        "Agent Tooling": 29.69,
         "Astro": 55.1,
         "Build Config": 15.16,
-        "CLI Design": 33.92,
+        "CLI Design": 35.92,
         "Cloudflare Workers": 15.41,
         "Concurrency": 157.4,
         "Data Viz": 24.07,
-        "Docs & Writing": 719.11,
+        "Docs & Writing": 722.33,
         "Dotfiles": 20.0,
         "DuckDB": 2.83,
         "Error Handling": 167.05,
         "GitHub Actions": 19.5,
-        "LLM APIs": 65.8,
+        "LLM APIs": 67.8,
         "NumPy": 2.83,
         "Performance": 65.62,
         "Polars": 3.46,
@@ -728,7 +728,7 @@
         "Regex & Parsing": 14.83,
         "SQL & Data Modeling": 37.49,
         "Tailwind CSS": 53.6,
-        "Testing": 1124.98,
+        "Testing": 1135.58,
         "Type Design": 117.02,
         "Zod": 9.59
       }
