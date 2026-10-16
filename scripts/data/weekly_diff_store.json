@@ -173,20 +173,20 @@
           "confidence": 0.98,
           "label": "large",
           "level": 2,
-          "score": 1.98
+          "score": 1.99
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.88
+          "noul": 0.89
         },
         "regression_risk": {
-          "noul": 0.4
+          "noul": 0.37
         },
         "severity": {
-          "confidence": 0.35,
+          "confidence": 0.25,
           "label": "minor",
           "level": 0,
-          "score": 0.44
+          "score": 0.49
         }
       },
       "name": "statcast-lakehouse"
@@ -362,16 +362,16 @@
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.89
+          "noul": 0.87
         },
         "regression_risk": {
           "noul": 0.64
         },
         "severity": {
-          "confidence": 0.43,
+          "confidence": 0.49,
           "label": "severe",
           "level": 2,
-          "score": 1.62
+          "score": 1.65
         }
       },
       "name": "urban-signal"
@@ -524,7 +524,7 @@
       "judgments": {
         "change_kind": {
           "choice": "refactor",
-          "confidence": 0.37
+          "confidence": 0.39
         },
         "magnitude": {
           "confidence": 0.98,
@@ -534,43 +534,43 @@
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.52
+          "noul": 0.56
         },
         "regression_risk": {
-          "noul": 0.65
+          "noul": 0.67
         },
         "severity": {
-          "confidence": 0.5,
+          "confidence": 0.52,
           "label": "moderate",
           "level": 1,
-          "score": 0.89
+          "score": 0.92
         }
       },
       "name": "baseball-dashboard"
     },
     {
-      "changed_lines": 150,
+      "changed_lines": 122,
       "commits": [
         {
-          "authored_at": "2026-10-14T12:55:40+00:00",
-          "changed_lines": 150,
+          "authored_at": "2026-10-15T12:42:23+00:00",
+          "changed_lines": 122,
           "files": [
             {
               "added": [
-                "{",
-                "\"code\": \"vl\","
+                "\"team\": 111,",
+                "\"pa\": 1,"
               ],
-              "additions": 50,
-              "deletions": 50,
+              "additions": 36,
+              "deletions": 36,
               "path": "spikes/mlb-2026/timeline-snapshot.json",
               "removed": [
-                "{"
+                "\"team\": 110,"
               ]
             },
             {
               "added": [
-                "'offseason-infield': 'f6849c8a76fa7822e3387322eec86f3e5f5ac9a740242f7d5207c81f844f762a',",
-                "'opening-day-outfield': 'c686ae6b1d7a3d071c01908dc42ebb4953ad6f046d70eacaac59ca03df8d8a1e',"
+                "'offseason-infield': '211ad5c6d70ca4875d909b03165d8024965b778b5f031558b01f14c9c396b0ea',",
+                "'opening-day-outfield': '4f26988fa4affd3ca0afdad6e27f0cd9bb7e132a2023363ac76adc50043f43f0',"
               ],
               "additions": 8,
               "deletions": 8,
@@ -581,8 +581,8 @@
             },
             {
               "added": [
-                "\"createdAt\": \"2026-10-14T12:55:02Z\",",
-                "\"note\": \"Free public endpoints, fetched 2026-10-14T12:55:02Z into spikes/mlb-2026/timeline-snapshot.json. Rates are observed 2026 regular-season totals from 202"
+                "\"createdAt\": \"2026-10-15T12:41:53Z\",",
+                "\"note\": \"Free public endpoints, fetched 2026-10-15T12:41:53Z into spikes/mlb-2026/timeline-snapshot.json. Rates are observed 2026 regular-season totals from 202"
               ],
               "additions": 2,
               "deletions": 2,
@@ -592,7 +592,7 @@
               ]
             }
           ],
-          "sha": "95eb7f2a4a3103882626bd81ea6493a2d9f06122",
+          "sha": "ddbc4b6782dda8da505fd2fb882027cb62813d3d",
           "subject": "data: refresh public roster snapshot"
         }
       ],
@@ -602,29 +602,29 @@
           "confidence": 0.98
         },
         "magnitude": {
-          "confidence": 0.22,
+          "confidence": 0.49,
           "label": "small",
           "level": 0,
-          "score": 0.52
+          "score": 0.34
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.42
+          "noul": 0.46
         },
         "regression_risk": {
-          "noul": 0.52
+          "noul": 0.57
         },
         "severity": {
-          "confidence": 0.34,
+          "confidence": 0.22,
           "label": "minor",
           "level": 0,
-          "score": 0.45
+          "score": 0.52
         }
       },
       "name": "jev-roster-shapes"
     }
   ],
-  "updated": "2026-10-15T10:22:47.478629+00:00",
-  "window_end": "2026-10-15T03:22:44.529802-07:00",
+  "updated": "2026-10-16T10:21:07.265848+00:00",
+  "window_end": "2026-10-16T03:21:04.591419-07:00",
   "window_start": "2026-10-09T17:00:00-07:00"
 }
