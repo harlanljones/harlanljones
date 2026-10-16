@@ -8,12 +8,12 @@
 </defs>
 <rect x="0.5" y="0.5" width="899" height="256" rx="12" fill="#0d1117" stroke="url(#shellEdge)"/>
 <text x="24" y="30" font-size="18" font-weight="700" fill="#e6edf3" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Week in Review</text>
-<text x="24" y="48" font-size="12.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Oct 09 – Oct 14, 2026</text>
-<g transform="translate(0,56)"><text x="24" y="24.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">statcast-lakehouse</text>
-<text x="24" y="44.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Added the six deepest centre fields among the venues that hosted regular-season in ingestion/scenario_data.py.</text>
+<text x="24" y="48" font-size="12.5" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Oct 09 – Oct 15, 2026</text>
+<g transform="translate(0,56)"><text x="24" y="24.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">urban-signal</text>
+<text x="24" y="44.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Added deterministic synthetic model bundles for snapshot inference in apps/api/src/models/bundle.py.</text>
 <line x1="24" y1="59.0" x2="876" y2="59.0" stroke="#8b949e" stroke-opacity="0.25"/>
-<text x="24" y="81.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">urban-signal</text>
-<text x="24" y="101.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Added deterministic synthetic model bundles for snapshot inference in apps/api/src/models/bundle.py.</text>
+<text x="24" y="81.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">statcast-lakehouse</text>
+<text x="24" y="101.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Added the six deepest centre fields among the venues that hosted regular-season in ingestion/scenario_data.py.</text>
 <line x1="24" y1="116.0" x2="876" y2="116.0" stroke="#8b949e" stroke-opacity="0.25"/>
 <text x="24" y="138.0" font-size="14" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">baseball-dashboard</text>
 <text x="24" y="158.0" font-size="13" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Added deterministic upstream fixtures for the autoresearch benchmark in bench/fixture.ts.</text></g>
