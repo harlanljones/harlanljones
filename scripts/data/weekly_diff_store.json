@@ -1,6 +1,82 @@
 {
-  "projects": [],
-  "updated": "2026-10-17T10:20:14.528659+00:00",
-  "window_end": "2026-10-17T03:20:14.406518-07:00",
+  "projects": [
+    {
+      "changed_lines": 122,
+      "commits": [
+        {
+          "authored_at": "2026-10-17T11:40:29+00:00",
+          "changed_lines": 122,
+          "files": [
+            {
+              "added": [
+                "\"team\": 111,",
+                "\"pa\": 1,"
+              ],
+              "additions": 36,
+              "deletions": 36,
+              "path": "spikes/mlb-2026/timeline-snapshot.json",
+              "removed": [
+                "\"team\": 110,"
+              ]
+            },
+            {
+              "added": [
+                "'offseason-infield': 'dd405498f1963fdcf188f70101be75b960b5b90ddf03565fb20c4a15c45bfacf',",
+                "'opening-day-outfield': '7d9411b2bf0e07bb9f176504d2ff193ced7da84c7f1c99b17ccaf73b90871e16',"
+              ],
+              "additions": 8,
+              "deletions": 8,
+              "path": "src/lib/storylines/registry.ts",
+              "removed": [
+                "'offseason-infield': '74e18f82c56de781204f0c6db7edd922c71e413725d44321d64d24040bbfe07a',"
+              ]
+            },
+            {
+              "added": [
+                "\"createdAt\": \"2026-10-17T11:39:43Z\",",
+                "\"note\": \"Free public endpoints, fetched 2026-10-17T11:39:43Z into spikes/mlb-2026/timeline-snapshot.json. Rates are observed 2026 regular-season totals from 202"
+              ],
+              "additions": 2,
+              "deletions": 2,
+              "path": "src/lib/storylines/deadline.json",
+              "removed": [
+                "\"createdAt\": \"2026-10-06T03:24:21Z\","
+              ]
+            }
+          ],
+          "sha": "029fe64cf2d0182262f2a7b52e14f480cc60b0b5",
+          "subject": "data: refresh public roster snapshot"
+        }
+      ],
+      "judgments": {
+        "change_kind": {
+          "choice": "other",
+          "confidence": 0.98
+        },
+        "magnitude": {
+          "confidence": 0.44,
+          "label": "small",
+          "level": 0,
+          "score": 0.37
+        },
+        "model": "jev-latest",
+        "notable": {
+          "noul": 0.5
+        },
+        "regression_risk": {
+          "noul": 0.53
+        },
+        "severity": {
+          "confidence": 0.2,
+          "label": "minor",
+          "level": 0,
+          "score": 0.53
+        }
+      },
+      "name": "jev-roster-shapes"
+    }
+  ],
+  "updated": "2026-10-18T10:21:24.860175+00:00",
+  "window_end": "2026-10-18T03:21:24.723179-07:00",
   "window_start": "2026-10-16T17:00:00-07:00"
 }
