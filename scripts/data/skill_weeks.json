@@ -1,27 +1,18 @@
 {
   "fix_minus": {
-    "commits_28": 978,
-    "fix_28": 206,
-    "value": 142
+    "commits_28": 927,
+    "fix_28": 171,
+    "value": 127
   },
   "season": {
     "aera": 0.77,
-    "aera_sub": "63 of 777 runs failed \u00b7 public repos \u00b7 28d",
-    "wdc": 29.2,
-    "wdc_sub": "53 deployments created \u00b7 last 28d"
+    "aera_sub": "61 of 757 runs failed \u00b7 public repos \u00b7 28d",
+    "wdc": 16.299999999999997,
+    "wdc_sub": "54 deployments created \u00b7 last 28d"
   },
   "source": "mirrors",
-  "updated": "2026-10-18T10:21:56Z",
+  "updated": "2026-10-19T10:21:53Z",
   "weeks": {
-    "2025-10-20": {
-      "commits": 4,
-      "diffs": 17,
-      "repos": 2,
-      "skills": {
-        "Docs & Writing": 11.34,
-        "pandas": 1.73
-      }
-    },
     "2025-10-27": {
       "commits": 4,
       "diffs": 19,
@@ -703,38 +694,44 @@
       }
     },
     "2026-10-12": {
-      "commits": 185,
-      "diffs": 1519,
-      "repos": 13,
+      "commits": 253,
+      "diffs": 1816,
+      "repos": 16,
       "skills": {
         "API Integration": 55.68,
-        "Agent Tooling": 30.91,
-        "Astro": 55.1,
+        "Agent Tooling": 59.1,
+        "Astro": 87.11,
         "Build Config": 27.33,
-        "CLI Design": 35.92,
+        "CLI Design": 50.52,
         "Cloudflare Workers": 18.41,
-        "Concurrency": 196.37,
+        "Concurrency": 223.63,
         "Data Viz": 30.07,
-        "Docs & Writing": 855.26,
-        "Dotfiles": 20.0,
+        "Docs & Writing": 1049.95,
+        "Dotfiles": 361.2,
         "DuckDB": 2.83,
-        "Error Handling": 183.29,
+        "Error Handling": 201.05,
         "GitHub Actions": 22.33,
-        "LLM APIs": 67.8,
+        "LLM APIs": 80.63,
         "Next.js": 6.29,
         "NumPy": 2.83,
-        "Performance": 70.07,
+        "Performance": 78.54,
         "Polars": 3.46,
-        "React": 256.02,
-        "Regex & Parsing": 21.66,
+        "React": 270.87,
+        "Regex & Parsing": 23.66,
         "SQL & Data Modeling": 37.49,
         "Serde": 4.47,
-        "Tailwind CSS": 56.43,
-        "Testing": 1171.1,
-        "Type Design": 135.51,
+        "Tailwind CSS": 63.26,
+        "Testing": 1237.66,
+        "Type Design": 148.99,
         "Zod": 9.59,
         "pandas": 4.47
       }
+    },
+    "2026-10-19": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
     }
   }
 }
