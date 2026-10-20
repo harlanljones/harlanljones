@@ -1,7 +1,7 @@
 {
   "projects": [
     {
-      "changed_lines": 8350,
+      "changed_lines": 8592,
       "commits": [
         {
           "authored_at": "2026-10-18T21:19:35+00:00",
@@ -149,7 +149,7 @@
       "judgments": {
         "change_kind": {
           "choice": "feature",
-          "confidence": 0.98
+          "confidence": 0.99
         },
         "magnitude": {
           "confidence": 1.0,
@@ -159,13 +159,13 @@
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.91
+          "noul": 0.92
         },
         "regression_risk": {
           "noul": 0.69
         },
         "severity": {
-          "confidence": 0.34,
+          "confidence": 0.33,
           "label": "moderate",
           "level": 1,
           "score": 0.64
@@ -222,7 +222,7 @@
       "judgments": {
         "change_kind": {
           "choice": "feature",
-          "confidence": 0.86
+          "confidence": 0.84
         },
         "magnitude": {
           "confidence": 0.98,
@@ -232,16 +232,16 @@
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.79
+          "noul": 0.77
         },
         "regression_risk": {
-          "noul": 0.64
+          "noul": 0.63
         },
         "severity": {
-          "confidence": 0.38,
+          "confidence": 0.3,
           "label": "moderate",
           "level": 1,
-          "score": 0.89
+          "score": 0.82
         }
       },
       "name": "ring-the-pen"
@@ -250,7 +250,7 @@
       "changed_lines": 122,
       "commits": [
         {
-          "authored_at": "2026-10-18T12:05:57+00:00",
+          "authored_at": "2026-10-19T14:44:48+00:00",
           "changed_lines": 122,
           "files": [
             {
@@ -267,8 +267,8 @@
             },
             {
               "added": [
-                "'offseason-infield': 'd40d6ea2d349aba66ed4d9bd43c434eab83c4cb9f224cdf7c5801763617f8460',",
-                "'opening-day-outfield': '2ffd92d15273b8f1b04b0005e67c2ea22508e659d60d45f0f6f029e29ca172e0',"
+                "'offseason-infield': 'aa4595de1b9a67600af3d41a39f34f85784a87817477f253f2935d7012c5ff5b',",
+                "'opening-day-outfield': '21a2217a5ef69dda9b2ed83bade5aab68a67926746328f2a7e715be3bd72822e',"
               ],
               "additions": 8,
               "deletions": 8,
@@ -279,8 +279,8 @@
             },
             {
               "added": [
-                "\"createdAt\": \"2026-10-18T12:05:25Z\",",
-                "\"note\": \"Free public endpoints, fetched 2026-10-18T12:05:25Z into spikes/mlb-2026/timeline-snapshot.json. Rates are observed 2026 regular-season totals from 202"
+                "\"createdAt\": \"2026-10-19T14:44:11Z\",",
+                "\"note\": \"Free public endpoints, fetched 2026-10-19T14:44:11Z into spikes/mlb-2026/timeline-snapshot.json. Rates are observed 2026 regular-season totals from 202"
               ],
               "additions": 2,
               "deletions": 2,
@@ -290,33 +290,33 @@
               ]
             }
           ],
-          "sha": "d4724319a4f04ca8384556c1e25eb9ff8fc3af0f",
+          "sha": "d0ffe31e93bc4ceb15e090fd87b3b8d3668a8a2d",
           "subject": "data: refresh public roster snapshot"
         }
       ],
       "judgments": {
         "change_kind": {
           "choice": "other",
-          "confidence": 0.98
+          "confidence": 0.96
         },
         "magnitude": {
-          "confidence": 0.46,
+          "confidence": 0.4,
           "label": "small",
           "level": 0,
-          "score": 0.36
+          "score": 0.4
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.51
+          "noul": 0.5
         },
         "regression_risk": {
-          "noul": 0.53
+          "noul": 0.58
         },
         "severity": {
-          "confidence": 0.23,
+          "confidence": 0.28,
           "label": "minor",
           "level": 0,
-          "score": 0.52
+          "score": 0.48
         }
       },
       "name": "jev-roster-shapes"
@@ -349,14 +349,14 @@
           "confidence": 1.0
         },
         "magnitude": {
-          "confidence": 0.44,
+          "confidence": 0.49,
           "label": "small",
           "level": 0,
-          "score": 0.37
+          "score": 0.33
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.39
+          "noul": 0.37
         },
         "regression_risk": {
           "noul": 0.03
@@ -371,7 +371,7 @@
       "name": "nanotap"
     }
   ],
-  "updated": "2026-10-19T10:21:15.909772+00:00",
-  "window_end": "2026-10-19T03:21:15.760904-07:00",
+  "updated": "2026-10-20T10:21:15.587220+00:00",
+  "window_end": "2026-10-20T03:21:15.436754-07:00",
   "window_start": "2026-10-16T17:00:00-07:00"
 }

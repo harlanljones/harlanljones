@@ -1,17 +1,17 @@
 {
   "fix_minus": {
-    "commits_28": 927,
-    "fix_28": 171,
-    "value": 127
+    "commits_28": 952,
+    "fix_28": 176,
+    "value": 126
   },
   "season": {
-    "aera": 0.77,
-    "aera_sub": "61 of 757 runs failed \u00b7 public repos \u00b7 28d",
-    "wdc": 16.299999999999997,
-    "wdc_sub": "54 deployments created \u00b7 last 28d"
+    "aera": 0.8,
+    "aera_sub": "55 of 664 runs failed \u00b7 public repos \u00b7 28d",
+    "wdc": 17.299999999999997,
+    "wdc_sub": "45 deployments created \u00b7 last 28d"
   },
   "source": "mirrors",
-  "updated": "2026-10-19T10:21:53Z",
+  "updated": "2026-10-20T10:21:51Z",
   "weeks": {
     "2025-10-27": {
       "commits": 4,
@@ -694,8 +694,8 @@
       }
     },
     "2026-10-12": {
-      "commits": 253,
-      "diffs": 1816,
+      "commits": 252,
+      "diffs": 1805,
       "repos": 16,
       "skills": {
         "API Integration": 55.68,
@@ -728,10 +728,39 @@
       }
     },
     "2026-10-19": {
-      "commits": 0,
-      "diffs": 0,
-      "repos": 0,
-      "skills": {}
+      "commits": 52,
+      "diffs": 374,
+      "repos": 4,
+      "skills": {
+        "API Integration": 30.28,
+        "Agent Tooling": 3.61,
+        "Build Config": 22.79,
+        "CLI Design": 36.85,
+        "Cloudflare Workers": 2.0,
+        "Concurrency": 50.95,
+        "Data Viz": 8.36,
+        "Docker": 10.16,
+        "Docs & Writing": 211.02,
+        "Dotfiles": 17.47,
+        "Error Handling": 119.81,
+        "FastAPI": 10.2,
+        "GitHub Actions": 13.0,
+        "Gradient Boosting": 28.95,
+        "LLM APIs": 9.15,
+        "Lint & Format": 2.0,
+        "NumPy": 119.72,
+        "Performance": 59.91,
+        "PyTorch": 46.48,
+        "Pydantic": 22.43,
+        "React": 44.99,
+        "Regex & Parsing": 16.26,
+        "SQL & Data Modeling": 61.81,
+        "SQLAlchemy": 50.64,
+        "Tailwind CSS": 28.52,
+        "Testing": 193.12,
+        "Type Design": 44.67,
+        "pandas": 71.24
+      }
     }
   }
 }
