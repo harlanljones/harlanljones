@@ -1,17 +1,17 @@
 {
   "fix_minus": {
-    "commits_28": 922,
-    "fix_28": 175,
+    "commits_28": 914,
+    "fix_28": 174,
     "value": 130
   },
   "season": {
-    "aera": 0.69,
-    "aera_sub": "44 of 620 runs failed \u00b7 public repos \u00b7 28d",
-    "wdc": 17.299999999999997,
-    "wdc_sub": "42 deployments created \u00b7 last 28d"
+    "aera": 0.67,
+    "aera_sub": "42 of 617 runs failed \u00b7 public repos \u00b7 28d",
+    "wdc": 18.7,
+    "wdc_sub": "43 deployments created \u00b7 last 28d"
   },
   "source": "mirrors",
-  "updated": "2026-10-22T10:22:35Z",
+  "updated": "2026-10-23T10:23:45Z",
   "weeks": {
     "2025-10-27": {
       "commits": 4,
@@ -728,40 +728,40 @@
       }
     },
     "2026-10-19": {
-      "commits": 106,
-      "diffs": 912,
+      "commits": 165,
+      "diffs": 1196,
       "repos": 6,
       "skills": {
-        "API Integration": 76.56,
-        "Agent Tooling": 12.38,
-        "Astro": 20.0,
+        "API Integration": 78.56,
+        "Agent Tooling": 27.26,
+        "Astro": 61.34,
         "Build Config": 22.79,
-        "CLI Design": 54.12,
-        "Cloudflare Workers": 2.0,
-        "Concurrency": 129.75,
+        "CLI Design": 58.57,
+        "Cloudflare Workers": 3.22,
+        "Concurrency": 193.01,
         "Data Viz": 8.36,
-        "Docker": 14.74,
-        "Docs & Writing": 481.17,
+        "Docker": 22.68,
+        "Docs & Writing": 615.85,
         "Dotfiles": 17.47,
-        "Error Handling": 195.96,
+        "Error Handling": 242.37,
         "FastAPI": 13.03,
         "GitHub Actions": 20.68,
         "Gradient Boosting": 28.95,
-        "LLM APIs": 119.86,
+        "LLM APIs": 123.32,
         "Lint & Format": 2.0,
-        "Make & Just": 5.74,
-        "NumPy": 180.44,
+        "Make & Just": 9.42,
+        "NumPy": 213.88,
         "Performance": 73.82,
-        "PyTorch": 52.19,
+        "PyTorch": 59.84,
         "Pydantic": 29.65,
-        "React": 59.33,
-        "Regex & Parsing": 16.26,
-        "SQL & Data Modeling": 203.32,
-        "SQLAlchemy": 76.04,
-        "Tailwind CSS": 41.3,
-        "Testing": 710.56,
-        "Type Design": 60.46,
-        "pandas": 85.98
+        "React": 74.2,
+        "Regex & Parsing": 18.26,
+        "SQL & Data Modeling": 214.22,
+        "SQLAlchemy": 78.49,
+        "Tailwind CSS": 53.3,
+        "Testing": 866.18,
+        "Type Design": 82.77,
+        "pandas": 90.03
       }
     }
   }
