@@ -357,5 +357,37 @@
       "SQLite"
     ],
     "homepage": ""
+  },
+  {
+    "name": "bend-winprob",
+    "summary": "Active development focused on deterministic offline replay engine and redesign hosted chart page, built with Python and HTML5.",
+    "badges": [
+      "Python",
+      "HTML5"
+    ],
+    "homepage": ""
+  },
+  {
+    "name": "sabr-overlay",
+    "summary": "Live sabermetrics panels over MLB broadcasts on YouTube TV (Firefox extension). Recent work includes rename to SABR Overlay and prepare public repo, built with JavaScript.",
+    "badges": [
+      "JavaScript"
+    ],
+    "homepage": ""
+  },
+  {
+    "name": "bend-equity",
+    "summary": "Exact Texas Hold'em equity by board enumeration, in Bend 2 with machine-checked laws. Recent work includes bend-equity engine and CLI and share_total, built with Python and Shell.",
+    "badges": [
+      "Python",
+      "Shell"
+    ],
+    "homepage": ""
+  },
+  {
+    "name": "nanotap",
+    "summary": "Active development focused on implementation plan for nanotap, built with a polyglot stack.",
+    "badges": [],
+    "homepage": ""
   }
 ]
