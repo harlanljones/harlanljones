@@ -1,155 +1,164 @@
 {
   "projects": [
     {
-      "changed_lines": 8592,
+      "changed_lines": 173395,
       "commits": [
         {
-          "authored_at": "2026-10-18T21:19:35+00:00",
-          "changed_lines": 3028,
+          "authored_at": "2026-10-24T00:35:31+00:00",
+          "changed_lines": 78652,
           "files": [
             {
               "added": [
-                "flf2a$ 5 4 13 15 10 0 22415 96",
-                "Small by Glenn Chappell 4/93 -- based on Standard"
+                "{",
+                "\"allPlays\": ["
               ],
-              "additions": 1097,
+              "additions": 4565,
               "deletions": 0,
-              "path": ".local/share/figlet/small.flf",
+              "path": "fixtures/822828/plays.json",
               "removed": []
             },
             {
               "added": [
-                "flf2a$ 10 10 30 -1 7",
-                "Roman by Nick Miners N.M.Miners@durham.ac.uk"
+                "{",
+                "\"allPlays\": ["
               ],
-              "additions": 1028,
+              "additions": 4482,
               "deletions": 0,
-              "path": ".local/share/figlet/Roman.flf",
+              "path": "fixtures/823585/plays.json",
               "removed": []
             },
             {
               "added": [
-                "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
-                "<plist version=\"1.0\">"
+                "{",
+                "\"allPlays\": ["
               ],
-              "additions": 209,
+              "additions": 4407,
               "deletions": 0,
-              "path": ".config/omarchy/themed/bat.tmTheme.tpl",
+              "path": "fixtures/825049/plays.json",
               "removed": []
             }
           ],
-          "sha": "422715a216a146463c0aa8dbd78353106d2c4c98",
-          "subject": "theme: sync splash art and app palettes with the Omarchy theme"
+          "sha": "6f87f16bd6332fed8c7f57b2311cf410533f0d36",
+          "subject": "chore(bench): post-game accuracy and latency benchmark vs MLB winProbability"
         },
         {
-          "authored_at": "2026-10-18T19:53:15+00:00",
-          "changed_lines": 769,
+          "authored_at": "2026-10-24T05:18:11+00:00",
+          "changed_lines": 60432,
           "files": [
             {
               "added": [
-                "#!/usr/bin/env bash",
-                "# backdrop-split \u2014 split the current Omarchy theme background across every"
+                "{",
+                "\"allPlays\": ["
               ],
-              "additions": 737,
+              "additions": 4391,
               "deletions": 0,
-              "path": ".local/bin/backdrop-split",
+              "path": "fixtures/823585/scoring.json",
               "removed": []
             },
             {
               "added": [
-                "#!/usr/bin/env bash",
-                "# Omarchy post-boot hook: make sure the Backdrop plugin owns the background"
+                "{",
+                "\"allPlays\": ["
               ],
-              "additions": 23,
+              "additions": 4384,
               "deletions": 0,
-              "path": ".config/omarchy/hooks/post-boot.d/backdrop-split",
+              "path": "fixtures/822828/scoring.json",
               "removed": []
             },
             {
               "added": [
-                "#!/usr/bin/env bash",
-                "# Omarchy theme-set hook: re-split the new theme's background across the"
+                "{",
+                "\"allPlays\": ["
               ],
-              "additions": 5,
+              "additions": 4272,
               "deletions": 0,
-              "path": ".config/omarchy/hooks/theme-set.d/backdrop-split",
+              "path": "fixtures/825049/scoring.json",
               "removed": []
             }
           ],
-          "sha": "02cd1427c82854e530a5c611656080afc9b6703d",
-          "subject": "backdrop: split the theme background across the monitors"
+          "sha": "a4d360985dc83c8d26039e8db8801db2a73ee0e1",
+          "subject": "feat(web): keep the whole game on one scorebook sheet"
         },
         {
-          "authored_at": "2026-10-18T19:18:51+00:00",
-          "changed_lines": 432,
+          "authored_at": "2026-10-24T05:25:56+00:00",
+          "changed_lines": 20672,
           "files": [
             {
               "added": [
-                "#!/usr/bin/env bash",
-                "# yadm bootstrap: brings a machine in line with this repo. Safe to re-run."
+                "{",
+                "\"allPlays\": ["
               ],
-              "additions": 189,
+              "additions": 3928,
               "deletions": 0,
-              "path": ".config/yadm/bootstrap",
+              "path": "fixtures/849805/plays.json",
               "removed": []
             },
             {
-              "added": [
-                "# Dotfiles (yadm)",
-                "Managed with [yadm](https://yadm.io): a git repo whose work tree is `$HOME`."
-              ],
-              "additions": 76,
-              "deletions": 0,
-              "path": ".config/yadm/README.md",
-              "removed": []
+              "added": [],
+              "additions": 0,
+              "deletions": 3918,
+              "path": "fixtures/849809/plays.json",
+              "removed": [
+                "{"
+              ]
             },
             {
               "added": [
-                "#!/usr/bin/env bash",
-                "# Scan outgoing commits for secrets, then hand off to Git LFS so LFS objects"
+                "{",
+                "\"allPlays\": ["
               ],
-              "additions": 41,
+              "additions": 3866,
               "deletions": 0,
-              "path": ".config/yadm/git-hooks/pre-push",
+              "path": "fixtures/849805/scoring.json",
               "removed": []
             }
           ],
-          "sha": "bd254068ae7c35c2fb88058895468a16d1586a8b",
-          "subject": "yadm: bootstrap, leak-check hooks, secrets, and setup docs"
+          "sha": "cdaf3739c56bfeaa722fd1ab5e546344450ca2d7",
+          "subject": "feat: World Series Game 1 is the replay showcase"
         },
         {
-          "authored_at": "2026-10-18T19:53:14+00:00",
-          "changed_lines": 367,
+          "authored_at": "2026-10-24T04:33:15+00:00",
+          "changed_lines": 10337,
           "files": [
             {
               "added": [
-                "Compact sizing for omalt-tab: a 0.85x token set (denser cards for the 4K",
-                "panel). Applied by `omarchy-plugin-patches apply`; revert it with"
+                "{",
+                "\"allPlays\": ["
               ],
-              "additions": 315,
+              "additions": 751,
               "deletions": 0,
-              "path": ".local/share/omarchy-patches/io.github.codesmith28.omalt-tab-compact.patch",
+              "path": "fixtures/825049/times.json",
               "removed": []
             },
             {
               "added": [
-                "#!/usr/bin/env bash",
-                "# Apply, revert, or report local patches to third-party Omarchy plugins."
+                "{",
+                "\"allPlays\": ["
               ],
-              "additions": 52,
+              "additions": 742,
               "deletions": 0,
-              "path": ".local/bin/omarchy-plugin-patches",
+              "path": "fixtures/823585/times.json",
+              "removed": []
+            },
+            {
+              "added": [
+                "{",
+                "\"allPlays\": ["
+              ],
+              "additions": 724,
+              "deletions": 0,
+              "path": "fixtures/823164/times.json",
               "removed": []
             }
           ],
-          "sha": "94e4828981da56f16b68b30a1c28f07fac3ff187",
-          "subject": "omalt-tab: compact sizing patch"
+          "sha": "36d52509a90c3857882b0e1e082f206845916d9e",
+          "subject": "feat: prediction-market prices beside Bend and MLB"
         }
       ],
       "judgments": {
         "change_kind": {
           "choice": "feature",
-          "confidence": 0.99
+          "confidence": 0.93
         },
         "magnitude": {
           "confidence": 1.0,
@@ -159,70 +168,66 @@
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.94
+          "noul": 0.88
         },
         "regression_risk": {
-          "noul": 0.71
+          "noul": 0.54
         },
         "severity": {
-          "confidence": 0.37,
+          "confidence": 0.22,
           "label": "moderate",
           "level": 1,
-          "score": 0.69
+          "score": 0.7
         }
       },
-      "name": "dotfiles"
+      "name": "bend-winprob"
     },
     {
-      "changed_lines": 2113,
+      "changed_lines": 1236,
       "commits": [
         {
-          "authored_at": "2026-10-19T01:59:06+00:00",
-          "changed_lines": 2113,
+          "authored_at": "2026-10-24T01:40:26+00:00",
+          "changed_lines": 1236,
           "files": [
             {
               "added": [
-                "use RingThePenWeb.ConnCase, async: false",
-                "alias RingThePen.Questions"
+                "// SABR Overlay: live sabermetrics panels over MLB broadcasts on YouTube TV.",
+                "// Data: MLB StatsAPI (live feed, win probability, season + sabermetric splits) and Baseball Savant percentiles."
               ],
-              "additions": 353,
-              "deletions": 11,
-              "path": "test/ring_the_pen_web/live/workbench_live_test.exs",
-              "removed": [
-                "use RingThePenWeb.ConnCase, async: true"
-              ]
-            },
-            {
-              "added": [
-                "defmodule RingThePen.CatalogTest do",
-                "use ExUnit.Case, async: true"
-              ],
-              "additions": 357,
+              "additions": 773,
               "deletions": 0,
-              "path": "test/ring_the_pen/catalog_test.exs",
+              "path": "content.js",
               "removed": []
             },
             {
               "added": [
-                "@moduledoc \"Phase H historical hook-card workbench.\"",
-                "alias RingThePen.Workbench"
+                "Apache License",
+                "Version 2.0, January 2004"
               ],
-              "additions": 290,
-              "deletions": 25,
-              "path": "lib/ring_the_pen_web/live/workbench_live.ex",
-              "removed": [
-                "@moduledoc \"\"\""
-              ]
+              "additions": 202,
+              "deletions": 0,
+              "path": "LICENSE",
+              "removed": []
+            },
+            {
+              "added": [
+                "# SABR Overlay",
+                "Live sabermetrics panels on top of MLB broadcasts in YouTube TV. A Firefox extension, no build step, no backend."
+              ],
+              "additions": 128,
+              "deletions": 0,
+              "path": "README.md",
+              "removed": []
             }
           ],
-          "sha": "8714078fa68eb618be661137a82f0b5420767b21",
-          "subject": "Implement validated Phase H workbench and About page"
+          "sha": "d67bfde62fb1957839865e5367a96b9eed8d19fa",
+          "subject": "feat: rename to SABR Overlay and prepare public repo"
         }
       ],
       "judgments": {
         "change_kind": {
           "choice": "feature",
-          "confidence": 0.94
+          "confidence": 0.88
         },
         "magnitude": {
           "confidence": 0.98,
@@ -232,146 +237,22 @@
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.86
+          "noul": 0.94
         },
         "regression_risk": {
-          "noul": 0.62
+          "noul": 0.31
         },
         "severity": {
-          "confidence": 0.46,
-          "label": "moderate",
-          "level": 1,
-          "score": 1.02
-        }
-      },
-      "name": "ring-the-pen"
-    },
-    {
-      "changed_lines": 66,
-      "commits": [
-        {
-          "authored_at": "2026-10-22T13:01:41+00:00",
-          "changed_lines": 66,
-          "files": [
-            {
-              "added": [
-                "{",
-                "\"code\": \"vl\","
-              ],
-              "additions": 8,
-              "deletions": 8,
-              "path": "spikes/mlb-2026/timeline-snapshot.json",
-              "removed": [
-                "{"
-              ]
-            },
-            {
-              "added": [
-                "'offseason-infield': 'c562f4a5274c3fe414884464feb00b48415abfb7914ab1b958a8959bf0c0de23',",
-                "'opening-day-outfield': '11dcce86f1fc69de9d32cba907b1d788aeb1d488cdea5721b2161e82f2e3409c',"
-              ],
-              "additions": 8,
-              "deletions": 8,
-              "path": "src/lib/storylines/registry.ts",
-              "removed": [
-                "'offseason-infield': '74e18f82c56de781204f0c6db7edd922c71e413725d44321d64d24040bbfe07a',"
-              ]
-            },
-            {
-              "added": [
-                "\"createdAt\": \"2026-10-22T13:00:54Z\",",
-                "\"note\": \"Free public endpoints, fetched 2026-10-22T13:00:54Z into spikes/mlb-2026/timeline-snapshot.json. Rates are observed 2026 regular-season totals from 202"
-              ],
-              "additions": 2,
-              "deletions": 2,
-              "path": "src/lib/storylines/deadline.json",
-              "removed": [
-                "\"createdAt\": \"2026-10-06T03:24:21Z\","
-              ]
-            }
-          ],
-          "sha": "4af3f5e3195134c7d112a32e72d1aaf74f7a834e",
-          "subject": "data: refresh public roster snapshot"
-        }
-      ],
-      "judgments": {
-        "change_kind": {
-          "choice": "other",
-          "confidence": 0.95
-        },
-        "magnitude": {
-          "confidence": 0.53,
-          "label": "small",
-          "level": 0,
-          "score": 0.31
-        },
-        "model": "jev-latest",
-        "notable": {
-          "noul": 0.58
-        },
-        "regression_risk": {
-          "noul": 0.51
-        },
-        "severity": {
-          "confidence": 0.34,
+          "confidence": 0.05,
           "label": "minor",
           "level": 0,
-          "score": 0.44
+          "score": 0.63
         }
       },
-      "name": "jev-roster-shapes"
-    },
-    {
-      "changed_lines": 40,
-      "commits": [
-        {
-          "authored_at": "2026-10-19T03:41:46+00:00",
-          "changed_lines": 40,
-          "files": [
-            {
-              "added": [
-                "# Implementation Plan: `nanotap` \u2014 Local AI & MCP Traffic Inspector",
-                "## Problem & Approach"
-              ],
-              "additions": 40,
-              "deletions": 0,
-              "path": "PLAN.md",
-              "removed": []
-            }
-          ],
-          "sha": "7a4c83b60b302fe1dcaa3bfdced045c8a1f12187",
-          "subject": "docs: add implementation plan for nanotap"
-        }
-      ],
-      "judgments": {
-        "change_kind": {
-          "choice": "docs",
-          "confidence": 1.0
-        },
-        "magnitude": {
-          "confidence": 0.25,
-          "label": "moderate",
-          "level": 1,
-          "score": 0.54
-        },
-        "model": "jev-latest",
-        "notable": {
-          "noul": 0.52
-        },
-        "regression_risk": {
-          "noul": 0.04
-        },
-        "severity": {
-          "confidence": 1.0,
-          "label": "minor",
-          "level": 0,
-          "score": 0.0
-        }
-      },
-      "name": "nanotap"
+      "name": "sabr-overlay"
     }
   ],
-  "updated": "2026-10-23T10:23:11.254535+00:00",
-  "window_end": "2026-10-23T03:23:11.058402-07:00",
-  "window_start": "2026-10-16T17:00:00-07:00"
+  "updated": "2026-10-24T10:23:31.346810+00:00",
+  "window_end": "2026-10-24T03:23:30.930474-07:00",
+  "window_start": "2026-10-23T17:00:00-07:00"
 }
