@@ -1,17 +1,17 @@
 {
   "fix_minus": {
-    "commits_28": 934,
-    "fix_28": 172,
-    "value": 125
+    "commits_28": 925,
+    "fix_28": 175,
+    "value": 127
   },
   "season": {
-    "aera": 0.64,
-    "aera_sub": "39 of 601 runs failed \u00b7 public repos \u00b7 28d",
+    "aera": 0.57,
+    "aera_sub": "33 of 579 runs failed \u00b7 public repos \u00b7 28d",
     "wdc": 22.7,
     "wdc_sub": "46 deployments created \u00b7 last 28d"
   },
   "source": "mirrors",
-  "updated": "2026-10-24T10:24:00Z",
+  "updated": "2026-10-25T10:23:38Z",
   "weeks": {
     "2025-10-27": {
       "commits": 4,
@@ -728,39 +728,39 @@
       }
     },
     "2026-10-19": {
-      "commits": 212,
-      "diffs": 1624,
+      "commits": 218,
+      "diffs": 1821,
       "repos": 9,
       "skills": {
-        "API Integration": 108.55,
-        "Agent Tooling": 42.52,
+        "API Integration": 127.69,
+        "Agent Tooling": 43.74,
         "Astro": 70.71,
         "Build Config": 22.79,
-        "CLI Design": 93.57,
+        "CLI Design": 101.31,
         "Cloudflare Workers": 7.92,
-        "Concurrency": 230.79,
-        "Data Viz": 35.04,
+        "Concurrency": 245.75,
+        "Data Viz": 51.41,
         "Docker": 28.51,
-        "Docs & Writing": 782.57,
+        "Docs & Writing": 825.49,
         "Dotfiles": 17.47,
-        "Error Handling": 334.39,
+        "Error Handling": 356.97,
         "FastAPI": 13.03,
         "GitHub Actions": 28.43,
         "Gradient Boosting": 28.95,
         "LLM APIs": 123.32,
         "Lint & Format": 5.46,
         "Make & Just": 13.66,
-        "NumPy": 223.67,
-        "Performance": 90.19,
+        "NumPy": 230.31,
+        "Performance": 109.87,
         "PyTorch": 59.84,
         "Pydantic": 29.65,
         "React": 75.42,
-        "Regex & Parsing": 18.26,
-        "SQL & Data Modeling": 214.22,
-        "SQLAlchemy": 78.49,
+        "Regex & Parsing": 20.26,
+        "SQL & Data Modeling": 219.41,
+        "SQLAlchemy": 81.32,
         "Tailwind CSS": 71.42,
-        "Testing": 992.38,
-        "Type Design": 84.77,
+        "Testing": 1036.99,
+        "Type Design": 86.77,
         "pandas": 90.03
       }
     }

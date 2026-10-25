@@ -1,8 +1,44 @@
 {
   "projects": [
     {
-      "changed_lines": 173395,
+      "changed_lines": 344355,
       "commits": [
+        {
+          "authored_at": "2026-10-25T01:31:25+00:00",
+          "changed_lines": 167641,
+          "files": [
+            {
+              "added": [
+                "{",
+                "\"when\": \"2026-10-24 10:32:12\","
+              ],
+              "additions": 31867,
+              "deletions": 0,
+              "path": "web/bench/data-2025.json",
+              "removed": []
+            },
+            {
+              "added": [],
+              "additions": 0,
+              "deletions": 4565,
+              "path": "fixtures/822828/plays.json",
+              "removed": [
+                "{"
+              ]
+            },
+            {
+              "added": [],
+              "additions": 0,
+              "deletions": 4482,
+              "path": "fixtures/823585/plays.json",
+              "removed": [
+                "{"
+              ]
+            }
+          ],
+          "sha": "edfb25c3133ccb8ea7cd8d1d56a74a9d6a35b9c3",
+          "subject": "feat: benchmark page, reworked model, 2025 season run, live Game 2"
+        },
         {
           "authored_at": "2026-10-24T00:35:31+00:00",
           "changed_lines": 78652,
@@ -115,69 +151,31 @@
           ],
           "sha": "cdaf3739c56bfeaa722fd1ab5e546344450ca2d7",
           "subject": "feat: World Series Game 1 is the replay showcase"
-        },
-        {
-          "authored_at": "2026-10-24T04:33:15+00:00",
-          "changed_lines": 10337,
-          "files": [
-            {
-              "added": [
-                "{",
-                "\"allPlays\": ["
-              ],
-              "additions": 751,
-              "deletions": 0,
-              "path": "fixtures/825049/times.json",
-              "removed": []
-            },
-            {
-              "added": [
-                "{",
-                "\"allPlays\": ["
-              ],
-              "additions": 742,
-              "deletions": 0,
-              "path": "fixtures/823585/times.json",
-              "removed": []
-            },
-            {
-              "added": [
-                "{",
-                "\"allPlays\": ["
-              ],
-              "additions": 724,
-              "deletions": 0,
-              "path": "fixtures/823164/times.json",
-              "removed": []
-            }
-          ],
-          "sha": "36d52509a90c3857882b0e1e082f206845916d9e",
-          "subject": "feat: prediction-market prices beside Bend and MLB"
         }
       ],
       "judgments": {
         "change_kind": {
           "choice": "feature",
-          "confidence": 0.93
+          "confidence": 0.99
         },
         "magnitude": {
           "confidence": 1.0,
           "label": "large",
           "level": 2,
-          "score": 1.99
+          "score": 2.0
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.88
+          "noul": 0.92
         },
         "regression_risk": {
-          "noul": 0.54
+          "noul": 0.66
         },
         "severity": {
-          "confidence": 0.22,
+          "confidence": 0.43,
           "label": "moderate",
           "level": 1,
-          "score": 0.7
+          "score": 0.98
         }
       },
       "name": "bend-winprob"
@@ -227,7 +225,7 @@
       "judgments": {
         "change_kind": {
           "choice": "feature",
-          "confidence": 0.88
+          "confidence": 0.87
         },
         "magnitude": {
           "confidence": 0.98,
@@ -237,22 +235,97 @@
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.94
+          "noul": 0.93
         },
         "regression_risk": {
           "noul": 0.31
         },
         "severity": {
-          "confidence": 0.05,
+          "confidence": 0.0,
           "label": "minor",
           "level": 0,
-          "score": 0.63
+          "score": 0.66
         }
       },
       "name": "sabr-overlay"
+    },
+    {
+      "changed_lines": 66,
+      "commits": [
+        {
+          "authored_at": "2026-10-24T12:04:00+00:00",
+          "changed_lines": 66,
+          "files": [
+            {
+              "added": [
+                "{",
+                "\"code\": \"vl\","
+              ],
+              "additions": 8,
+              "deletions": 8,
+              "path": "spikes/mlb-2026/timeline-snapshot.json",
+              "removed": [
+                "{"
+              ]
+            },
+            {
+              "added": [
+                "'offseason-infield': 'a33f344e3dd6a83b220d183d1e69db26ea30c2122cdfb8617c76526e76f00cdb',",
+                "'opening-day-outfield': '8f0b8c6c57adde5c2e0e764d15d05ffe5a20f3eb5242a2494cd1cb171de42276',"
+              ],
+              "additions": 8,
+              "deletions": 8,
+              "path": "src/lib/storylines/registry.ts",
+              "removed": [
+                "'offseason-infield': '74e18f82c56de781204f0c6db7edd922c71e413725d44321d64d24040bbfe07a',"
+              ]
+            },
+            {
+              "added": [
+                "\"createdAt\": \"2026-10-24T12:03:22Z\",",
+                "\"note\": \"Free public endpoints, fetched 2026-10-24T12:03:22Z into spikes/mlb-2026/timeline-snapshot.json. Rates are observed 2026 regular-season totals from 202"
+              ],
+              "additions": 2,
+              "deletions": 2,
+              "path": "src/lib/storylines/deadline.json",
+              "removed": [
+                "\"createdAt\": \"2026-10-06T03:24:21Z\","
+              ]
+            }
+          ],
+          "sha": "76242bfff6f8c6d8e7ebfd71fa4cc6f9903f1813",
+          "subject": "data: refresh public roster snapshot"
+        }
+      ],
+      "judgments": {
+        "change_kind": {
+          "choice": "other",
+          "confidence": 0.94
+        },
+        "magnitude": {
+          "confidence": 0.53,
+          "label": "small",
+          "level": 0,
+          "score": 0.3
+        },
+        "model": "jev-latest",
+        "notable": {
+          "noul": 0.63
+        },
+        "regression_risk": {
+          "noul": 0.54
+        },
+        "severity": {
+          "confidence": 0.28,
+          "label": "minor",
+          "level": 0,
+          "score": 0.48
+        }
+      },
+      "name": "jev-roster-shapes"
     }
   ],
-  "updated": "2026-10-24T10:23:31.346810+00:00",
-  "window_end": "2026-10-24T03:23:30.930474-07:00",
+  "updated": "2026-10-25T10:23:08.822742+00:00",
+  "window_end": "2026-10-25T03:23:08.096392-07:00",
   "window_start": "2026-10-23T17:00:00-07:00"
 }
