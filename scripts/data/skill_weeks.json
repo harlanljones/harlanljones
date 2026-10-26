@@ -1,26 +1,18 @@
 {
   "fix_minus": {
-    "commits_28": 925,
-    "fix_28": 175,
-    "value": 127
+    "commits_28": 882,
+    "fix_28": 163,
+    "value": 125
   },
   "season": {
-    "aera": 0.57,
-    "aera_sub": "33 of 579 runs failed \u00b7 public repos \u00b7 28d",
-    "wdc": 22.7,
+    "aera": 0.56,
+    "aera_sub": "32 of 576 runs failed \u00b7 public repos \u00b7 28d",
+    "wdc": 12.780000000000001,
     "wdc_sub": "46 deployments created \u00b7 last 28d"
   },
   "source": "mirrors",
-  "updated": "2026-10-25T10:23:38Z",
+  "updated": "2026-10-26T10:22:31Z",
   "weeks": {
-    "2025-10-27": {
-      "commits": 4,
-      "diffs": 19,
-      "repos": 1,
-      "skills": {
-        "Docs & Writing": 15.18
-      }
-    },
     "2025-11-03": {
       "commits": 0,
       "diffs": 0,
@@ -728,41 +720,47 @@
       }
     },
     "2026-10-19": {
-      "commits": 218,
-      "diffs": 1821,
+      "commits": 220,
+      "diffs": 1859,
       "repos": 9,
       "skills": {
-        "API Integration": 127.69,
+        "API Integration": 129.69,
         "Agent Tooling": 43.74,
         "Astro": 70.71,
         "Build Config": 22.79,
-        "CLI Design": 101.31,
+        "CLI Design": 112.45,
         "Cloudflare Workers": 7.92,
-        "Concurrency": 245.75,
+        "Concurrency": 251.58,
         "Data Viz": 51.41,
         "Docker": 28.51,
-        "Docs & Writing": 825.49,
+        "Docs & Writing": 850.69,
         "Dotfiles": 17.47,
-        "Error Handling": 356.97,
-        "FastAPI": 13.03,
+        "Error Handling": 375.52,
+        "FastAPI": 16.49,
         "GitHub Actions": 28.43,
         "Gradient Boosting": 28.95,
         "LLM APIs": 123.32,
         "Lint & Format": 5.46,
         "Make & Just": 13.66,
-        "NumPy": 230.31,
+        "NumPy": 239.69,
         "Performance": 109.87,
         "PyTorch": 59.84,
-        "Pydantic": 29.65,
-        "React": 75.42,
+        "Pydantic": 34.54,
+        "React": 95.42,
         "Regex & Parsing": 20.26,
-        "SQL & Data Modeling": 219.41,
-        "SQLAlchemy": 81.32,
-        "Tailwind CSS": 71.42,
-        "Testing": 1036.99,
-        "Type Design": 86.77,
-        "pandas": 90.03
+        "SQL & Data Modeling": 230.59,
+        "SQLAlchemy": 87.65,
+        "Tailwind CSS": 89.31,
+        "Testing": 1056.99,
+        "Type Design": 93.7,
+        "pandas": 97.24
       }
+    },
+    "2026-10-26": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
     }
   }
 }
