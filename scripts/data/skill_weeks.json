@@ -1,17 +1,17 @@
 {
   "fix_minus": {
-    "commits_28": 882,
-    "fix_28": 163,
-    "value": 125
+    "commits_28": 804,
+    "fix_28": 154,
+    "value": 128
   },
   "season": {
-    "aera": 0.56,
-    "aera_sub": "32 of 576 runs failed \u00b7 public repos \u00b7 28d",
-    "wdc": 12.780000000000001,
-    "wdc_sub": "46 deployments created \u00b7 last 28d"
+    "aera": 0.58,
+    "aera_sub": "32 of 557 runs failed \u00b7 public repos \u00b7 28d",
+    "wdc": 13.18,
+    "wdc_sub": "45 deployments created \u00b7 last 28d"
   },
   "source": "mirrors",
-  "updated": "2026-10-26T10:22:31Z",
+  "updated": "2026-10-27T10:23:46Z",
   "weeks": {
     "2025-11-03": {
       "commits": 0,
@@ -720,9 +720,9 @@
       }
     },
     "2026-10-19": {
-      "commits": 220,
-      "diffs": 1859,
-      "repos": 9,
+      "commits": 219,
+      "diffs": 1848,
+      "repos": 8,
       "skills": {
         "API Integration": 129.69,
         "Agent Tooling": 43.74,
@@ -757,10 +757,16 @@
       }
     },
     "2026-10-26": {
-      "commits": 0,
-      "diffs": 0,
-      "repos": 0,
-      "skills": {}
+      "commits": 4,
+      "diffs": 22,
+      "repos": 3,
+      "skills": {
+        "API Integration": 2.83,
+        "Docs & Writing": 9.27,
+        "Error Handling": 2.0,
+        "SQLAlchemy": 2.0,
+        "Testing": 20.78
+      }
     }
   }
 }
