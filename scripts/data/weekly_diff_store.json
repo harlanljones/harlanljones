@@ -156,7 +156,7 @@
       "judgments": {
         "change_kind": {
           "choice": "feature",
-          "confidence": 0.99
+          "confidence": 0.98
         },
         "magnitude": {
           "confidence": 1.0,
@@ -169,16 +169,198 @@
           "noul": 0.92
         },
         "regression_risk": {
-          "noul": 0.69
+          "noul": 0.68
         },
         "severity": {
-          "confidence": 0.43,
+          "confidence": 0.41,
           "label": "moderate",
           "level": 1,
-          "score": 1.04
+          "score": 0.89
         }
       },
       "name": "bend-winprob"
+    },
+    {
+      "changed_lines": 28986,
+      "commits": [
+        {
+          "authored_at": "2026-10-29T22:02:22+00:00",
+          "changed_lines": 9710,
+          "files": [
+            {
+              "added": [
+                "<title>CORE &amp; CRAFT Board Directions</title>",
+                "<meta name=\"claude:viewport-fit-sides\" content=\"cover\">"
+              ],
+              "additions": 1420,
+              "deletions": 0,
+              "path": "docs/mockups/reference/tiles-five/index.html",
+              "removed": []
+            },
+            {
+              "added": [
+                "<title>CORE &amp; CRAFT Town Views</title>",
+                "<meta name=\"claude:viewport-fit-sides\" content=\"cover\">"
+              ],
+              "additions": 1404,
+              "deletions": 0,
+              "path": "docs/mockups/reference/maps-above/index.html",
+              "removed": []
+            },
+            {
+              "added": [
+                "<title>CORE &amp; CRAFT Town Maps</title>",
+                "<meta name=\"claude:viewport-fit-sides\" content=\"cover\">"
+              ],
+              "additions": 1401,
+              "deletions": 0,
+              "path": "docs/mockups/reference/maps-side/index.html",
+              "removed": []
+            }
+          ],
+          "sha": "4b9f0830ed0f0643a3405d6bc2fd72c0b790603c",
+          "subject": "docs(mockups): add the board mockups, the Duae Insulae spec and references"
+        },
+        {
+          "authored_at": "2026-10-29T19:36:33+00:00",
+          "changed_lines": 7952,
+          "files": [
+            {
+              "added": [
+                ".pragma library",
+                "// OWL, the widget language of omarchy-widgets"
+              ],
+              "additions": 4229,
+              "deletions": 0,
+              "path": "board/plugin/owl/Owl.js",
+              "removed": []
+            },
+            {
+              "added": [
+                "pragma ComponentBehavior: Bound",
+                "// One node of an OWL widget, drawn from the plain object Owl.js's"
+              ],
+              "additions": 977,
+              "deletions": 0,
+              "path": "board/plugin/owl/OwlNode.qml",
+              "removed": []
+            },
+            {
+              "added": [
+                "pragma ComponentBehavior: Bound",
+                "// One OWL widget file, live: compiled by Owl.js, its sources run by"
+              ],
+              "additions": 506,
+              "deletions": 0,
+              "path": "board/plugin/owl/OwlWidget.qml",
+              "removed": []
+            }
+          ],
+          "sha": "edc46b549524128ea193a791685eaa7476ef319b",
+          "subject": "feat(board): port the OWL board plugin and add the typing tile"
+        },
+        {
+          "authored_at": "2026-10-29T18:39:15+00:00",
+          "changed_lines": 2487,
+          "files": [
+            {
+              "added": [
+                "// Command lq is the only writer of the LifeQuest event log and the",
+                "// builder of the snapshot the widgets read."
+              ],
+              "additions": 523,
+              "deletions": 0,
+              "path": "cmd/lq/main.go",
+              "removed": []
+            },
+            {
+              "added": [
+                "// Package snapshot folds the event log into snapshot.json, the one file",
+                "// the LifeQuest widgets read. Progress is arithmetic over effective events;"
+              ],
+              "additions": 416,
+              "deletions": 0,
+              "path": "internal/snapshot/snapshot.go",
+              "removed": []
+            },
+            {
+              "added": [
+                "// Package event defines the v1 envelope for lines in events.jsonl.",
+                "package event"
+              ],
+              "additions": 230,
+              "deletions": 0,
+              "path": "internal/event/event.go",
+              "removed": []
+            }
+          ],
+          "sha": "2a616295ffd55d7679363d113d6d2602079523a4",
+          "subject": "feat: add lq event log, Monkeytype archiver and snapshot"
+        },
+        {
+          "authored_at": "2026-10-29T20:31:38+00:00",
+          "changed_lines": 1833,
+          "files": [
+            {
+              "added": [
+                "// Command acta is the only writer of the CORE & CRAFT event log and the",
+                "// builder of the snapshot the widgets read."
+              ],
+              "additions": 523,
+              "deletions": 0,
+              "path": "cmd/acta/main.go",
+              "removed": []
+            },
+            {
+              "added": [],
+              "additions": 0,
+              "deletions": 523,
+              "path": "cmd/lq/main.go",
+              "removed": [
+                "// Command lq is the only writer of the LifeQuest event log and the"
+              ]
+            },
+            {
+              "added": [
+                "package main",
+                "import ("
+              ],
+              "additions": 258,
+              "deletions": 0,
+              "path": "cmd/acta/main_test.go",
+              "removed": []
+            }
+          ],
+          "sha": "674344afcabdd7a7d95cb72fecac1f667a5c1e2f",
+          "subject": "refactor: rename lq to acta and LifeQuest to CORE & CRAFT"
+        }
+      ],
+      "judgments": {
+        "change_kind": {
+          "choice": "feature",
+          "confidence": 0.88
+        },
+        "magnitude": {
+          "confidence": 1.0,
+          "label": "large",
+          "level": 2,
+          "score": 2.0
+        },
+        "model": "jev-latest",
+        "notable": {
+          "noul": 0.94
+        },
+        "regression_risk": {
+          "noul": 0.66
+        },
+        "severity": {
+          "confidence": 0.32,
+          "label": "severe",
+          "level": 2,
+          "score": 1.55
+        }
+      },
+      "name": "core-and-craft"
     },
     {
       "changed_lines": 7082,
@@ -332,10 +514,10 @@
           "noul": 0.94
         },
         "regression_risk": {
-          "noul": 0.49
+          "noul": 0.5
         },
         "severity": {
-          "confidence": 0.19,
+          "confidence": 0.2,
           "label": "severe",
           "level": 2,
           "score": 1.46
@@ -388,7 +570,7 @@
       "judgments": {
         "change_kind": {
           "choice": "feature",
-          "confidence": 0.8
+          "confidence": 0.86
         },
         "magnitude": {
           "confidence": 0.98,
@@ -398,7 +580,7 @@
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.93
+          "noul": 0.94
         },
         "regression_risk": {
           "noul": 0.29
@@ -407,34 +589,34 @@
           "confidence": 0.0,
           "label": "minor",
           "level": 0,
-          "score": 0.76
+          "score": 0.84
         }
       },
       "name": "sabr-overlay"
     },
     {
-      "changed_lines": 174,
+      "changed_lines": 146,
       "commits": [
         {
-          "authored_at": "2026-10-28T14:05:39+00:00",
-          "changed_lines": 174,
+          "authored_at": "2026-10-29T14:26:49+00:00",
+          "changed_lines": 146,
           "files": [
             {
               "added": [
-                "{",
-                "\"code\": \"vl\","
+                "\"team\": 111,",
+                "\"pa\": 1,"
               ],
-              "additions": 62,
-              "deletions": 62,
+              "additions": 48,
+              "deletions": 48,
               "path": "spikes/mlb-2026/timeline-snapshot.json",
               "removed": [
-                "{"
+                "\"team\": 110,"
               ]
             },
             {
               "added": [
-                "'offseason-infield': '66025e1991fb4aac1cb9c2db74eb86d8259a734062d23f993d09c5228173b361',",
-                "'opening-day-outfield': 'b9b398a0ae0438e52a7d75cd3b49c9b44a9ee3319f1b2e248d9cd7e911d7480f',"
+                "'offseason-infield': '33872bdd934c72fd9c4651178ed708936a5a6aed13668becbfdbd2da1f2cd708',",
+                "'opening-day-outfield': '8a8d9dc1219d83556c9a114a65165ef5c8b681d387d6882d437365832a65064a',"
               ],
               "additions": 8,
               "deletions": 8,
@@ -445,8 +627,8 @@
             },
             {
               "added": [
-                "\"createdAt\": \"2026-10-28T14:04:59Z\",",
-                "\"note\": \"Free public endpoints, fetched 2026-10-28T14:04:59Z into spikes/mlb-2026/timeline-snapshot.json. Rates are observed 2026 regular-season totals from 202"
+                "\"createdAt\": \"2026-10-29T14:26:20Z\",",
+                "\"note\": \"Free public endpoints, fetched 2026-10-29T14:26:20Z into spikes/mlb-2026/timeline-snapshot.json. Rates are observed 2026 regular-season totals from 202"
               ],
               "additions": 2,
               "deletions": 2,
@@ -456,39 +638,39 @@
               ]
             }
           ],
-          "sha": "9ec8dd4e5c173d0d486bcd8f44036f353633ae0f",
+          "sha": "bea12e3a56860287a81503b93b6a6c2d3af3a58c",
           "subject": "data: refresh public roster snapshot"
         }
       ],
       "judgments": {
         "change_kind": {
           "choice": "other",
-          "confidence": 0.96
+          "confidence": 0.95
         },
         "magnitude": {
-          "confidence": 0.43,
+          "confidence": 0.32,
           "label": "moderate",
           "level": 1,
-          "score": 0.69
+          "score": 0.59
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.58
+          "noul": 0.62
         },
         "regression_risk": {
           "noul": 0.53
         },
         "severity": {
-          "confidence": 0.27,
+          "confidence": 0.25,
           "label": "minor",
           "level": 0,
-          "score": 0.49
+          "score": 0.5
         }
       },
       "name": "jev-roster-shapes"
     }
   ],
-  "updated": "2026-10-29T10:21:17.158524+00:00",
-  "window_end": "2026-10-29T03:21:16.534165-07:00",
+  "updated": "2026-10-30T10:21:30.051718+00:00",
+  "window_end": "2026-10-30T03:21:29.205776-07:00",
   "window_start": "2026-10-23T17:00:00-07:00"
 }
