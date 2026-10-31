@@ -1,576 +1,175 @@
 {
   "projects": [
     {
-      "changed_lines": 344387,
+      "changed_lines": 3478,
       "commits": [
         {
-          "authored_at": "2026-10-25T01:31:25+00:00",
-          "changed_lines": 167641,
+          "authored_at": "2026-10-31T00:02:10+00:00",
+          "changed_lines": 2156,
           "files": [
             {
               "added": [
                 "{",
-                "\"when\": \"2026-10-24 10:32:12\","
+                "\"$schema\": \"https://json-schema.org/draft/2020-12/schema\","
               ],
-              "additions": 31867,
+              "additions": 400,
               "deletions": 0,
-              "path": "web/bench/data-2025.json",
-              "removed": []
-            },
-            {
-              "added": [],
-              "additions": 0,
-              "deletions": 4565,
-              "path": "fixtures/822828/plays.json",
-              "removed": [
-                "{"
-              ]
-            },
-            {
-              "added": [],
-              "additions": 0,
-              "deletions": 4482,
-              "path": "fixtures/823585/plays.json",
-              "removed": [
-                "{"
-              ]
-            }
-          ],
-          "sha": "edfb25c3133ccb8ea7cd8d1d56a74a9d6a35b9c3",
-          "subject": "feat: benchmark page, reworked model, 2025 season run, live Game 2"
-        },
-        {
-          "authored_at": "2026-10-24T00:35:31+00:00",
-          "changed_lines": 78652,
-          "files": [
-            {
-              "added": [
-                "{",
-                "\"allPlays\": ["
-              ],
-              "additions": 4565,
-              "deletions": 0,
-              "path": "fixtures/822828/plays.json",
+              "path": "data/schema/spec.schema.json",
               "removed": []
             },
             {
               "added": [
-                "{",
-                "\"allPlays\": ["
+                "import type { Formation, Tracks } from '../schema/schema';",
+                "import type { Spec } from './schema';"
               ],
-              "additions": 4482,
+              "additions": 277,
               "deletions": 0,
-              "path": "fixtures/823585/plays.json",
+              "path": "src/spec/compile.ts",
               "removed": []
             },
             {
               "added": [
-                "{",
-                "\"allPlays\": ["
+                "import * as fs from 'node:fs';",
+                "import * as path from 'node:path';"
               ],
-              "additions": 4407,
+              "additions": 181,
               "deletions": 0,
-              "path": "fixtures/825049/plays.json",
+              "path": "src/spec/__tests__/compile.test.ts",
               "removed": []
             }
           ],
-          "sha": "6f87f16bd6332fed8c7f57b2311cf410533f0d36",
-          "subject": "chore(bench): post-game accuracy and latency benchmark vs MLB winProbability"
+          "sha": "808bb3552ab9bc5234e95644d0d6ff338c1ee059",
+          "subject": "feat(specs): add play spec vocabulary v0 and compiler v0"
         },
         {
-          "authored_at": "2026-10-24T05:18:11+00:00",
-          "changed_lines": 60432,
+          "authored_at": "2026-10-31T01:05:20+00:00",
+          "changed_lines": 493,
           "files": [
             {
               "added": [
-                "{",
-                "\"allPlays\": ["
+                "import { framesFor } from '../engine/frames';",
+                "import type { Coach, Dataset, LineageNode } from '../schema/schema';"
               ],
-              "additions": 4391,
+              "additions": 208,
               "deletions": 0,
-              "path": "fixtures/823585/scoring.json",
+              "path": "src/release/tables.ts",
               "removed": []
             },
             {
               "added": [
-                "{",
-                "\"allPlays\": ["
+                "import { describe, expect, it } from 'vitest';",
+                "import { loadDataset } from '../../schema/load';"
               ],
-              "additions": 4384,
+              "additions": 84,
               "deletions": 0,
-              "path": "fixtures/822828/scoring.json",
+              "path": "src/release/__tests__/tables.test.ts",
               "removed": []
             },
             {
               "added": [
-                "{",
-                "\"allPlays\": ["
+                "/**",
+                "* Builds the downloadable releases of the dataset."
               ],
-              "additions": 4272,
+              "additions": 83,
               "deletions": 0,
-              "path": "fixtures/825049/scoring.json",
+              "path": "scripts/release.ts",
               "removed": []
             }
           ],
-          "sha": "a4d360985dc83c8d26039e8db8801db2a73ee0e1",
-          "subject": "feat(web): keep the whole game on one scorebook sheet"
+          "sha": "4b544627e72c67202955ca017aebf1c53da49860",
+          "subject": "feat(data): build JSON, CSV and SQLite releases and a tag-driven release workflow"
         },
         {
-          "authored_at": "2026-10-24T05:25:56+00:00",
-          "changed_lines": 20672,
+          "authored_at": "2026-10-31T01:15:58+00:00",
+          "changed_lines": 448,
           "files": [
             {
               "added": [
-                "{",
-                "\"allPlays\": ["
+                "import { MAN_COVERAGE, PASS_SET, POCKET_GAP, QB_DROP, RECEIVER, RUSH, ZONE_TIMING } from './calibration';",
+                "import { DEEP_ZONES, ROUTES, ZONE_SHAPES, type Point, type ZoneSide } from './vocabulary';"
               ],
-              "additions": 3928,
-              "deletions": 0,
-              "path": "fixtures/849805/plays.json",
-              "removed": []
-            },
-            {
-              "added": [],
-              "additions": 0,
-              "deletions": 3918,
-              "path": "fixtures/849809/plays.json",
+              "additions": 78,
+              "deletions": 55,
+              "path": "src/spec/compile.ts",
               "removed": [
-                "{"
+                "import { DEEP_ZONES, DROPS, ROUTES, ZONE_SHAPES, type Point, type ZoneSide } from './vocabulary';"
               ]
             },
             {
               "added": [
-                "{",
-                "\"allPlays\": ["
+                "seam: 'Vertical release up the seam between the numbers and the hash, leaning about 10 degrees toward the middle (the lean is unverified).',",
+                "slant: 'Stem of about 3 yards, then a hard cut toward the middle at about 50 degrees from vertical.',"
               ],
-              "additions": 3866,
-              "deletions": 0,
-              "path": "fixtures/849805/scoring.json",
-              "removed": []
-            }
-          ],
-          "sha": "cdaf3739c56bfeaa722fd1ab5e546344450ca2d7",
-          "subject": "feat: World Series Game 1 is the replay showcase"
-        }
-      ],
-      "judgments": {
-        "change_kind": {
-          "choice": "feature",
-          "confidence": 0.98
-        },
-        "magnitude": {
-          "confidence": 1.0,
-          "label": "large",
-          "level": 2,
-          "score": 2.0
-        },
-        "model": "jev-latest",
-        "notable": {
-          "noul": 0.92
-        },
-        "regression_risk": {
-          "noul": 0.68
-        },
-        "severity": {
-          "confidence": 0.41,
-          "label": "moderate",
-          "level": 1,
-          "score": 0.89
-        }
-      },
-      "name": "bend-winprob"
-    },
-    {
-      "changed_lines": 28986,
-      "commits": [
-        {
-          "authored_at": "2026-10-29T22:02:22+00:00",
-          "changed_lines": 9710,
-          "files": [
-            {
-              "added": [
-                "<title>CORE &amp; CRAFT Board Directions</title>",
-                "<meta name=\"claude:viewport-fit-sides\" content=\"cover\">"
-              ],
-              "additions": 1420,
-              "deletions": 0,
-              "path": "docs/mockups/reference/tiles-five/index.html",
-              "removed": []
-            },
-            {
-              "added": [
-                "<title>CORE &amp; CRAFT Town Views</title>",
-                "<meta name=\"claude:viewport-fit-sides\" content=\"cover\">"
-              ],
-              "additions": 1404,
-              "deletions": 0,
-              "path": "docs/mockups/reference/maps-above/index.html",
-              "removed": []
-            },
-            {
-              "added": [
-                "<title>CORE &amp; CRAFT Town Maps</title>",
-                "<meta name=\"claude:viewport-fit-sides\" content=\"cover\">"
-              ],
-              "additions": 1401,
-              "deletions": 0,
-              "path": "docs/mockups/reference/maps-side/index.html",
-              "removed": []
-            }
-          ],
-          "sha": "4b9f0830ed0f0643a3405d6bc2fd72c0b790603c",
-          "subject": "docs(mockups): add the board mockups, the Duae Insulae spec and references"
-        },
-        {
-          "authored_at": "2026-10-29T19:36:33+00:00",
-          "changed_lines": 7952,
-          "files": [
-            {
-              "added": [
-                ".pragma library",
-                "// OWL, the widget language of omarchy-widgets"
-              ],
-              "additions": 4229,
-              "deletions": 0,
-              "path": "board/plugin/owl/Owl.js",
-              "removed": []
-            },
-            {
-              "added": [
-                "pragma ComponentBehavior: Bound",
-                "// One node of an OWL widget, drawn from the plain object Owl.js's"
-              ],
-              "additions": 977,
-              "deletions": 0,
-              "path": "board/plugin/owl/OwlNode.qml",
-              "removed": []
-            },
-            {
-              "added": [
-                "pragma ComponentBehavior: Bound",
-                "// One OWL widget file, live: compiled by Owl.js, its sources run by"
-              ],
-              "additions": 506,
-              "deletions": 0,
-              "path": "board/plugin/owl/OwlWidget.qml",
-              "removed": []
-            }
-          ],
-          "sha": "edc46b549524128ea193a791685eaa7476ef319b",
-          "subject": "feat(board): port the OWL board plugin and add the typing tile"
-        },
-        {
-          "authored_at": "2026-10-29T18:39:15+00:00",
-          "changed_lines": 2487,
-          "files": [
-            {
-              "added": [
-                "// Command lq is the only writer of the LifeQuest event log and the",
-                "// builder of the snapshot the widgets read."
-              ],
-              "additions": 523,
-              "deletions": 0,
-              "path": "cmd/lq/main.go",
-              "removed": []
-            },
-            {
-              "added": [
-                "// Package snapshot folds the event log into snapshot.json, the one file",
-                "// the LifeQuest widgets read. Progress is arithmetic over effective events;"
-              ],
-              "additions": 416,
-              "deletions": 0,
-              "path": "internal/snapshot/snapshot.go",
-              "removed": []
-            },
-            {
-              "added": [
-                "// Package event defines the v1 envelope for lines in events.jsonl.",
-                "package event"
-              ],
-              "additions": 230,
-              "deletions": 0,
-              "path": "internal/event/event.go",
-              "removed": []
-            }
-          ],
-          "sha": "2a616295ffd55d7679363d113d6d2602079523a4",
-          "subject": "feat: add lq event log, Monkeytype archiver and snapshot"
-        },
-        {
-          "authored_at": "2026-10-29T20:31:38+00:00",
-          "changed_lines": 1833,
-          "files": [
-            {
-              "added": [
-                "// Command acta is the only writer of the CORE & CRAFT event log and the",
-                "// builder of the snapshot the widgets read."
-              ],
-              "additions": 523,
-              "deletions": 0,
-              "path": "cmd/acta/main.go",
-              "removed": []
-            },
-            {
-              "added": [],
-              "additions": 0,
-              "deletions": 523,
-              "path": "cmd/lq/main.go",
+              "additions": 41,
+              "deletions": 38,
+              "path": "src/spec/vocabulary.ts",
               "removed": [
-                "// Command lq is the only writer of the LifeQuest event log and the"
+                "seam: 'Vertical release up the seam between the numbers and the hash, leaning toward the middle (the lean is unverified against tracking data).',"
               ]
             },
             {
               "added": [
-                "package main",
-                "import ("
+                "/**",
+                "* Constants the compiler uses, fitted to NFL player tracking and rounded to one or two significant figures."
               ],
-              "additions": 258,
+              "additions": 73,
               "deletions": 0,
-              "path": "cmd/acta/main_test.go",
+              "path": "src/spec/calibration.ts",
               "removed": []
             }
           ],
-          "sha": "674344afcabdd7a7d95cb72fecac1f667a5c1e2f",
-          "subject": "refactor: rename lq to acta and LifeQuest to CORE & CRAFT"
-        }
-      ],
-      "judgments": {
-        "change_kind": {
-          "choice": "feature",
-          "confidence": 0.88
+          "sha": "15a8ddcabaea28ed8fa6110c92a42b37091ccb37",
+          "subject": "feat(specs): calibrate the compiler to NFL tracking constants (compiler 0.3.0)"
         },
-        "magnitude": {
-          "confidence": 1.0,
-          "label": "large",
-          "level": 2,
-          "score": 2.0
-        },
-        "model": "jev-latest",
-        "notable": {
-          "noul": 0.94
-        },
-        "regression_risk": {
-          "noul": 0.66
-        },
-        "severity": {
-          "confidence": 0.32,
-          "label": "severe",
-          "level": 2,
-          "score": 1.55
-        }
-      },
-      "name": "core-and-craft"
-    },
-    {
-      "changed_lines": 7082,
-      "commits": [
         {
-          "authored_at": "2026-10-27T05:57:16+00:00",
-          "changed_lines": 2457,
+          "authored_at": "2026-10-31T00:59:10+00:00",
+          "changed_lines": 303,
           "files": [
             {
               "added": [
-                "// Code generated by templ - DO NOT EDIT.",
-                "// templ: version: v0.3.1070"
+                "import { positionAt } from '../../engine/interpolate';",
+                "const MIDFIELD_X = 26.67;"
               ],
-              "additions": 1451,
-              "deletions": 0,
-              "path": "report/views_templ.go",
-              "removed": []
+              "additions": 170,
+              "deletions": 10,
+              "path": "src/spec/__tests__/compile.test.ts",
+              "removed": [
+                "it('stays close to the hand-made tracks in the first 1.2 s (regression floor, not a claim of equality)', () => {"
+              ]
             },
             {
               "added": [
-                "package main",
-                "import ("
+                "\"description\": \"Vertical release straight upfield.\"",
+                "\"description\": \"Vertical release up the seam between the numbers and the hash, leaning toward the middle (the lean is unverified against tracking data).\""
               ],
-              "additions": 395,
-              "deletions": 0,
-              "path": "report/view.go",
-              "removed": []
+              "additions": 21,
+              "deletions": 11,
+              "path": "data/schema/spec.schema.json",
+              "removed": [
+                "\"description\": \"Vertical release straight upfield, leaning slightly toward the middle.\""
+              ]
             },
             {
               "added": [
-                "package main",
-                "templ page(v pageView) {"
+                "go: 'Vertical release straight upfield.',",
+                "seam: 'Vertical release up the seam between the numbers and the hash, leaning toward the middle (the lean is unverified against tracking data).',"
               ],
-              "additions": 252,
-              "deletions": 0,
-              "path": "report/views.templ",
-              "removed": []
+              "additions": 20,
+              "deletions": 12,
+              "path": "src/spec/vocabulary.ts",
+              "removed": [
+                "go: 'Vertical release straight upfield, leaning slightly toward the middle.',"
+              ]
             }
           ],
-          "sha": "774701075de08155c4bd0f4413dd9db9eb9cff38",
-          "subject": "feat(report): templ/htmx report and CSV export"
-        },
-        {
-          "authored_at": "2026-10-27T05:38:23+00:00",
-          "changed_lines": 1512,
-          "files": [
-            {
-              "added": [
-                "# Vendored verbatim from harlanljones/bend-winprob game.bend @ d4a02d4; PROOF.bend reuses its proofs.",
-                "# Baseball scorebook: the state of a game, and the one function that moves"
-              ],
-              "additions": 510,
-              "deletions": 0,
-              "path": "src/state.bend",
-              "removed": []
-            },
-            {
-              "added": [
-                "# Run expectancy from the scorebook: every play is replayed through the",
-                "# vendored `step`, every Chadwick claim about it is checked, and the plays of"
-              ],
-              "additions": 364,
-              "deletions": 0,
-              "path": "src/re24.bend",
-              "removed": []
-            },
-            {
-              "added": [
-                "# The re24 command line: read a plays CSV, replay it, print the records.",
-                "#   re24 run <plays.csv>          summary, RE, transition table, decisions"
-              ],
-              "additions": 344,
-              "deletions": 0,
-              "path": "src/cli.bend",
-              "removed": []
-            }
-          ],
-          "sha": "99ac99a67d64b17083b01496e83a773b0855e71e",
-          "subject": "feat: replay 2024 through the scorebook; laws stated"
-        },
-        {
-          "authored_at": "2026-10-27T05:38:38+00:00",
-          "changed_lines": 512,
-          "files": [
-            {
-              "added": [
-                "# Addition (as in demos/proof_numerics)",
-                "# -------------------------------------"
-              ],
-              "additions": 512,
-              "deletions": 0,
-              "path": "PROOF.bend",
-              "removed": []
-            }
-          ],
-          "sha": "6837f4965742c8b5df5ab1eb3a4f7c574be0abb4",
-          "subject": "feat(proof): box balance and three-out laws from bend-winprob"
-        },
-        {
-          "authored_at": "2026-10-27T05:45:20+00:00",
-          "changed_lines": 462,
-          "files": [
-            {
-              "added": [
-                "// Package bendout parses the line records bin/re24 prints. Every number is",
-                "// an exact integer: RE in thousandths (RE lines) or in 10^-7 runs (CI and"
-              ],
-              "additions": 213,
-              "deletions": 0,
-              "path": "internal/bendout/bendout.go",
-              "removed": []
-            },
-            {
-              "added": [
-                "// Command compare checks bin/re24's RE table against published values: a",
-                "// state passes when runs/n is within 0.01 runs of the reference, tested"
-              ],
-              "additions": 127,
-              "deletions": 0,
-              "path": "compare/main.go",
-              "removed": []
-            },
-            {
-              "added": [
-                "package bendout",
-                "import ("
-              ],
-              "additions": 69,
-              "deletions": 0,
-              "path": "internal/bendout/bendout_test.go",
-              "removed": []
-            }
-          ],
-          "sha": "08da97926f36bad1df97ef8189d704a928875ba5",
-          "subject": "feat: fixtures, Bend tests, FanGraphs compare"
+          "sha": "6fab1aa4204317d793fd15ecd3d39e705f4d68b9",
+          "subject": "Fix compiler v0 rush direction, route angles and zone names; test physics and concepts"
         }
       ],
       "judgments": {
         "change_kind": {
           "choice": "feature",
           "confidence": 1.0
-        },
-        "magnitude": {
-          "confidence": 1.0,
-          "label": "large",
-          "level": 2,
-          "score": 2.0
-        },
-        "model": "jev-latest",
-        "notable": {
-          "noul": 0.94
-        },
-        "regression_risk": {
-          "noul": 0.5
-        },
-        "severity": {
-          "confidence": 0.2,
-          "label": "severe",
-          "level": 2,
-          "score": 1.46
-        }
-      },
-      "name": "bend-re24"
-    },
-    {
-      "changed_lines": 1236,
-      "commits": [
-        {
-          "authored_at": "2026-10-24T01:40:26+00:00",
-          "changed_lines": 1236,
-          "files": [
-            {
-              "added": [
-                "// SABR Overlay: live sabermetrics panels over MLB broadcasts on YouTube TV.",
-                "// Data: MLB StatsAPI (live feed, win probability, season + sabermetric splits) and Baseball Savant percentiles."
-              ],
-              "additions": 773,
-              "deletions": 0,
-              "path": "content.js",
-              "removed": []
-            },
-            {
-              "added": [
-                "Apache License",
-                "Version 2.0, January 2004"
-              ],
-              "additions": 202,
-              "deletions": 0,
-              "path": "LICENSE",
-              "removed": []
-            },
-            {
-              "added": [
-                "# SABR Overlay",
-                "Live sabermetrics panels on top of MLB broadcasts in YouTube TV. A Firefox extension, no build step, no backend."
-              ],
-              "additions": 128,
-              "deletions": 0,
-              "path": "README.md",
-              "removed": []
-            }
-          ],
-          "sha": "d67bfde62fb1957839865e5367a96b9eed8d19fa",
-          "subject": "feat: rename to SABR Overlay and prepare public repo"
-        }
-      ],
-      "judgments": {
-        "change_kind": {
-          "choice": "feature",
-          "confidence": 0.86
         },
         "magnitude": {
           "confidence": 0.98,
@@ -580,97 +179,219 @@
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.94
+          "noul": 0.86
         },
         "regression_risk": {
-          "noul": 0.29
+          "noul": 0.7
         },
         "severity": {
-          "confidence": 0.0,
-          "label": "minor",
-          "level": 0,
-          "score": 0.84
+          "confidence": 0.48,
+          "label": "moderate",
+          "level": 1,
+          "score": 1.01
         }
       },
-      "name": "sabr-overlay"
+      "name": "scheme-db"
     },
     {
-      "changed_lines": 146,
+      "changed_lines": 1965,
       "commits": [
         {
-          "authored_at": "2026-10-29T14:26:49+00:00",
-          "changed_lines": 146,
+          "authored_at": "2026-10-31T00:23:09+00:00",
+          "changed_lines": 977,
           "files": [
             {
               "added": [
-                "\"team\": 111,",
-                "\"pa\": 1,"
+                "// Package review schedules recall cards with FSRS. A note with a recall:",
+                "// line is the card card:<slug>, and the review.logged events under that"
               ],
-              "additions": 48,
-              "deletions": 48,
-              "path": "spikes/mlb-2026/timeline-snapshot.json",
+              "additions": 278,
+              "deletions": 0,
+              "path": "internal/review/review.go",
+              "removed": []
+            },
+            {
+              "added": [
+                "package main",
+                "import ("
+              ],
+              "additions": 166,
+              "deletions": 0,
+              "path": "cmd/acta/review.go",
+              "removed": []
+            },
+            {
+              "added": [
+                "package main",
+                "import ("
+              ],
+              "additions": 148,
+              "deletions": 0,
+              "path": "cmd/acta/review_test.go",
+              "removed": []
+            }
+          ],
+          "sha": "c48a3ff420b03fa9e811d256c2d72b9f94fcd9a5",
+          "subject": "feat(review): FSRS reviews of recall cards with go-fsrs"
+        },
+        {
+          "authored_at": "2026-10-31T00:40:46+00:00",
+          "changed_lines": 382,
+          "files": [
+            {
+              "added": [
+                "// placement is one note body ingest writes under notes/, or beside them in",
+                "// note-versions/."
+              ],
+              "additions": 117,
+              "deletions": 40,
+              "path": "cmd/acta/note.go",
               "removed": [
-                "\"team\": 110,"
+                "// placement is one note body ingest writes under notes/."
               ]
             },
             {
               "added": [
-                "'offseason-infield': '33872bdd934c72fd9c4651178ed708936a5a6aed13668becbfdbd2da1f2cd708',",
-                "'opening-day-outfield': '8a8d9dc1219d83556c9a114a65165ef5c8b681d387d6882d437365832a65064a',"
+                "t.Helper()",
+                "return noteLineAs(t, \"duet:competence\", slug, path, body, supersedes)"
               ],
-              "additions": 8,
-              "deletions": 8,
-              "path": "src/lib/storylines/registry.ts",
+              "additions": 92,
+              "deletions": 23,
+              "path": "cmd/acta/note_test.go",
               "removed": [
-                "'offseason-infield': '74e18f82c56de781204f0c6db7edd922c71e413725d44321d64d24040bbfe07a',"
+                "return fmt.Sprintf(`{\"v\":1,\"at\":\"2026-10-29\",\"at_precision\":\"day\",\"recorded_at\":\"2026-10-29T18:00:00Z\",\"pillar\":\"faith\",\"kind\":\"note.added\",\"subject\":\"note:%s\","
               ]
             },
             {
               "added": [
-                "\"createdAt\": \"2026-10-29T14:26:20Z\",",
-                "\"note\": \"Free public endpoints, fetched 2026-10-29T14:26:20Z into spikes/mlb-2026/timeline-snapshot.json. Rates are observed 2026 regular-season totals from 202"
+                "\"sort\"",
+                "notes     map[string]event.Event // subject -> the note.added that earns its xp"
               ],
-              "additions": 2,
-              "deletions": 2,
-              "path": "src/lib/storylines/deadline.json",
+              "additions": 35,
+              "deletions": 6,
+              "path": "internal/snapshot/xp.go",
               "removed": [
-                "\"createdAt\": \"2026-10-06T03:24:21Z\","
+                "// Once per note: a new version (supersedes) earns nothing more,"
               ]
             }
           ],
-          "sha": "bea12e3a56860287a81503b93b6a6c2d3af3a58c",
-          "subject": "data: refresh public roster snapshot"
+          "sha": "1a54a0aa080a26880b7da1d2eb036407fd5257e8",
+          "subject": "fix(notes): shared nodes take any channel's version; xp stays with the first"
+        },
+        {
+          "authored_at": "2026-10-31T00:49:34+00:00",
+          "changed_lines": 340,
+          "files": [
+            {
+              "added": [
+                "v = linkName(v)",
+                "if isFile(v) {"
+              ],
+              "additions": 134,
+              "deletions": 9,
+              "path": "internal/graph/graph.go",
+              "removed": [
+                "v = strings.TrimSpace(v)"
+              ]
+            },
+            {
+              "added": [
+                "func TestParseFrontLinkLists(t *testing.T) {",
+                "for _, c := range []struct {"
+              ],
+              "additions": 134,
+              "deletions": 0,
+              "path": "internal/graph/graph_test.go",
+              "removed": []
+            },
+            {
+              "added": [
+                "case strings.HasPrefix(raw, \"[[\"):",
+                "// One bare link, `[[a]], [[b]]` or `[[[a]], [[b]]]`. Not valid"
+              ],
+              "additions": 58,
+              "deletions": 3,
+              "path": "internal/graph/frontmatter.go",
+              "removed": [
+                "case strings.HasPrefix(raw, \"[\") && !strings.HasPrefix(raw, \"[[\"):"
+              ]
+            }
+          ],
+          "sha": "0ee7945063c7198aa9fc6ca371c161f180de739a",
+          "subject": "fix(graph): read unquoted link lists, skip links in code and file embeds"
+        },
+        {
+          "authored_at": "2026-10-31T00:49:08+00:00",
+          "changed_lines": 202,
+          "files": [
+            {
+              "added": [
+                "func TestNoteAddReadsPillarsLikeTheGraph(t *testing.T) {",
+                "e, _, _ := testEnv(t, nil)"
+              ],
+              "additions": 86,
+              "deletions": 0,
+              "path": "cmd/acta/note_test.go",
+              "removed": []
+            },
+            {
+              "added": [
+                "// slugFiles maps each slug to the note files under notes/ that carry it, as",
+                "// paths relative to root, sorted. A slug is one node, so more than one file"
+              ],
+              "additions": 78,
+              "deletions": 7,
+              "path": "cmd/acta/note.go",
+              "removed": [
+                "const use = \"usage: acta note add <file>... [--pillar P] [--agent A] [--via V]\""
+              ]
+            },
+            {
+              "added": [
+                "// Pillars reads a note's pillars: line the way the graph does: trimmed,",
+                "// lowercased, a \"pillar:\" prefix dropped, repeats dropped. bad are the"
+              ],
+              "additions": 20,
+              "deletions": 9,
+              "path": "internal/graph/graph.go",
+              "removed": [
+                "for _, p := range front.Vals[\"pillars\"] {"
+              ]
+            }
+          ],
+          "sha": "6fdb1c63e44a24674e7ad41c7c4387b8a4327c7d",
+          "subject": "fix(notes): note add reads pillars like the graph; one slug, one file"
         }
       ],
       "judgments": {
         "change_kind": {
-          "choice": "other",
-          "confidence": 0.95
+          "choice": "fix",
+          "confidence": 0.44
         },
         "magnitude": {
-          "confidence": 0.32,
-          "label": "moderate",
-          "level": 1,
-          "score": 0.59
+          "confidence": 0.98,
+          "label": "large",
+          "level": 2,
+          "score": 1.99
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.62
+          "noul": 0.92
         },
         "regression_risk": {
-          "noul": 0.53
+          "noul": 0.79
         },
         "severity": {
-          "confidence": 0.25,
-          "label": "minor",
-          "level": 0,
-          "score": 0.5
+          "confidence": 0.56,
+          "label": "moderate",
+          "level": 1,
+          "score": 1.23
         }
       },
-      "name": "jev-roster-shapes"
+      "name": "core-and-craft"
     }
   ],
-  "updated": "2026-10-30T10:21:30.051718+00:00",
-  "window_end": "2026-10-30T03:21:29.205776-07:00",
-  "window_start": "2026-10-23T17:00:00-07:00"
+  "updated": "2026-10-31T10:21:25.608489+00:00",
+  "window_end": "2026-10-31T03:21:25.512363-07:00",
+  "window_start": "2026-10-30T17:00:00-07:00"
 }
