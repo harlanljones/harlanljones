@@ -389,5 +389,22 @@
     "summary": "Active development focused on implementation plan for nanotap, built with a polyglot stack.",
     "badges": [],
     "homepage": ""
+  },
+  {
+    "name": "core-and-craft",
+    "summary": "Active development focused on bar pill (Pax, check-ins, proposals) and openMap/closeMap IPC and reject inbox lines that claim a local writer, built with Go and JavaScript.",
+    "badges": [
+      "Go",
+      "JavaScript"
+    ],
+    "homepage": ""
+  },
+  {
+    "name": "bend-re24",
+    "summary": "Active development focused on templ/htmx report and CSV export and parallel game bootstrap CIs, built with Go.",
+    "badges": [
+      "Go"
+    ],
+    "homepage": ""
   }
 ]
