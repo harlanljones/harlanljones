@@ -1,7 +1,196 @@
 {
   "projects": [
     {
-      "changed_lines": 3478,
+      "changed_lines": 3682,
+      "commits": [
+        {
+          "authored_at": "2026-10-31T21:13:49+00:00",
+          "changed_lines": 1158,
+          "files": [
+            {
+              "added": [
+                "# CORE & CRAFT: Evidence Audit \u2014 Iteration 3",
+                "**Research checked:** 30 October 2026. **Companion:** [Iteration 3 framework](CORE-CRAFT-framework-v3.md). **Earlier versions:** [iteration 2 framework](CORE-CR"
+              ],
+              "additions": 223,
+              "deletions": 0,
+              "path": "docs/research/CORE-CRAFT-evidence-audit-v3.md",
+              "removed": []
+            },
+            {
+              "added": [
+                "# CORE & CRAFT: Evidence Audit \u2014 Iteration 2",
+                "**Research checked:** 29 October 2026. **Companion:** [Iteration 2 framework](CORE-CRAFT-framework-v2.md). **Previous round:** [Iteration 1 framework](CORE-CRAF"
+              ],
+              "additions": 205,
+              "deletions": 0,
+              "path": "docs/research/CORE-CRAFT-evidence-audit-v2.md",
+              "removed": []
+            },
+            {
+              "added": [
+                "# CORE & CRAFT: Evidence Audit \u2014 Iteration 1",
+                "**Research checked:** 29 October 2026. **Companion:** [Revised framework, iteration 1](CORE-CRAFT-framework-v1.md)."
+              ],
+              "additions": 183,
+              "deletions": 0,
+              "path": "docs/research/CORE-CRAFT-evidence-audit-v1.md",
+              "removed": []
+            }
+          ],
+          "sha": "ff8e98c9f5cb7c14c28b0e4225236e013c7235f0",
+          "subject": "docs: add CORE & CRAFT framework research"
+        },
+        {
+          "authored_at": "2026-10-31T00:23:09+00:00",
+          "changed_lines": 977,
+          "files": [
+            {
+              "added": [
+                "// Package review schedules recall cards with FSRS. A note with a recall:",
+                "// line is the card card:<slug>, and the review.logged events under that"
+              ],
+              "additions": 278,
+              "deletions": 0,
+              "path": "internal/review/review.go",
+              "removed": []
+            },
+            {
+              "added": [
+                "package main",
+                "import ("
+              ],
+              "additions": 166,
+              "deletions": 0,
+              "path": "cmd/acta/review.go",
+              "removed": []
+            },
+            {
+              "added": [
+                "package main",
+                "import ("
+              ],
+              "additions": 148,
+              "deletions": 0,
+              "path": "cmd/acta/review_test.go",
+              "removed": []
+            }
+          ],
+          "sha": "c48a3ff420b03fa9e811d256c2d72b9f94fcd9a5",
+          "subject": "feat(review): FSRS reviews of recall cards with go-fsrs"
+        },
+        {
+          "authored_at": "2026-11-01T01:36:04+00:00",
+          "changed_lines": 555,
+          "files": [
+            {
+              "added": [
+                "package main",
+                "// The notes outbox (docs/decisions/0004-notes-outbox-and-proposed-nodes.md):"
+              ],
+              "additions": 250,
+              "deletions": 0,
+              "path": "cmd/acta/outbox.go",
+              "removed": []
+            },
+            {
+              "added": [
+                "package main",
+                "import ("
+              ],
+              "additions": 182,
+              "deletions": 0,
+              "path": "cmd/acta/outbox_test.go",
+              "removed": []
+            },
+            {
+              "added": [
+                "# Duet notes: filing notes from the pillar channels",
+                "The Duet pillar channels file notes through the Drive inbox, like every other event. Before they write, they read the outbox, a Drive folder where acta keeps a "
+              ],
+              "additions": 48,
+              "deletions": 0,
+              "path": "docs/duet-notes.md",
+              "removed": []
+            }
+          ],
+          "sha": "50a78d2f3f042dac77023486d6c45ef25cc53e64",
+          "subject": "feat(outbox): the notes the channels read before they file"
+        },
+        {
+          "authored_at": "2026-10-31T00:40:46+00:00",
+          "changed_lines": 382,
+          "files": [
+            {
+              "added": [
+                "// placement is one note body ingest writes under notes/, or beside them in",
+                "// note-versions/."
+              ],
+              "additions": 117,
+              "deletions": 40,
+              "path": "cmd/acta/note.go",
+              "removed": [
+                "// placement is one note body ingest writes under notes/."
+              ]
+            },
+            {
+              "added": [
+                "t.Helper()",
+                "return noteLineAs(t, \"duet:competence\", slug, path, body, supersedes)"
+              ],
+              "additions": 92,
+              "deletions": 23,
+              "path": "cmd/acta/note_test.go",
+              "removed": [
+                "return fmt.Sprintf(`{\"v\":1,\"at\":\"2026-10-29\",\"at_precision\":\"day\",\"recorded_at\":\"2026-10-29T18:00:00Z\",\"pillar\":\"faith\",\"kind\":\"note.added\",\"subject\":\"note:%s\","
+              ]
+            },
+            {
+              "added": [
+                "\"sort\"",
+                "notes     map[string]event.Event // subject -> the note.added that earns its xp"
+              ],
+              "additions": 35,
+              "deletions": 6,
+              "path": "internal/snapshot/xp.go",
+              "removed": [
+                "// Once per note: a new version (supersedes) earns nothing more,"
+              ]
+            }
+          ],
+          "sha": "1a54a0aa080a26880b7da1d2eb036407fd5257e8",
+          "subject": "fix(notes): shared nodes take any channel's version; xp stays with the first"
+        }
+      ],
+      "judgments": {
+        "change_kind": {
+          "choice": "feature",
+          "confidence": 0.84
+        },
+        "magnitude": {
+          "confidence": 0.98,
+          "label": "large",
+          "level": 2,
+          "score": 1.99
+        },
+        "model": "jev-latest",
+        "notable": {
+          "noul": 0.81
+        },
+        "regression_risk": {
+          "noul": 0.75
+        },
+        "severity": {
+          "confidence": 0.6,
+          "label": "moderate",
+          "level": 1,
+          "score": 1.19
+        }
+      },
+      "name": "core-and-craft"
+    },
+    {
+      "changed_lines": 3511,
       "commits": [
         {
           "authored_at": "2026-10-31T00:02:10+00:00",
@@ -172,226 +361,104 @@
           "confidence": 1.0
         },
         "magnitude": {
-          "confidence": 0.98,
+          "confidence": 1.0,
           "label": "large",
           "level": 2,
           "score": 1.99
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.86
+          "noul": 0.87
         },
         "regression_risk": {
-          "noul": 0.7
+          "noul": 0.69
         },
         "severity": {
-          "confidence": 0.48,
+          "confidence": 0.49,
           "label": "moderate",
           "level": 1,
-          "score": 1.01
+          "score": 1.06
         }
       },
       "name": "scheme-db"
     },
     {
-      "changed_lines": 1965,
+      "changed_lines": 148,
       "commits": [
         {
-          "authored_at": "2026-10-31T00:23:09+00:00",
-          "changed_lines": 977,
+          "authored_at": "2026-10-31T13:42:57+00:00",
+          "changed_lines": 148,
           "files": [
             {
               "added": [
-                "// Package review schedules recall cards with FSRS. A note with a recall:",
-                "// line is the card card:<slug>, and the review.logged events under that"
+                "\"primary\": \"SS\"",
+                "\"team\": 111,"
               ],
-              "additions": 278,
-              "deletions": 0,
-              "path": "internal/review/review.go",
-              "removed": []
-            },
-            {
-              "added": [
-                "package main",
-                "import ("
-              ],
-              "additions": 166,
-              "deletions": 0,
-              "path": "cmd/acta/review.go",
-              "removed": []
-            },
-            {
-              "added": [
-                "package main",
-                "import ("
-              ],
-              "additions": 148,
-              "deletions": 0,
-              "path": "cmd/acta/review_test.go",
-              "removed": []
-            }
-          ],
-          "sha": "c48a3ff420b03fa9e811d256c2d72b9f94fcd9a5",
-          "subject": "feat(review): FSRS reviews of recall cards with go-fsrs"
-        },
-        {
-          "authored_at": "2026-10-31T00:40:46+00:00",
-          "changed_lines": 382,
-          "files": [
-            {
-              "added": [
-                "// placement is one note body ingest writes under notes/, or beside them in",
-                "// note-versions/."
-              ],
-              "additions": 117,
-              "deletions": 40,
-              "path": "cmd/acta/note.go",
+              "additions": 49,
+              "deletions": 49,
+              "path": "spikes/mlb-2026/timeline-snapshot.json",
               "removed": [
-                "// placement is one note body ingest writes under notes/."
+                "\"primary\": \"2B\""
               ]
             },
             {
               "added": [
-                "t.Helper()",
-                "return noteLineAs(t, \"duet:competence\", slug, path, body, supersedes)"
+                "'offseason-infield': 'bdca5409077b31d15b35c48c9c00e1b5dfaf814a7e617b794cd0dcc26e413e4f',",
+                "'opening-day-outfield': 'b64c94f4f6e180853df41a8474ed6c5546b8854027fc74e2ad270b35361a44e5',"
               ],
-              "additions": 92,
-              "deletions": 23,
-              "path": "cmd/acta/note_test.go",
+              "additions": 8,
+              "deletions": 8,
+              "path": "src/lib/storylines/registry.ts",
               "removed": [
-                "return fmt.Sprintf(`{\"v\":1,\"at\":\"2026-10-29\",\"at_precision\":\"day\",\"recorded_at\":\"2026-10-29T18:00:00Z\",\"pillar\":\"faith\",\"kind\":\"note.added\",\"subject\":\"note:%s\","
+                "'offseason-infield': '74e18f82c56de781204f0c6db7edd922c71e413725d44321d64d24040bbfe07a',"
               ]
             },
             {
               "added": [
-                "\"sort\"",
-                "notes     map[string]event.Event // subject -> the note.added that earns its xp"
+                "\"createdAt\": \"2026-10-31T13:42:24Z\",",
+                "\"note\": \"Free public endpoints, fetched 2026-10-31T13:42:24Z into spikes/mlb-2026/timeline-snapshot.json. Rates are observed 2026 regular-season totals from 202"
               ],
-              "additions": 35,
-              "deletions": 6,
-              "path": "internal/snapshot/xp.go",
+              "additions": 2,
+              "deletions": 2,
+              "path": "src/lib/storylines/deadline.json",
               "removed": [
-                "// Once per note: a new version (supersedes) earns nothing more,"
+                "\"createdAt\": \"2026-10-06T03:24:21Z\","
               ]
             }
           ],
-          "sha": "1a54a0aa080a26880b7da1d2eb036407fd5257e8",
-          "subject": "fix(notes): shared nodes take any channel's version; xp stays with the first"
-        },
-        {
-          "authored_at": "2026-10-31T00:49:34+00:00",
-          "changed_lines": 340,
-          "files": [
-            {
-              "added": [
-                "v = linkName(v)",
-                "if isFile(v) {"
-              ],
-              "additions": 134,
-              "deletions": 9,
-              "path": "internal/graph/graph.go",
-              "removed": [
-                "v = strings.TrimSpace(v)"
-              ]
-            },
-            {
-              "added": [
-                "func TestParseFrontLinkLists(t *testing.T) {",
-                "for _, c := range []struct {"
-              ],
-              "additions": 134,
-              "deletions": 0,
-              "path": "internal/graph/graph_test.go",
-              "removed": []
-            },
-            {
-              "added": [
-                "case strings.HasPrefix(raw, \"[[\"):",
-                "// One bare link, `[[a]], [[b]]` or `[[[a]], [[b]]]`. Not valid"
-              ],
-              "additions": 58,
-              "deletions": 3,
-              "path": "internal/graph/frontmatter.go",
-              "removed": [
-                "case strings.HasPrefix(raw, \"[\") && !strings.HasPrefix(raw, \"[[\"):"
-              ]
-            }
-          ],
-          "sha": "0ee7945063c7198aa9fc6ca371c161f180de739a",
-          "subject": "fix(graph): read unquoted link lists, skip links in code and file embeds"
-        },
-        {
-          "authored_at": "2026-10-31T00:49:08+00:00",
-          "changed_lines": 202,
-          "files": [
-            {
-              "added": [
-                "func TestNoteAddReadsPillarsLikeTheGraph(t *testing.T) {",
-                "e, _, _ := testEnv(t, nil)"
-              ],
-              "additions": 86,
-              "deletions": 0,
-              "path": "cmd/acta/note_test.go",
-              "removed": []
-            },
-            {
-              "added": [
-                "// slugFiles maps each slug to the note files under notes/ that carry it, as",
-                "// paths relative to root, sorted. A slug is one node, so more than one file"
-              ],
-              "additions": 78,
-              "deletions": 7,
-              "path": "cmd/acta/note.go",
-              "removed": [
-                "const use = \"usage: acta note add <file>... [--pillar P] [--agent A] [--via V]\""
-              ]
-            },
-            {
-              "added": [
-                "// Pillars reads a note's pillars: line the way the graph does: trimmed,",
-                "// lowercased, a \"pillar:\" prefix dropped, repeats dropped. bad are the"
-              ],
-              "additions": 20,
-              "deletions": 9,
-              "path": "internal/graph/graph.go",
-              "removed": [
-                "for _, p := range front.Vals[\"pillars\"] {"
-              ]
-            }
-          ],
-          "sha": "6fdb1c63e44a24674e7ad41c7c4387b8a4327c7d",
-          "subject": "fix(notes): note add reads pillars like the graph; one slug, one file"
+          "sha": "b6717c9f7fdc32f01c08dd0861e2fa19f7b25e5f",
+          "subject": "data: refresh public roster snapshot"
         }
       ],
       "judgments": {
         "change_kind": {
-          "choice": "fix",
-          "confidence": 0.44
+          "choice": "other",
+          "confidence": 0.94
         },
         "magnitude": {
-          "confidence": 0.98,
-          "label": "large",
-          "level": 2,
-          "score": 1.99
+          "confidence": 0.48,
+          "label": "moderate",
+          "level": 1,
+          "score": 0.71
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.92
+          "noul": 0.63
         },
         "regression_risk": {
-          "noul": 0.79
+          "noul": 0.55
         },
         "severity": {
-          "confidence": 0.56,
-          "label": "moderate",
-          "level": 1,
-          "score": 1.23
+          "confidence": 0.31,
+          "label": "minor",
+          "level": 0,
+          "score": 0.46
         }
       },
-      "name": "core-and-craft"
+      "name": "jev-roster-shapes"
     }
   ],
-  "updated": "2026-10-31T10:21:25.608489+00:00",
-  "window_end": "2026-10-31T03:21:25.512363-07:00",
+  "updated": "2026-11-01T11:22:01.547044+00:00",
+  "window_end": "2026-11-01T03:22:01.404431-08:00",
   "window_start": "2026-10-30T17:00:00-07:00"
 }

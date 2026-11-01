@@ -1,17 +1,17 @@
 {
   "fix_minus": {
     "commits_28": 746,
-    "fix_28": 138,
-    "value": 122
+    "fix_28": 137,
+    "value": 121
   },
   "season": {
-    "aera": 0.58,
-    "aera_sub": "33 of 576 runs failed \u00b7 public repos \u00b7 28d",
+    "aera": 0.59,
+    "aera_sub": "33 of 563 runs failed \u00b7 public repos \u00b7 28d",
     "wdc": 18.18,
-    "wdc_sub": "46 deployments created \u00b7 last 28d"
+    "wdc_sub": "44 deployments created \u00b7 last 28d"
   },
   "source": "mirrors",
-  "updated": "2026-10-31T10:21:53Z",
+  "updated": "2026-11-01T11:22:30Z",
   "weeks": {
     "2025-11-03": {
       "commits": 0,
@@ -757,8 +757,8 @@
       }
     },
     "2026-10-26": {
-      "commits": 108,
-      "diffs": 1452,
+      "commits": 112,
+      "diffs": 1476,
       "repos": 7,
       "skills": {
         "API Integration": 8.82,
@@ -767,21 +767,21 @@
         "Build Config": 8.28,
         "Concurrency": 29.22,
         "Data Viz": 44.22,
-        "Docs & Writing": 394.79,
+        "Docs & Writing": 429.32,
         "Error Handling": 46.19,
         "GitHub Actions": 28.91,
         "LLM APIs": 16.46,
-        "Make & Just": 39.38,
+        "Make & Just": 41.11,
         "Performance": 44.58,
         "React": 3.08,
         "Regex & Parsing": 9.3,
         "SQL & Data Modeling": 4.9,
         "SQLAlchemy": 2.0,
         "Tailwind CSS": 18.81,
-        "Testing": 567.01,
+        "Testing": 580.5,
         "Type Design": 54.28,
         "Zod": 28.46,
-        "systemd": 34.17
+        "systemd": 39.17
       }
     }
   }
