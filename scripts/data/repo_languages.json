@@ -42,6 +42,23 @@
     ],
     "stack_type": "frontend"
   },
+  "baseball-sabermetrics-mcp": {
+    "bytes": {
+      "Python": 105136
+    },
+    "display": "Python",
+    "eligible": [
+      "Python"
+    ],
+    "is_fullstack": false,
+    "pct_summary": "Python 100%",
+    "primary": "Python",
+    "secondary": null,
+    "sig_prog": [
+      "Python"
+    ],
+    "stack_type": "backend"
+  },
   "bayes-horizon": {
     "bytes": {
       "CSS": 53670,
@@ -64,6 +81,72 @@
     ],
     "stack_type": "backend"
   },
+  "bend-equity": {
+    "bytes": {
+      "Python": 5383,
+      "Shell": 610
+    },
+    "display": "Python \u00b7 Shell",
+    "eligible": [
+      "Python",
+      "Shell"
+    ],
+    "is_fullstack": false,
+    "pct_summary": "Python 90% \u00b7 Shell 10%",
+    "primary": "Python",
+    "secondary": "Shell",
+    "sig_prog": [
+      "Python",
+      "Shell"
+    ],
+    "stack_type": "backend"
+  },
+  "bend-re24": {
+    "bytes": {
+      "Go": 71061,
+      "Makefile": 4184,
+      "Shell": 3180,
+      "templ": 12524
+    },
+    "display": "Go",
+    "eligible": [
+      "Go",
+      "templ"
+    ],
+    "is_fullstack": false,
+    "pct_summary": "Go 96%",
+    "primary": "Go",
+    "secondary": null,
+    "sig_prog": [
+      "Go"
+    ],
+    "stack_type": "systems"
+  },
+  "bend-winprob": {
+    "bytes": {
+      "CSS": 31037,
+      "HTML": 69178,
+      "JavaScript": 67378,
+      "Python": 134345,
+      "Shell": 1128
+    },
+    "display": "Python \u00b7 JS",
+    "eligible": [
+      "CSS",
+      "HTML",
+      "JavaScript",
+      "Python"
+    ],
+    "is_fullstack": true,
+    "pct_summary": "Python 66% \u00b7 JavaScript 33%",
+    "primary": "Python",
+    "secondary": "JavaScript",
+    "sig_prog": [
+      "Python",
+      "JavaScript"
+    ],
+    "stack_type": "fullstack"
+  },
   "chacha20-avx2": {
     "bytes": {
       "Assembly": 38960,
@@ -84,6 +167,34 @@
       "Assembly"
     ],
     "stack_type": "systems"
+  },
+  "cloudflare-agent-boxes": {
+    "bytes": {
+      "JavaScript": 36777
+    },
+    "display": "JavaScript",
+    "eligible": [
+      "JavaScript"
+    ],
+    "is_fullstack": false,
+    "pct_summary": "JavaScript 100%",
+    "primary": "JavaScript",
+    "secondary": null,
+    "sig_prog": [
+      "JavaScript"
+    ],
+    "stack_type": "frontend"
+  },
+  "cu-x": {
+    "bytes": {},
+    "display": "\u2014",
+    "eligible": [],
+    "is_fullstack": false,
+    "pct_summary": "\u2014",
+    "primary": null,
+    "secondary": null,
+    "sig_prog": [],
+    "stack_type": "general"
   },
   "dotfiles": {
     "bytes": {
@@ -275,6 +386,17 @@
     ],
     "stack_type": "infra"
   },
+  "instrumenta": {
+    "bytes": {},
+    "display": "\u2014",
+    "eligible": [],
+    "is_fullstack": false,
+    "pct_summary": "\u2014",
+    "primary": null,
+    "secondary": null,
+    "sig_prog": [],
+    "stack_type": "general"
+  },
   "jev-experiments": {
     "bytes": {
       "JavaScript": 32657
@@ -349,6 +471,17 @@
       "Python"
     ],
     "stack_type": "backend"
+  },
+  "nanotap": {
+    "bytes": {},
+    "display": "\u2014",
+    "eligible": [],
+    "is_fullstack": false,
+    "pct_summary": "\u2014",
+    "primary": null,
+    "secondary": null,
+    "sig_prog": [],
+    "stack_type": "general"
   },
   "omarchy-agents": {
     "bytes": {
@@ -495,6 +628,24 @@
     ],
     "stack_type": "backend"
   },
+  "sabr-overlay": {
+    "bytes": {
+      "JavaScript": 50132,
+      "Makefile": 395
+    },
+    "display": "JavaScript",
+    "eligible": [
+      "JavaScript"
+    ],
+    "is_fullstack": false,
+    "pct_summary": "JavaScript 100%",
+    "primary": "JavaScript",
+    "secondary": null,
+    "sig_prog": [
+      "JavaScript"
+    ],
+    "stack_type": "frontend"
+  },
   "scheme-db": {
     "bytes": {
       "CSS": 60072,
@@ -556,6 +707,32 @@
       "Rust"
     ],
     "stack_type": "systems"
+  },
+  "springboard": {
+    "bytes": {
+      "CSS": 1491,
+      "HTML": 643,
+      "Java": 9631,
+      "JavaScript": 592,
+      "Shell": 14544,
+      "TypeScript": 6386
+    },
+    "display": "Shell \u00b7 Java",
+    "eligible": [
+      "Java",
+      "Shell",
+      "TypeScript"
+    ],
+    "is_fullstack": true,
+    "pct_summary": "Shell 47% \u00b7 Java 31% \u00b7 TypeScript 20%",
+    "primary": "Shell",
+    "secondary": "Java",
+    "sig_prog": [
+      "Shell",
+      "Java",
+      "TypeScript"
+    ],
+    "stack_type": "fullstack"
   },
   "statcast-lakehouse": {
     "bytes": {
