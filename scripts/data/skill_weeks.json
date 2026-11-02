@@ -1,24 +1,18 @@
 {
   "fix_minus": {
-    "commits_28": 746,
+    "commits_28": 758,
     "fix_28": 137,
-    "value": 121
+    "value": 119
   },
   "season": {
-    "aera": 0.59,
-    "aera_sub": "33 of 563 runs failed \u00b7 public repos \u00b7 28d",
-    "wdc": 18.18,
+    "aera": 0.61,
+    "aera_sub": "34 of 557 runs failed \u00b7 public repos \u00b7 28d",
+    "wdc": 8.18,
     "wdc_sub": "44 deployments created \u00b7 last 28d"
   },
   "source": "mirrors",
-  "updated": "2026-11-01T11:22:30Z",
+  "updated": "2026-11-02T11:23:01Z",
   "weeks": {
-    "2025-11-03": {
-      "commits": 0,
-      "diffs": 0,
-      "repos": 0,
-      "skills": {}
-    },
     "2025-11-10": {
       "commits": 0,
       "diffs": 0,
@@ -757,32 +751,42 @@
       }
     },
     "2026-10-26": {
-      "commits": 112,
-      "diffs": 1476,
-      "repos": 7,
+      "commits": 134,
+      "diffs": 1707,
+      "repos": 8,
       "skills": {
         "API Integration": 8.82,
         "Agent Tooling": 5.89,
-        "Astro": 71.8,
-        "Build Config": 8.28,
-        "Concurrency": 29.22,
-        "Data Viz": 44.22,
-        "Docs & Writing": 429.32,
-        "Error Handling": 46.19,
-        "GitHub Actions": 28.91,
+        "Astro": 110.01,
+        "Build Config": 13.94,
+        "CLI Design": 18.84,
+        "Cloudflare Workers": 1.22,
+        "Concurrency": 34.61,
+        "Data Viz": 65.94,
+        "Docs & Writing": 551.72,
+        "Error Handling": 80.8,
+        "GitHub Actions": 37.16,
         "LLM APIs": 16.46,
-        "Make & Just": 41.11,
-        "Performance": 44.58,
-        "React": 3.08,
-        "Regex & Parsing": 9.3,
+        "Make & Just": 50.06,
+        "NumPy": 13.66,
+        "Performance": 64.81,
+        "React": 39.36,
+        "Regex & Parsing": 12.76,
         "SQL & Data Modeling": 4.9,
         "SQLAlchemy": 2.0,
-        "Tailwind CSS": 18.81,
-        "Testing": 580.5,
-        "Type Design": 54.28,
-        "Zod": 28.46,
+        "Tailwind CSS": 24.09,
+        "Testing": 801.89,
+        "Type Design": 77.88,
+        "Zod": 30.46,
+        "pandas": 56.13,
         "systemd": 39.17
       }
+    },
+    "2026-11-02": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
     }
   }
 }

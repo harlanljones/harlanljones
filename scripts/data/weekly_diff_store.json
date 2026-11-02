@@ -1,6 +1,377 @@
 {
   "projects": [
     {
+      "changed_lines": 19085,
+      "commits": [
+        {
+          "authored_at": "2026-11-01T18:49:00+00:00",
+          "changed_lines": 8425,
+          "files": [
+            {
+              "added": [],
+              "additions": 0,
+              "deletions": 5786,
+              "path": "public/llms-full.txt",
+              "removed": [
+                "# SchemeDB \u2014 Complete NFL Scheme & All-22 Tactical Knowledge Base"
+              ]
+            },
+            {
+              "added": [],
+              "additions": 0,
+              "deletions": 1405,
+              "path": "public/sitemap.xml",
+              "removed": [
+                "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+              ]
+            },
+            {
+              "added": [],
+              "additions": 0,
+              "deletions": 564,
+              "path": "public/llms.txt",
+              "removed": [
+                "# SchemeDB \u2014 NFL Tactical Scheme & All-22 Playbook Visualizer"
+              ]
+            }
+          ],
+          "sha": "64379b7bdb44d1a7bac4ada8ffbe64413d756383",
+          "subject": "fix(data): stop calling plays identical for the first 1.2 seconds"
+        },
+        {
+          "authored_at": "2026-11-01T18:49:00+00:00",
+          "changed_lines": 4817,
+          "files": [
+            {
+              "added": [
+                "/*",
+                "* SchemeDB, The Playbook. A coach's install binder: warm paper and ink by default, the same binder"
+              ],
+              "additions": 1981,
+              "deletions": 0,
+              "path": "site/styles/global.css",
+              "removed": []
+            },
+            {
+              "added": [
+                "/**",
+                "* Build-time view of `data/`. Pages read the same files the downloads are built from, so every number on the"
+              ],
+              "additions": 326,
+              "deletions": 0,
+              "path": "site/lib/data.ts",
+              "removed": []
+            },
+            {
+              "added": [
+                "import { useEffect, useMemo, useRef } from 'react';",
+                "import { parsePlay, type FieldWindow } from '../lib/field';"
+              ],
+              "additions": 194,
+              "deletions": 0,
+              "path": "site/islands/PlayViewer.tsx",
+              "removed": []
+            }
+          ],
+          "sha": "d2792bee8804a3d64d731d2ac19a2949ea3b6c06",
+          "subject": "feat(site): build the Playbook site with Astro and React islands"
+        },
+        {
+          "authored_at": "2026-10-31T00:02:10+00:00",
+          "changed_lines": 2156,
+          "files": [
+            {
+              "added": [
+                "{",
+                "\"$schema\": \"https://json-schema.org/draft/2020-12/schema\","
+              ],
+              "additions": 400,
+              "deletions": 0,
+              "path": "data/schema/spec.schema.json",
+              "removed": []
+            },
+            {
+              "added": [
+                "import type { Formation, Tracks } from '../schema/schema';",
+                "import type { Spec } from './schema';"
+              ],
+              "additions": 277,
+              "deletions": 0,
+              "path": "src/spec/compile.ts",
+              "removed": []
+            },
+            {
+              "added": [
+                "import * as fs from 'node:fs';",
+                "import * as path from 'node:path';"
+              ],
+              "additions": 181,
+              "deletions": 0,
+              "path": "src/spec/__tests__/compile.test.ts",
+              "removed": []
+            }
+          ],
+          "sha": "808bb3552ab9bc5234e95644d0d6ff338c1ee059",
+          "subject": "feat(specs): add play spec vocabulary v0 and compiler v0"
+        },
+        {
+          "authored_at": "2026-11-01T20:04:39+00:00",
+          "changed_lines": 2045,
+          "files": [
+            {
+              "added": [
+                "/**",
+                "* The coaching network: who worked directly under whom, and whose ideas passed on through a lineage tree."
+              ],
+              "additions": 431,
+              "deletions": 0,
+              "path": "site/lib/network.ts",
+              "removed": []
+            },
+            {
+              "added": [
+                ".toc .row > a {",
+                ".toc .row > a:hover {"
+              ],
+              "additions": 303,
+              "deletions": 30,
+              "path": "site/styles/global.css",
+              "removed": [
+                ".toc .row a {"
+              ]
+            },
+            {
+              "added": [
+                "/**",
+                "* Share images: one 1200 by 630 PNG per play and one for the site, drawn at build time."
+              ],
+              "additions": 150,
+              "deletions": 0,
+              "path": "site/lib/og.ts",
+              "removed": []
+            }
+          ],
+          "sha": "f845bfced8138eeb21edc9cabf14096e9c1f7300",
+          "subject": "feat(site): audit fixes, hash marks, scoring side, Lineages page and share images"
+        }
+      ],
+      "judgments": {
+        "change_kind": {
+          "choice": "feature",
+          "confidence": 1.0
+        },
+        "magnitude": {
+          "confidence": 1.0,
+          "label": "large",
+          "level": 2,
+          "score": 1.99
+        },
+        "model": "jev-latest",
+        "notable": {
+          "noul": 0.96
+        },
+        "regression_risk": {
+          "noul": 0.78
+        },
+        "severity": {
+          "confidence": 0.05,
+          "label": "severe",
+          "level": 2,
+          "score": 1.37
+        }
+      },
+      "name": "scheme-db"
+    },
+    {
+      "changed_lines": 6204,
+      "commits": [
+        {
+          "authored_at": "2026-11-02T03:34:30+00:00",
+          "changed_lines": 1697,
+          "files": [
+            {
+              "added": [
+                "{",
+                "\"cohort\": ["
+              ],
+              "additions": 872,
+              "deletions": 0,
+              "path": "tests/fixtures/factors_aaa_mlb_frozen.json",
+              "removed": []
+            },
+            {
+              "added": [
+                "International links (an NPB/KBO/CPBL/CUBA endpoint) are different: both",
+                "directions are pooled into one sample (reverse rows inverted), the factor"
+              ],
+              "additions": 425,
+              "deletions": 19,
+              "path": "src/rosetta/models/factors.py",
+              "removed": [
+                "pre_adj = age_adjust_rate("
+              ]
+            },
+            {
+              "added": [
+                "\"\"\"Pooled international link factors: pooling, direction term, chain shrink target, thin links.\"\"\"",
+                "from __future__ import annotations"
+              ],
+              "additions": 381,
+              "deletions": 0,
+              "path": "tests/test_factors_pooled.py",
+              "removed": []
+            }
+          ],
+          "sha": "fd59d5242c47517baa8595aa06e76b100ebfdb72",
+          "subject": "feat(factors): pool international links across directions with direction term and chain shrink target"
+        },
+        {
+          "authored_at": "2026-11-02T04:17:57+00:00",
+          "changed_lines": 1251,
+          "files": [
+            {
+              "added": [
+                "import json",
+                "from rosetta.cohort.builder import pair_seasons"
+              ],
+              "additions": 545,
+              "deletions": 2,
+              "path": "src/rosetta/backtest/historical.py",
+              "removed": [
+                "from rosetta.ingest.loaders import load_all_seasons"
+              ]
+            },
+            {
+              "added": [
+                "\"\"\"International (NPB/KBO -> MLB) rolling validation: leakage, scoring, gate, report, CLI.\"\"\"",
+                "from __future__ import annotations"
+              ],
+              "additions": 342,
+              "deletions": 0,
+              "path": "tests/test_international_rolling.py",
+              "removed": []
+            },
+            {
+              "added": [
+                "# International backtest results (NPB and KBO to MLB)",
+                "Generated by `rosetta international-rolling`; the numbers below are copied from its JSON output, do not edit them by hand. Regenerate after any snapshot, factor"
+              ],
+              "additions": 138,
+              "deletions": 0,
+              "path": "docs/international-backtest-results.md",
+              "removed": []
+            }
+          ],
+          "sha": "7f44fda13eec0daa8d4ecb8105d5b2223dc334fd",
+          "subject": "feat(backtest): international rolling validation for NPB/KBO exports"
+        },
+        {
+          "authored_at": "2026-11-02T03:26:38+00:00",
+          "changed_lines": 814,
+          "files": [
+            {
+              "added": [
+                "\"\"\"wRC+, FIP-, 20-80 grades, WAR and dollars from translated wOBA / FIP.",
+                "Reference constants come from ``data/reference/mlb_constants.csv`` (see"
+              ],
+              "additions": 374,
+              "deletions": 0,
+              "path": "src/rosetta/models/grades.py",
+              "removed": []
+            },
+            {
+              "added": [
+                "\"\"\"Grades, WAR and dollars: formulas, bands, None-propagation (offline, fixture constants).\"\"\"",
+                "from __future__ import annotations"
+              ],
+              "additions": 350,
+              "deletions": 0,
+              "path": "tests/test_grades.py",
+              "removed": []
+            },
+            {
+              "added": [
+                "from rosetta.models.grades import (",
+                "DEFAULT_PA,"
+              ],
+              "additions": 72,
+              "deletions": 1,
+              "path": "src/rosetta/translate/api.py",
+              "removed": [
+                "\"\"\"Translate one normalized season line to the target league.\"\"\""
+              ]
+            }
+          ],
+          "sha": "3d0276a22c2dfd1184816764143fc3d3e7486e4a",
+          "subject": "feat(grades): wRC+, FIP-, 20-80 grade, WAR and dollars with bands"
+        },
+        {
+          "authored_at": "2026-11-02T03:32:54+00:00",
+          "changed_lines": 682,
+          "files": [
+            {
+              "added": [
+                "import pandas as pd",
+                "import pytest"
+              ],
+              "additions": 200,
+              "deletions": 0,
+              "path": "tests/test_leaderboard_lookup.py",
+              "removed": []
+            },
+            {
+              "added": [
+                "# ---- WP8: posting class and grade fields in the bundle -------------------",
+                "load_posting_class = _EXPORT_DEMO.load_posting_class"
+              ],
+              "additions": 135,
+              "deletions": 0,
+              "path": "tests/test_export_demo.py",
+              "removed": []
+            },
+            {
+              "added": [
+                "def _showcase_payload(posting_class: list[dict] | None = None, **backtest_extra) -> dict:",
+                "metric = {"
+              ],
+              "additions": 122,
+              "deletions": 0,
+              "path": "tests/test_showcase_app.py",
+              "removed": []
+            }
+          ],
+          "sha": "4f7b4eb1cf972914b472910d6e3dd9f829f8f9e3",
+          "subject": "feat(leaderboard): wRC+/FIP-, grades, WAR and $ with bands; posting class panel"
+        }
+      ],
+      "judgments": {
+        "change_kind": {
+          "choice": "feature",
+          "confidence": 1.0
+        },
+        "magnitude": {
+          "confidence": 1.0,
+          "label": "large",
+          "level": 2,
+          "score": 1.99
+        },
+        "model": "jev-latest",
+        "notable": {
+          "noul": 0.93
+        },
+        "regression_risk": {
+          "noul": 0.73
+        },
+        "severity": {
+          "confidence": 0.49,
+          "label": "severe",
+          "level": 2,
+          "score": 1.65
+        }
+      },
+      "name": "rosetta"
+    },
+    {
       "changed_lines": 3682,
       "commits": [
         {
@@ -175,184 +546,188 @@
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.81
+          "noul": 0.82
         },
         "regression_risk": {
-          "noul": 0.75
+          "noul": 0.76
         },
         "severity": {
           "confidence": 0.6,
           "label": "moderate",
           "level": 1,
-          "score": 1.19
+          "score": 1.18
         }
       },
       "name": "core-and-craft"
     },
     {
-      "changed_lines": 3511,
+      "changed_lines": 3239,
       "commits": [
         {
-          "authored_at": "2026-10-31T00:02:10+00:00",
-          "changed_lines": 2156,
+          "authored_at": "2026-11-02T04:09:33+00:00",
+          "changed_lines": 1817,
           "files": [
             {
               "added": [
-                "{",
-                "\"$schema\": \"https://json-schema.org/draft/2020-12/schema\","
+                "templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 58, \"<p>An intentional walk has no break-even rate without a batter-specific outcome model,",
+                "if v.MgrLoaded {"
               ],
-              "additions": 400,
-              "deletions": 0,
-              "path": "data/schema/spec.schema.json",
-              "removed": []
-            },
-            {
-              "added": [
-                "import type { Formation, Tracks } from '../schema/schema';",
-                "import type { Spec } from './schema';"
-              ],
-              "additions": 277,
-              "deletions": 0,
-              "path": "src/spec/compile.ts",
-              "removed": []
-            },
-            {
-              "added": [
-                "import * as fs from 'node:fs';",
-                "import * as path from 'node:path';"
-              ],
-              "additions": 181,
-              "deletions": 0,
-              "path": "src/spec/__tests__/compile.test.ts",
-              "removed": []
-            }
-          ],
-          "sha": "808bb3552ab9bc5234e95644d0d6ff338c1ee059",
-          "subject": "feat(specs): add play spec vocabulary v0 and compiler v0"
-        },
-        {
-          "authored_at": "2026-10-31T01:05:20+00:00",
-          "changed_lines": 493,
-          "files": [
-            {
-              "added": [
-                "import { framesFor } from '../engine/frames';",
-                "import type { Coach, Dataset, LineageNode } from '../schema/schema';"
-              ],
-              "additions": 208,
-              "deletions": 0,
-              "path": "src/release/tables.ts",
-              "removed": []
-            },
-            {
-              "added": [
-                "import { describe, expect, it } from 'vitest';",
-                "import { loadDataset } from '../../schema/load';"
-              ],
-              "additions": 84,
-              "deletions": 0,
-              "path": "src/release/__tests__/tables.test.ts",
-              "removed": []
-            },
-            {
-              "added": [
-                "/**",
-                "* Builds the downloadable releases of the dataset."
-              ],
-              "additions": 83,
-              "deletions": 0,
-              "path": "scripts/release.ts",
-              "removed": []
-            }
-          ],
-          "sha": "4b544627e72c67202955ca017aebf1c53da49860",
-          "subject": "feat(data): build JSON, CSV and SQLite releases and a tag-driven release workflow"
-        },
-        {
-          "authored_at": "2026-10-31T01:15:58+00:00",
-          "changed_lines": 448,
-          "files": [
-            {
-              "added": [
-                "import { MAN_COVERAGE, PASS_SET, POCKET_GAP, QB_DROP, RECEIVER, RUSH, ZONE_TIMING } from './calibration';",
-                "import { DEEP_ZONES, ROUTES, ZONE_SHAPES, type Point, type ZoneSide } from './vocabulary';"
-              ],
-              "additions": 78,
-              "deletions": 55,
-              "path": "src/spec/compile.ts",
+              "additions": 456,
+              "deletions": 334,
+              "path": "report/views_templ.go",
               "removed": [
-                "import { DEEP_ZONES, DROPS, ROUTES, ZONE_SHAPES, type Point, type ZoneSide } from './vocabulary';"
+                "templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 58, \"<p>An intentional walk has no break-even rate without a batter-specific outcome model,"
               ]
             },
             {
               "added": [
-                "seam: 'Vertical release up the seam between the numbers and the hash, leaning about 10 degrees toward the middle (the lean is unverified).',",
-                "slant: 'Stem of about 3 yards, then a hard cut toward the middle at about 50 degrees from vertical.',"
+                "// Package vsbook grades steal, bunt, and intentional-walk attempts against",
+                "// the decision book bin/re24 prints. Break-evens and intentional-walk run"
+              ],
+              "additions": 359,
+              "deletions": 0,
+              "path": "internal/vsbook/vsbook.go",
+              "removed": []
+            },
+            {
+              "added": [
+                "\"SH_FL\", \"BUNT_FL\",",
+                "sh, bunt  bool"
+              ],
+              "additions": 159,
+              "deletions": 16,
+              "path": "ingest/main.go",
+              "removed": [
+                "switch f[\"BAT_EVENT_FL\"] {"
+              ]
+            }
+          ],
+          "sha": "05608923b00da66a03ca41d5174a90065fa7647a",
+          "subject": "feat: grade steals, bunts, and intentional walks by manager"
+        },
+        {
+          "authored_at": "2026-11-02T03:58:54+00:00",
+          "changed_lines": 941,
+          "files": [
+            {
+              "added": [
+                "templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, \"<!doctype html><html lang=\\\"en\\\"><head><meta charset=\\\"utf-8\\\"><meta name=\\\"viewport\\\" ",
+                "templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(v.Year)"
+              ],
+              "additions": 470,
+              "deletions": 392,
+              "path": "report/views_templ.go",
+              "removed": [
+                "templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, \"<!doctype html><html lang=\\\"en\\\"><head><meta charset=\\\"utf-8\\\"><meta name=\\\"viewport\\\" "
+              ]
+            },
+            {
+              "added": [
+                "\"github.com/harlanljones/bend-re24/internal/bendout\"",
+                "func TestFanGraphs2023Shape(t *testing.T) {"
+              ],
+              "additions": 26,
+              "deletions": 0,
+              "path": "compare/compare_test.go",
+              "removed": []
+            },
+            {
+              "added": [
+                "<title>bend-re24: { v.Year } RE24 and decision book</title>",
+                "<h1>bend-re24: { v.Year } run expectancy</h1>"
+              ],
+              "additions": 6,
+              "deletions": 6,
+              "path": "report/views.templ",
+              "removed": [
+                "<title>bend-re24: 2024 RE24 and decision book</title>"
+              ]
+            }
+          ],
+          "sha": "dd5d0fc072d5ecc2fa298b63f5c070434c791070",
+          "subject": "feat: select the season with YEAR and check 2023"
+        },
+        {
+          "authored_at": "2026-11-02T04:22:05+00:00",
+          "changed_lines": 219,
+          "files": [
+            {
+              "added": [
+                "# closed and dropped halves. `absorb` stacks lists newest-first; `season`",
+                "# returns file order for the bad-game lines and the per-game counts."
+              ],
+              "additions": 101,
+              "deletions": 25,
+              "path": "src/re24.bend",
+              "removed": [
+                "# closed and dropped halves. Lists are newest first until `season` returns."
+              ]
+            },
+            {
+              "added": [
+                "# A choice scored once. The state index and the scorebook observations do not",
+                "# depend on the RE table, so a bootstrap builds the book once and each sample"
               ],
               "additions": 41,
-              "deletions": 38,
-              "path": "src/spec/vocabulary.ts",
+              "deletions": 18,
+              "path": "src/decisions.bend",
               "removed": [
-                "seam: 'Vertical release up the seam between the numbers and the hash, leaning toward the middle (the lean is unverified against tracking data).',"
+                "def before(+ts: List<&2, RE.Tot>, +bases: Nat, +outs: Nat) -> Maybe<&2, Nat>:"
               ]
             },
             {
               "added": [
-                "/**",
-                "* Constants the compiler uses, fitted to NFL player tracking and rounded to one or two significant figures."
+                "# `half` is 2^(depth-1), the pivot `pick` uses. `be` and `dre` are the",
+                "# decision books: scorebook outcomes fixed once, RE applied per sample."
               ],
-              "additions": 73,
-              "deletions": 0,
-              "path": "src/spec/calibration.ts",
-              "removed": []
+              "additions": 14,
+              "deletions": 10,
+              "path": "src/bootstrap.bend",
+              "removed": [
+                "Cfg{tree: GTree, depth: Nat, games: Nat, seed: U32}"
+              ]
             }
           ],
-          "sha": "15a8ddcabaea28ed8fa6110c92a42b37091ccb37",
-          "subject": "feat(specs): calibrate the compiler to NFL tracking constants (compiler 0.3.0)"
+          "sha": "23f3e6e2e865167349d31326a6b55696333987e0",
+          "subject": "refactor: fork game replays and score the decision book once"
         },
         {
-          "authored_at": "2026-10-31T00:59:10+00:00",
-          "changed_lines": 303,
+          "authored_at": "2026-11-02T03:56:49+00:00",
+          "changed_lines": 129,
           "files": [
             {
               "added": [
-                "import { positionAt } from '../../engine/interpolate';",
-                "const MIDFIELD_X = 26.67;"
+                "package main",
+                "import ("
               ],
-              "additions": 170,
-              "deletions": 10,
-              "path": "src/spec/__tests__/compile.test.ts",
-              "removed": [
-                "it('stays close to the hand-made tracks in the first 1.2 s (regression floor, not a claim of equality)', () => {"
-              ]
+              "additions": 120,
+              "deletions": 0,
+              "path": "compare/compare_test.go",
+              "removed": []
             },
             {
               "added": [
-                "\"description\": \"Vertical release straight upfield.\"",
-                "\"description\": \"Vertical release up the seam between the numbers and the hash, leaning toward the middle (the lean is unverified against tracking data).\""
+                "GAMES 1 1 0",
+                "HALVES 2 0"
               ],
-              "additions": 21,
-              "deletions": 11,
-              "path": "data/schema/spec.schema.json",
-              "removed": [
-                "\"description\": \"Vertical release straight upfield, leaning slightly toward the middle.\""
-              ]
+              "additions": 5,
+              "deletions": 0,
+              "path": "compare/testdata/run.txt",
+              "removed": []
             },
             {
               "added": [
-                "go: 'Vertical release straight upfield.',",
-                "seam: 'Vertical release up the seam between the numbers and the hash, leaning toward the middle (the lean is unverified against tracking data).',"
+                "# The full season is not in the repo. This pair is the same files the",
+                "# compare unit test grades, so the command itself runs in CI."
               ],
-              "additions": 20,
-              "deletions": 12,
-              "path": "src/spec/vocabulary.ts",
-              "removed": [
-                "go: 'Vertical release straight upfield, leaning slightly toward the middle.',"
-              ]
+              "additions": 4,
+              "deletions": 0,
+              "path": ".github/workflows/check.yml",
+              "removed": []
             }
           ],
-          "sha": "6fab1aa4204317d793fd15ecd3d39e705f4d68b9",
-          "subject": "Fix compiler v0 rush direction, route angles and zone names; test physics and concepts"
+          "sha": "a973f43b38b601b218eee971ca604a4d6b8e122a",
+          "subject": "test(compare): cover the 0.01-run check and run it in CI"
         }
       ],
       "judgments": {
@@ -364,29 +739,29 @@
           "confidence": 1.0,
           "label": "large",
           "level": 2,
-          "score": 1.99
+          "score": 2.0
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.87
+          "noul": 0.92
         },
         "regression_risk": {
-          "noul": 0.69
+          "noul": 0.76
         },
         "severity": {
-          "confidence": 0.49,
+          "confidence": 0.53,
           "label": "moderate",
           "level": 1,
-          "score": 1.06
+          "score": 1.15
         }
       },
-      "name": "scheme-db"
+      "name": "bend-re24"
     },
     {
       "changed_lines": 148,
       "commits": [
         {
-          "authored_at": "2026-10-31T13:42:57+00:00",
+          "authored_at": "2026-11-01T14:19:57+00:00",
           "changed_lines": 148,
           "files": [
             {
@@ -403,8 +778,8 @@
             },
             {
               "added": [
-                "'offseason-infield': 'bdca5409077b31d15b35c48c9c00e1b5dfaf814a7e617b794cd0dcc26e413e4f',",
-                "'opening-day-outfield': 'b64c94f4f6e180853df41a8474ed6c5546b8854027fc74e2ad270b35361a44e5',"
+                "'offseason-infield': '47436fbc98bcea479ed8cf7fbbbf6cc06c8a9882803e206b016afd5d83cbf3d6',",
+                "'opening-day-outfield': 'b7cfb26693ce82bf6b299331e09a17986f36769966943f4eb784e8dd5dbe6dbb',"
               ],
               "additions": 8,
               "deletions": 8,
@@ -415,8 +790,8 @@
             },
             {
               "added": [
-                "\"createdAt\": \"2026-10-31T13:42:24Z\",",
-                "\"note\": \"Free public endpoints, fetched 2026-10-31T13:42:24Z into spikes/mlb-2026/timeline-snapshot.json. Rates are observed 2026 regular-season totals from 202"
+                "\"createdAt\": \"2026-11-01T14:19:12Z\",",
+                "\"note\": \"Free public endpoints, fetched 2026-11-01T14:19:12Z into spikes/mlb-2026/timeline-snapshot.json. Rates are observed 2026 regular-season totals from 202"
               ],
               "additions": 2,
               "deletions": 2,
@@ -426,39 +801,39 @@
               ]
             }
           ],
-          "sha": "b6717c9f7fdc32f01c08dd0861e2fa19f7b25e5f",
+          "sha": "74bb18ba010d93f6faaf332c4992fbdbd33f0256",
           "subject": "data: refresh public roster snapshot"
         }
       ],
       "judgments": {
         "change_kind": {
           "choice": "other",
-          "confidence": 0.94
+          "confidence": 0.93
         },
         "magnitude": {
-          "confidence": 0.48,
+          "confidence": 0.37,
           "label": "moderate",
           "level": 1,
-          "score": 0.71
+          "score": 0.64
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.63
+          "noul": 0.67
         },
         "regression_risk": {
           "noul": 0.55
         },
         "severity": {
-          "confidence": 0.31,
+          "confidence": 0.38,
           "label": "minor",
           "level": 0,
-          "score": 0.46
+          "score": 0.42
         }
       },
       "name": "jev-roster-shapes"
     }
   ],
-  "updated": "2026-11-01T11:22:01.547044+00:00",
-  "window_end": "2026-11-01T03:22:01.404431-08:00",
+  "updated": "2026-11-02T11:22:28.535725+00:00",
+  "window_end": "2026-11-02T03:22:28.279256-08:00",
   "window_start": "2026-10-30T17:00:00-07:00"
 }
