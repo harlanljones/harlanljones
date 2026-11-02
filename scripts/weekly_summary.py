@@ -271,7 +271,7 @@ def _lower_first(phrase: str) -> str:
 def _evidence_for_file(file: Dict) -> Optional[Tuple[str, str]]:
     """(kind, phrase) for the most description-worthy stored diff line."""
     prose = decl = None
-    lines = file.get("added") if int(file.get("additions") or 0) else file.get("removed")
+    lines = file.get("added")
     for line in lines or []:
         if decl is None and DECL_LINE_RE.match(line.strip()):
             decl = ("decl", _truncate_phrase(line.strip(), MAX_DECLARATION_PHRASE))
