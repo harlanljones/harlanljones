@@ -99,7 +99,7 @@ def test_weekly_fallback_uses_subject_when_diff_is_data_only():
     bullets = generate_diff_heuristics(projects, "testuser")
     assert bullets == [
         "* **[roster](https://github.com/testuser/roster):** "
-        "Refreshed public roster snapshot in `spikes/mlb-2026/timeline-snapshot.json`."
+        "Refreshed public roster snapshot."
     ]
 
 
@@ -127,7 +127,21 @@ def test_section_accent_and_dynamic_callups():
     repos.append({"full_name": "u/rookie", "name": "rookie", "gwar": 2.0, "created_at": "2026-10-01T00:00:00Z"})
     sections = build_sections(repos, now_oct, {})
     section_names = [s[0] for s in sections]
-    assert any("Rookie" in name or "call-up" in name.lower() for name in section_names)
+    assert "Newest repositories" in section_names
+
+
+def test_project_name_and_website_metadata_use_separate_lines():
+    from scripts.render_project_index import _entry, render
+
+    repo = {
+        "name": "statcast-lakehouse", "full_name": "u/statcast-lakehouse",
+        "homepage": "https://statcast.example.com", "description": "Baseball data",
+    }
+    svg, _ = _entry(0, 0, 300, repo, {}, False, "Project websites")
+    assert 'y="15.0" font-size="14.5"' in svg
+    assert 'y="32.0" font-size="10.5"' in svg
+    assert "statcast-lakehouse" in svg and "statcast.example.com" in svg
+    assert "ranked, newest, websites, hot, and hidden" in render([], "Nov 2, 2026", 0)
 
 
 def test_render_header_contains_identity_chips():
@@ -169,10 +183,10 @@ def test_generate_featured_repos_table_collapsed_by_default():
     assert "<details>" in table_md
     assert "<details open>" not in table_md
     assert "</details>" in table_md
-    assert "<summary><b>🚀 Featured Repositories & Live Demos</b></summary>" in table_md
+    assert "<summary><b>🚀 Featured Repositories & Project Websites</b></summary>" in table_md
 
     # Header check
-    assert "| Project | Focus | Tech Stack | Live Deployment |" in table_md
+    assert "| Project | Focus | Tech Stack | Website or Repository |" in table_md
     assert "| :--- | :--- | :--- | :--- |" in table_md
 
     # Row content checks
@@ -183,6 +197,11 @@ def test_generate_featured_repos_table_collapsed_by_default():
 
     assert "[**statcast-lakehouse**](https://github.com/testuser/statcast-lakehouse)" in table_md
     assert "[GitHub Repository ↗](https://github.com/testuser/statcast-lakehouse)" in table_md
+
+    escaped = generate_featured_repos_table([
+        {"name": "fast", "featured": True, "focus": "p99 < 250ns | simulated", "badges": []}
+    ], username="testuser")
+    assert "p99 &lt; 250ns \\| simulated" in escaped
 
 
 def test_update_readme_featured_repos_idempotent(tmp_path):

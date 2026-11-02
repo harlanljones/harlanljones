@@ -5,8 +5,8 @@ sections drawn from the live repo index. Every repository appears in at most
 one section — first category that claims it wins.
 
   Top 5 · by gWAR     the leaderboard's best, with the Featured summary text
-  September call-ups  newest repos (rookies), not already shown
-  Live in production  repos with a homepage URL
+  Newest repositories  newest repos, not already shown
+  Project websites     repos with a homepage URL
   Hitting streak      hottest repos by Pace+ (30-day vs 90-day commit rate)
   Hidden gems         positive-gWAR repos with the fewest stars
 
@@ -55,7 +55,7 @@ def get_section_accent(name: str) -> str:
     n = name.lower()
     if "top 5" in n or "starting" in n:
         return ACCENT_AMBER
-    if "call-up" in n or "rookie" in n or "debut" in n:
+    if "call-up" in n or "rookie" in n or "debut" in n or "newest" in n:
         return ACCENT_GREEN
     if "live" in n or "production" in n:
         return ACCENT_BLUE
@@ -83,7 +83,7 @@ def format_section_stat(r: dict, section_name: str, now: Optional[dt.datetime] =
             parts.append(f"★ {stars}")
         return " · ".join(parts)
 
-    if "call-up" in section_name.lower() or "rookie" in section_name.lower() or "debut" in section_name.lower():
+    if "call-up" in section_name.lower() or "rookie" in section_name.lower() or "debut" in section_name.lower() or section_name == "Newest repositories":
         created = r.get("created_at")
         if created:
             c_date = parse_iso(created)
@@ -91,7 +91,7 @@ def format_section_stat(r: dict, section_name: str, now: Optional[dt.datetime] =
             return f"debut {c_date.strftime('%b %-d')} ({days_ago}d ago) · {commits_90} commits"
         return f"{commits_90} commits · gWAR {gwar:.1f}"
 
-    if section_name.startswith("Live in production"):
+    if section_name.startswith("Project websites"):
         hp = r.get("homepage") or ""
         domain = re.sub(r"^https?://(www\.)?", "", hp).rstrip("/")
         domain = domain.split("/")[0] if domain else ""
@@ -144,17 +144,9 @@ def build_sections(ranked: List[dict], now, featured: Dict[str, dict]) -> List[T
     sections = [("Top 5 · by gWAR", take(ranked, 5))]
     fresh = sorted((r for r in ranked if r["gwar"] > 0),
                    key=lambda r: r.get("created_at") or "", reverse=True)
-    if now.month == 9:
-        callups_label = "September call-ups"
-    elif now.month in (3, 4):
-        callups_label = "Opening Day call-ups"
-    elif now.month in (5, 6, 7, 8):
-        callups_label = f"{now.strftime('%B')} call-ups"
-    else:
-        callups_label = "Rookie call-ups & debuts"
-    sections.append((callups_label, take(fresh, 3)))
+    sections.append(("Newest repositories", take(fresh, 3)))
     live = sorted((r for r in ranked if r.get("homepage")), key=lambda r: -r["gwar"])
-    sections.append(("Live in production", take(live, 3)))
+    sections.append(("Project websites", take(live, 3)))
     streak = sorted((r for r in ranked if r.get("commits_90", 0) > 0),
                     key=lambda r: (-r.get("pace_plus", 100), -r.get("commits_90", 0)))
     sections.append(("Hitting streak", take(streak, 3)))
@@ -164,12 +156,12 @@ def build_sections(ranked: List[dict], now, featured: Dict[str, dict]) -> List[T
 
 
 def _entry(x: float, y: float, w: float, r: dict, featured: Dict[str, dict], first: bool, section_name: str = "") -> Tuple[str, float]:
-    """One repo row: name, right-side stat, two-line summary."""
+    """One repo row: name and site badge, followed by stats and summary."""
     from repo_languages import lang_color
     frags = []
     cy = y
     stat = format_section_stat(r, section_name)
-    live_w = (len("LIVE") * 11 * 0.62 + 18) if r.get("homepage") else 0.0
+    live_w = (len("SITE") * 11 * 0.62 + 18) if r.get("homepage") else 0.0
     name_max = w - live_w - 10
 
     prim_l = r.get("primary_language") or r.get("language")
@@ -182,32 +174,29 @@ def _entry(x: float, y: float, w: float, r: dict, featured: Dict[str, dict], fir
             f'<circle cx="{x + 12}" cy="{cy + 11:.1f}" r="3.5" fill="{lang_color(sec_l)}"/>'
         )
         tx = x + 20
-        pad_offset = 84
     else:
         frags.append(
             f'<circle cx="{x + 4}" cy="{cy + 11:.1f}" r="4" fill="{lang_color(prim_l)}"/>'
         )
         tx = x + 14
-        pad_offset = 78
 
     title_tooltip = f'{r.get("full_name", r["name"])} · {r.get("languages_pct", disp_l)} · {stat}'
     frags.append(
         f'<text x="{tx:.1f}" y="{cy + 15:.1f}" font-size="14.5" font-weight="700" fill="{ACCENT_BLUE}" '
-        f'font-family="{FONT_FAMILY}"><title>{esc(title_tooltip)}</title>{esc(truncate(r["name"], 24, name_max - pad_offset, bold=True))}</text>'
+        f'font-family="{FONT_FAMILY}"><title>{esc(title_tooltip)}</title>{esc(truncate(r["name"], 14.5, name_max - (tx - x), bold=True))}</text>'
     )
     if r.get("homepage"):
         frags.append(
             f'<g transform="translate({x + w - live_w:.1f},{cy - 1:.1f})">'
             f'<rect width="{live_w:.1f}" height="18" rx="9" fill="#238636"/>'
             f'<text x="{live_w / 2:.1f}" y="13" font-size="10.5" font-weight="700" fill="#ffffff" '
-            f'text-anchor="middle" font-family="{FONT_FAMILY}">LIVE</text></g>'
+            f'text-anchor="middle" font-family="{FONT_FAMILY}">SITE</text></g>'
         )
-    stat_x = x + w - live_w - 10 if live_w else x + w
     frags.append(
-        f'<text x="{stat_x:.1f}" y="{cy + 15:.1f}" font-size="10.5" fill="{MUTED}" text-anchor="end" '
-        f'font-family="{FONT_FAMILY}">{esc(stat)}</text>'
+        f'<text x="{x + 14:.1f}" y="{cy + 32:.1f}" font-size="10.5" fill="{MUTED}" '
+        f'font-family="{FONT_FAMILY}"><title>{esc(stat)}</title>{esc(truncate(stat, 10.5, w - 14))}</text>'
     )
-    cy += 22
+    cy += 39
     summary = (featured.get(r["name"]) or {}).get("summary") or r.get("description") or ""
     if not summary:
         summary = " · ".join((r.get("topics") or [])[:6])
@@ -272,7 +261,7 @@ def render(sections: List[Tuple[str, List[dict]]], date_str: str, total_repos: i
     frags.append(f'<text x="{max_x}" y="{cy + 8:.1f}" font-size="9.5" fill="{MUTED}" text-anchor="end" '
                  f'font-family="{FONT_FAMILY}">{total_repos} public repos · one entry per repo, best section wins · '
                  f'gWAR and Pace+ in Glossary · {esc(date_str)} · GitHub Actions</text>')
-    return card_shell("Projects", "what I ship — ranked, rookies, live, hot, and hidden",
+    return card_shell("Projects", "what I ship — ranked, newest, websites, hot, and hidden",
                       "\n".join(frags), cy + 16, accent=ACCENT_ORANGE)
 
 
@@ -346,16 +335,16 @@ def generate_featured_repos_table(
     for e in included:
         name = e["name"]
         repo_link = f"[**{name}**](https://github.com/{username}/{name})"
-        focus = e.get("focus") or distill_focus(e.get("summary", ""))
+        focus = (e.get("focus") or distill_focus(e.get("summary", ""))).replace("<", "&lt;").replace("|", r"\|")
         tech_stack = format_tech_stack(e.get("badges", []))
         deployment = format_live_deployment(name, e.get("homepage", ""), username)
         rows.append(f"| {repo_link} | {focus} | {tech_stack} | {deployment} |")
 
     table_lines = [
         "<details>",
-        "  <summary><b>🚀 Featured Repositories & Live Demos</b></summary>",
+        "  <summary><b>🚀 Featured Repositories & Project Websites</b></summary>",
         "",
-        "| Project | Focus | Tech Stack | Live Deployment |",
+        "| Project | Focus | Tech Stack | Website or Repository |",
         "| :--- | :--- | :--- | :--- |",
     ] + rows + [
         "",

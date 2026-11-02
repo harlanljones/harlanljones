@@ -25,14 +25,11 @@ from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Optional, Tuple
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from svg_cards import PAD_X, TEXT, card_shell, esc, plain_text, text_width, wrap_by_width, write_theme_pair  # noqa: E402
-from jev_client import REGRESSION_WARN_THRESHOLD, regression_risk  # noqa: E402
+from svg_cards import PAD_X, TEXT, card_shell, esc, plain_text, wrap_by_width, write_theme_pair  # noqa: E402
 
 WEEKLY_START = "<!-- WEEKLY_HIGHLIGHTS_START -->"
 WEEKLY_END = "<!-- WEEKLY_HIGHLIGHTS_END -->"
 BULLET_RE = re.compile(r"^\*\s+\*\*\[([^\]]+)\]\(([^)]+)\):\*\*\s+(.+)$")
-RISK_BADGE_RE = re.compile(r"\s*\[risk: ([a-z]+)\]\s*$")
-RISK_COLORS = {"severe": "#f85149", "moderate": "#d29922", "minor": "#8b949e"}
 
 # The collector keeps only the first bounded added/removed lines per file, so
 # the no-LLM fallback reads raw excerpts and must phrase them in English
@@ -86,7 +83,7 @@ VERB_PAST = {
     "write": "wrote",
 }
 TRAILING_STOPWORDS = frozenset(
-    "the a an of and or to with for in on by as at from that this is are was were be it its".split()
+    "the a an of and or to with for in on by as at from that this is are was were be it its both against".split()
 )
 MAX_EVIDENCE_PHRASE = 130
 MAX_DECLARATION_PHRASE = 100
@@ -207,9 +204,7 @@ def synthesize_with_jev(projects: List[Dict], username: str) -> Optional[List[st
         if not desc:
             continue
         repo = project["name"]
-        risk = regression_risk(project)
-        badge = f" [risk: {risk[1]}]" if risk and risk[0] >= REGRESSION_WARN_THRESHOLD else ""
-        bullets.append(f"* **[{repo}](https://github.com/{username}/{repo}):** {desc}{badge}")
+        bullets.append(f"* **[{repo}](https://github.com/{username}/{repo}):** {desc}")
     return bullets or None
 
 
@@ -234,6 +229,9 @@ def _prose_phrase(line: str) -> Optional[str]:
     if len(s) < 10 or HEX_BLOB_RE.search(s):
         return None
     s = _strip_markdown(s)
+    s = re.split(r"(?<=[.!?])\s+", s, maxsplit=1)[0]
+    if s.endswith(":"):
+        return None
     if not s or s[0] in "{}[]()|<>\"'`*\\=@+!#~-;,$%^&":
         return None
     if re.match(r"^[\w.$-]+\s*[:=]\s", s):
@@ -273,7 +271,8 @@ def _lower_first(phrase: str) -> str:
 def _evidence_for_file(file: Dict) -> Optional[Tuple[str, str]]:
     """(kind, phrase) for the most description-worthy stored diff line."""
     prose = decl = None
-    for line in (file.get("added") or []) + (file.get("removed") or []):
+    lines = file.get("added") if int(file.get("additions") or 0) else file.get("removed")
+    for line in lines or []:
         if decl is None and DECL_LINE_RE.match(line.strip()):
             decl = ("decl", _truncate_phrase(line.strip(), MAX_DECLARATION_PHRASE))
         if prose is None:
@@ -297,10 +296,12 @@ def _file_category(path: str) -> int:
 
 
 def _best_evidence(project: Dict) -> Optional[Tuple[Dict, Tuple[str, str]]]:
-    """Largest source file (then test, docs, data) with readable evidence."""
+    """Largest source or documentation file with readable evidence."""
     ranked = []
     for commit in project.get("commits", []):
         for file in commit.get("files", []):
+            if _file_category(file.get("path", "")) not in (0, 2):
+                continue
             evidence = _evidence_for_file(file)
             if evidence:
                 size = int(file.get("additions") or 0) + int(file.get("deletions") or 0)
@@ -334,7 +335,7 @@ def _describe_evidence(file: Dict, evidence: Tuple[str, str]) -> str:
 
 
 def _describe_subject(project: Dict) -> Optional[str]:
-    """Last resort for data-only diffs: the top commit subject as a sentence."""
+    """Last resort without readable source or documentation evidence."""
     commits = project.get("commits") or []
     if not commits:
         return None
@@ -347,16 +348,9 @@ def _describe_subject(project: Dict) -> Optional[str]:
     if not clean:
         return None
     base = _verb_base(clean)
-    files = top.get("files") or []
-    path = ""
-    if files:
-        biggest = max(files, key=lambda f: int(f.get("additions") or 0) + int(f.get("deletions") or 0))
-        path = biggest.get("path", "")
     if base:
         rest = clean.partition(" ")[2]
         sentence = f"{VERB_PAST[base].capitalize()} {rest}".strip()
-        if path:
-            sentence += f" in `{path}`"
         return sentence.rstrip(" .,;:") + "."
     return clean[0].upper() + clean[1:]
 
@@ -365,9 +359,9 @@ def generate_diff_heuristics(projects: List[Dict], username: str) -> List[str]:
     """Describe each project's week from its most readable diff evidence.
 
     The collector keeps bounded added/removed excerpts, so pick the largest
-    source (then test, docs, data) file per project and phrase its most
+    source (then documentation) file per project and phrase its most
     descriptive line as a sentence; JSON values, hashes, and mid-sentence
-    fragments are never echoed. Projects whose diffs carry only data fall
+    fragments are never echoed. Projects without readable evidence fall
     back to the most substantial commit subject.
     """
     bullets = []
@@ -455,27 +449,10 @@ def render_weekly_svg(bullets: List[str], date_range_label: str) -> str:
         if not m:
             continue
         name, _url, desc = m.groups()
-        badge_match = RISK_BADGE_RE.search(desc)
-        badge = badge_match.group(1) if badge_match else ""
-        if badge_match:
-            desc = desc[: badge_match.start()].rstrip()
         frags.append(
             f'<text x="{PAD_X}" y="{cy + 14:.1f}" font-size="14" font-weight="700" '
             f'fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,\'Segoe UI\',Helvetica,Arial,sans-serif">{esc(name)}</text>'
         )
-        if badge:
-            color = RISK_COLORS.get(badge, "#8b949e")
-            label = f"risk: {badge}"
-            badge_width = text_width(label, 11) + 12
-            badge_x = PAD_X + text_width(name, 14, bold=True) + 8
-            frags.append(
-                f'<rect x="{badge_x:.1f}" y="{cy - 2:.1f}" width="{badge_width:.1f}" height="16" rx="8" '
-                f'fill="{color}" fill-opacity="0.15" stroke="{color}" stroke-opacity="0.6"/>'
-            )
-            frags.append(
-                f'<text x="{badge_x + 6:.1f}" y="{cy + 11:.1f}" font-size="11" fill="{color}" '
-                f'font-family="-apple-system,BlinkMacSystemFont,\'Segoe UI\',Helvetica,Arial,sans-serif">{esc(label)}</text>'
-            )
         cy += 22
         for line in wrap_by_width(svg_plain_text(desc), 13, max_x - PAD_X, max_lines=2):
             frags.append(

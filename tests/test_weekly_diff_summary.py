@@ -134,7 +134,7 @@ def test_jev_synthesis_returns_none_without_judgments():
     assert weekly_summary.synthesize_with_jev([{"name": "x", "commits": []}], "u") is None
 
 
-def test_jev_synthesis_badges_risky_projects():
+def test_jev_synthesis_omits_risk_from_presentation():
     risky = _judged_project("risky", 10, 2, 0.9)
     risky["judgments"]["regression_risk"] = {"noul": 0.85}
     risky["judgments"]["severity"] = {
@@ -143,12 +143,48 @@ def test_jev_synthesis_badges_risky_projects():
 
     bullets = weekly_summary.synthesize_with_jev([risky], "harlanljones")
 
-    assert bullets[0].endswith("[risk: severe]")
+    assert "[risk:" not in bullets[0]
     svg = weekly_summary.render_weekly_svg(bullets, "Oct 02, 2026")
-    assert "risk: severe" in svg
-    assert "#f85149" in svg
-    assert "[risk: severe]" not in svg
-    assert "[risk: severe]" in weekly_summary.generate_markdown(bullets, "Oct 02, 2026")
+    assert "risk:" not in svg
+    assert "risk:" not in weekly_summary.generate_markdown(bullets, "Oct 02, 2026")
+
+
+def test_evidence_prose_does_not_publish_incomplete_or_extra_sentences():
+    assert weekly_summary._prose_phrase(
+        "International links (an NPB/KBO/CPBL/CUBA endpoint) are different: both"
+    ) is None
+    assert weekly_summary._prose_phrase(
+        "// Package review schedules recall cards with FSRS. A note with a recall:"
+    ) == "Package review schedules recall cards with FSRS"
+    assert weekly_summary._prose_phrase("// The notes outbox for these channels:") is None
+    assert weekly_summary._prose_phrase(
+        "// Package vsbook grades steal, bunt, and intentional-walk attempts against"
+    ) is None
+
+
+def test_test_file_descriptions_are_not_used_as_project_deliverables():
+    project = {"commits": [{"files": [{
+        "path": "tests/test_factors_pooled.py", "additions": 20, "deletions": 0,
+        "added": ['"""Pooled international link factors: pooling, direction term, chain shrink target, thin links."""'],
+    }]}]}
+    assert weekly_summary._best_evidence(project) is None
+
+
+def test_workflow_comments_are_not_used_as_deliverable_evidence():
+    project = {"commits": [{"files": [{
+        "path": ".github/workflows/check.yml", "additions": 2, "deletions": 0,
+        "added": ["# The full season is not in the repo. This pair is the same files the"],
+    }]}]}
+    assert weekly_summary._best_evidence(project) is None
+
+
+def test_updated_file_does_not_present_removed_prose_as_new_evidence():
+    file = {
+        "path": "src/example.py", "additions": 1, "deletions": 1,
+        "added": ["import json"],
+        "removed": ['"""Translate one normalized season line to the target league."""'],
+    }
+    assert weekly_summary._evidence_for_file(file) is None
 
 
 def test_main_prefers_jev_judgments_over_gemini(monkeypatch, tmp_path, capsys):

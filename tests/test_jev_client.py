@@ -22,14 +22,6 @@ ANSWERS = {
         "probabilities": {"0": 0.1, "1": 0.4, "2": 0.5},
         "legend": ["small", "moderate", "large"],
     },
-    "regression_risk": {"type": "noul", "noul": 0.3},
-    "severity": {
-        "type": "score",
-        "score": 1.0,
-        "confidence": 0.6,
-        "probabilities": {"0": 0.2, "1": 0.6, "2": 0.2},
-        "legend": ["minor", "moderate", "severe"],
-    },
 }
 
 
@@ -107,8 +99,6 @@ def test_judge_project_normalizes_answers(monkeypatch):
         "change_kind": {"choice": "feature", "confidence": 0.9},
         "notable": {"noul": 0.8},
         "magnitude": {"score": 1.4, "level": 2, "label": "large", "confidence": 0.7},
-        "regression_risk": {"noul": 0.3},
-        "severity": {"score": 1.0, "level": 1, "label": "moderate", "confidence": 0.6},
     }
 
 
@@ -152,22 +142,6 @@ def test_annotate_diff_store_fails_open(monkeypatch):
     assert any("[WARN]" in message and "a" in message for message in logs)
 
 
-def test_regression_warnings_flag_high_risk_projects():
-    store = {"projects": [
-        {"name": "risky", "judgments": {
-            "regression_risk": {"noul": 0.82}, "severity": {"label": "severe"}}},
-        {"name": "calm", "judgments": {
-            "regression_risk": {"noul": 0.2}, "severity": {"label": "minor"}}},
-        {"name": "unjudged"},
-    ]}
-
-    assert jev_client.regression_warnings(store) == [("risky", 0.82, "severe")]
-
-
-def test_regression_risk_tolerates_older_judgments():
-    assert jev_client.regression_risk({"judgments": {"model": "jev-latest"}}) is None
-
-
 def test_annotate_diff_store_sends_only_bounded_public_evidence(monkeypatch):
     captured = []
     monkeypatch.setattr(
@@ -191,3 +165,4 @@ def test_annotate_diff_store_sends_only_bounded_public_evidence(monkeypatch):
     body = json.loads(captured[0]["request"].data.decode("utf-8"))
     assert set(body["state"]) == {"project", "changed_lines", "commits"}
     assert body["questions"] == jev_client.WEEKLY_QUESTIONS
+    assert set(body["questions"]) == {"change_kind", "notable", "magnitude"}

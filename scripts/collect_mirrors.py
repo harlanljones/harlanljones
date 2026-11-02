@@ -69,7 +69,7 @@ from collector_config import (  # noqa: E402
     ConfigError,
     Secret,
 )
-from jev_client import annotate_diff_store, regression_warnings  # noqa: E402
+from jev_client import annotate_diff_store  # noqa: E402
 
 PROFILE_REPO = "harlanljones/harlanljones"
 STORE_PATH = "scripts/data/skill_weeks.json"
@@ -550,8 +550,6 @@ def main(settings: Optional[CollectorSettings] = None) -> None:
         try:
             judged = annotate_diff_store(diff_store, settings.typesafe_api_key, log=log)
             log(f"[INFO] Jev judged {judged} project diffs")
-            for name, risk, level in regression_warnings(diff_store):
-                log(f"[WARN] Jev regression risk {risk:.2f} ({level}) in {name}")
         except Exception as exc:  # noqa: BLE001 - judgments must not sink the run
             log(f"[WARN] Jev annotations skipped: {exc}")
     season = deployment_stats(settings.cloudflare, settings.gh_read_token, repos)

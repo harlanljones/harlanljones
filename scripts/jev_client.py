@@ -3,9 +3,9 @@
 
 Jev is TypeSafe's System One model: POST /v1/systemone with a JSON `state` and
 typed questions (`noul` = yes/no probability, `choice` = one option, `score` =
-point on an ordered scale). This client asks five fixed questions about each
-week's project diff (change kind, notability, magnitude, regression risk,
-regression severity) and folds the answers into the public weekly diff store.
+point on an ordered scale). This client asks three fixed questions about each
+week's project diff (change kind, notability, magnitude) and folds the
+answers into the public weekly diff store.
 
 Privacy: the weekly diff store is built from public repositories only (see
 `weekly_diff_store` filtering on `public_repo_names`), so only public evidence
@@ -17,7 +17,7 @@ Runtime dependencies: Python standard library only.
 import json
 import urllib.error
 import urllib.request
-from typing import Any, Callable, Dict, List, Optional, Tuple
+from typing import Any, Callable, Dict, Optional
 
 from collector_config import Secret
 
@@ -27,8 +27,6 @@ DEFAULT_TIMEOUT = 30
 
 CHANGE_KINDS = ("feature", "fix", "refactor", "docs", "tooling", "test", "other")
 MAGNITUDE_LEVELS = ("small", "moderate", "large")
-SEVERITY_LEVELS = ("minor", "moderate", "severe")
-REGRESSION_WARN_THRESHOLD = 0.7
 
 WEEKLY_QUESTIONS: Dict[str, Dict[str, Any]] = {
     "change_kind": {
@@ -56,19 +54,6 @@ WEEKLY_QUESTIONS: Dict[str, Dict[str, Any]] = {
         "type": "score",
         "criteria": ["small", "moderate", "large"],
         "instructions": "How substantial is this change relative to a typical commit?",
-    },
-    "regression_risk": {
-        "type": "noul",
-        "criteria": {
-            "true": "Plausibly introduces a regression or breaks existing behavior",
-            "false": "Unlikely to change existing behavior for the worse",
-        },
-        "instructions": "Could this diff plausibly regress existing behavior?",
-    },
-    "severity": {
-        "type": "score",
-        "criteria": ["minor", "moderate", "severe"],
-        "instructions": "If a regression shipped from this diff, how severe would its impact be?",
     },
 }
 
@@ -154,35 +139,7 @@ def judge_project(
         "change_kind": _choice(answers, "change_kind", CHANGE_KINDS),
         "notable": _noul(answers, "notable"),
         "magnitude": _score(answers, "magnitude", MAGNITUDE_LEVELS),
-        "regression_risk": _noul(answers, "regression_risk"),
-        "severity": _score(answers, "severity", SEVERITY_LEVELS),
     }
-
-
-def regression_risk(project: Dict) -> Optional[Tuple[float, str]]:
-    """(probability, severity label) from a project's judgments, if present.
-
-    Tolerates stores annotated before the regression questions existed.
-    """
-    judgments = project.get("judgments") or {}
-    risk = (judgments.get("regression_risk") or {}).get("noul")
-    if not isinstance(risk, (int, float)):
-        return None
-    severity = (judgments.get("severity") or {}).get("label", "unknown")
-    return float(risk), str(severity)
-
-
-def regression_warnings(
-    store: Dict,
-    threshold: float = REGRESSION_WARN_THRESHOLD,
-) -> List[Tuple[str, float, str]]:
-    """(name, probability, severity) for projects at or above the threshold."""
-    warnings = []
-    for project in store.get("projects", []):
-        risk = regression_risk(project)
-        if risk and risk[0] >= threshold:
-            warnings.append((project.get("name", "?"), risk[0], risk[1]))
-    return warnings
 
 
 def annotate_diff_store(
