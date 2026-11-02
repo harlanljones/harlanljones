@@ -1,17 +1,17 @@
 {
   "fix_minus": {
-    "commits_28": 758,
-    "fix_28": 137,
+    "commits_28": 769,
+    "fix_28": 138,
     "value": 119
   },
   "season": {
-    "aera": 0.61,
-    "aera_sub": "34 of 557 runs failed \u00b7 public repos \u00b7 28d",
-    "wdc": 8.18,
+    "aera": 0.69,
+    "aera_sub": "33 of 483 runs failed \u00b7 public repos \u00b7 28d",
+    "wdc": 8.58,
     "wdc_sub": "44 deployments created \u00b7 last 28d"
   },
   "source": "mirrors",
-  "updated": "2026-11-02T11:23:01Z",
+  "updated": "2026-11-02T21:39:57Z",
   "weeks": {
     "2025-11-10": {
       "commits": 0,
@@ -751,9 +751,9 @@
       }
     },
     "2026-10-26": {
-      "commits": 134,
-      "diffs": 1707,
-      "repos": 8,
+      "commits": 133,
+      "diffs": 1696,
+      "repos": 7,
       "skills": {
         "API Integration": 8.82,
         "Agent Tooling": 5.89,
@@ -783,10 +783,30 @@
       }
     },
     "2026-11-02": {
-      "commits": 0,
-      "diffs": 0,
-      "repos": 0,
-      "skills": {}
+      "commits": 12,
+      "diffs": 593,
+      "repos": 4,
+      "skills": {
+        "Agent Tooling": 15.82,
+        "Astro": 36.61,
+        "Build Config": 8.97,
+        "Data Viz": 12.9,
+        "Docs & Writing": 108.24,
+        "Error Handling": 10.49,
+        "FastAPI": 3.16,
+        "Flask": 3.16,
+        "NumPy": 3.16,
+        "Performance": 28.21,
+        "Polars": 3.16,
+        "Pydantic": 3.16,
+        "React": 70.55,
+        "Regex & Parsing": 5.86,
+        "Tailwind CSS": 7.16,
+        "Testing": 137.25,
+        "Type Design": 34.34,
+        "Zod": 6.0,
+        "pandas": 3.16
+      }
     }
   }
 }

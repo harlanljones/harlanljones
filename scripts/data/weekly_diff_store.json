@@ -1,8 +1,43 @@
 {
   "projects": [
     {
-      "changed_lines": 19085,
+      "changed_lines": 115784,
       "commits": [
+        {
+          "authored_at": "2026-11-02T18:51:04+00:00",
+          "changed_lines": 87597,
+          "files": [
+            {
+              "added": [],
+              "additions": 0,
+              "deletions": 2878,
+              "path": "src/App.css",
+              "removed": [
+                "/* ========================================================================= */"
+              ]
+            },
+            {
+              "added": [],
+              "additions": 0,
+              "deletions": 1329,
+              "path": "src/components/coaching-tree/CoachingTreeGraph.tsx",
+              "removed": [
+                "import React, { useState, useMemo, useRef, useEffect, memo } from 'react';"
+              ]
+            },
+            {
+              "added": [],
+              "additions": 0,
+              "deletions": 1225,
+              "path": "src/data/coaches/index.ts",
+              "removed": [
+                "import type { CoachProfile, CoachingTree } from '../../engine/types';"
+              ]
+            }
+          ],
+          "sha": "c55c3cb725935afbe2fd8c6cc36ebba0b6d3589c",
+          "subject": "chore: remove the legacy app and src/data, and rewrite the docs for the Astro site"
+        },
         {
           "authored_at": "2026-11-01T18:49:00+00:00",
           "changed_lines": 8425,
@@ -77,107 +112,64 @@
           "subject": "feat(site): build the Playbook site with Astro and React islands"
         },
         {
-          "authored_at": "2026-10-31T00:02:10+00:00",
-          "changed_lines": 2156,
+          "authored_at": "2026-11-02T18:51:57+00:00",
+          "changed_lines": 2861,
           "files": [
             {
               "added": [
-                "{",
-                "\"$schema\": \"https://json-schema.org/draft/2020-12/schema\","
+                "import { Coach, Concept, Formation, Lineage, Scheme, Term, Tracks, type Dataset } from '../schema';",
+                "it('warns about the four concepts whose tracks start off their formation preset', () => {"
               ],
-              "additions": 400,
-              "deletions": 0,
-              "path": "data/schema/spec.schema.json",
-              "removed": []
-            },
-            {
-              "added": [
-                "import type { Formation, Tracks } from '../schema/schema';",
-                "import type { Spec } from './schema';"
-              ],
-              "additions": 277,
-              "deletions": 0,
-              "path": "src/spec/compile.ts",
-              "removed": []
-            },
-            {
-              "added": [
-                "import * as fs from 'node:fs';",
-                "import * as path from 'node:path';"
-              ],
-              "additions": 181,
-              "deletions": 0,
-              "path": "src/spec/__tests__/compile.test.ts",
-              "removed": []
-            }
-          ],
-          "sha": "808bb3552ab9bc5234e95644d0d6ff338c1ee059",
-          "subject": "feat(specs): add play spec vocabulary v0 and compiler v0"
-        },
-        {
-          "authored_at": "2026-11-01T20:04:39+00:00",
-          "changed_lines": 2045,
-          "files": [
-            {
-              "added": [
-                "/**",
-                "* The coaching network: who worked directly under whom, and whose ideas passed on through a lineage tree."
-              ],
-              "additions": 431,
-              "deletions": 0,
-              "path": "site/lib/network.ts",
-              "removed": []
-            },
-            {
-              "added": [
-                ".toc .row > a {",
-                ".toc .row > a:hover {"
-              ],
-              "additions": 303,
-              "deletions": 30,
-              "path": "site/styles/global.css",
+              "additions": 2,
+              "deletions": 133,
+              "path": "src/schema/__tests__/dataset.test.ts",
               "removed": [
-                ".toc .row a {"
+                "import { ALL_SCHEME_FAMILIES } from '../../data/schemes/index';"
               ]
             },
             {
               "added": [
-                "/**",
-                "* Share images: one 1200 by 630 PNG per play and one for the site, drawn at build time."
+                "\"duration\": 5.9,",
+                "{ \"t\": -1.65, \"x\": 42, \"y\": -1.5, \"note\": \"Set in the formation\" },"
               ],
-              "additions": 150,
-              "deletions": 0,
-              "path": "site/lib/og.ts",
-              "removed": []
+              "additions": 69,
+              "deletions": 16,
+              "path": "data/tracks/mcdaniel-cheat-motion/mcdaniel-cheat-motion-wheel.json",
+              "removed": [
+                "\"duration\": 4.5,"
+              ]
+            },
+            {
+              "added": [
+                "\"duration\": 4.9,",
+                "{ \"t\": 0.27, \"x\": 37.67, \"y\": 0.97 },"
+              ],
+              "additions": 47,
+              "deletions": 8,
+              "path": "data/tracks/steichen-qb-mesh-rpo/steichen-verticals-switch.json",
+              "removed": [
+                "\"duration\": 4.5,"
+              ]
             }
           ],
-          "sha": "f845bfced8138eeb21edc9cabf14096e9c1f7300",
-          "subject": "feat(site): audit fixes, hash marks, scoring side, Lineages page and share images"
+          "sha": "d71ba19fcc234dab60077b44daf1ae427a48e491",
+          "subject": "feat(data): migrate the library under the speed line, enforce the movement limits (pre-snap phase 3)"
         }
       ],
       "judgments": {
         "change_kind": {
           "choice": "feature",
-          "confidence": 1.0
+          "confidence": 0.39
         },
         "magnitude": {
           "confidence": 1.0,
           "label": "large",
           "level": 2,
-          "score": 1.99
+          "score": 2.0
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.96
-        },
-        "regression_risk": {
-          "noul": 0.78
-        },
-        "severity": {
-          "confidence": 0.05,
-          "label": "severe",
-          "level": 2,
-          "score": 1.37
+          "noul": 0.94
         }
       },
       "name": "scheme-db"
@@ -358,207 +350,9 @@
         "model": "jev-latest",
         "notable": {
           "noul": 0.93
-        },
-        "regression_risk": {
-          "noul": 0.73
-        },
-        "severity": {
-          "confidence": 0.49,
-          "label": "severe",
-          "level": 2,
-          "score": 1.65
         }
       },
       "name": "rosetta"
-    },
-    {
-      "changed_lines": 3682,
-      "commits": [
-        {
-          "authored_at": "2026-10-31T21:13:49+00:00",
-          "changed_lines": 1158,
-          "files": [
-            {
-              "added": [
-                "# CORE & CRAFT: Evidence Audit \u2014 Iteration 3",
-                "**Research checked:** 30 October 2026. **Companion:** [Iteration 3 framework](CORE-CRAFT-framework-v3.md). **Earlier versions:** [iteration 2 framework](CORE-CR"
-              ],
-              "additions": 223,
-              "deletions": 0,
-              "path": "docs/research/CORE-CRAFT-evidence-audit-v3.md",
-              "removed": []
-            },
-            {
-              "added": [
-                "# CORE & CRAFT: Evidence Audit \u2014 Iteration 2",
-                "**Research checked:** 29 October 2026. **Companion:** [Iteration 2 framework](CORE-CRAFT-framework-v2.md). **Previous round:** [Iteration 1 framework](CORE-CRAF"
-              ],
-              "additions": 205,
-              "deletions": 0,
-              "path": "docs/research/CORE-CRAFT-evidence-audit-v2.md",
-              "removed": []
-            },
-            {
-              "added": [
-                "# CORE & CRAFT: Evidence Audit \u2014 Iteration 1",
-                "**Research checked:** 29 October 2026. **Companion:** [Revised framework, iteration 1](CORE-CRAFT-framework-v1.md)."
-              ],
-              "additions": 183,
-              "deletions": 0,
-              "path": "docs/research/CORE-CRAFT-evidence-audit-v1.md",
-              "removed": []
-            }
-          ],
-          "sha": "ff8e98c9f5cb7c14c28b0e4225236e013c7235f0",
-          "subject": "docs: add CORE & CRAFT framework research"
-        },
-        {
-          "authored_at": "2026-10-31T00:23:09+00:00",
-          "changed_lines": 977,
-          "files": [
-            {
-              "added": [
-                "// Package review schedules recall cards with FSRS. A note with a recall:",
-                "// line is the card card:<slug>, and the review.logged events under that"
-              ],
-              "additions": 278,
-              "deletions": 0,
-              "path": "internal/review/review.go",
-              "removed": []
-            },
-            {
-              "added": [
-                "package main",
-                "import ("
-              ],
-              "additions": 166,
-              "deletions": 0,
-              "path": "cmd/acta/review.go",
-              "removed": []
-            },
-            {
-              "added": [
-                "package main",
-                "import ("
-              ],
-              "additions": 148,
-              "deletions": 0,
-              "path": "cmd/acta/review_test.go",
-              "removed": []
-            }
-          ],
-          "sha": "c48a3ff420b03fa9e811d256c2d72b9f94fcd9a5",
-          "subject": "feat(review): FSRS reviews of recall cards with go-fsrs"
-        },
-        {
-          "authored_at": "2026-11-01T01:36:04+00:00",
-          "changed_lines": 555,
-          "files": [
-            {
-              "added": [
-                "package main",
-                "// The notes outbox (docs/decisions/0004-notes-outbox-and-proposed-nodes.md):"
-              ],
-              "additions": 250,
-              "deletions": 0,
-              "path": "cmd/acta/outbox.go",
-              "removed": []
-            },
-            {
-              "added": [
-                "package main",
-                "import ("
-              ],
-              "additions": 182,
-              "deletions": 0,
-              "path": "cmd/acta/outbox_test.go",
-              "removed": []
-            },
-            {
-              "added": [
-                "# Duet notes: filing notes from the pillar channels",
-                "The Duet pillar channels file notes through the Drive inbox, like every other event. Before they write, they read the outbox, a Drive folder where acta keeps a "
-              ],
-              "additions": 48,
-              "deletions": 0,
-              "path": "docs/duet-notes.md",
-              "removed": []
-            }
-          ],
-          "sha": "50a78d2f3f042dac77023486d6c45ef25cc53e64",
-          "subject": "feat(outbox): the notes the channels read before they file"
-        },
-        {
-          "authored_at": "2026-10-31T00:40:46+00:00",
-          "changed_lines": 382,
-          "files": [
-            {
-              "added": [
-                "// placement is one note body ingest writes under notes/, or beside them in",
-                "// note-versions/."
-              ],
-              "additions": 117,
-              "deletions": 40,
-              "path": "cmd/acta/note.go",
-              "removed": [
-                "// placement is one note body ingest writes under notes/."
-              ]
-            },
-            {
-              "added": [
-                "t.Helper()",
-                "return noteLineAs(t, \"duet:competence\", slug, path, body, supersedes)"
-              ],
-              "additions": 92,
-              "deletions": 23,
-              "path": "cmd/acta/note_test.go",
-              "removed": [
-                "return fmt.Sprintf(`{\"v\":1,\"at\":\"2026-10-29\",\"at_precision\":\"day\",\"recorded_at\":\"2026-10-29T18:00:00Z\",\"pillar\":\"faith\",\"kind\":\"note.added\",\"subject\":\"note:%s\","
-              ]
-            },
-            {
-              "added": [
-                "\"sort\"",
-                "notes     map[string]event.Event // subject -> the note.added that earns its xp"
-              ],
-              "additions": 35,
-              "deletions": 6,
-              "path": "internal/snapshot/xp.go",
-              "removed": [
-                "// Once per note: a new version (supersedes) earns nothing more,"
-              ]
-            }
-          ],
-          "sha": "1a54a0aa080a26880b7da1d2eb036407fd5257e8",
-          "subject": "fix(notes): shared nodes take any channel's version; xp stays with the first"
-        }
-      ],
-      "judgments": {
-        "change_kind": {
-          "choice": "feature",
-          "confidence": 0.84
-        },
-        "magnitude": {
-          "confidence": 0.98,
-          "label": "large",
-          "level": 2,
-          "score": 1.99
-        },
-        "model": "jev-latest",
-        "notable": {
-          "noul": 0.82
-        },
-        "regression_risk": {
-          "noul": 0.76
-        },
-        "severity": {
-          "confidence": 0.6,
-          "label": "moderate",
-          "level": 1,
-          "score": 1.18
-        }
-      },
-      "name": "core-and-craft"
     },
     {
       "changed_lines": 3239,
@@ -743,25 +537,82 @@
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.92
-        },
-        "regression_risk": {
-          "noul": 0.76
-        },
-        "severity": {
-          "confidence": 0.53,
-          "label": "moderate",
-          "level": 1,
-          "score": 1.15
+          "noul": 0.93
         }
       },
       "name": "bend-re24"
     },
     {
+      "changed_lines": 291,
+      "commits": [
+        {
+          "authored_at": "2026-11-02T21:31:32+00:00",
+          "changed_lines": 291,
+          "files": [
+            {
+              "added": [
+                "point on an ordered scale). This client asks three fixed questions about each",
+                "week's project diff (change kind, notability, magnitude) and folds the"
+              ],
+              "additions": 4,
+              "deletions": 47,
+              "path": "scripts/jev_client.py",
+              "removed": [
+                "point on an ordered scale). This client asks five fixed questions about each"
+              ]
+            },
+            {
+              "added": [
+                "from svg_cards import PAD_X, TEXT, card_shell, esc, plain_text, wrap_by_width, write_theme_pair  # noqa: E402",
+                "\"the a an of and or to with for in on by as at from that this is are was were be it its both against\".split()"
+              ],
+              "additions": 14,
+              "deletions": 37,
+              "path": "scripts/weekly_summary.py",
+              "removed": [
+                "from svg_cards import PAD_X, TEXT, card_shell, esc, plain_text, text_width, wrap_by_width, write_theme_pair  # noqa: E402"
+              ]
+            },
+            {
+              "added": [
+                "def test_jev_synthesis_omits_risk_from_presentation():",
+                "assert \"[risk:\" not in bullets[0]"
+              ],
+              "additions": 42,
+              "deletions": 6,
+              "path": "tests/test_weekly_diff_summary.py",
+              "removed": [
+                "def test_jev_synthesis_badges_risky_projects():"
+              ]
+            }
+          ],
+          "sha": "b5f903029746424f735c20dcc92785dc7bdb1cd0",
+          "subject": "fix(profile): improve summaries and remove risk classification"
+        }
+      ],
+      "judgments": {
+        "change_kind": {
+          "choice": "fix",
+          "confidence": 0.7
+        },
+        "magnitude": {
+          "confidence": 0.72,
+          "label": "moderate",
+          "level": 1,
+          "score": 1.05
+        },
+        "model": "jev-latest",
+        "notable": {
+          "noul": 0.82
+        }
+      },
+      "name": "harlanljones"
+    },
+    {
       "changed_lines": 148,
       "commits": [
         {
-          "authored_at": "2026-11-01T14:19:57+00:00",
+          "authored_at": "2026-11-02T17:10:56+00:00",
           "changed_lines": 148,
           "files": [
             {
@@ -778,8 +629,8 @@
             },
             {
               "added": [
-                "'offseason-infield': '47436fbc98bcea479ed8cf7fbbbf6cc06c8a9882803e206b016afd5d83cbf3d6',",
-                "'opening-day-outfield': 'b7cfb26693ce82bf6b299331e09a17986f36769966943f4eb784e8dd5dbe6dbb',"
+                "'offseason-infield': 'c2f0840f0c89f7e3491466bc7a5fb6cbf09867623d5de03b3fd7b24a84feae21',",
+                "'opening-day-outfield': '337dc5f826b2f033733fbd8bdcfc893dc58e64dd9fa82dab88081d30a40538c0',"
               ],
               "additions": 8,
               "deletions": 8,
@@ -790,8 +641,8 @@
             },
             {
               "added": [
-                "\"createdAt\": \"2026-11-01T14:19:12Z\",",
-                "\"note\": \"Free public endpoints, fetched 2026-11-01T14:19:12Z into spikes/mlb-2026/timeline-snapshot.json. Rates are observed 2026 regular-season totals from 202"
+                "\"createdAt\": \"2026-11-02T17:10:18Z\",",
+                "\"note\": \"Free public endpoints, fetched 2026-11-02T17:10:18Z into spikes/mlb-2026/timeline-snapshot.json. Rates are observed 2026 regular-season totals from 202"
               ],
               "additions": 2,
               "deletions": 2,
@@ -801,7 +652,7 @@
               ]
             }
           ],
-          "sha": "74bb18ba010d93f6faaf332c4992fbdbd33f0256",
+          "sha": "4335cd375073695fdd13e1724996965b5523648b",
           "subject": "data: refresh public roster snapshot"
         }
       ],
@@ -811,29 +662,20 @@
           "confidence": 0.93
         },
         "magnitude": {
-          "confidence": 0.37,
+          "confidence": 0.4,
           "label": "moderate",
           "level": 1,
-          "score": 0.64
+          "score": 0.66
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.67
-        },
-        "regression_risk": {
-          "noul": 0.55
-        },
-        "severity": {
-          "confidence": 0.38,
-          "label": "minor",
-          "level": 0,
-          "score": 0.42
+          "noul": 0.66
         }
       },
       "name": "jev-roster-shapes"
     }
   ],
-  "updated": "2026-11-02T11:22:28.535725+00:00",
-  "window_end": "2026-11-02T03:22:28.279256-08:00",
+  "updated": "2026-11-02T21:39:30.076411+00:00",
+  "window_end": "2026-11-02T13:39:29.607116-08:00",
   "window_start": "2026-10-30T17:00:00-07:00"
 }
