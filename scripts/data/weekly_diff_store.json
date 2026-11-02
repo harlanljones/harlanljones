@@ -1,7 +1,7 @@
 {
   "projects": [
     {
-      "changed_lines": 115784,
+      "changed_lines": 120842,
       "commits": [
         {
           "authored_at": "2026-11-02T18:51:04+00:00",
@@ -159,13 +159,13 @@
       "judgments": {
         "change_kind": {
           "choice": "feature",
-          "confidence": 0.39
+          "confidence": 0.35
         },
         "magnitude": {
           "confidence": 1.0,
           "label": "large",
           "level": 2,
-          "score": 2.0
+          "score": 1.99
         },
         "model": "jev-latest",
         "notable": {
@@ -345,7 +345,7 @@
           "confidence": 1.0,
           "label": "large",
           "level": 2,
-          "score": 1.99
+          "score": 2.0
         },
         "model": "jev-latest",
         "notable": {
@@ -530,10 +530,10 @@
           "confidence": 1.0
         },
         "magnitude": {
-          "confidence": 1.0,
+          "confidence": 0.98,
           "label": "large",
           "level": 2,
-          "score": 2.0
+          "score": 1.99
         },
         "model": "jev-latest",
         "notable": {
@@ -543,7 +543,7 @@
       "name": "bend-re24"
     },
     {
-      "changed_lines": 291,
+      "changed_lines": 470,
       "commits": [
         {
           "authored_at": "2026-11-02T21:31:32+00:00",
@@ -588,22 +588,59 @@
           ],
           "sha": "b5f903029746424f735c20dcc92785dc7bdb1cd0",
           "subject": "fix(profile): improve summaries and remove risk classification"
+        },
+        {
+          "authored_at": "2026-11-02T22:28:31+00:00",
+          "changed_lines": 177,
+          "files": [
+            {
+              "added": [
+                "\"baseball-sabermetrics-mcp\": {",
+                "\"bytes\": {"
+              ],
+              "additions": 177,
+              "deletions": 0,
+              "path": "scripts/data/repo_languages.json",
+              "removed": []
+            }
+          ],
+          "sha": "6adf5288eb453eab7971aa96e30c39ee570d80be",
+          "subject": "chore(profile): update repository language cache"
+        },
+        {
+          "authored_at": "2026-11-02T21:41:03+00:00",
+          "changed_lines": 2,
+          "files": [
+            {
+              "added": [
+                "lines = file.get(\"added\")"
+              ],
+              "additions": 1,
+              "deletions": 1,
+              "path": "scripts/weekly_summary.py",
+              "removed": [
+                "lines = file.get(\"added\") if int(file.get(\"additions\") or 0) else file.get(\"removed\")"
+              ]
+            }
+          ],
+          "sha": "98fb6f990a763564f0d41e4af27cd05c79b86369",
+          "subject": "fix(profile): avoid treating removed text as a deliverable"
         }
       ],
       "judgments": {
         "change_kind": {
           "choice": "fix",
-          "confidence": 0.7
+          "confidence": 0.94
         },
         "magnitude": {
-          "confidence": 0.72,
-          "label": "moderate",
-          "level": 1,
-          "score": 1.05
+          "confidence": 0.44,
+          "label": "large",
+          "level": 2,
+          "score": 1.63
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.82
+          "noul": 0.8
         }
       },
       "name": "harlanljones"
@@ -659,23 +696,23 @@
       "judgments": {
         "change_kind": {
           "choice": "other",
-          "confidence": 0.93
+          "confidence": 0.94
         },
         "magnitude": {
-          "confidence": 0.4,
+          "confidence": 0.36,
           "label": "moderate",
           "level": 1,
-          "score": 0.66
+          "score": 0.61
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.66
+          "noul": 0.62
         }
       },
       "name": "jev-roster-shapes"
     }
   ],
-  "updated": "2026-11-02T21:39:30.076411+00:00",
-  "window_end": "2026-11-02T13:39:29.607116-08:00",
+  "updated": "2026-11-02T22:36:43.220592+00:00",
+  "window_end": "2026-11-02T14:36:42.722519-08:00",
   "window_start": "2026-10-30T17:00:00-07:00"
 }
