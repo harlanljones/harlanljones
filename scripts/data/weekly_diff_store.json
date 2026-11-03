@@ -1,7 +1,7 @@
 {
   "projects": [
     {
-      "changed_lines": 120842,
+      "changed_lines": 121954,
       "commits": [
         {
           "authored_at": "2026-11-02T18:51:04+00:00",
@@ -165,7 +165,7 @@
           "confidence": 1.0,
           "label": "large",
           "level": 2,
-          "score": 1.99
+          "score": 2.0
         },
         "model": "jev-latest",
         "notable": {
@@ -345,7 +345,7 @@
           "confidence": 1.0,
           "label": "large",
           "level": 2,
-          "score": 2.0
+          "score": 1.99
         },
         "model": "jev-latest",
         "notable": {
@@ -530,10 +530,10 @@
           "confidence": 1.0
         },
         "magnitude": {
-          "confidence": 0.98,
+          "confidence": 1.0,
           "label": "large",
           "level": 2,
-          "score": 1.99
+          "score": 2.0
         },
         "model": "jev-latest",
         "notable": {
@@ -630,17 +630,17 @@
       "judgments": {
         "change_kind": {
           "choice": "fix",
-          "confidence": 0.94
+          "confidence": 0.92
         },
         "magnitude": {
-          "confidence": 0.44,
+          "confidence": 0.43,
           "label": "large",
           "level": 2,
-          "score": 1.63
+          "score": 1.61
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.8
+          "noul": 0.79
         }
       },
       "name": "harlanljones"
@@ -696,13 +696,13 @@
       "judgments": {
         "change_kind": {
           "choice": "other",
-          "confidence": 0.94
+          "confidence": 0.93
         },
         "magnitude": {
-          "confidence": 0.36,
+          "confidence": 0.38,
           "label": "moderate",
           "level": 1,
-          "score": 0.61
+          "score": 0.65
         },
         "model": "jev-latest",
         "notable": {
@@ -712,7 +712,7 @@
       "name": "jev-roster-shapes"
     }
   ],
-  "updated": "2026-11-02T22:36:43.220592+00:00",
-  "window_end": "2026-11-02T14:36:42.722519-08:00",
+  "updated": "2026-11-03T11:21:56.493348+00:00",
+  "window_end": "2026-11-03T03:21:56.001067-08:00",
   "window_start": "2026-10-30T17:00:00-07:00"
 }
