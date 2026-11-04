@@ -159,7 +159,7 @@
       "judgments": {
         "change_kind": {
           "choice": "feature",
-          "confidence": 0.35
+          "confidence": 0.36
         },
         "magnitude": {
           "confidence": 1.0,
@@ -173,6 +173,191 @@
         }
       },
       "name": "scheme-db"
+    },
+    {
+      "changed_lines": 9152,
+      "commits": [
+        {
+          "authored_at": "2026-11-04T01:24:19+00:00",
+          "changed_lines": 6975,
+          "files": [
+            {
+              "added": [
+                "{",
+                "\"name\": \"Roster Shapes\","
+              ],
+              "additions": 553,
+              "deletions": 0,
+              "path": "docs/design/roster-shapes-tokens.json",
+              "removed": []
+            },
+            {
+              "added": [
+                "<script lang=\"ts\">",
+                "import { resolve } from '$app/paths';"
+              ],
+              "additions": 499,
+              "deletions": 0,
+              "path": "src/lib/app/OverviewPage.svelte",
+              "removed": []
+            },
+            {
+              "added": [
+                "import '@fontsource/geist-sans/latin-400.css';",
+                "import '@fontsource/geist-sans/latin-500.css';"
+              ],
+              "additions": 332,
+              "deletions": 125,
+              "path": "src/lib/app/AppShell.svelte",
+              "removed": [
+                "import '@fontsource/saira-stencil-one/latin-400.css';"
+              ]
+            }
+          ],
+          "sha": "9ff19c84ab6600a9ceb37c152cfbd4316a9b52cd",
+          "subject": "feat(ui)!: rebuild the UI on the Roster Shapes design system"
+        },
+        {
+          "authored_at": "2026-11-04T02:29:46+00:00",
+          "changed_lines": 852,
+          "files": [
+            {
+              "added": [
+                "import { acknowledgePublic, hasAcknowledgedPublic } from './public-ack';",
+                "`Opened ${start.bundle.bundleId} for local review \u2014 observed public values, not team approved projections. Edits stay local until saved.`"
+              ],
+              "additions": 30,
+              "deletions": 57,
+              "path": "src/lib/app/HomePage.svelte",
+              "removed": [
+                "`Opened ${start.bundle.bundleId} for local review \u2014 observed public values, not team-approved projections. Edits stay local until saved.`"
+              ]
+            },
+            {
+              "added": [
+                "import { formatDay } from './season-timeline';",
+                "import { detailQuery, scenarioQuery } from './routes';"
+              ],
+              "additions": 13,
+              "deletions": 71,
+              "path": "src/lib/app/LibraryPage.svelte",
+              "removed": [
+                "import { detailQuery } from './routes';"
+              ]
+            },
+            {
+              "added": [
+                "// Until the panel is measured, a fitted board draws at its natural width rather than at zero,",
+                "// so the first pass never works out labels for an empty drawing."
+              ],
+              "additions": 51,
+              "deletions": 26,
+              "path": "src/lib/app/diagrams/WymanBoard.svelte",
+              "removed": [
+                "const drawW = $derived(Math.max(panelW, minW));"
+              ]
+            }
+          ],
+          "sha": "44e160686011c904a8a256e63959ec3d51f596be",
+          "subject": "fix(ui): address the lower-ranked code review findings"
+        },
+        {
+          "authored_at": "2026-11-04T01:24:08+00:00",
+          "changed_lines": 707,
+          "files": [
+            {
+              "added": [],
+              "additions": 0,
+              "deletions": 179,
+              "path": "src/routes/player/[id]/+page.svelte",
+              "removed": [
+                "<script lang=\"ts\">"
+              ]
+            },
+            {
+              "added": [
+                "<script lang=\"ts\">",
+                "import { resolve } from '$app/paths';"
+              ],
+              "additions": 179,
+              "deletions": 0,
+              "path": "src/routes/players/[id]/+page.svelte",
+              "removed": []
+            },
+            {
+              "added": [
+                "# Roster shapes: the framework, and what this repository does with it",
+                "The idea this project is built on is Taylor Wyman's. He publishes as"
+              ],
+              "additions": 56,
+              "deletions": 37,
+              "path": "docs/wyman-diagram.md",
+              "removed": [
+                "# Wyman Diagram \u2014 Conceptual Spec"
+              ]
+            }
+          ],
+          "sha": "249336f71d811921eb28ec7f642ecd1de29ffb4f",
+          "subject": "docs(credits): credit Taylor Wyman and audit the roster shapes framework"
+        },
+        {
+          "authored_at": "2026-11-04T02:10:46+00:00",
+          "changed_lines": 451,
+          "files": [
+            {
+              "added": [
+                "// On a subpage the board link marks the section, not the page (DecisionNav owns 'page').",
+                "await page.goto('/decisions/deadline/snapshots');"
+              ],
+              "additions": 59,
+              "deletions": 0,
+              "path": "tests/integration/shell.spec.ts",
+              "removed": []
+            },
+            {
+              "added": [
+                "import { page } from '$app/state';",
+                "import { scenarioQuery } from '$lib/app/routes';"
+              ],
+              "additions": 21,
+              "deletions": 16,
+              "path": "src/routes/decisions/[slug]/compare/+page.svelte",
+              "removed": [
+                "import { error } from '@sveltejs/kit';"
+              ]
+            },
+            {
+              "added": [
+                "### Review fixes on the public release (D-64, `/code-review max` on PR #20, 2026-11-04)",
+                "Delivered (2026-11-04): fixes for the 15 findings of the maximum-effort review."
+              ],
+              "additions": 35,
+              "deletions": 0,
+              "path": "ROADMAP.md",
+              "removed": []
+            }
+          ],
+          "sha": "95c80d1e846979867a19afd02df440823a7d7b82",
+          "subject": "fix(ui): address the code review findings on the public release"
+        }
+      ],
+      "judgments": {
+        "change_kind": {
+          "choice": "feature",
+          "confidence": 0.87
+        },
+        "magnitude": {
+          "confidence": 1.0,
+          "label": "large",
+          "level": 2,
+          "score": 1.99
+        },
+        "model": "jev-latest",
+        "notable": {
+          "noul": 0.96
+        }
+      },
+      "name": "jev-roster-shapes"
     },
     {
       "changed_lines": 6204,
@@ -342,7 +527,7 @@
           "confidence": 1.0
         },
         "magnitude": {
-          "confidence": 1.0,
+          "confidence": 0.98,
           "label": "large",
           "level": 2,
           "score": 1.99
@@ -527,13 +712,13 @@
       "judgments": {
         "change_kind": {
           "choice": "feature",
-          "confidence": 1.0
+          "confidence": 0.99
         },
         "magnitude": {
           "confidence": 1.0,
           "label": "large",
           "level": 2,
-          "score": 2.0
+          "score": 1.99
         },
         "model": "jev-latest",
         "notable": {
@@ -630,89 +815,23 @@
       "judgments": {
         "change_kind": {
           "choice": "fix",
-          "confidence": 0.92
+          "confidence": 0.95
         },
         "magnitude": {
-          "confidence": 0.43,
+          "confidence": 0.46,
           "label": "large",
           "level": 2,
-          "score": 1.61
+          "score": 1.64
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.79
+          "noul": 0.82
         }
       },
       "name": "harlanljones"
-    },
-    {
-      "changed_lines": 148,
-      "commits": [
-        {
-          "authored_at": "2026-11-02T17:10:56+00:00",
-          "changed_lines": 148,
-          "files": [
-            {
-              "added": [
-                "\"primary\": \"SS\"",
-                "\"team\": 111,"
-              ],
-              "additions": 49,
-              "deletions": 49,
-              "path": "spikes/mlb-2026/timeline-snapshot.json",
-              "removed": [
-                "\"primary\": \"2B\""
-              ]
-            },
-            {
-              "added": [
-                "'offseason-infield': 'c2f0840f0c89f7e3491466bc7a5fb6cbf09867623d5de03b3fd7b24a84feae21',",
-                "'opening-day-outfield': '337dc5f826b2f033733fbd8bdcfc893dc58e64dd9fa82dab88081d30a40538c0',"
-              ],
-              "additions": 8,
-              "deletions": 8,
-              "path": "src/lib/storylines/registry.ts",
-              "removed": [
-                "'offseason-infield': '74e18f82c56de781204f0c6db7edd922c71e413725d44321d64d24040bbfe07a',"
-              ]
-            },
-            {
-              "added": [
-                "\"createdAt\": \"2026-11-02T17:10:18Z\",",
-                "\"note\": \"Free public endpoints, fetched 2026-11-02T17:10:18Z into spikes/mlb-2026/timeline-snapshot.json. Rates are observed 2026 regular-season totals from 202"
-              ],
-              "additions": 2,
-              "deletions": 2,
-              "path": "src/lib/storylines/deadline.json",
-              "removed": [
-                "\"createdAt\": \"2026-10-06T03:24:21Z\","
-              ]
-            }
-          ],
-          "sha": "4335cd375073695fdd13e1724996965b5523648b",
-          "subject": "data: refresh public roster snapshot"
-        }
-      ],
-      "judgments": {
-        "change_kind": {
-          "choice": "other",
-          "confidence": 0.93
-        },
-        "magnitude": {
-          "confidence": 0.38,
-          "label": "moderate",
-          "level": 1,
-          "score": 0.65
-        },
-        "model": "jev-latest",
-        "notable": {
-          "noul": 0.62
-        }
-      },
-      "name": "jev-roster-shapes"
     }
   ],
-  "updated": "2026-11-03T11:21:56.493348+00:00",
-  "window_end": "2026-11-03T03:21:56.001067-08:00",
+  "updated": "2026-11-04T11:23:11.744235+00:00",
+  "window_end": "2026-11-04T03:23:11.123192-08:00",
   "window_start": "2026-10-30T17:00:00-07:00"
 }

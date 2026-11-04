@@ -1,17 +1,17 @@
 {
   "fix_minus": {
-    "commits_28": 747,
-    "fix_28": 137,
-    "value": 121
+    "commits_28": 804,
+    "fix_28": 145,
+    "value": 118
   },
   "season": {
-    "aera": 0.56,
-    "aera_sub": "26 of 484 runs failed \u00b7 public repos \u00b7 28d",
-    "wdc": 9.58,
-    "wdc_sub": "42 deployments created \u00b7 last 28d"
+    "aera": 0.6,
+    "aera_sub": "27 of 466 runs failed \u00b7 public repos \u00b7 28d",
+    "wdc": 15.58,
+    "wdc_sub": "30 deployments created \u00b7 last 28d"
   },
   "source": "mirrors",
-  "updated": "2026-11-03T11:22:26Z",
+  "updated": "2026-11-04T11:23:44Z",
   "weeks": {
     "2025-11-10": {
       "commits": 0,
@@ -783,33 +783,36 @@
       }
     },
     "2026-11-02": {
-      "commits": 27,
-      "diffs": 861,
-      "repos": 5,
+      "commits": 107,
+      "diffs": 2006,
+      "repos": 6,
       "skills": {
-        "API Integration": 6.0,
-        "Agent Tooling": 17.82,
-        "Astro": 44.44,
-        "Build Config": 15.19,
-        "Cloudflare Workers": 5.38,
-        "Concurrency": 4.9,
-        "Data Viz": 12.9,
-        "Docs & Writing": 176.6,
-        "Error Handling": 15.31,
+        "API Integration": 25.07,
+        "Agent Tooling": 48.26,
+        "Astro": 133.21,
+        "Build Config": 69.1,
+        "CLI Design": 18.0,
+        "Cloudflare Workers": 12.91,
+        "Concurrency": 101.43,
+        "Data Viz": 36.72,
+        "Docs & Writing": 348.98,
+        "Error Handling": 101.2,
         "FastAPI": 3.16,
         "Flask": 3.16,
-        "GitHub Actions": 12.71,
+        "GitHub Actions": 102.83,
+        "Lint & Format": 19.54,
         "NumPy": 3.16,
-        "Performance": 42.45,
+        "Performance": 56.03,
         "Polars": 3.16,
-        "Pydantic": 3.16,
-        "React": 90.08,
-        "Regex & Parsing": 5.86,
+        "Pydantic": 11.16,
+        "React": 190.35,
+        "Regex & Parsing": 9.03,
+        "SQL & Data Modeling": 11.17,
         "Tailwind CSS": 7.16,
-        "Testing": 227.39,
-        "Type Design": 46.44,
-        "Zod": 10.0,
-        "pandas": 3.16
+        "Testing": 519.25,
+        "Type Design": 112.97,
+        "Zod": 26.87,
+        "pandas": 15.16
       }
     }
   }
