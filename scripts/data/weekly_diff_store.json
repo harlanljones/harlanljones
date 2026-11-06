@@ -158,8 +158,8 @@
       ],
       "judgments": {
         "change_kind": {
-          "choice": "feature",
-          "confidence": 0.44
+          "choice": "refactor",
+          "confidence": 0.36
         },
         "magnitude": {
           "confidence": 1.0,
@@ -348,7 +348,7 @@
       "judgments": {
         "change_kind": {
           "choice": "feature",
-          "confidence": 0.93
+          "confidence": 0.95
         },
         "magnitude": {
           "confidence": 1.0,
@@ -534,7 +534,7 @@
           "confidence": 1.0,
           "label": "large",
           "level": 2,
-          "score": 2.0
+          "score": 1.99
         },
         "model": "jev-latest",
         "notable": {
@@ -542,6 +542,122 @@
         }
       },
       "name": "rosetta"
+    },
+    {
+      "changed_lines": 4006,
+      "commits": [
+        {
+          "authored_at": "2026-11-06T02:46:22+00:00",
+          "changed_lines": 3555,
+          "files": [
+            {
+              "added": [
+                "\"\"\"Synthetic, schema-faithful data for offline tests (no MLBAM data is committed to the repo).\"\"\"",
+                "from __future__ import annotations"
+              ],
+              "additions": 289,
+              "deletions": 0,
+              "path": "tests/synthetic.py",
+              "removed": []
+            },
+            {
+              "added": [
+                "\"\"\"MLB Stats API (statsapi.mlb.com) client for MLB + MiLB season data.",
+                "Gotchas encoded here (all verified, see docs/research/statsapi.md):"
+              ],
+              "additions": 261,
+              "deletions": 0,
+              "path": "src/baseball_ratings/ingest/statsapi.py",
+              "removed": []
+            },
+            {
+              "added": [
+                "\"\"\"Baseball Savant client: MLB leaderboards + pitch-level Statcast (MLB, AAA, FSL).",
+                "Gotchas encoded here (verified, see docs/research/savant.md):"
+              ],
+              "additions": 200,
+              "deletions": 0,
+              "path": "src/baseball_ratings/ingest/savant.py",
+              "removed": []
+            }
+          ],
+          "sha": "aa5720434e0fb52ecbf26345875c4c554a2b75ab",
+          "subject": "Scaffold baseball-ratings: 20-80 grades for MLB and MiLB (PR1 foundation)"
+        },
+        {
+          "authored_at": "2026-11-06T03:03:15+00:00",
+          "changed_lines": 447,
+          "files": [
+            {
+              "added": [
+                "\"\"\"Assemble per-(player, level) feature tables from stored raw data.",
+                "Boxscore rows arrive per (player, league); outcome metrics are environment-normalized and"
+              ],
+              "additions": 197,
+              "deletions": 0,
+              "path": "src/baseball_ratings/grades/build.py",
+              "removed": []
+            },
+            {
+              "added": [
+                "\"\"\"Generic metric -> tool-grade engine driven by ``config/ratings.yaml``.",
+                "For each metric:"
+              ],
+              "additions": 183,
+              "deletions": 0,
+              "path": "src/baseball_ratings/grades/engine.py",
+              "removed": []
+            },
+            {
+              "added": [
+                "\"\"\"OFP (present overall value) and FV (EXPERIMENTAL future value).",
+                "OFP converts tool grades to an estimated WAR per season (FG \"20-80 translated to wins\" weights"
+              ],
+              "additions": 62,
+              "deletions": 0,
+              "path": "src/baseball_ratings/grades/overall.py",
+              "removed": []
+            }
+          ],
+          "sha": "5949ac62bd48834d53d88ce5632efa52b1006410",
+          "subject": "Commit grades package; anchor gitignore patterns to repo root"
+        },
+        {
+          "authored_at": "2026-11-06T03:02:27+00:00",
+          "changed_lines": 4,
+          "files": [
+            {
+              "added": [
+                "[tool.ruff.lint.isort]",
+                "# Explicit so import grouping is identical in fresh CI checkouts and local trees."
+              ],
+              "additions": 4,
+              "deletions": 0,
+              "path": "pyproject.toml",
+              "removed": []
+            }
+          ],
+          "sha": "e30ccf1fa75359667dbf896b22036fed69dbb6aa",
+          "subject": "Pin ruff isort first-party modules so CI checkouts lint like local trees"
+        }
+      ],
+      "judgments": {
+        "change_kind": {
+          "choice": "feature",
+          "confidence": 1.0
+        },
+        "magnitude": {
+          "confidence": 1.0,
+          "label": "large",
+          "level": 2,
+          "score": 2.0
+        },
+        "model": "jev-latest",
+        "notable": {
+          "noul": 0.78
+        }
+      },
+      "name": "baseball-ratings"
     },
     {
       "changed_lines": 3239,
@@ -716,7 +832,7 @@
       "judgments": {
         "change_kind": {
           "choice": "feature",
-          "confidence": 0.99
+          "confidence": 1.0
         },
         "magnitude": {
           "confidence": 0.98,
@@ -819,23 +935,23 @@
       "judgments": {
         "change_kind": {
           "choice": "fix",
-          "confidence": 0.92
+          "confidence": 0.93
         },
         "magnitude": {
-          "confidence": 0.49,
+          "confidence": 0.37,
           "label": "large",
           "level": 2,
-          "score": 1.65
+          "score": 1.58
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.8
+          "noul": 0.79
         }
       },
       "name": "harlanljones"
     }
   ],
-  "updated": "2026-11-05T11:23:51.896021+00:00",
-  "window_end": "2026-11-05T03:23:51.278931-08:00",
+  "updated": "2026-11-06T11:22:13.358477+00:00",
+  "window_end": "2026-11-06T03:22:12.778975-08:00",
   "window_start": "2026-10-30T17:00:00-07:00"
 }
