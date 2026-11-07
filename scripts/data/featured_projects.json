@@ -406,5 +406,13 @@
       "Go"
     ],
     "homepage": ""
+  },
+  {
+    "name": "baseball-ratings",
+    "summary": "Recently published Python project.",
+    "badges": [
+      "Python"
+    ],
+    "homepage": ""
   }
 ]
