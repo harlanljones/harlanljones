@@ -1,17 +1,17 @@
 {
   "fix_minus": {
-    "commits_28": 818,
-    "fix_28": 140,
-    "value": 112
+    "commits_28": 740,
+    "fix_28": 135,
+    "value": 119
   },
   "season": {
-    "aera": 0.65,
-    "aera_sub": "29 of 453 runs failed \u00b7 public repos \u00b7 28d",
+    "aera": 0.62,
+    "aera_sub": "26 of 435 runs failed \u00b7 public repos \u00b7 28d",
     "wdc": 26.58,
     "wdc_sub": "41 deployments created \u00b7 last 28d"
   },
   "source": "mirrors",
-  "updated": "2026-11-07T11:23:02Z",
+  "updated": "2026-11-08T11:23:42Z",
   "weeks": {
     "2025-11-10": {
       "commits": 0,
