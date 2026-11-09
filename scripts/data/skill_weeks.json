@@ -1,24 +1,18 @@
 {
   "fix_minus": {
-    "commits_28": 740,
-    "fix_28": 135,
-    "value": 119
+    "commits_28": 622,
+    "fix_28": 118,
+    "value": 124
   },
   "season": {
-    "aera": 0.62,
-    "aera_sub": "26 of 435 runs failed \u00b7 public repos \u00b7 28d",
-    "wdc": 26.58,
+    "aera": 0.6,
+    "aera_sub": "24 of 418 runs failed \u00b7 public repos \u00b7 28d",
+    "wdc": 14.919999999999998,
     "wdc_sub": "41 deployments created \u00b7 last 28d"
   },
   "source": "mirrors",
-  "updated": "2026-11-08T11:23:42Z",
+  "updated": "2026-11-09T11:22:31Z",
   "weeks": {
-    "2025-11-10": {
-      "commits": 0,
-      "diffs": 0,
-      "repos": 0,
-      "skills": {}
-    },
     "2025-11-17": {
       "commits": 0,
       "diffs": 0,
@@ -816,6 +810,12 @@
         "Zod": 26.87,
         "pandas": 15.16
       }
+    },
+    "2026-11-09": {
+      "commits": 0,
+      "diffs": 0,
+      "repos": 0,
+      "skills": {}
     }
   }
 }
