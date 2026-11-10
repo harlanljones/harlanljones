@@ -8,52 +8,52 @@
 </defs>
 <rect x="0.5" y="0.5" width="899" height="371" rx="12" fill="#ffffff" stroke="url(#shellEdge)"/>
 <text x="24" y="30" font-size="18" font-weight="700" fill="#1f2328" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">GitHub Activity</text>
-<text x="24" y="48" font-size="12.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Public contributions · trailing 30 days · updated Nov 8, 2026</text>
-<g transform="translate(0,56)"><g transform="translate(24.0,10.0)"><rect width="277.3" height="62" rx="8" fill="#f6f8fa" stroke="#d0d7de"/><text x="138.7" y="30" font-size="20" font-weight="700" fill="#58a6ff" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">1,502</text><text x="138.7" y="48" font-size="10.5" fill="#59636e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Commits</text></g>
-<g transform="translate(311.3,10.0)"><rect width="277.3" height="62" rx="8" fill="#f6f8fa" stroke="#d0d7de"/><text x="138.7" y="30" font-size="20" font-weight="700" fill="#a371f7" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">269</text><text x="138.7" y="48" font-size="10.5" fill="#59636e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Pull Requests</text></g>
-<g transform="translate(598.7,10.0)"><rect width="277.3" height="62" rx="8" fill="#f6f8fa" stroke="#d0d7de"/><text x="138.7" y="30" font-size="20" font-weight="700" fill="#3fb950" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">42</text><text x="138.7" y="48" font-size="10.5" fill="#59636e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Repos Contributed</text></g>
-<g transform="translate(24.0,82.0)"><rect width="277.3" height="62" rx="8" fill="#f6f8fa" stroke="#d0d7de"/><text x="138.7" y="30" font-size="20" font-weight="700" fill="#f78166" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">223</text><text x="138.7" y="48" font-size="10.5" fill="#59636e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Pace+ (30d vs year)</text></g>
-<g transform="translate(311.3,82.0)"><rect width="277.3" height="62" rx="8" fill="#f6f8fa" stroke="#d0d7de"/><text x="138.7" y="30" font-size="20" font-weight="700" fill="#9a6700" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">86</text><text x="138.7" y="48" font-size="10.5" fill="#59636e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Hitting Streak (days)</text></g>
+<text x="24" y="48" font-size="12.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Public contributions · trailing 30 days · updated Nov 9, 2026</text>
+<g transform="translate(0,56)"><g transform="translate(24.0,10.0)"><rect width="277.3" height="62" rx="8" fill="#f6f8fa" stroke="#d0d7de"/><text x="138.7" y="30" font-size="20" font-weight="700" fill="#58a6ff" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">1,506</text><text x="138.7" y="48" font-size="10.5" fill="#59636e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Commits</text></g>
+<g transform="translate(311.3,10.0)"><rect width="277.3" height="62" rx="8" fill="#f6f8fa" stroke="#d0d7de"/><text x="138.7" y="30" font-size="20" font-weight="700" fill="#a371f7" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">276</text><text x="138.7" y="48" font-size="10.5" fill="#59636e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Pull Requests</text></g>
+<g transform="translate(598.7,10.0)"><rect width="277.3" height="62" rx="8" fill="#f6f8fa" stroke="#d0d7de"/><text x="138.7" y="30" font-size="20" font-weight="700" fill="#3fb950" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">43</text><text x="138.7" y="48" font-size="10.5" fill="#59636e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Repos Contributed</text></g>
+<g transform="translate(24.0,82.0)"><rect width="277.3" height="62" rx="8" fill="#f6f8fa" stroke="#d0d7de"/><text x="138.7" y="30" font-size="20" font-weight="700" fill="#f78166" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">222</text><text x="138.7" y="48" font-size="10.5" fill="#59636e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Pace+ (30d vs year)</text></g>
+<g transform="translate(311.3,82.0)"><rect width="277.3" height="62" rx="8" fill="#f6f8fa" stroke="#d0d7de"/><text x="138.7" y="30" font-size="20" font-weight="700" fill="#9a6700" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">1</text><text x="138.7" y="48" font-size="10.5" fill="#59636e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Hitting Streak (days)</text></g>
 <g transform="translate(598.7,82.0)"><rect width="277.3" height="62" rx="8" fill="#f6f8fa" stroke="#d0d7de"/><text x="138.7" y="30" font-size="20" font-weight="700" fill="#f778ba" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">86</text><text x="138.7" y="48" font-size="10.5" fill="#59636e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Career Best (days)</text></g>
 <text x="24.0" y="172.0" font-size="13" font-weight="700" fill="#1f2328" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Last 30 days</text>
-<text x="876.0" y="172.0" font-size="11" fill="#59636e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">840 contributions · 28.0/day</text>
+<text x="876.0" y="172.0" font-size="11" fill="#59636e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">841 contributions · 28.0/day</text>
 <line x1="54.0" y1="186.0" x2="876.0" y2="186.0" stroke="#d0d7de" stroke-width="1" stroke-dasharray="3 4" opacity="0.8"/><text x="48.0" y="189.5" font-size="9" fill="#59636e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">108</text>
 <line x1="54.0" y1="234.0" x2="876.0" y2="234.0" stroke="#d0d7de" stroke-width="1" stroke-dasharray="3 4" opacity="0.8"/><text x="48.0" y="237.5" font-size="9" fill="#59636e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">54</text>
 <line x1="54.0" y1="282.0" x2="876.0" y2="282.0" stroke="#d0d7de" stroke-width="1" stroke-dasharray="3 4" opacity="0.8"/><text x="48.0" y="285.5" font-size="9" fill="#59636e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">0</text>
-<rect x="56.5" y="263.3" width="22.4" height="18.7" rx="3" fill="#58a6ff" opacity="0.48"/>
-<rect x="83.9" y="233.1" width="22.4" height="48.9" rx="3" fill="#58a6ff" opacity="0.68"/>
-<rect x="111.3" y="215.3" width="22.4" height="66.7" rx="3" fill="#58a6ff" opacity="0.80"/>
-<rect x="138.7" y="240.2" width="22.4" height="41.8" rx="3" fill="#58a6ff" opacity="0.63"/>
-<rect x="166.1" y="259.8" width="22.4" height="22.2" rx="3" fill="#58a6ff" opacity="0.50"/>
-<rect x="193.5" y="280.0" width="22.4" height="2.0" rx="3" fill="#58a6ff" opacity="0.36"/>
-<rect x="220.9" y="278.4" width="22.4" height="3.6" rx="3" fill="#58a6ff" opacity="0.37"/>
-<rect x="248.3" y="276.7" width="22.4" height="5.3" rx="3" fill="#58a6ff" opacity="0.39"/>
-<rect x="275.7" y="266.9" width="22.4" height="15.1" rx="3" fill="#58a6ff" opacity="0.45"/>
-<rect x="303.1" y="230.4" width="22.4" height="51.6" rx="3" fill="#58a6ff" opacity="0.70"/>
-<rect x="330.5" y="235.8" width="22.4" height="46.2" rx="3" fill="#58a6ff" opacity="0.66"/>
-<rect x="357.9" y="234.0" width="22.4" height="48.0" rx="3" fill="#58a6ff" opacity="0.68"/>
-<rect x="385.3" y="216.2" width="22.4" height="65.8" rx="3" fill="#58a6ff" opacity="0.80"/>
-<rect x="412.7" y="223.3" width="22.4" height="58.7" rx="3" fill="#58a6ff" opacity="0.75"/>
-<rect x="440.1" y="273.1" width="22.4" height="8.9" rx="3" fill="#58a6ff" opacity="0.41"/>
-<rect x="467.5" y="275.8" width="22.4" height="6.2" rx="3" fill="#58a6ff" opacity="0.39"/>
-<rect x="494.9" y="264.2" width="22.4" height="17.8" rx="3" fill="#58a6ff" opacity="0.47"/>
-<rect x="522.3" y="263.3" width="22.4" height="18.7" rx="3" fill="#58a6ff" opacity="0.48"/>
-<rect x="549.7" y="264.2" width="22.4" height="17.8" rx="3" fill="#58a6ff" opacity="0.47"/>
-<rect x="577.1" y="186.0" width="22.4" height="96.0" rx="3" fill="#58a6ff" opacity="1.00"/>
-<rect x="604.5" y="269.6" width="22.4" height="12.4" rx="3" fill="#58a6ff" opacity="0.43"/>
+<rect x="56.5" y="233.1" width="22.4" height="48.9" rx="3" fill="#58a6ff" opacity="0.68"/>
+<rect x="83.9" y="215.3" width="22.4" height="66.7" rx="3" fill="#58a6ff" opacity="0.80"/>
+<rect x="111.3" y="240.2" width="22.4" height="41.8" rx="3" fill="#58a6ff" opacity="0.63"/>
+<rect x="138.7" y="259.8" width="22.4" height="22.2" rx="3" fill="#58a6ff" opacity="0.50"/>
+<rect x="166.1" y="280.0" width="22.4" height="2.0" rx="3" fill="#58a6ff" opacity="0.36"/>
+<rect x="193.5" y="278.4" width="22.4" height="3.6" rx="3" fill="#58a6ff" opacity="0.37"/>
+<rect x="220.9" y="276.7" width="22.4" height="5.3" rx="3" fill="#58a6ff" opacity="0.39"/>
+<rect x="248.3" y="266.9" width="22.4" height="15.1" rx="3" fill="#58a6ff" opacity="0.45"/>
+<rect x="275.7" y="230.4" width="22.4" height="51.6" rx="3" fill="#58a6ff" opacity="0.70"/>
+<rect x="303.1" y="235.8" width="22.4" height="46.2" rx="3" fill="#58a6ff" opacity="0.66"/>
+<rect x="330.5" y="234.0" width="22.4" height="48.0" rx="3" fill="#58a6ff" opacity="0.68"/>
+<rect x="357.9" y="216.2" width="22.4" height="65.8" rx="3" fill="#58a6ff" opacity="0.80"/>
+<rect x="385.3" y="223.3" width="22.4" height="58.7" rx="3" fill="#58a6ff" opacity="0.75"/>
+<rect x="412.7" y="273.1" width="22.4" height="8.9" rx="3" fill="#58a6ff" opacity="0.41"/>
+<rect x="440.1" y="275.8" width="22.4" height="6.2" rx="3" fill="#58a6ff" opacity="0.39"/>
+<rect x="467.5" y="264.2" width="22.4" height="17.8" rx="3" fill="#58a6ff" opacity="0.47"/>
+<rect x="494.9" y="263.3" width="22.4" height="18.7" rx="3" fill="#58a6ff" opacity="0.48"/>
+<rect x="522.3" y="264.2" width="22.4" height="17.8" rx="3" fill="#58a6ff" opacity="0.47"/>
+<rect x="549.7" y="186.0" width="22.4" height="96.0" rx="3" fill="#58a6ff" opacity="1.00"/>
+<rect x="577.1" y="269.6" width="22.4" height="12.4" rx="3" fill="#58a6ff" opacity="0.43"/>
+<rect x="604.5" y="280.0" width="22.4" height="2.0" rx="3" fill="#58a6ff" opacity="0.36"/>
 <rect x="631.9" y="280.0" width="22.4" height="2.0" rx="3" fill="#58a6ff" opacity="0.36"/>
-<rect x="659.3" y="280.0" width="22.4" height="2.0" rx="3" fill="#58a6ff" opacity="0.36"/>
-<rect x="686.7" y="261.6" width="22.4" height="20.4" rx="3" fill="#58a6ff" opacity="0.49"/>
-<rect x="714.1" y="258.9" width="22.4" height="23.1" rx="3" fill="#58a6ff" opacity="0.51"/>
-<rect x="741.5" y="272.2" width="22.4" height="9.8" rx="3" fill="#58a6ff" opacity="0.42"/>
-<rect x="768.9" y="274.9" width="22.4" height="7.1" rx="3" fill="#58a6ff" opacity="0.40"/>
-<rect x="796.3" y="271.3" width="22.4" height="10.7" rx="3" fill="#58a6ff" opacity="0.42"/>
-<rect x="823.7" y="280.0" width="22.4" height="2.0" rx="3" fill="#58a6ff" opacity="0.36"/>
-<rect x="851.1" y="281.0" width="22.4" height="1.0" rx="3" fill="#eaeef2" opacity="0.25"/>
-<polyline points="67.7,263.3 95.1,248.2 122.5,237.3 149.9,238.0 177.3,242.4 204.7,248.8 232.1,253.0 259.5,255.0 286.9,259.8 314.3,261.9 341.7,261.3 369.1,257.6 396.5,248.3 423.9,240.5 451.3,240.0 478.7,241.2 506.1,246.1 533.5,250.0 560.9,254.3 588.3,250.0 615.7,256.6 643.1,257.6 670.5,258.4 697.9,258.0 725.3,257.4 752.7,258.5 780.1,271.2 807.5,271.5 834.9,271.5 862.3,271.6" fill="none" stroke="#9a6700" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="659.3" y="261.6" width="22.4" height="20.4" rx="3" fill="#58a6ff" opacity="0.49"/>
+<rect x="686.7" y="258.9" width="22.4" height="23.1" rx="3" fill="#58a6ff" opacity="0.51"/>
+<rect x="714.1" y="272.2" width="22.4" height="9.8" rx="3" fill="#58a6ff" opacity="0.42"/>
+<rect x="741.5" y="274.9" width="22.4" height="7.1" rx="3" fill="#58a6ff" opacity="0.40"/>
+<rect x="768.9" y="271.3" width="22.4" height="10.7" rx="3" fill="#58a6ff" opacity="0.42"/>
+<rect x="796.3" y="280.0" width="22.4" height="2.0" rx="3" fill="#58a6ff" opacity="0.36"/>
+<rect x="823.7" y="281.0" width="22.4" height="1.0" rx="3" fill="#eaeef2" opacity="0.25"/>
+<rect x="851.1" y="262.4" width="22.4" height="19.6" rx="3" fill="#58a6ff" opacity="0.48"/>
+<polyline points="67.7,233.1 95.1,224.2 122.5,229.6 149.9,237.1 177.3,245.9 204.7,251.3 232.1,255.0 259.5,259.8 286.9,261.9 314.3,261.3 341.7,257.6 369.1,248.3 396.5,240.5 423.9,240.0 451.3,241.2 478.7,246.1 506.1,250.0 533.5,254.3 560.9,250.0 588.3,256.6 615.7,257.6 643.1,258.4 670.5,258.0 697.9,257.4 725.3,258.5 752.7,271.2 780.1,271.5 807.5,271.5 834.9,271.6 862.3,271.7" fill="none" stroke="#9a6700" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <line x1="54.0" y1="282.0" x2="876.0" y2="282.0" stroke="#d0d7de" stroke-width="1"/>
-<text x="67.7" y="296.0" font-size="9" fill="#59636e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Oct 10</text>
-<text x="451.3" y="296.0" font-size="9" fill="#59636e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Oct 24</text>
-<text x="862.3" y="296.0" font-size="9" fill="#59636e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Nov 8</text>
+<text x="67.7" y="296.0" font-size="9" fill="#59636e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Oct 11</text>
+<text x="451.3" y="296.0" font-size="9" fill="#59636e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Oct 25</text>
+<text x="862.3" y="296.0" font-size="9" fill="#59636e" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Nov 9</text>
 <text x="876.0" y="308.0" font-size="9" fill="#59636e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">— 7-day avg</text></g>
 </svg>
