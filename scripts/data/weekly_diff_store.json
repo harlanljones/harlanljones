@@ -1,6 +1,181 @@
 {
-  "projects": [],
-  "updated": "2026-11-09T11:22:05.119419+00:00",
-  "window_end": "2026-11-09T03:22:05.026391-08:00",
+  "projects": [
+    {
+      "changed_lines": 21222,
+      "commits": [
+        {
+          "authored_at": "2026-11-10T03:22:11+00:00",
+          "changed_lines": 5448,
+          "files": [
+            {
+              "added": [
+                "# Glossary",
+                "Short definitions of the terms used across this wiki, with links to the page that explains each in full."
+              ],
+              "additions": 257,
+              "deletions": 0,
+              "path": "apps/philosophy/content/glossary.md",
+              "removed": []
+            },
+            {
+              "added": [
+                "/* Styles for the Philosophy and Political Theory Wiki, loaded after the shared wiki stylesheet. */",
+                ":root {"
+              ],
+              "additions": 178,
+              "deletions": 0,
+              "path": "apps/philosophy/public/philosophy.css",
+              "removed": []
+            },
+            {
+              "added": [
+                "import { describe, expect, test } from \"bun:test\";",
+                "import { ERAS, lifespan, slugOf, THINKERS } from \"../src/thinkers.ts\";"
+              ],
+              "additions": 160,
+              "deletions": 0,
+              "path": "apps/philosophy/test/wiki.test.ts",
+              "removed": []
+            }
+          ],
+          "sha": "c74185bfdcc2bb027922bff5b218c3c2640b8a1c",
+          "subject": "Add the philosophy and political theory wiki"
+        },
+        {
+          "authored_at": "2026-11-10T02:27:20+00:00",
+          "changed_lines": 4996,
+          "files": [
+            {
+              "added": [
+                "# Glossary",
+                "Short definitions of the terms used in this wiki and on product listings. Each entry links to the page that explains it properly."
+              ],
+              "additions": 397,
+              "deletions": 0,
+              "path": "apps/computer-parts/content/glossary.md",
+              "removed": []
+            },
+            {
+              "added": [
+                "# How to choose a laptop",
+                "> **In one sentence:** you cannot change a laptop's screen, keyboard, memory or battery after you buy it, so judge those first and the processor last."
+              ],
+              "additions": 169,
+              "deletions": 0,
+              "path": "apps/computer-parts/content/buying/laptops.md",
+              "removed": []
+            },
+            {
+              "added": [
+                "# The market right now",
+                "> **Last updated: 10 November 2026.** Prices are in US dollars and move week to week. Everything else in this wiki is written to stay true for years. This page "
+              ],
+              "additions": 163,
+              "deletions": 0,
+              "path": "apps/computer-parts/content/market.md",
+              "removed": []
+            }
+          ],
+          "sha": "7f401ff54f0077596d87d2c2fc929afca8f6a852",
+          "subject": "Add the computer parts wiki"
+        },
+        {
+          "authored_at": "2026-11-10T02:23:44+00:00",
+          "changed_lines": 3904,
+          "files": [
+            {
+              "added": [
+                "# Glossary",
+                "Short definitions of the terms used across this wiki and on camera spec sheets, with links to the page that explains each in full."
+              ],
+              "additions": 263,
+              "deletions": 0,
+              "path": "apps/photography/content/glossary.md",
+              "removed": []
+            },
+            {
+              "added": [
+                "# Reading lens names",
+                "A lens name such as **Sony FE 70-200mm F2.8 GM OSS II** or **Nikon NIKKOR Z DX 16-50mm f/3.5-6.3 VR** packs the mount, sensor coverage, focal length, aperture, "
+              ],
+              "additions": 156,
+              "deletions": 0,
+              "path": "apps/photography/content/lenses/reading-lens-names.md",
+              "removed": []
+            },
+            {
+              "added": [
+                "# Cameras by subject",
+                "What you photograph decides which specifications matter. This page takes the common subjects one at a time: what to prioritise, what to ignore, and which camera"
+              ],
+              "additions": 149,
+              "deletions": 0,
+              "path": "apps/photography/content/buying/by-subject.md",
+              "removed": []
+            }
+          ],
+          "sha": "4604aadc4743e5b47a1b5e59407ef38ed99a9b35",
+          "subject": "Add photography wiki"
+        },
+        {
+          "authored_at": "2026-11-10T02:31:21+00:00",
+          "changed_lines": 3708,
+          "files": [
+            {
+              "added": [
+                "/* Styles for California on Foot, loaded after the shared wiki stylesheet. */",
+                ":root {"
+              ],
+              "additions": 217,
+              "deletions": 0,
+              "path": "apps/california/public/california.css",
+              "removed": []
+            },
+            {
+              "added": [
+                "# Timeline",
+                "Everything in the wiki, in order. Follow a link for the story."
+              ],
+              "additions": 119,
+              "deletions": 0,
+              "path": "apps/california/content/big-picture/timeline.md",
+              "removed": []
+            },
+            {
+              "added": [
+                "# Hike List",
+                "Every hike on the California Hike List, in the same order, with the reading that goes with it. Several hikes share a reading when they are in the same park."
+              ],
+              "additions": 93,
+              "deletions": 0,
+              "path": "apps/california/content/hike-list.md",
+              "removed": []
+            }
+          ],
+          "sha": "90a3b9830080bae18691bcf51a72b63607abe662",
+          "subject": "Add California on Foot, a geography and history wiki for the hike list"
+        }
+      ],
+      "judgments": {
+        "change_kind": {
+          "choice": "feature",
+          "confidence": 0.7
+        },
+        "magnitude": {
+          "confidence": 1.0,
+          "label": "large",
+          "level": 2,
+          "score": 2.0
+        },
+        "model": "jev-latest",
+        "notable": {
+          "noul": 0.96
+        }
+      },
+      "name": "wikis"
+    }
+  ],
+  "updated": "2026-11-10T11:23:11.522130+00:00",
+  "window_end": "2026-11-10T03:23:11.338444-08:00",
   "window_start": "2026-11-06T17:00:00-08:00"
 }
