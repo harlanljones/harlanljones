@@ -414,5 +414,16 @@
       "Python"
     ],
     "homepage": ""
+  },
+  {
+    "name": "wikis",
+    "summary": "Plain-language wikis served from markdown by a tiny Bun engine. Built with TypeScript and CSS3.",
+    "badges": [
+      "TypeScript",
+      "CSS3",
+      "Bun",
+      "Turborepo Monorepo"
+    ],
+    "homepage": ""
   }
 ]
