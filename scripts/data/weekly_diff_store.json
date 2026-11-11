@@ -159,7 +159,7 @@
       "judgments": {
         "change_kind": {
           "choice": "feature",
-          "confidence": 0.7
+          "confidence": 0.67
         },
         "magnitude": {
           "confidence": 1.0,
@@ -173,9 +173,75 @@
         }
       },
       "name": "wikis"
+    },
+    {
+      "changed_lines": 505,
+      "commits": [
+        {
+          "authored_at": "2026-11-10T19:29:17+00:00",
+          "changed_lines": 505,
+          "files": [
+            {
+              "added": [
+                "\"background\": \"opaque\",",
+                "\"center\": ["
+              ],
+              "additions": 98,
+              "deletions": 69,
+              "path": ".config/omarchy/shell.json",
+              "removed": [
+                "\"version\": 1,"
+              ]
+            },
+            {
+              "added": [
+                "model = \"gpt-6.1-terra\"",
+                "model_reasoning_effort = \"low\""
+              ],
+              "additions": 81,
+              "deletions": 25,
+              "path": ".codex/config.toml",
+              "removed": [
+                "model = \"gpt-6.1-sol\""
+              ]
+            },
+            {
+              "added": [
+                "default: openrouter/auto-code",
+                "provider: openrouter"
+              ],
+              "additions": 60,
+              "deletions": 23,
+              "path": ".hermes/config.yaml",
+              "removed": [
+                "default: z-ai/glm-5.3-flash"
+              ]
+            }
+          ],
+          "sha": "1f9dc42511d2ce32a93a810ac83eb189df1cc89c",
+          "subject": "Sync live dotfiles; agent keybinding opens in ~/dev"
+        }
+      ],
+      "judgments": {
+        "change_kind": {
+          "choice": "tooling",
+          "confidence": 0.74
+        },
+        "magnitude": {
+          "confidence": 0.36,
+          "label": "moderate",
+          "level": 1,
+          "score": 1.41
+        },
+        "model": "jev-latest",
+        "notable": {
+          "noul": 0.85
+        }
+      },
+      "name": "dotfiles"
     }
   ],
-  "updated": "2026-11-10T11:23:11.522130+00:00",
-  "window_end": "2026-11-10T03:23:11.338444-08:00",
+  "updated": "2026-11-11T11:22:15.378945+00:00",
+  "window_end": "2026-11-11T03:22:15.215520-08:00",
   "window_start": "2026-11-06T17:00:00-08:00"
 }
