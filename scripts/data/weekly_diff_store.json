@@ -159,13 +159,13 @@
       "judgments": {
         "change_kind": {
           "choice": "feature",
-          "confidence": 0.67
+          "confidence": 0.62
         },
         "magnitude": {
           "confidence": 1.0,
           "label": "large",
           "level": 2,
-          "score": 2.0
+          "score": 1.99
         },
         "model": "jev-latest",
         "notable": {
@@ -225,13 +225,13 @@
       "judgments": {
         "change_kind": {
           "choice": "tooling",
-          "confidence": 0.74
+          "confidence": 0.76
         },
         "magnitude": {
-          "confidence": 0.36,
+          "confidence": 0.4,
           "label": "moderate",
           "level": 1,
-          "score": 1.41
+          "score": 1.37
         },
         "model": "jev-latest",
         "notable": {
@@ -241,7 +241,7 @@
       "name": "dotfiles"
     }
   ],
-  "updated": "2026-11-11T11:22:15.378945+00:00",
-  "window_end": "2026-11-11T03:22:15.215520-08:00",
+  "updated": "2026-11-12T11:23:34.382276+00:00",
+  "window_end": "2026-11-12T03:23:34.207795-08:00",
   "window_start": "2026-11-06T17:00:00-08:00"
 }

@@ -1,17 +1,17 @@
 {
   "fix_minus": {
-    "commits_28": 596,
+    "commits_28": 597,
     "fix_28": 105,
     "value": 116
   },
   "season": {
-    "aera": 0.63,
-    "aera_sub": "22 of 367 runs failed \u00b7 public repos \u00b7 28d",
+    "aera": 0.64,
+    "aera_sub": "22 of 366 runs failed \u00b7 public repos \u00b7 28d",
     "wdc": 14.919999999999998,
-    "wdc_sub": "34 deployments created \u00b7 last 28d"
+    "wdc_sub": "33 deployments created \u00b7 last 28d"
   },
   "source": "mirrors",
-  "updated": "2026-11-11T11:22:42Z",
+  "updated": "2026-11-12T11:24:00Z",
   "weeks": {
     "2025-11-17": {
       "commits": 0,
@@ -777,19 +777,19 @@
       }
     },
     "2026-11-02": {
-      "commits": 136,
-      "diffs": 2369,
-      "repos": 11,
+      "commits": 137,
+      "diffs": 2373,
+      "repos": 12,
       "skills": {
         "API Integration": 51.45,
         "Agent Tooling": 76.19,
         "Astro": 133.21,
         "Build Config": 101.78,
-        "CLI Design": 40.44,
+        "CLI Design": 43.18,
         "Cloudflare Workers": 12.91,
         "Concurrency": 139.65,
         "Data Viz": 90.22,
-        "Docs & Writing": 526.59,
+        "Docs & Writing": 528.82,
         "DuckDB": 18.96,
         "Error Handling": 149.6,
         "FastAPI": 3.16,
@@ -801,11 +801,11 @@
         "Polars": 41.38,
         "Pydantic": 18.37,
         "React": 197.83,
-        "Regex & Parsing": 13.03,
+        "Regex & Parsing": 15.03,
         "SQL & Data Modeling": 44.83,
         "Serde": 10.58,
         "Tailwind CSS": 43.82,
-        "Testing": 637.56,
+        "Testing": 642.15,
         "Type Design": 148.69,
         "Zod": 26.87,
         "pandas": 15.16
