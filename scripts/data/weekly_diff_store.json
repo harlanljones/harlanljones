@@ -1,7 +1,7 @@
 {
   "projects": [
     {
-      "changed_lines": 21222,
+      "changed_lines": 24962,
       "commits": [
         {
           "authored_at": "2026-11-10T03:22:11+00:00",
@@ -118,54 +118,54 @@
           "subject": "Add photography wiki"
         },
         {
-          "authored_at": "2026-11-10T02:31:21+00:00",
-          "changed_lines": 3708,
+          "authored_at": "2026-11-13T01:00:51+00:00",
+          "changed_lines": 3740,
           "files": [
             {
               "added": [
-                "/* Styles for California on Foot, loaded after the shared wiki stylesheet. */",
+                "/* Styles for the LLM Wiki, loaded after the shared wiki stylesheet. */",
                 ":root {"
               ],
-              "additions": 217,
+              "additions": 199,
               "deletions": 0,
-              "path": "apps/california/public/california.css",
+              "path": "apps/llms/public/llms.css",
               "removed": []
             },
             {
               "added": [
-                "# Timeline",
-                "Everything in the wiki, in order. Follow a link for the story."
+                "/**",
+                "* The memory calculator on the hardware page: how much memory a model needs to run,"
               ],
-              "additions": 119,
+              "additions": 165,
               "deletions": 0,
-              "path": "apps/california/content/big-picture/timeline.md",
+              "path": "apps/llms/src/vram.ts",
               "removed": []
             },
             {
               "added": [
-                "# Hike List",
-                "Every hike on the California Hike List, in the same order, with the reading that goes with it. Several hikes share a reading when they are in the same park."
+                "import { describe, expect, test } from \"bun:test\";",
+                "import { PATH, SECTIONS } from \"../src/path.ts\";"
               ],
-              "additions": 93,
+              "additions": 165,
               "deletions": 0,
-              "path": "apps/california/content/hike-list.md",
+              "path": "apps/llms/test/content.test.ts",
               "removed": []
             }
           ],
-          "sha": "90a3b9830080bae18691bcf51a72b63607abe662",
-          "subject": "Add California on Foot, a geography and history wiki for the hike list"
+          "sha": "c7ac563331ae4d6f15436fe2786fb0fd279e3c26",
+          "subject": "Add the LLM Wiki: fundamentals to local AI, quantization and interpretability"
         }
       ],
       "judgments": {
         "change_kind": {
           "choice": "feature",
-          "confidence": 0.62
+          "confidence": 0.57
         },
         "magnitude": {
           "confidence": 1.0,
           "label": "large",
           "level": 2,
-          "score": 1.99
+          "score": 2.0
         },
         "model": "jev-latest",
         "notable": {
@@ -225,23 +225,23 @@
       "judgments": {
         "change_kind": {
           "choice": "tooling",
-          "confidence": 0.76
+          "confidence": 0.72
         },
         "magnitude": {
           "confidence": 0.4,
           "label": "moderate",
           "level": 1,
-          "score": 1.37
+          "score": 1.36
         },
         "model": "jev-latest",
         "notable": {
-          "noul": 0.85
+          "noul": 0.87
         }
       },
       "name": "dotfiles"
     }
   ],
-  "updated": "2026-11-12T11:23:34.382276+00:00",
-  "window_end": "2026-11-12T03:23:34.207795-08:00",
+  "updated": "2026-11-13T11:22:46.937405+00:00",
+  "window_end": "2026-11-13T03:22:46.795887-08:00",
   "window_start": "2026-11-06T17:00:00-08:00"
 }
