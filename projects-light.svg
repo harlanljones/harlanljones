@@ -26,9 +26,9 @@
 <text x="14.0" y="214.0" font-size="10.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>gWAR 4.7 · 117 commits · 15d active</title>gWAR 4.7 · 117 commits · 15d active</text>
 <text x="14.0" y="232.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Active development focused on roster Shapes development handoff, built with JavaScript and TypeScript.</text>
 <circle cx="4.0" cy="256.0" r="4" fill="#3178c6"/>
-<text x="14.0" y="260.0" font-size="14.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>harlanljones/baseball-dashboard · TypeScript 100% · gWAR 4.3 · 102 commits · 11d active</title>baseball-dashboard</text>
+<text x="14.0" y="260.0" font-size="14.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>harlanljones/baseball-dashboard · TypeScript 100% · gWAR 4.3 · 101 commits · 10d active</title>baseball-dashboard</text>
 <g transform="translate(806.7,244.0)"><rect width="45.3" height="18" rx="9" fill="#238636"/><text x="22.6" y="13" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">SITE</text></g>
-<text x="14.0" y="277.0" font-size="10.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>gWAR 4.3 · 102 commits · 11d active</title>gWAR 4.3 · 102 commits · 11d active</text>
+<text x="14.0" y="277.0" font-size="10.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>gWAR 4.3 · 101 commits · 10d active</title>gWAR 4.3 · 101 commits · 10d active</text>
 <text x="14.0" y="295.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Live MLB scoreboard and game-day research dashboard with sabermetric matchup stats, ballpark weather, bullpen workload, and optional</text>
 <text x="14.0" y="311.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">player props.</text>
 <circle cx="4.0" cy="335.0" r="3.5" fill="#3178c6"/><circle cx="12.0" cy="335.0" r="3.5" fill="#44a51c"/>
@@ -40,29 +40,30 @@
 <line x1="24" y1="415.0" x2="876" y2="415.0" stroke="#d0d7de" stroke-width="1"/>
 <g transform="translate(24.0,431.0)"><text x="0" y="12" font-size="13" font-weight="800" fill="#3fb950" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Newest repositories</text>
 <circle cx="4.0" cy="35.0" r="4" fill="#3178c6"/>
-<text x="14.0" y="39.0" font-size="14.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>harlanljones/wikis · TypeScript 100% · debut Nov 10 (1d ago) · 11 commits</title>wikis</text>
-<text x="14.0" y="56.0" font-size="10.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>debut Nov 10 (1d ago) · 11 commits</title>debut Nov 10 (1d ago) · 11 commits</text>
-<text x="14.0" y="74.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Plain-language wikis served from markdown by a tiny Bun engine</text>
-<circle cx="4.0" cy="98.0" r="4" fill="#3572A5"/>
-<text x="14.0" y="102.0" font-size="14.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>harlanljones/baseball-ratings · Python 100% · debut Nov 6 (5d ago) · 5 commits</title>baseball-ratings</text>
-<text x="14.0" y="119.0" font-size="10.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>debut Nov 6 (5d ago) · 5 commits</title>debut Nov 6 (5d ago) · 5 commits</text>
-<text x="14.0" y="137.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Recently published Python project.</text>
-<circle cx="4.0" cy="161.0" r="4" fill="#00ADD8"/>
-<text x="14.0" y="165.0" font-size="14.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>harlanljones/bend-re24 · Go 96% · debut Oct 27 (15d ago) · 21 commits</title>bend-re24</text>
-<text x="14.0" y="182.0" font-size="10.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>debut Oct 27 (15d ago) · 21 commits</title>debut Oct 27 (15d ago) · 21 commits</text>
-<text x="14.0" y="200.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Active development focused on templ/htmx report and CSV export and</text>
-<text x="14.0" y="216.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">parallel game bootstrap CIs, built with Go.</text></g>
+<text x="14.0" y="39.0" font-size="14.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>harlanljones/wikis · TypeScript 100% · debut Nov 10 (5d ago) · 11 commits</title>wikis</text>
+<text x="14.0" y="56.0" font-size="10.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>debut Nov 10 (5d ago) · 11 commits</title>debut Nov 10 (5d ago) · 11 commits</text>
+<text x="14.0" y="74.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Plain-language wikis served from markdown by a tiny Bun engine.</text>
+<text x="14.0" y="90.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Built with TypeScript and CSS3.</text>
+<circle cx="4.0" cy="114.0" r="4" fill="#3572A5"/>
+<text x="14.0" y="118.0" font-size="14.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>harlanljones/baseball-ratings · Python 100% · debut Nov 6 (9d ago) · 5 commits</title>baseball-ratings</text>
+<text x="14.0" y="135.0" font-size="10.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>debut Nov 6 (9d ago) · 5 commits</title>debut Nov 6 (9d ago) · 5 commits</text>
+<text x="14.0" y="153.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Recently published Python project.</text>
+<circle cx="4.0" cy="177.0" r="4" fill="#00ADD8"/>
+<text x="14.0" y="181.0" font-size="14.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>harlanljones/bend-re24 · Go 96% · debut Oct 27 (19d ago) · 21 commits</title>bend-re24</text>
+<text x="14.0" y="198.0" font-size="10.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>debut Oct 27 (19d ago) · 21 commits</title>debut Oct 27 (19d ago) · 21 commits</text>
+<text x="14.0" y="216.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Active development focused on templ/htmx report and CSV export and</text>
+<text x="14.0" y="232.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">parallel game bootstrap CIs, built with Go.</text></g>
 <g transform="translate(465.0,431.0)"><text x="0" y="12" font-size="13" font-weight="800" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Project websites</text>
 <circle cx="4.0" cy="35.0" r="3.5" fill="#3178c6"/><circle cx="12.0" cy="35.0" r="3.5" fill="#3572A5"/>
-<text x="20.0" y="39.0" font-size="14.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>harlanljones/statcast-lakehouse · TypeScript 55% · Python 44% · statcast-lakehouse.pages.dev · pushed 29d ago</title>statcast-lakehouse</text>
+<text x="20.0" y="39.0" font-size="14.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>harlanljones/statcast-lakehouse · TypeScript 55% · Python 44% · statcast-lakehouse.pages.dev · pushed 4w ago</title>statcast-lakehouse</text>
 <g transform="translate(365.7,23.0)"><rect width="45.3" height="18" rx="9" fill="#238636"/><text x="22.6" y="13" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">SITE</text></g>
-<text x="14.0" y="56.0" font-size="10.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>statcast-lakehouse.pages.dev · pushed 29d ago</title>statcast-lakehouse.pages.dev · pushed 29d ago</text>
+<text x="14.0" y="56.0" font-size="10.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>statcast-lakehouse.pages.dev · pushed 4w ago</title>statcast-lakehouse.pages.dev · pushed 4w ago</text>
 <text x="14.0" y="74.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Active development focused on expose manifest generation in export</text>
 <text x="14.0" y="90.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">CLI and ghost-trajectory break visualization, built with Python...</text>
 <circle cx="4.0" cy="114.0" r="4" fill="#3572A5"/>
-<text x="14.0" y="118.0" font-size="14.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>harlanljones/bayes-horizon · Python 97% · sp500.harlanljones.com · pushed 10w ago</title>bayes-horizon</text>
+<text x="14.0" y="118.0" font-size="14.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>harlanljones/bayes-horizon · Python 97% · sp500.harlanljones.com · pushed 11w ago</title>bayes-horizon</text>
 <g transform="translate(365.7,102.0)"><rect width="45.3" height="18" rx="9" fill="#238636"/><text x="22.6" y="13" font-size="10.5" font-weight="700" fill="#ffffff" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">SITE</text></g>
-<text x="14.0" y="135.0" font-size="10.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>sp500.harlanljones.com · pushed 10w ago</title>sp500.harlanljones.com · pushed 10w ago</text>
+<text x="14.0" y="135.0" font-size="10.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>sp500.harlanljones.com · pushed 11w ago</title>sp500.harlanljones.com · pushed 11w ago</text>
 <text x="14.0" y="153.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">S&amp;P 500 long-term ML projection engine using Bayesian hierarchical</text>
 <text x="14.0" y="169.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">modeling, walk-forward cross-validation, and point-in-time macr...</text>
 <circle cx="4.0" cy="193.0" r="3.5" fill="#79528b"/><circle cx="12.0" cy="193.0" r="3.5" fill="#3572A5"/>
@@ -79,13 +80,13 @@
 <text x="14.0" y="74.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Active development focused on implementation plan for nanotap,</text>
 <text x="14.0" y="90.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">built with a polyglot stack.</text>
 <circle cx="4.0" cy="114.0" r="3.5" fill="#3572A5"/><circle cx="12.0" cy="114.0" r="3.5" fill="#a6950e"/>
-<text x="20.0" y="118.0" font-size="14.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>harlanljones/bend-winprob · Python 66% · JavaScript 33% · Pace+ 72 · 26 in 30d</title>bend-winprob</text>
-<text x="14.0" y="135.0" font-size="10.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>Pace+ 72 · 26 in 30d</title>Pace+ 72 · 26 in 30d</text>
+<text x="20.0" y="118.0" font-size="14.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>harlanljones/bend-winprob · Python 66% · JavaScript 33% · Pace+ 71 · 26 in 30d</title>bend-winprob</text>
+<text x="14.0" y="135.0" font-size="10.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>Pace+ 71 · 26 in 30d</title>Pace+ 71 · 26 in 30d</text>
 <text x="14.0" y="153.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Active development focused on deterministic offline replay engine</text>
 <text x="14.0" y="169.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">and redesign hosted chart page, built with Python and HTML5.</text>
 <circle cx="4.0" cy="193.0" r="3.5" fill="#3572A5"/><circle cx="12.0" cy="193.0" r="3.5" fill="#54a81e"/>
-<text x="20.0" y="197.0" font-size="14.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>harlanljones/bend-equity · Python 90% · Shell 10% · Pace+ 27 · 10 in 30d</title>bend-equity</text>
-<text x="14.0" y="214.0" font-size="10.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>Pace+ 27 · 10 in 30d</title>Pace+ 27 · 10 in 30d</text>
+<text x="20.0" y="197.0" font-size="14.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>harlanljones/bend-equity · Python 90% · Shell 10% · Pace+ 24 · 10 in 30d</title>bend-equity</text>
+<text x="14.0" y="214.0" font-size="10.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>Pace+ 24 · 10 in 30d</title>Pace+ 24 · 10 in 30d</text>
 <text x="14.0" y="232.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Exact Texas Hold'em equity by board enumeration, in Bend 2 with</text>
 <text x="14.0" y="248.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">machine-checked laws. Recent work includes bend-equity engine a...</text></g>
 <g transform="translate(465.0,730.0)"><text x="0" y="12" font-size="13" font-weight="800" fill="#a371f7" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Hidden gems</text>
@@ -105,5 +106,5 @@
 <text x="14.0" y="214.0" font-size="10.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"><title>gWAR 2.4 · 729 KB · 27 commits</title>gWAR 2.4 · 729 KB · 27 commits</text>
 <text x="14.0" y="232.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Active development focused on deploy verification and analytics</text>
 <text x="14.0" y="248.0" font-size="11.5" fill="#59636e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">and cI/CD for production and PR previews, built with TypeScript...</text></g>
-<text x="876" y="1015.0" font-size="9.5" fill="#59636e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">45 public repos · one entry per repo, best section wins · gWAR and Pace+ in Glossary · Nov 11, 2026 · GitHub Actions</text></g>
+<text x="876" y="1015.0" font-size="9.5" fill="#59636e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">45 public repos · one entry per repo, best section wins · gWAR and Pace+ in Glossary · Nov 15, 2026 · GitHub Actions</text></g>
 </svg>
