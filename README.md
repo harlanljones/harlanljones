@@ -26,22 +26,18 @@
 <table>
   <tr>
     <td width="50%" valign="top">
-
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/weekly-highlights.svg">
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/weekly-highlights-light.svg">
   <img alt="This Week in Builds" src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/weekly-highlights.svg" width="442" />
 </picture>
-
     </td>
     <td width="50%" valign="top">
-
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/statline.svg">
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/statline-light.svg">
   <img alt="Developer Statline & Career Totals" src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/statline.svg" width="442" />
 </picture>
-
     </td>
   </tr>
 </table>
@@ -61,22 +57,18 @@
 <table>
   <tr>
     <td width="50%" valign="top">
-
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/projects-pulse.svg">
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/projects-pulse-light.svg">
   <img alt="Featured, Upcoming & Archived Projects" src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/projects-pulse.svg" width="442" />
 </picture>
-
     </td>
     <td width="50%" valign="top">
-
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/dev-grid.svg">
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/dev-grid-light.svg">
   <img alt="Language & Domain Breakdown" src="https://raw.githubusercontent.com/harlanljones/harlanljones/profile-cards/dev-grid.svg" width="442" />
 </picture>
-
     </td>
   </tr>
 </table>
