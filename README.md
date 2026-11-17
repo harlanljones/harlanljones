@@ -9,7 +9,7 @@
 </div>
 
 <p align="center">
-  [harlanljones.com](https://harlanljones.com) &nbsp;·&nbsp; [LinkedIn](https://www.linkedin.com/in/harlanljones) &nbsp;·&nbsp; [Repositories](https://github.com/harlanljones?tab=repositories) &nbsp;·&nbsp; [Featured Projects](#-featured-repositories--project-websites) &nbsp;·&nbsp; [Glossary & Architecture](#-sabermetric-glossary--architecture-details)
+  <a href="https://harlanljones.com">harlanljones.com</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/harlanljones">LinkedIn</a> &nbsp;·&nbsp; <a href="https://github.com/harlanljones?tab=repositories">Repositories</a> &nbsp;·&nbsp; <a href="#-featured-repositories--project-websites">Featured Projects</a> &nbsp;·&nbsp; <a href="#-sabermetric-glossary--architecture-details">Glossary &amp; Architecture</a>
 </p>
 
 <div align="center">
