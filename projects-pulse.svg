@@ -11,10 +11,10 @@
 <text x="20" y="48" font-size="12" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">debuts, websites, streaks &amp; hidden gems</text>
 <g transform="translate(0,56)"><text x="20" y="19.0" font-size="11.5" font-weight="800" fill="#3fb950" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">NEWEST REPOSITORIES</text>
 <circle cx="24.0" cy="35.0" r="3.5" fill="#3178C6"/>
-<text x="33.0" y="39.0" font-size="12.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">wikis</text><text x="422.0" y="39.0" font-size="10" fill="#8b949e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Nov 10 (7d)</text>
+<text x="33.0" y="39.0" font-size="12.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">wikis</text><text x="422.0" y="39.0" font-size="10" fill="#8b949e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Nov 10 (8d)</text>
 <text x="33.0" y="54.0" font-size="10.5" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Plain-language wikis served from markdown by a tiny Bun engine. B...</text>
 <circle cx="24.0" cy="75.0" r="3.5" fill="#3572A5"/>
-<text x="33.0" y="79.0" font-size="12.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">baseball-ratings</text><text x="422.0" y="79.0" font-size="10" fill="#8b949e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Nov 6 (11d)</text>
+<text x="33.0" y="79.0" font-size="12.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">baseball-ratings</text><text x="422.0" y="79.0" font-size="10" fill="#8b949e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Nov 6 (12d)</text>
 <text x="33.0" y="94.0" font-size="10.5" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Recently published Python project.</text>
 <line x1="20" y1="102.0" x2="422" y2="102.0" stroke="#30363d" stroke-opacity="0.6" stroke-width="1"/>
 <text x="20" y="123.0" font-size="11.5" font-weight="800" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">PROJECT WEBSITES</text>
@@ -26,19 +26,19 @@
 <text x="33.0" y="198.0" font-size="10.5" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">S&amp;P 500 Bayesian macroeconomic ML forecasting &amp; walk-forward testing</text>
 <line x1="20" y1="206.0" x2="422" y2="206.0" stroke="#30363d" stroke-opacity="0.6" stroke-width="1"/>
 <text x="20" y="227.0" font-size="11.5" font-weight="800" fill="#f78166" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">HITTING STREAK</text>
-<circle cx="24.0" cy="243.0" r="3.5" fill="#8b949e"/>
-<text x="33.0" y="247.0" font-size="12.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">nanotap</text><text x="422.0" y="247.0" font-size="10" fill="#8b949e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Pace+ 100 · 1c/30d</text>
-<text x="33.0" y="262.0" font-size="10.5" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Active development focused on implementation plan for nanotap, bu...</text>
-<circle cx="24.0" cy="283.0" r="3" fill="#3572A5"/><circle cx="31.0" cy="283.0" r="3" fill="#f1e05a"/>
-<text x="38.0" y="287.0" font-size="12.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">bend-winprob</text><text x="422.0" y="287.0" font-size="10" fill="#8b949e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Pace+ 70 · 26c/30d</text>
-<text x="38.0" y="302.0" font-size="10.5" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Active development focused on deterministic offline replay engin...</text>
+<circle cx="24.0" cy="243.0" r="3" fill="#3572A5"/><circle cx="31.0" cy="243.0" r="3" fill="#f1e05a"/>
+<text x="38.0" y="247.0" font-size="12.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">bend-winprob</text><text x="422.0" y="247.0" font-size="10" fill="#8b949e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Pace+ 70 · 26c/30d</text>
+<text x="38.0" y="262.0" font-size="10.5" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Active development focused on deterministic offline replay engin...</text>
+<circle cx="24.0" cy="283.0" r="3.5" fill="#00ADD8"/>
+<text x="33.0" y="287.0" font-size="12.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">bend-re24</text><text x="422.0" y="287.0" font-size="10" fill="#8b949e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Pace+ 46 · 21c/30d</text>
+<text x="33.0" y="302.0" font-size="10.5" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Active development focused on templ/htmx report and CSV export an...</text>
 <line x1="20" y1="310.0" x2="422" y2="310.0" stroke="#30363d" stroke-opacity="0.6" stroke-width="1"/>
 <text x="20" y="331.0" font-size="11.5" font-weight="800" fill="#a371f7" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">HIDDEN GEMS</text>
 <circle cx="24.0" cy="347.0" r="3.5" fill="#3178C6"/>
 <text x="33.0" y="351.0" font-size="12.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">dotfiles-showcase</text><text x="422.0" y="351.0" font-size="10" fill="#8b949e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">gWAR 3.3 · 90c</text>
 <text x="33.0" y="366.0" font-size="10.5" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Local-first web app to visualize and explore chezmoi dotfiles wit...</text>
-<circle cx="24.0" cy="387.0" r="3.5" fill="#00ADD8"/>
-<text x="33.0" y="391.0" font-size="12.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">bend-re24</text><text x="422.0" y="391.0" font-size="10" fill="#8b949e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">gWAR 2.3 · 21c</text>
-<text x="33.0" y="406.0" font-size="10.5" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Active development focused on templ/htmx report and CSV export an...</text>
+<circle cx="24.0" cy="387.0" r="3.5" fill="#3572A5"/>
+<text x="33.0" y="391.0" font-size="12.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">rosetta</text><text x="422.0" y="391.0" font-size="10" fill="#8b949e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">gWAR 2.1 · 18c</text>
+<text x="33.0" y="406.0" font-size="10.5" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Translate NPB, KBO, CPBL, Cuban, and minor-league performance int...</text>
 <text x="422" y="426.0" font-size="9" fill="#8b949e" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">41 public repos · distinct from Top 5 · Nov 17, 2026</text></g>
 </svg>
