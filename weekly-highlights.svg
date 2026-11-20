@@ -8,7 +8,7 @@
 </defs>
 <rect x="0.5" y="0.5" width="441" height="255" rx="12" fill="#0d1117" stroke="url(#shellEdge-b560918e)"/>
 <text x="20" y="30" font-size="18" font-weight="700" fill="#e6edf3" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Week in Review</text>
-<text x="20" y="48" font-size="12" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Nov 13 – Nov 18, 2026</text>
+<text x="20" y="48" font-size="12" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Nov 13 – Nov 19, 2026</text>
 <g transform="translate(0,56)"><circle cx="24" cy="17.0" r="3.5" fill="#58a6ff"/><text x="34" y="21.0" font-size="13.5" font-weight="700" fill="#58a6ff" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">scheme-db</text>
 <text x="20" y="39.0" font-size="11.5" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">Updated type floor: every label, row detail and control is at</text>
 <text x="20" y="55.0" font-size="11.5" fill="#c9d1d9" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">least --text-ui in site/styles/global.css.</text></g>
